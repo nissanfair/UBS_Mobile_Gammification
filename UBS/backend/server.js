@@ -10,13 +10,13 @@ const swaggerOptions = {
             version: "1.0.0"
         }
     },
-    apis: ['index.js'],
+    apis: ['server.js','./routes/anothertesting.js','./routes/testingroute.js'],
 };
 const admin = require("firebase-admin");
 const serviceAccount = require("./serviceAccountKey.json");
 require('dotenv').config()
-const swaggerDocs = swaggerJSDoc(swaggerOptions);
-// Routes
+const YAML = require('yamljs')
+const swaggerDocs = YAML.load('swaggerapi.yaml');
 const testingRoute = require('./routes/testingroute')
 const anotherTestingRoute = require('./routes/anothertesting')
 
@@ -31,7 +31,7 @@ const db = admin.database();
 
 
 // === Usage of app.use, app.use creates a new middleware ===
-// Express json parses any incoming request to be 
+// Express json parses any incoming request to be in json format
 app.use(express.json())
 
 // Grabs all the necessary stuff from testingroute.js and puts it here
@@ -40,29 +40,12 @@ app.use('/6bit/testing',testingRoute)
 app.use('/6bit/anotherroute',anotherTestingRoute)
 
 // Swagger UI
+// Can be improved and be put into a yaml file
 app.use('/6bit-api-docs',swaggerUI.serve,swaggerUI.setup(swaggerDocs));
-/**
- * @swagger
- * /api/courses:
- *   post:
- *      description: testing get
- *      parameters: 
- *      - name: name
- *        description: Name of the course
- *        in: body
- *        required: true
- *        type: object
- *      responses:
- *          200:
- *            description: Success
- *          404:
- *            description: Failure
- * 
- */
 
-/*
 
-*/
+// /*
+
 // Testing route 
 app.post('/items', (req, res) => {
     console.log(req.body)

@@ -7,7 +7,7 @@ const router = express.Router()
 
 //  === Template [GET]===
 router.get('/', (req, res) => {
-    res.send(
+    res.status(200).send(
         {msg: "welcome my dudes, this is another testing route!"}
     )
     

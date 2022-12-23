@@ -1,0 +1,20 @@
+swagger: "2.0"
+info:
+    title: 6bit API documentation
+    description: Official API documentation by 6 bit
+    version: 1.0
+    contact: test@gmail.com
+
+schemes: [http]
+
+paths:
+  /6bit/anotherroute/:
+    get:
+      summary: Returns a string
+      description: testing [GET]
+      responses:
+        "200":
+          description: Success
+  /items:
+    post:
+      summary: 
