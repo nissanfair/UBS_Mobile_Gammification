@@ -17,7 +17,7 @@ const serviceAccount = require("./serviceAccountKey.json");
 require('dotenv').config()
 const YAML = require('yamljs')
 const swaggerDocs = YAML.load('swaggerapi.yaml');
-const testingRoute = require('./routes/testingroute')
+const testingRoute = require('./routes/topicroute')
 const anotherTestingRoute = require('./routes/anothertesting')
 
 // === Initialisation of Firebase materials ===
@@ -36,7 +36,7 @@ app.use(express.json())
 
 // Grabs all the necessary stuff from testingroute.js and puts it here
 // We can define the routes here. Over here, we declare /6bit/testing/.. Anything after that would be based on the routes in testingRoutes
-app.use('/6bit/testing',testingRoute)
+app.use('/6bit/topics',testingRoute)
 app.use('/6bit/anotherroute',anotherTestingRoute)
 
 // Swagger UI
