@@ -17,6 +17,7 @@ import Profile from "./profile"
 import Profilesetting from './profilesetting';
 import Inventory from './inventory';
 import HomeScreen from "./homescreen"
+import LevelMap from './LevelMap';
 // import { Drawer } from 'react-native-paper';
 
 
