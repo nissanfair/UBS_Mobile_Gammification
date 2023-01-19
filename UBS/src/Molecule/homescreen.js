@@ -1,5 +1,5 @@
 import React from 'react'
-import { SafeAreaView,ScrollView,StatusBar,StyleSheet,Text,useColorScheme,View,Section, Pressable, Image} from 'react-native';
+import { SafeAreaView,ScrollView,StatusBar,StyleSheet,Text,useColorScheme,View,Section, Pressable, Image, TouchableHighlight} from 'react-native';
 
 const styles = StyleSheet.create({
     background : {
@@ -9,9 +9,15 @@ const styles = StyleSheet.create({
 })
 
 export default function HomeScreen() {
+  const GoogleSSO = () => {
+    console.log("Testing")
+  }
+
   return (
     <View>
-        <Image source={require("../../media/Environment/SSO.png")} style={styles.background} />
+        <TouchableHighlight onPress={GoogleSSO}>
+          <Image source={require("../../media/Environment/SSO.png")} style={styles.background} />
+        </TouchableHighlight>
     </View>
   )
 }
