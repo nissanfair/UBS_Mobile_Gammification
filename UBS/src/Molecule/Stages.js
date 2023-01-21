@@ -2,19 +2,21 @@ import React, { useState } from 'react';
 import { StyleSheet, View, Text, Dimensions, Image, ScrollView} from 'react-native';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const Stack = createStackNavigator();
 const { width,height } = Dimensions.get('window');
 
 // Tasks
-// Set up barebones template
+// Set up barebones template - Done
 // Establsih connection to database
-// Setup relevant links to the different topics and education aspects
+// Setup relevant links to the different topics and education aspects - Done, topics
 
 const Stages = () => {
     const navigation = useNavigation();
-    // Hardcoded will 
-    const levels = [{topic: 'Topic1', display: "Topic 1"}];
+    // Hardcoded - How can i optimise this to make it more dynamic
+    const levels = [{topic: 'Topic1', display: "Topic 1", education: "Topic1Learning" }];
+
 
     return (
         <ScrollView>
@@ -27,7 +29,9 @@ const Stages = () => {
                     onPress={() => navigation.navigate(level.topic)}>
                     {level.display}
                 </Text>
-                <Image source={require("../../media/Environment/mortarboard.png")} style={styles.levelIcon} />
+                <TouchableOpacity onPress={() => navigation.navigate(level.education)}>
+                    <Image source={require("../../media/Environment/mortarboard.png")} style={styles.levelIcon}/>
+                </TouchableOpacity>
 
                 </View>
                 
