@@ -14,15 +14,7 @@ const { width,height } = Dimensions.get('window');
 const Stages = () => {
     const navigation = useNavigation();
     // Hardcoded will 
-    const levels = ['Topic 1', 'Topic 2', 'Topic 3', 'Topic 4','Topic 6','Topic 7','Topic 8','Topic 9' ,'Topic 10'];
-
-    function renderLevel(level) {
-        return (
-            <Text style={styles.levelText} onPress={() => navigation.navigate(level)}>
-                {level}
-            </Text>
-        );
-    }
+    const levels = [{topic: 'Topic1', display: "Topic 1"}];
 
     return (
         <ScrollView>
@@ -32,8 +24,8 @@ const Stages = () => {
                 <Text
                     key={index}
                     style={styles.levelText}
-                    onPress={() => navigation.navigate(level)}>
-                    {level}
+                    onPress={() => navigation.navigate(level.topic)}>
+                    {level.display}
                 </Text>
                 <Image source={require("../../media/Environment/mortarboard.png")} style={styles.levelIcon} />
 
