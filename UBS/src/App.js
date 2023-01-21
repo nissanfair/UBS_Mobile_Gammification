@@ -12,12 +12,21 @@ import {useSelector} from "react-redux";
 
 // Import External Molecules
 import Routing from "./Molecule/routing"
+import Stages from './Molecule/Stages';
+
+const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    <Provider store={store}> 
-      <Routing /> 
-    </Provider>
+    // <Provider store={store}> 
+    //   {/* <Routing />  */}
+
+    // </Provider>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name="LevelSelection" component={Stages} />
+        </Stack.Navigator>
+    </NavigationContainer>
   )
 }
 
