@@ -14,6 +14,8 @@ const TopicIntroduction = () => {
     const [topicChosen, setTopic] = useState(topic);
 
     useEffect(() => {
+        // Idea
+        
     
     
     }, [])
