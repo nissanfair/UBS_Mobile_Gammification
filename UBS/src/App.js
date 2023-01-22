@@ -27,9 +27,12 @@ export default function App() {
     //       <Stack.Screen name="LevelSelection" component={Stages} />
     //     </Stack.Navigator>
     // </NavigationContainer>
-    <NavigationContainer>
-      <AppNavigator/>
-    </NavigationContainer>
+
+    <Provider store={store}>
+      <NavigationContainer>
+        <AppNavigator/>
+      </NavigationContainer>
+    </Provider>
   )
 }
 

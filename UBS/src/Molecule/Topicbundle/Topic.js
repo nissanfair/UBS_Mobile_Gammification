@@ -5,15 +5,18 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 const Stack = createStackNavigator();
 
-const Topic1 = () => {
+const Topic = () => {
     const navigation = useNavigation();
+    // Get relevant information from the store
+    
+
+
 
     return (
         <Text>
-            Test only FOR TOPIC 1
+            Test only FOR TOPIC in general
         </Text>
-       
     );
 };
 
-export default Topic1
+export default Topic

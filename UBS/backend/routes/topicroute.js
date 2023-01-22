@@ -8,10 +8,9 @@ const admin = require("firebase-admin");
 // 4. RESPOND --> Normally for GET, what you want the server to respond to 
 
 // [GET] route for topic questions
-router.get('/:topics', function (req, res) {
-    var topicNumber = req.params.topics
+router.get('/totalquizzes', function (req, res) {
     try {
-        const itemsRef = admin.database().ref(topicNumber);
+        const itemsRef = admin.database().ref("Quiz");
         itemsRef.once('value', function(snapshot,error) {
 
             if (error) {
@@ -23,10 +22,12 @@ router.get('/:topics', function (req, res) {
                     error: "No data is found at the specified location in the database. Did you type correctly?"
                 })
             } else {
-                res.status(200).send(
+                res.status(200).json(
                 {   
-                    topic: topicNumber,
-                    questions: snapshot.val()
+                    // Seems very draggy, this is for the frontend 
+                    totalnumber: Object.keys(snapshot.val()).length,
+                    topics: Object.keys(snapshot.val()).length/3,
+                    mainbody: snapshot.val()
                 });
             }
         });
