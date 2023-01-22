@@ -5,15 +5,16 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 const Stack = createStackNavigator();
 
-const Topic1Learning = () => {
+const TopicLearning = () => {
     const navigation = useNavigation();
 
     return (
         <Text>
-            Topic 1 learning!
+            Topic learning page
+            Retrieve stuff from the store to make it dynamic - Not implement yet
         </Text>
        
     );
 };
 
-export default Topic1Learning
+export default TopicLearning

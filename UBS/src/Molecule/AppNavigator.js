@@ -27,6 +27,7 @@ const AppNavigator = () => (
         <Stack.Navigator initialRouteName="Home">
             <Stack.Screen name="Stages" component={Stages} options={{headerShown: false}}/>
             <Stack.Screen name="Topic" component={Topic} />
+            <Stack.Screen name="TopicIntroduction" component={TopicIntroduction} />
             <Stack.Screen name="TopicLearning" component={TopicLearning} />
         </Stack.Navigator>
 );

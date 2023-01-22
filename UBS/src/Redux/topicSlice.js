@@ -1,36 +1,20 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    topicquestionsdata: [],
-    topiceducationdata: [],
-    topicintroductiontopicdata: []
+    topic: ""
 }
 
-export const login_detail_slice = createSlice({
+export const topic_detail_slice = createSlice({
     name: "topic_information",
     initialState,
     reducers: {
-        retrieveIntroductionData: (state) => {
-            state.topicintroductiontopicdata = action.payload
-            
-        },
-        
-        retrieveEducationData: (state) => {
-            state.topiceducationdata = action.payload
-            
-        },
-
-        retrieveQuestionsData: (state) => {
-            state.topicquestionsdata = action.payload
-            
+        selectedTopic: (state, action) => {
+            state.topic = action.payload
         }
 
-
-
-        
     }
 })
 
-export const { setlogin, set_profile_name, set_inventory } = login_detail_slice.actions;
+export const { selectedTopic } = topic_detail_slice.actions;
 
-export default login_detail_slice.reducer
+export default topic_detail_slice.reducer
