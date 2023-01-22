@@ -37,6 +37,40 @@ router.get('/totalquizzes', function (req, res) {
     }
 });
 
+// [GET] route for topics with params
+router.get('/:topic', function (req, res) {
+
+    var topicParams = req.params.topic;
+    try {
+        const itemsRef = admin.database().ref('Quiz').orderByKey().startAt(`${topicParams}_`).endAt(`${topicParams}_\uf8ff`)
+        console.log("hehe")
+        console.log(itemsRef)
+        itemsRef.once('value', function(snapshot,error) {
+
+            console.log(snapshot.val());
+            if (error) {
+                res.status(500).send({
+                    error:"No data found at the specified location"
+                })
+            } else if (snapshot.val() === null) {
+                res.status(404).send({
+                    error: "No data is found at the specified location in the database. Did you type correctly?"
+                })
+            } else {
+                res.status(200).json(
+                {   
+                    data: snapshot.val()
+                });
+
+            }
+        });
+    }
+    catch(err) {
+        res.status(500).send({ error: 'Error retrieving data from Firebase, does the given params exist?' });
+    }
+});
+
+
 // =========================================================================================================================================================================================
 //  === Template [GET]===
 // router.get('/', (req, res) => {
