@@ -1,7 +1,7 @@
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import Stages from './Stages';
-import Topic from './Topicbundle/Topic';
+import Topic   from './Topicbundle/Topic';
 import TopicLearning from './Topicbundle/TopicLearning';
 import TopicIntroduction from './Topicbundle/TopicIntroduction';
 // Creation of the navigation structure, all the screens of the stages and topics and learnings are defined here. 
