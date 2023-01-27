@@ -50,8 +50,13 @@ const TopicIntroduction = () => {
     return (
         <View style={styles.main}>
 
+            <View style={styles.backgroundContainer}>
+                <Image source={require("../../../media/Environment/s4m_ur4i-bg_clouds.png")} resizeImage='stretch' style={styles.backdrop} />
+            </View>
+
+
             <View style={styles.leftbox}>
-                <ImageBackground source={require("../../../media/Environment/panel_Example2.png")} style={{ width: '100%', height: '100%' }} />
+                <ImageBackground source={require("../../../media/Environment/panel_Example2.png")} style={{ width: undefined, height: undefined, flex: 1 }} />
 
                 <View style={styles.desc}>
                     <Text>
@@ -61,6 +66,8 @@ const TopicIntroduction = () => {
 
 
             </View>
+
+
         </View>
     );
 };
