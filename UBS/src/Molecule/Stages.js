@@ -6,6 +6,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useDispatch } from 'react-redux';
 import TopicLearning from './Topicbundle/TopicLearning';
 import TopicIntroduction from './Topicbundle/TopicIntroduction';
+import {ProgressBar} from '@react-native-community/progress-bar-android';
 
 // Redux slices 
 import {selectedTopic} from "../Redux/topicSlice"
@@ -90,6 +91,8 @@ const Stages = () => {
         <View style={styles.levelContainer}>
             {levels.map((level, index) => (
                 <View style={styles.levelButton}>
+                    <Text>Not Completed</Text>
+                    <ProgressBar color="orange"/>
                 <Text
                     key={index}
                     style={styles.levelText}
@@ -112,6 +115,10 @@ const Stages = () => {
 };
 
 const styles = StyleSheet.create({
+    example: {
+        marginHorizontal: 5
+    },
+    
     levelText: {
         fontSize: 30,
         textAlign: 'center',
