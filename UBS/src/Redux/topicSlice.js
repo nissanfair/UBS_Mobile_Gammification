@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    topic: ""
+    topic: "",
 }
 
 export const topic_detail_slice = createSlice({
@@ -11,7 +11,6 @@ export const topic_detail_slice = createSlice({
         selectedTopic: (state, action) => {
             state.topic = action.payload
         }
-
     }
 })
 

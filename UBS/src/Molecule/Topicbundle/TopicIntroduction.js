@@ -12,6 +12,9 @@ const TopicIntroduction = () => {
     // Get relevant information from the store
 
     // Get what topic to be displayed here
+    // Redux
+    // useSelector()
+    // dispatch()
     const topic = useSelector(state => state.topic.topic);
 
     const [topicChosen, setTopic] = useState(topic);
