@@ -10,15 +10,15 @@ const swaggerOptions = {
             version: "1.0.0"
         }
     },
-    apis: ['server.js','./routes/anothertesting.js','./routes/testingroute.js'],
+    apis: ['server.js','./routes/testingroute.js'],
 };
 const admin = require("firebase-admin");
 const serviceAccount = require("./serviceAccountKey.json");
 require('dotenv').config()
+const cors = require("cors")
 const YAML = require('yamljs')
 const swaggerDocs = YAML.load('swaggerapi.yaml');
 const testingRoute = require('./routes/topicroute')
-const anotherTestingRoute = require('./routes/anothertesting')
 
 // === Initialisation of Firebase materials ===
 admin.initializeApp({
@@ -33,11 +33,12 @@ const db = admin.database();
 // === Usage of app.use, app.use creates a new middleware ===
 // Express json parses any incoming request to be in json format
 app.use(express.json())
+// CORS initialisation
+app.use(cors())
 
 // Grabs all the necessary stuff from testingroute.js and puts it here
 // We can define the routes here. Over here, we declare /6bit/testing/.. Anything after that would be based on the routes in testingRoutes
 app.use('/6bit/topics',testingRoute)
-app.use('/6bit/anotherroute',anotherTestingRoute)
 
 // Swagger UI
 // Can be improved and be put into a yaml file

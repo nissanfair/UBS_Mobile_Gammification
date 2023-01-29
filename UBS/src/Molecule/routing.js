@@ -18,6 +18,7 @@ import Profilesetting from './profilesetting';
 import Inventory from './inventory';
 import HomeScreen from "./homescreen"
 import LevelMap from './LevelMap';
+import Progress from './progress';
 // import { Drawer } from 'react-native-paper';
 
 
@@ -69,11 +70,13 @@ function Routing() {
 
           {IsSignedIn() ?
             // <Stack.Screen name="Authed" component={Auth} options={{ headerShown: false , orientation: "landscape" }}></Stack.Screen>
-            <Stack.Screen name="Home Screen"  component={HomeScreen} options={{headerShown: false}}/>
+            // <Stack.Screen name="Home Screen"  component={HomeScreen} options={{headerShown: false}}/>
+            <Stack.Screen name="Progress" component={Progress} options={{headerShown: false}}/>
 
             :
             // <Stack.Screen name="NotAuth" component={NotAuth} options={{ headerShown: false, orientation: "landscape" }}></Stack.Screen>
-            <Stack.Screen name="Home Screen" component={HomeScreen} options={{headerShown: false}} />
+            // <Stack.Screen name="Home Screen" component={HomeScreen} options={{headerShown: false}} />
+            <Stack.Screen name="Progress" component={Progress} options={{headerShown: false}}/>
           }
         </Stack.Navigator>
       </NavigationContainer>
