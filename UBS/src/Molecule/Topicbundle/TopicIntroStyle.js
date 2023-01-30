@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
@@ -22,12 +23,16 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '100%',
     },
+    leftbackdrop: {
+        width: '100%',
+        height: '100%',
+    },
 
     desc: {
         position: 'absolute',
         top: 0,
-        left: 0,
-        right: 0,
+        left: 35,
+        right: 35,
         bottom: 0,
         justifyContent: 'center',
         alignItems: 'center'

@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, Dimensions, Image, ScrollView, ImageBackground } from 'react-native';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
@@ -59,7 +60,7 @@ const TopicIntroduction = () => {
 
 
             <View style={styles.leftbox}>
-                <ImageBackground source={require("../../../media/Environment/panel_Example2.png")} style={{ width: undefined, height: undefined, flex: 1 }} />
+                <ImageBackground source={require("../../../media/Environment/panel_Example2.png")} resizeMode='stretch' style={styles.leftbackdrop} />
 
                 <View style={styles.desc}>
                     <Text>
