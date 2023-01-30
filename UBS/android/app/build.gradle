@@ -1,5 +1,11 @@
 apply plugin: "com.android.application"
 
+// apply plugins {
+//     id 'com.android.application'
+//     // Add the Google services Gradle plugin
+//     id 'com.google.gms.google-services'
+// }
+
 import com.android.build.OutputFile
 import org.apache.tools.ant.taskdefs.condition.Os
 
@@ -249,6 +255,10 @@ android {
 }
 
 dependencies {
+    implementation platform('com.google.firebase:firebase-bom:31.2.0')
+    implementation 'com.google.firebase:firebase-analytics'
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.0.0'
+
     implementation fileTree(dir: "libs", include: ["*.jar"])
 
     //noinspection GradleDynamicVersion
@@ -311,3 +321,6 @@ def isNewArchitectureEnabled() {
     // - Set an environment variable `ORG_GRADLE_PROJECT_newArchEnabled=true`
     return project.hasProperty("newArchEnabled") && project.newArchEnabled == "true"
 }
+
+
+apply plugin: 'com.google.gms.google-services'
