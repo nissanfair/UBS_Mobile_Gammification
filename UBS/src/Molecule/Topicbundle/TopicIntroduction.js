@@ -56,6 +56,8 @@ const TopicIntroduction = () => {
 
             <View style={styles.backgroundContainer}>
                 <Image source={require("../../../media/Environment/s4m_ur4i-bg_clouds.png")} resizeImage='stretch' style={styles.backdrop} />
+
+                
             </View>
 
 
@@ -68,6 +70,19 @@ const TopicIntroduction = () => {
                     </Text>
                 </View>
 
+
+            </View>
+
+            <View style={styles.rightbox}>
+                
+                <View style={styles.monsterbox}>
+                <ImageBackground source={require("../../../media/Characters/EVil Wizard 2/Sprites/Idle.png")} resizeMode='stretch' style={styles.leftbackdrop} />
+
+                </View>
+
+                <View>
+                    <Text>Buttons to be placed here</Text>
+                </View>
 
             </View>
 

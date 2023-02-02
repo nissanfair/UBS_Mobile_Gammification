@@ -5,12 +5,24 @@ const styles = StyleSheet.create({
 
     main: {
         width: '100%',
-        height: '100%'
+        height: '100%',
+        flexDirection: 'row'
     },
 
     leftbox: {
-        width: '50%',
+        width: '100%',
         height: '100%',
+        flex: 3,
+    },
+    rightbox: {
+        width: '100%',
+        height: '100%',
+        flex:3,
+        
+    },
+    monsterbox:{
+        width: '100%',
+        height: '80%',
     },
     backgroundContainer: {
         position: 'absolute',
