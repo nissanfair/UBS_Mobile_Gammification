@@ -36,12 +36,6 @@ const TopicIntroduction = () => {
             .catch(error => {
                 console.log(error)
             })
-
-
-
-
-
-
     }, [])
 
     return (
