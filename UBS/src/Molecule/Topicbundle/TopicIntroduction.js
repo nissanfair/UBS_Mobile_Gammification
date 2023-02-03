@@ -44,12 +44,6 @@ const TopicIntroduction = () => {
 
     }, [])
 
-
-
-
-
-
-
     return (
         <View style={styles.main}>
 
@@ -69,8 +63,6 @@ const TopicIntroduction = () => {
 
 
             </View>
-
-
         </View>
     );
 };
