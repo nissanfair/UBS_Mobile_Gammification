@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import { StyleSheet, View, Text, Dimensions, Image, ScrollView, TouchableHighlight, ImageBackground} from 'react-native';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import Questions from "./Questions"
-import Health from './Health';
 
 const Stack = createStackNavigator();
 
@@ -23,11 +21,12 @@ const Game = () => {
 
     return (
         <View>
-                <ImageBackground source={require("../../../../media/Environment/craftpix-897715-free-pixel-art-fantasy-2d-battlegrounds/PNG/Battleground1/Pale/Battleground1.png")} style={styles.background} >
+            <TouchableHighlight >
+                <Image source={require("../../../../media/Environment/craftpix-897715-free-pixel-art-fantasy-2d-battlegrounds/PNG/Battleground1/Pale/Battleground1.png")} style={styles.background} />
                 {/* Enter your components here */}
-                    <Health/>
+                
                 {/* End of Components here */}
-                </ImageBackground>
+            </TouchableHighlight>
         </View>
     );
 };
