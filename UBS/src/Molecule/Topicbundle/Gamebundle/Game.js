@@ -25,7 +25,7 @@ const Game = () => {
         <View>
                 {/* <ImageBackground source={require("../../../../media/Environment/craftpix-897715-free-pixel-art-fantasy-2d-battlegrounds/PNG/Battleground1/Pale/Battleground1.png")} style={styles.background}/> */}
                 {/* Enter your components here */}
-                    <Question/>
+                    {/* <Question/> */}
                     <Health/>
                 {/* End of Components here */}
         </View>
