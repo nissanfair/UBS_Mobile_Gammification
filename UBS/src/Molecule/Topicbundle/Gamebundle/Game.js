@@ -4,6 +4,7 @@ import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Question from './Questions';
 import Health from './Health'
+import Timeline from './Timeline'
 
 const Stack = createStackNavigator();
 
@@ -26,7 +27,8 @@ const Game = () => {
                 {/* <ImageBackground source={require("../../../../media/Environment/craftpix-897715-free-pixel-art-fantasy-2d-battlegrounds/PNG/Battleground1/Pale/Battleground1.png")} style={styles.background}/> */}
                 {/* Enter your components here */}
                     {/* <Question/> */}
-                    <Health/>
+                    {/* <Health/> */}
+                    <Timeline/>
                 {/* End of Components here */}
         </View>
     );
