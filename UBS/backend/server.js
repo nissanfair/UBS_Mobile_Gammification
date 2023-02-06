@@ -19,6 +19,7 @@ const cors = require("cors")
 const YAML = require('yamljs')
 const swaggerDocs = YAML.load('swaggerapi.yaml');
 const testingRoute = require('./routes/topicroute')
+const progressRoute = require('./routes/progressRoute')
 
 // === Initialisation of Firebase materials ===
 admin.initializeApp({
@@ -38,7 +39,7 @@ app.use(cors())
 
 // Grabs all the necessary stuff from testingroute.js and puts it here
 // We can define the routes here. Over here, we declare /6bit/testing/.. Anything after that would be based on the routes in testingRoutes
-app.use('/6bit/topics',testingRoute)
+app.use('/6bit/topics',progressRoute)
 
 // Swagger UI
 // Can be improved and be put into a yaml file

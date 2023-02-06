@@ -76,11 +76,12 @@ const Stages = () => {
         .catch(error => {
             console.log(error)
         })
-
         // 
+        
      
     }, [])
     
+
 
    
 
@@ -91,8 +92,6 @@ const Stages = () => {
         <View style={styles.levelContainer}>
             {levels.map((level, index) => (
                 <View style={styles.levelButton}>
-                    <Text>Not Completed</Text>
-                    <ProgressBar color="orange"/>
                 <Text
                     key={index}
                     style={styles.levelText}
