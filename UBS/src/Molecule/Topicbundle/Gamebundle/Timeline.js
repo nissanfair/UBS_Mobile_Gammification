@@ -24,26 +24,18 @@ const Timeline = () => {
       return () => clearInterval(intervalId.current);
     }, []);
 
-    // useEffect(() => {
-    //     // use setInterval() to start an interval that will run decreaseNum function every 1 second. decreaseNum simply updates the num state to 1 less than the previous value
-    //     intervalRef.current = setInterval(decreaseNum, 1000);
-    //     // store the reference to the interval we just set in intervalRef.current
-    //     return () => clearInterval(intervalRef.current);
-    //   }, []);
     const percentage = (timeLeft) / 30;
+    // Probably have to set the percentage to be global variable. 
 
     return (
-        <View>
+        <View style={{justifyContent:"center", alignItems:"center"}}>
             <View>
-                <Text>
-
-                {timeLeft}
-                
-                </Text>
-                {/* <Button title="StartTimer" onPress={handleClickStart} />
-                <Button title="ResetTimer" onPress={handleClickReset} />
-                <Button title="PauseTimer" onPress={handleClickPause} /> */}
-                <Progress.Bar progress={percentage} width={400} height={50} />
+                    {/* Missing Duration left */}
+                    <Progress.Bar borderRadius={30} progress={percentage} width={400} height={30} color={"green"}>
+                    </Progress.Bar>
+            </View>
+            <View>
+                <Text>{timeLeft} seconds left</Text>
             </View>
         </View>
     );
