@@ -80,13 +80,13 @@ const TopicIntroduction = () => {
           <View style={styles.buttonbox}>
             <View style={styles.back}>
               <Image
-                source={require('../../../media/UI/back_v2.png')}
+                // source={require('../../../media/UI/back_v2.png')}
                 resizeMode="contain"
               />
             </View>
             <View style={styles.start}>
               <Image
-                source={require('../../../media/UI/start_v2.png')}
+                // source={require('../../../media/UI/start_v2.png')}
                 resizeMode="contain"
               />
             </View>
