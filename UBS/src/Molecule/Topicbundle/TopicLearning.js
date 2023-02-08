@@ -21,18 +21,12 @@ const TopicLearning = () => {
         fetch(fetchSelectedTopic)
             .then(response => response.json())
             .then(data => {
-                // pushing the intro here. We can add more stuff here then use redux accordingly 
                 pushIntro(data.data[`${topic}_Learning`])
 
             })
             .catch(error => {
                 console.log(error)
             })
-
-
-
-
-
 
     },[])
 
@@ -61,10 +55,7 @@ const TopicLearning = () => {
         </View>
 
         <View style={styles.rightbox}>
-            
-            <View style={styles.monsterbox}>
-            <ImageBackground source={require("../../../media/Characters/EVil Wizard 2/Sprites/Idle.png")} resizeMode='stretch' style={styles.leftbackdrop} />
-            </View>
+
             <Text>
                 button 1. click next (is483 - 21) hahahaha
             </Text>
@@ -80,7 +71,5 @@ const TopicLearning = () => {
        
     );
 };
-
-
 
 export default TopicLearning
