@@ -10,8 +10,10 @@ const admin = require("firebase-admin");
 // [GET] route for topic questions
 router.get('/topicStatus', function (req, res) {
     try {
-        const itemsRef = admin.database().ref("Character/123456/Topic_Progress");
+        const itemsRef = admin.database().ref("Character/123456/TopicProgress");
+        
         itemsRef.once('value', function(snapshot,error) {
+            console.log(snapshot.val());
 
             if (error) {
                 res.status(500).send({
@@ -25,7 +27,8 @@ router.get('/topicStatus', function (req, res) {
                 res.status(200).json(
                 {   
                     // Seems very draggy, this is for the frontend 
-                    topic_status: Object.keys(snapshot.val())
+                    topic_status: snapshot.val(),
+                    totalnumber: Object.keys(snapshot.val()).length
                 });
             }
         });

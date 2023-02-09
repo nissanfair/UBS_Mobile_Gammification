@@ -52,13 +52,16 @@ const Progress = () => {
       .then(response => response.json())
       .then(data => {
           // Manipulating the data here 
-          alert("hello")
           var topicDict = []
-          for (let i=1; i < data.topics + 1; i++) {
-              topicDict.push({topic:  `Topic${i}`, display:  `Topic ${i}`})
+          console.log(data.totalnumber)
+          for (let i=1; i < data.totalnumber + 1; i++) {
+
+              topicDict.push({topic:  `Topic ${i}`, status: data.topic_status[`Topic${i}`]})
           }
         // add the new data to the list of dictionaries
         addLevels(topicDict)
+        console.log(topicDict)
+        
 
       })
       .catch(error => {
@@ -78,6 +81,10 @@ const Progress = () => {
       
       <ScrollView>
       <View style={styles.levelContainer}>
+
+      
+
+      
 
       <View style={styles.example}>
         <Text style={styles.titleText}>Topic Progress</Text>
@@ -107,6 +114,16 @@ const Progress = () => {
 
       <View style={styles.example}>
                  <Text>Topic 3: Not Completed</Text>
+                   <ProgressBar
+                     styleAttr="Horizontal"
+                     indeterminate={false}
+                     progress={0}
+                     color="red"
+                   />
+      </View>
+
+      <View style={styles.example}>
+                 <Text>Topic 4: Not Completed</Text>
                    <ProgressBar
                      styleAttr="Horizontal"
                      indeterminate={false}
