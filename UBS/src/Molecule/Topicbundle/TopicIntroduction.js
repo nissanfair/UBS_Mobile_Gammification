@@ -8,6 +8,7 @@ import {
   Image,
   ScrollView,
   ImageBackground,
+  TouchableOpacity,
 } from 'react-native';
 import {NavigationContainer, useNavigation} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
@@ -16,8 +17,13 @@ import {styles} from './TopicIntroStyle';
 
 const Stack = createStackNavigator();
 
-const TopicIntroduction = () => {
-  const navigation = useNavigation();
+const TopicIntroduction = ({navigation}) => {
+  const Backbutton = () => {
+    navigation.navigate("Stages")
+  }
+  const Startbutton = () => {
+    navigation.navigate("Topic")
+  }
   // Get relevant information from the store
 
   // Get what topic to be displayed here
@@ -79,16 +85,21 @@ const TopicIntroduction = () => {
 
           <View style={styles.buttonbox}>
             <View style={styles.back}>
-              <Image
-                source={require('../../../media/UI/back_v2.png')}
-                resizeMode="contain"
-              />
+              <TouchableOpacity style={styles.button} onPress={Backbutton}>
+                <Image
+                  source={require('../../../media/UI/back_v2.png')}
+                  resizeMode="contain"
+                />
+              </TouchableOpacity>
             </View>
             <View style={styles.start}>
+
+            <TouchableOpacity style={styles.button} onPress={Startbutton}>
               <Image
                 source={require('../../../media/UI/start_v2.png')}
                 resizeMode="contain"
               />
+              </TouchableOpacity>
             </View>
           </View>
         </View>
