@@ -36,8 +36,28 @@ const Game = () => {
                         <Timeline/>
                     </View>
                     {/* Character Side */}
-                    <View style={{marginTop:25, borderColor:"#FF3D00", borderWidth:5, height:"70%"}}>
+                    <View style={{marginTop:25, borderColor:"#FF3D00", borderWidth:5, height:"70%", flexDirection:"row"}}>
                         
+                        {/* Character 1  */}
+                        <View style={{borderColor:"#FF3D00", borderWidth:5,flex:1, height:"100%", width:'100%'}}>
+                            <View style={{flexDirection:"column"}}>
+                                <View style={{flex:4}}></View>
+                                <View style={{flex:5}}>
+                                    <Image source={require("../../../../media/Characters/Adventurer/Individual Sprites/adventurer-attack1-00.png")}></Image>
+                                </View>
+                                <View style={{flex:5}}></View>
+
+                            </View>
+                        </View>
+                        {/* Questions */}
+                        <View style={{height:"100%", width:'100%',borderColor:"#FF3D00", borderWidth:5,flex:3, alignContent:'center', alignItems:'center'}}>
+                            <Question/>
+                        </View>
+
+                        {/* Character 2 */}
+                        <View style={{borderColor:"#FF3D00", borderWidth:5,flex:1}}>
+
+                        </View>
                     </View>
 
                 </View>

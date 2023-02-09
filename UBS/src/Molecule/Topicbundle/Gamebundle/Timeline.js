@@ -46,10 +46,7 @@ const Timeline = () => {
                         <Progress.Bar borderRadius={30} progress={percentage} width={400} height={30} color={"green"}>
                         </Progress.Bar>
                       }
-                    </>
-                      
-                      
-                                          
+                    </>  
                     }
             </View>
             <View>

@@ -41,14 +41,14 @@ const Question = () => {
     return (
         <>
 
-            <View style={{height:"20%", width: "60%", backgroundColor: "white", borderRadius:20, display:"flex", justifyContent:'center', alignItems: 'center'}}>
+            <View style={{height:"20%", width: "100%", backgroundColor: "white", borderRadius:20, display:"flex", justifyContent:'center', alignItems: 'center'}}>
                 <Text>{sample_question["Question"]}</Text>
             </View>
 
             {showQuestion ?
                 <>
                     {/* This is for Option A and B */}
-                    <View style={{width:"60%",height:"20%",marginTop:10, flexDirection:"row"}}> 
+                    <View style={{width:"100%",height:"35%",marginTop:10, flexDirection:"row"}}> 
                         <TouchableHighlight style={{height:"100%", width:"49%", backgroundColor:"white", borderRadius:10, justifyContent:'center', alignItems: 'center'}} onPress={()=> userAnswer("A")}>
                             <View>
                                 <Text style={{margin:5}}>{sample_question['optionA']}</Text>
@@ -65,7 +65,7 @@ const Question = () => {
                         </TouchableHighlight>
                     </View>
                     {/* THIS IS FOR OPTION C AND D  */}
-                    <View style={{width:"60%",height:"20%",marginTop:10, flexDirection:"row"}}> 
+                    <View style={{width:"100%",height:"35%",marginTop:10, flexDirection:"row"}}> 
                         <TouchableHighlight style={{height:"100%", width:"49%", backgroundColor:"white", borderRadius:10, justifyContent:'center', alignItems: 'center'}} onPress={()=> userAnswer("C")}>
                             <View>
                                 <Text style={{margin:5}}>{sample_question['optionC']}</Text>
@@ -85,11 +85,11 @@ const Question = () => {
                 :
                 <> 
                     {correct ?
-                        <View style={{height:"40%", width:"60%",marginTop:10, borderRadius:10,backgroundColor:"lightgreen",justifyContent:'center', alignItems: 'center'}} >
+                        <View style={{height:"70%", width:"100%",marginTop:10, borderRadius:10,backgroundColor:"lightgreen",justifyContent:'center', alignItems: 'center'}} >
                             <Text style={{margin:10}}>You are correct! {sample_question['Explanation']}</Text>
                         </View>
                     :
-                        <View style={{height:"40%", width:"60%",marginTop:10, borderRadius:10,backgroundColor:"red",justifyContent:'center', alignItems: 'center'}} >
+                        <View style={{height:"70%", width:"100%",marginTop:10, borderRadius:10,backgroundColor:"red",justifyContent:'center', alignItems: 'center'}} >
                             <Text style={{margin:10}}>You are wrong. {sample_question['Explanation']}</Text>
                         </View>
                     }
