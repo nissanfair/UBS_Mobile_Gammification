@@ -56,7 +56,14 @@ const Game = () => {
 
                         {/* Character 2 */}
                         <View style={{flex:1}}>
+                            <View style={{flexDirection:"column", height:"100%", width:'100%'}}>
+                                    <View style={{flex:3}}></View>
+                                    <View style={{flex:7}}>
+                                        <Image style={{height:"100%", width:"100%",alignSelf:'center'}}  source={require("../../../sorcereridle.gif")} />                                    
+                                    </View>
+                                    <View style={{flex:1}}></View>
 
+                            </View>
                         </View>
                     </View>
 
