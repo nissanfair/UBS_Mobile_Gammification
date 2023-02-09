@@ -5,7 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Question from './Questions';
 import Health from './Health'
 import Timeline from './Timeline'
-import Background from '../../../../media/Environment/craftpix-897715-free-pixel-art-fantasy-2d-battlegrounds/PNG/Battleground3/Bright/Battleground3.png'
+import FastImage from 'react-native-fast-image'
 
 const Stack = createStackNavigator();
 const styles = StyleSheet.create({
@@ -36,28 +36,26 @@ const Game = () => {
                         <Timeline/>
                     </View>
                     {/* Character Side */}
-                    <View style={{marginTop:25, borderColor:"#FF3D00", borderWidth:5, height:"70%", flexDirection:"row"}}>
+                    <View style={{marginTop:25, height:"70%", flexDirection:"row"}}>
                         
                         {/* Character 1  */}
-                        <View style={{borderColor:"#FF3D00", borderWidth:5,flex:1, height:"100%", width:'100%'}}>
+                        <View style={{flex:1, height:"100%", width:'100%'}}>
                             <View style={{flexDirection:"column", height:"100%", width:'100%'}}>
-                                <View style={{flex:6}}></View>
-                                <View style={{flex:3}}>
-                                    <Image source={require("../../../../media/Characters/Adventurer/characteridle.gif")} />
-
-                                    
+                                <View style={{flex:3}}></View>
+                                <View style={{flex:6}}>
+                                    <Image style={{height:"100%", width:"100%",alignSelf:'center'}}  source={require("../../../adventure.gif")} />                                    
                                 </View>
                                 <View style={{flex:1}}></View>
 
                             </View>
                         </View>
                         {/* Questions */}
-                        <View style={{height:"100%", width:'100%',borderColor:"#FF3D00", borderWidth:5,flex:3, alignContent:'center', alignItems:'center'}}>
+                        <View style={{height:"100%", width:'100%',flex:3, alignContent:'center', alignItems:'center'}}>
                             <Question/>
                         </View>
 
                         {/* Character 2 */}
-                        <View style={{borderColor:"#FF3D00", borderWidth:5,flex:1}}>
+                        <View style={{flex:1}}>
 
                         </View>
                     </View>
