@@ -40,12 +40,14 @@ const Game = () => {
                         
                         {/* Character 1  */}
                         <View style={{borderColor:"#FF3D00", borderWidth:5,flex:1, height:"100%", width:'100%'}}>
-                            <View style={{flexDirection:"column"}}>
-                                <View style={{flex:4}}></View>
-                                <View style={{flex:5}}>
-                                    <Image source={require("../../../../media/Characters/Adventurer/Individual Sprites/adventurer-attack1-00.png")}></Image>
+                            <View style={{flexDirection:"column", height:"100%", width:'100%'}}>
+                                <View style={{flex:6}}></View>
+                                <View style={{flex:3}}>
+                                    <Image source={require("../../../../media/Characters/Adventurer/characteridle.gif")} />
+
+                                    
                                 </View>
-                                <View style={{flex:5}}></View>
+                                <View style={{flex:1}}></View>
 
                             </View>
                         </View>
