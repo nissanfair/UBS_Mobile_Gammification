@@ -31,11 +31,29 @@ const Timeline = () => {
         <View style={{justifyContent:"center", alignItems:"center"}}>
             <View>
                     {/* Missing Duration left */}
-                    <Progress.Bar borderRadius={30} progress={percentage} width={400} height={30} color={"green"}>
+                    {timeLeft == 0 
+                    ?
+                    <Progress.Bar borderRadius={30} progress={100} width={400} height={30} color={"black"}>
                     </Progress.Bar>
+                    :
+                    <>
+                      {
+                        timeLeft <= 10 
+                        ? 
+                        <Progress.Bar borderRadius={30} progress={percentage} width={400} height={30} color={"red"}>
+                        </Progress.Bar>
+                        : 
+                        <Progress.Bar borderRadius={30} progress={percentage} width={400} height={30} color={"green"}>
+                        </Progress.Bar>
+                      }
+                    </>
+                      
+                      
+                                          
+                    }
             </View>
             <View>
-                <Text>{timeLeft} seconds left</Text>
+              {timeLeft == 0 ?<Text style={{color:"white"}}>Time's up!</Text> :<Text style={{color:"white"}}>{timeLeft} seconds left</Text>}
             </View>
         </View>
     );
