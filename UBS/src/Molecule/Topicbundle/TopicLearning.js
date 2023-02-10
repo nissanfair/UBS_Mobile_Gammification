@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, Dimensions, Image, ScrollView, ImageBackground } from 'react-native';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';

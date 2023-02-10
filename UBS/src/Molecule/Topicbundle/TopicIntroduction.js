@@ -76,7 +76,7 @@ const TopicIntroduction = ({navigation}) => {
         <View style={styles.innerrightbox}>
           <View style={styles.monsterbox}>
             <Image
-              source={require('../../../media/Characters/sorcerer_villain/villian_clear.png')}
+              source={require('../../../media/sorcereridle.gif')}
               resizeMode="contain"
               styles={styles.wizard}
             />
