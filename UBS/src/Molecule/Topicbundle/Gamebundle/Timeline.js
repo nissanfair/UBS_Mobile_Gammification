@@ -3,12 +3,25 @@ import { StyleSheet, View, Text, Dimensions, Image, ScrollView, Button } from 'r
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import * as Progress from 'react-native-progress'
+
+import { useSelector,useStore } from 'react-redux';
 const Stack = createStackNavigator();
 
-const Timeline = () => {     
+
+const Timeline = () => {   
+    // Set to track update store
+    // useSelector timestate
+    const timestate = useSelector(state => state.question.timestate);    
     const [timeLeft, setTimeLeft] = useState(30);
-    // const [percentage , setPercentage ] = useState(1)
     const intervalId = useRef(null);
+    
+    // UseEffect to track changes in timestate
+    useEffect(() => {
+      // Pause to clear interval
+      if (timestate == "PAUSE") {
+        clearInterval(intervalId.current);
+      }
+    }, [timestate]);
   
     useEffect(() => {
       intervalId.current = setInterval(() => {
