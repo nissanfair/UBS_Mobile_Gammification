@@ -5,7 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { useDispatch } from 'react-redux';
 
 // Redux
-import {selectedTimeState} from "../../../Redux/questionSlice"
+import {setSelectedTimeState} from "../../../Redux/questionSlice"
 import { current } from '@reduxjs/toolkit';
 
 const Question = () => {
@@ -38,59 +38,59 @@ const Question = () => {
     const [prompt, setPrompt ] = useState("")
     
     // Number for index of question
-    const [questionIndex, changeQuestionIndex] = useState(0)
+    const [questionIndex, setQuestionIndex] = useState(0)
     // Set current question
-    const [currentQuestion, changeQuestion] = useState(sample_questions[questionIndex])
+    const [currentQuestion, setQuestion] = useState(sample_questions[questionIndex])
 
 
     const userAnswer = (answer) => {
         // console.log(answer), Yes this is working. 
         if (answer == currentQuestion['Answer']) {
-            // This must Trigger the Answer Box to be appear. 
-            // On press send dispatch to pause the timer
-            // Rest the state variable
-            // Introduce new time state
-            console.log(currentQuestion)
-            console.log("User answers correctly.")
-            dispatch(selectedTimeState(""))
-            dispatch(selectedTimeState("PAUSE"))
+            
+            // Step 1: Ensure that Timer is Paused 
+            dispatch(setSelectedTimeState("PAUSE"))
+            
+            // Step 2: Hide The Questions
             setShowQuestion(false)
+
+            //Step 3: Set it to Correct Answer 
             setCorrect(true)
-            console.log(correct)
+
+            //Step 4: Set The Prompt (To be Changed to Fetching API)
+            setPrompt(sample_questions[questionIndex]["Explanation"])
+
         }
         else {
-            // This must Trigger the Wrong to appear. 
+            // Step 1: Ensure that Timer is Paused 
+            dispatch(setSelectedTimeState("PAUSE"))
+
+            // Step 2: Hide The Questions
             setShowQuestion(false)
+
+            //Step 3: Set it to Wrong Answer 
             setCorrect(false)
-            console.log("User Answer Wrong")
+
+            //Step 4: Set The Prompt (To be Changed to Fetching API)
+            setPrompt(sample_questions[questionIndex]["Explanation"])
         }
     }
     
     const NextQuestion = () => {
-        // Change index first + Account if it is the last question
-        // if (questionIndex == sample_questions.length ) {
-        //     // Place holder 
-        //     alert("We have reached to the end of the quiz")
-        // } else {
-            // Continue adding the question inside
-            console.log("Next Question function works")
-            changeQuestionIndex(questionIndex+1)
-            changeQuestion(sample_questions[questionIndex])
-            setShowQuestion(true)
-            
-
-            // Account for Reset Timing
-            // use Dispatch, then set the variable of Timeline local Variable back to 30 
-
-            // Change to the next question
-            
+        // Step 1: Change the Question Index
+        if (questionIndex + 1 ==sample_questions.length){
+            console.log("You have reached the end of the questions")
         }
+        else {
+            setQuestionIndex(questionIndex + 1);
+        }
+        // Step 2: Set True to Show Question
+        setShowQuestion(true)
+        // Step 3: Restart the Timer
+        dispatch(setSelectedTimeState("RESTART"))
+        // Step 4: Set Prompt to Empty Again
+        setPrompt("")
         
-        useEffect(()=> {
-            changeQuestion(sample_questions[questionIndex])
-            
-        },[questionIndex])
-
+    }
 
     return (
         <>
@@ -138,6 +138,7 @@ const Question = () => {
                 </>
                 :
                 <> 
+                    {/* This Part will show if the  */}
                     {correct ?
                         <View style={{height:"70%", width:"100%",marginTop:10, borderRadius:10,backgroundColor:"lightgreen",justifyContent:'center', alignItems: 'center'}} >
                             <Text style={{margin:10}}>You are correct! {currentQuestion['Explanation']}</Text>
