@@ -30,7 +30,7 @@ const Question = () => {
         "optionB" : "A malicious software designed to block access to a computer system until a sum of money is paid",
         "optionC" : "A failure of a machine's hardware",
         "optionD" : "A failure of a machine's software",
-        "Question": "What is malware these nuts?"
+        "Question": "Question 2?"
     }]
     // Use State for Changing between Prompts 
     const [showQuestion, setShowQuestion ] = useState(true)
@@ -51,6 +51,7 @@ const Question = () => {
             // Rest the state variable
             // Introduce new time state
             console.log(currentQuestion)
+            console.log("User answers correctly.")
             dispatch(selectedTimeState(""))
             dispatch(selectedTimeState("PAUSE"))
             setShowQuestion(false)
@@ -61,6 +62,7 @@ const Question = () => {
             // This must Trigger the Wrong to appear. 
             setShowQuestion(false)
             setCorrect(false)
+            console.log("User Answer Wrong")
         }
     }
     
@@ -71,10 +73,16 @@ const Question = () => {
         //     alert("We have reached to the end of the quiz")
         // } else {
             // Continue adding the question inside
-            console.log("hey there")
+            console.log("Next Question function works")
             changeQuestionIndex(questionIndex+1)
             changeQuestion(sample_questions[questionIndex])
+            setShowQuestion(true)
             
+
+            // Account for Reset Timing
+            // use Dispatch, then set the variable of Timeline local Variable back to 30 
+
+            // Change to the next question
             
         }
         
@@ -133,12 +141,12 @@ const Question = () => {
                     {correct ?
                         <View style={{height:"70%", width:"100%",marginTop:10, borderRadius:10,backgroundColor:"lightgreen",justifyContent:'center', alignItems: 'center'}} >
                             <Text style={{margin:10}}>You are correct! {currentQuestion['Explanation']}</Text>
-                            <Button title="Next" onPress={NextQuestion}/>
+                            <Button title="Next" onPress={()=> NextQuestion()}/>
                         </View>
                     :
                         <View style={{height:"70%", width:"100%",marginTop:10, borderRadius:10,backgroundColor:"red",justifyContent:'center', alignItems: 'center'}} >
                             <Text style={{margin:10}}>You are wrong. {currentQuestion['Explanation']}</Text>
-                            <Button title="Next" onPress={NextQuestion}/>
+                            <Button title="Next" onPress={()=> NextQuestion()}/>
                         </View>
                     }
                 </>

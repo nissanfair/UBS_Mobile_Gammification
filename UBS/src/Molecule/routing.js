@@ -12,22 +12,11 @@ import {useSelector} from "react-redux";
 
 
 // Import External Molecules
-import Home from "./home"
-import Profile from "./profile"
-import Profilesetting from './profilesetting';
-import Inventory from './inventory';
-import HomeScreen from "./homescreen"
-import LevelMap from './LevelMap';
-import Progress from './progress';
 import Topic from './Topic'
 import Game from './Topicbundle/Gamebundle/Game'
 // import { Drawer } from 'react-native-paper';
 
-
 const Stack = createStackNavigator()
-const Tab = createBottomTabNavigator();
-
-
 
 function Routing() {
 

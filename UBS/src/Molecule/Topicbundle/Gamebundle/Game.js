@@ -4,8 +4,7 @@ import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Question from './Questions';
 import Health from './Health'
-import Timeline from './Timeline'
-import FastImage from 'react-native-fast-image'
+import Timer from './Timeline'
 
 const Stack = createStackNavigator();
 const styles = StyleSheet.create({
@@ -15,7 +14,7 @@ const styles = StyleSheet.create({
     }
 })
 const Game = () => {
-    const navigation = useNavigation();
+    // const navigation = useNavigation();
     // Get relevant information from the store
     const styles = StyleSheet.create({
         background : {
@@ -33,7 +32,7 @@ const Game = () => {
             <ImageBackground source={require("../../../../media/Environment/craftpix-897715-free-pixel-art-fantasy-2d-battlegrounds/PNG/Battleground3/Bright/Battleground3.png")} style={styles.background}>
                 <View style={{width:"100%", height:"100%"}}>
                     <View style={{alignContent:"center",alignItems:"center", marginTop:15}}>
-                        <Timeline/>
+                        <Timer/>
                     </View>
                     {/* Character Side */}
                     <View style={{marginTop:25, height:"70%", flexDirection:"row"}}>
