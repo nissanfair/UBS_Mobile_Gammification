@@ -24,6 +24,7 @@ import Progress from './progress';
 import TopicIntroduction from './Topicbundle/TopicIntroduction';
 import Topic from "./Topicbundle/Topic";
 import Stage from "./Stages";
+import TopicLearning from './Topicbundle/TopicLearning';
 // import { Drawer } from 'react-native-paper';
 
 
@@ -45,6 +46,7 @@ function Routing() {
       <NavigationContainer>
         <Stack.Navigator initialRouteName='TopicIntroduction'  >
           <Stack.Screen name="TopicIntroduction" component={TopicIntroduction} options={{headerShown: false}}/>
+          <Stack.Screen name="TopicLearning" component={TopicLearning} options={{headerShown: false}}/>
           <Stack.Screen name="Stages" component={Stage} options={{headerShown: false}}/>
           <Stack.Screen name="Topic" component={Topic} options={{headerShown: false}}/>
         </Stack.Navigator>

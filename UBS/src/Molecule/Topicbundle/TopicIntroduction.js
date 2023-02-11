@@ -43,12 +43,12 @@ const TopicIntroduction = ({navigation}) => {
       .then(response => response.json())
       .then(data => {
         // pushing the intro here. We can add more stuff here then use redux accordingly
-        pushIntro(data.data[`${topic}_Introduction`]);
+        pushIntro(data.data[`${topic}_Introduction`])
       })
       .catch(error => {
         console.log(error);
       });
-  }, []);
+  }, );
 
   return (
     <View style={styles.main}>
