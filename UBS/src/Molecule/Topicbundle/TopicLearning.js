@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 // eslint-disable prettier/prettier
 import React, {useState, useEffect} from 'react';
-import {StyleSheet, View, Text, Dimensions, Image, ScrollView, ImageBackground} from 'react-native';
+import {StyleSheet, View, Text, Dimensions, Image, ScrollView} from 'react-native';
 import {NavigationContainer, useNavigation} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {useSelector} from 'react-redux';
@@ -23,7 +23,7 @@ const TopicLearning = () => {
     fetch(fetchSelectedTopic)
       .then(response => response.json())
       .then(data => {
-        pushLearn(data.data['${topic}_Learning']);
+        pushLearn(data.data['${topic}_Learning[0]']);
       })
 
       .catch(error => {
@@ -51,7 +51,7 @@ const TopicLearning = () => {
 
         <View style={styles.desc}>
           <Text> {learningSelectedTopic} 
-          TBC0 - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          Content goes here, issues with feching data after merge conflict (ded)
           </Text>
         </View>
 
