@@ -14,31 +14,31 @@ const Progress = () => {
   const dispatch = useDispatch();
   const [levels, addLevels] = useState([{}]);
 
-  // levels = [{topic:  "Topic1", display:  "Topic 1", education:  "Topic1Learning"}]
+  // // levels = [{topic:  "Topic1", display:  "Topic 1", education:  "Topic1Learning"}]
 
-  // Functions
-  // Usage of redux store, dispatch 
+  // // Functions
+  // // Usage of redux store, dispatch 
 
-  // Handle the click when user clicks on a topic - Redirects them to the page 
-  const handleClickInformation= (levelinformation) => {
-      // Reset stores for introduction, questions, and education - Rationale is that the user might have clicked other topics before
-      dispatch(selectedTopic(""))
-      // dispatch level information
-      dispatch(selectedTopic(levelinformation));
-      // Once done, navigate to the topicsIntroduction page 
-      navigation.navigate(TopicIntroduction);
+  // // Handle the click when user clicks on a topic - Redirects them to the page 
+  // const handleClickInformation= (levelinformation) => {
+  //     // Reset stores for introduction, questions, and education - Rationale is that the user might have clicked other topics before
+  //     dispatch(selectedTopic(""))
+  //     // dispatch level information
+  //     dispatch(selectedTopic(levelinformation));
+  //     // Once done, navigate to the topicsIntroduction page 
+  //     navigation.navigate(TopicIntroduction);
 
 
-  }
+  // }
   
-  // Handle the educational content
-  const handleClickInformationEducation = (levelinformation) => {
-      // Reset stores for introduction, questions, and education - Rationale is that the user might have clicked other topics before
-      dispatch(selectedTopic(""))
-      dispatch(selectedTopic(levelinformation));
-      // Once done, navigate to the topicsLearning page 
-      navigation.navigate(TopicLearning);
-  }
+  // // Handle the educational content
+  // const handleClickInformationEducation = (levelinformation) => {
+  //     // Reset stores for introduction, questions, and education - Rationale is that the user might have clicked other topics before
+  //     dispatch(selectedTopic(""))
+  //     dispatch(selectedTopic(levelinformation));
+  //     // Once done, navigate to the topicsLearning page 
+  //     navigation.navigate(TopicLearning);
+  // }
   
   // Getting the firebase to display and generate the topics
   useEffect(() => {
@@ -53,14 +53,14 @@ const Progress = () => {
       .then(data => {
           // Manipulating the data here 
           var topicDict = []
-          console.log(data.totalnumber)
+          // console.log(data.totalnumber)
           for (let i=1; i < data.totalnumber + 1; i++) {
 
               topicDict.push({topic:  `Topic ${i}`, status: data.topic_status[`Topic${i}`]})
           }
         // add the new data to the list of dictionaries
         addLevels(topicDict)
-        console.log(topicDict)
+        // console.log(topicDict)
         
 
       })
@@ -71,7 +71,55 @@ const Progress = () => {
       
    
   }, [])
+
+  function IsComplete(props) {
+    return <View style={styles.example}>
+            <Text>{props.topic}: Completed</Text>
+              <ProgressBar
+                styleAttr="Horizontal"
+                indeterminate={false}
+                progress={1}
+                color="green"
+              />
+            </View>
+  }
+
+  function IsNotComplete(props) {
+    return <View style={styles.example}>
+    <Text>{props.topic}: Not Completed</Text>
+      <ProgressBar
+        styleAttr="Horizontal"
+        indeterminate={false}
+        progress={0}
+        color="red"
+      />
+    </View>
+  }
+
+  function trueOrFalse(obj) {
+    if (obj["status"]) {
+      return <IsComplete topic = {obj["topic"]}/>
+    }
+    else {
+      return <IsNotComplete topic = {obj["topic"]}/>
+    }
+  }
+
+  function outputting(arr) {
+    for (obj of arr) {
+      return trueOrFalse(obj);
+    }
   
+  }
+
+
+  // function Output(props) {
+  //   for (let i=0; i < Object.keys(props).length; i++) {
+
+  //   }
+  // }
+  
+  // Output(levels)
 
 
  
@@ -81,7 +129,8 @@ const Progress = () => {
       
       <ScrollView>
       <View style={styles.levelContainer}>
-
+      
+     
       
 
       
@@ -89,9 +138,11 @@ const Progress = () => {
       <View style={styles.example}>
         <Text style={styles.titleText}>Topic Progress</Text>
       </View>
+
+      { outputting(levels) }
         
 
-      <View style={styles.example}>
+      {/* <View style={styles.example}>
                  <Text>Topic 1: Not Completed</Text>
                    <ProgressBar
                      styleAttr="Horizontal"
@@ -106,7 +157,7 @@ const Progress = () => {
                    <ProgressBar
                      styleAttr="Horizontal"
                      indeterminate={false}
-                     progress={0}
+                     progress={1.0}
                      color="red"
                    />
                    
@@ -130,7 +181,7 @@ const Progress = () => {
                      progress={0}
                      color="red"
                    />
-      </View>
+      </View> */}
 
 
       </View>
