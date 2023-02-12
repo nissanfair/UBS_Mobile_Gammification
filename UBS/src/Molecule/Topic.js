@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, Text, Dimensions, Image, ScrollView, Button} from 'react-native';
+import { StyleSheet, View, Text, Dimensions, Image, ScrollView, Button, ImageBackground} from 'react-native';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { TouchableOpacity } from 'react-native-gesture-handler';
@@ -15,22 +15,10 @@ import {selectedTopic} from "../Redux/topicSlice"
 const Stack = createStackNavigator();
 const { width,height } = Dimensions.get('window');
 
-// Tasks
-// Set up barebones template - Done
-// Establsih connection to database
-// Setup relevant links to the different topics and education aspects - Done, topics
-// Set up redux 
-
-
 const Topic = () => {
     const navigation = useNavigation();
     const dispatch = useDispatch();
     const [levels, addLevels] = useState([{}]);
-
-    // levels = [{topic:  "Topic1", display:  "Topic 1", education:  "Topic1Learning"}]
-
-    // Functions
-    // Usage of redux store, dispatch 
 
     // Handle the click when user clicks on a topic - Redirects them to the page 
     const handleClickInformation= (levelinformation) => {
@@ -40,10 +28,8 @@ const Topic = () => {
         dispatch(selectedTopic(levelinformation));
         // Once done, navigate to the topicsIntroduction page 
         navigation.navigate(TopicIntroduction);
-
-
     }
-    
+
     // Handle the educational content
     const handleClickInformationEducation = (levelinformation) => {
         // Reset stores for introduction, questions, and education - Rationale is that the user might have clicked other topics before
@@ -53,7 +39,6 @@ const Topic = () => {
         navigation.navigate(TopicLearning);
     }
     
-    // Getting the firebase to display and generate the topics
     // Getting the firebase to display and generate the topics
     useEffect(() => {
         // Get all the relevant stages from the firebase from express
@@ -66,53 +51,64 @@ const Topic = () => {
         .then(response => response.json())
         .then(data => {
             // Manipulating the data here 
-            alert("i am triggered here")
             var topicDict = []
             for (let i=1; i< data.topics + 1; i++) {
                 topicDict.push({topic:  `Topic${i}`, display:  `Topic ${i}`, education:  `Topic${i}Learning`})
             }
           // add the new data to the list of dictionaries
           addLevels(topicDict)
-
         })
         .catch(error => {
             console.log(error)
         })
-
-        // 
-     
     }, [])
 
-    
-
-
-   
-
-
     return (
-        
-        <ScrollView>
-        <View style={styles.levelContainer}>
-            {levels.map((level, index) => (
-                <View style={styles.levelButton}>
-                <Text
-                    key={index}
-                    style={styles.levelText}
-                    onPress={() => handleClickInformation(level.topic)}>
-                    {level.display}
-                    
-                </Text>
-                <TouchableOpacity onPress={() => handleClickInformationEducation()}>
-                    <Image source={require("../../media/Environment/mortarboard.png")} style={styles.levelIcon}/>
-                </TouchableOpacity>
 
-                </View>
-                
-            ))}
+        <View>
+            <ImageBackground source={require("../../media/TopicJs/TopicBackground.png")} style={{width:"100%",height:"100%"}} >
+                {/* To Account for the  Character Badge and Currency*/}
+                    <View style={{flexDirection:"row", alignContent:"flex-end", alignItems:"center", marginTop:"2%", height:"10%"}}>
+                        <View style={{marginLeft:"5%",flex:2}}>
+                            <View style={{marginRight:"5%", flex:2, backgroundColor:"#FCD250" ,height:"100%",width:"100%", borderRadius:20, alignContent:"center"}}>
+                                {/* Insert the User Name Here */}
+                            </View>
+                        </View>
 
+                        <View style={{flex:10}}></View>
 
+                        <View style={{marginRight:"5%", flex:2, backgroundColor:"#FCD250" ,height:"100%",width:"100%", borderRadius:20, alignContent:"center"}}>
+                            {/* To make the Currency Sign */}
+                            {/* Outer Circle */}
+                            <View style={{width:"30%",height:"100%", borderRadius:50, backgroundColor:"#FFA100",alignContent:"center",alignItems:"center"}}>
+                                {/* Inner Circle */}
+                                {/* Maybe can add a SVG Here */}
+                            </View>
+                        </View>
+
+                    </View>
+                    {/* End of the Character Badge */}
+
+                    {/* Insert of Topic Badge */}
+                    <View style={{width:"100%",borderColor:"#0F0E0B",borderWidth:5, marginTop:10, alignItems:'center'}}>
+                        <View >
+                            <ImageBackground resizeMode="contain" style={{width: 300,height:80}} source={require("../../media/TopicJs/Sword.png")} >
+                            <View style={{ position: 'absolute', bottom: 0, width: '100%', height: 50 }}>
+                                <Text style={{ color: 'white', position: 'absolute', top: 10, left: 10, right: 10 }}>Text within the Image</Text>
+                            </View>
+                            </ImageBackground>
+                        </View>
+                        <View  >
+                            <Image resizeMode="contain" style={{height:80,width:300}} source={require("../../media/TopicJs/SwordReverse.png")} ></Image>
+                        </View>
+                        <View  >
+                            <Image resizeMode="contain" style={{height:80,width:300}} source={require("../../media/TopicJs/Sword.png")} ></Image>
+                        </View>
+                    </View>
+                    {/* End of Topic Badge */}
+            </ImageBackground>
+            
         </View>
-        </ScrollView>
     );
 };
 
@@ -152,3 +148,21 @@ const styles = StyleSheet.create({
 });
 
 export default Topic;
+
+// Code Dump
+{/* {levels.map((level, index) => (
+    // <View style={styles.levelButton}>
+    // <Text
+    //     key={index}
+    //     style={styles.levelText}
+    //     onPress={() => handleClickInformation(level.topic)}>
+    //     {level.display}
+        
+    // </Text>
+    // <TouchableOpacity onPress={() => handleClickInformationEducation()}>
+    //     <Image source={require("../../media/Environment/mortarboard.png")} style={styles.levelIcon}/>
+    // </TouchableOpacity>
+
+    </View>
+    
+))} */}

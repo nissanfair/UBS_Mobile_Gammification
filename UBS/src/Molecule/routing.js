@@ -29,7 +29,7 @@ function Routing() {
 
   return (
       <NavigationContainer>
-        <Stack.Navigator initialRouteName='HomeScreen'>
+        <Stack.Navigator initialRouteName='Topic'>
           <Stack.Screen name="HomeScreen" component={HomeScreen} options={{headerShown: false}}/>
           <Stack.Screen name="Topic" component={Topic} options={{headerShown: false}}/>
           <Stack.Screen name="TopicIntroduction" component={TopicIntroduction} options={{headerShown: false}}/>
