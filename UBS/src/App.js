@@ -11,8 +11,6 @@ import {useSelector} from "react-redux";
 
 // Import External Molecules
 import Routing from "./Molecule/routing";
-import Stages from './Molecule/Stages';
-import AppNavigator from './Molecule/AppNavigator';
 const Stack = createStackNavigator();
 
 export default function App() {
@@ -28,11 +26,6 @@ export default function App() {
     //     </Stack.Navigator>
     // </NavigationContainer>
 
-    // <Provider store={store}>
-    //   <NavigationContainer>
-    //     <AppNavigator/>
-    //   </NavigationContainer>
-    // </Provider>
   )
 }
 
