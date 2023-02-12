@@ -7,30 +7,6 @@ const styles = StyleSheet.create({
     height: '100%',
     flexDirection: 'row',
   },
-
-  leftbox: {
-    width: '100%',
-    height: '100%',
-    flex: 4,
-  },
-  rightbox: {
-    width: '100%',
-    height: '100%',
-    flex: 3,
-  },
-  innerrightbox:{
-    flex: 1,
-    flexDirection: 'column',
-  },
-  monsterbox: {
-    flex: 5,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  buttonbox: {
-    flex: 1,
-    flexDirection: "row",
-  },
   backgroundContainer: {
     position: 'absolute',
     top: 0,
@@ -46,7 +22,6 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
   },
-
   desc: {
     position: 'absolute',
     top: '0%',
@@ -56,19 +31,32 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  wizard: {
-    height: '100%',
+  leftbox: {
     width: '100%',
+    height: '100%',
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderColor: "red",
+    borderWidth: 5
   },
-  start:{
-    flex:3,
-    flexDirection: 'row', 
-    justifyContent: 'flex-end'
+  middlebox:{
+    width: '100%',
+    height: '100%',
+    flex: 4,
+    borderColor: "green",
+    borderWidth: 5
   },
-  back:{
-    flex:3,
-  }
-
+  rightbox: {
+    width: '100%',
+    height: '100%',
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderColor: "yellow",
+    borderWidth: 5
+  },
+  
 });
 
 export {styles};

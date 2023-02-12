@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, Dimensions, Image, ScrollView, Button} from 'react-native';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
@@ -76,11 +77,12 @@ const Stages = () => {
         .catch(error => {
             console.log(error)
         })
-
         // 
+        
      
     }, [])
     
+
 
    
 
@@ -91,8 +93,6 @@ const Stages = () => {
         <View style={styles.levelContainer}>
             {levels.map((level, index) => (
                 <View style={styles.levelButton}>
-                    <Text>Not Completed</Text>
-                    <ProgressBar color="orange"/>
                 <Text
                     key={index}
                     style={styles.levelText}

@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 
 // Imported Libraries 
 import React from 'react';
@@ -12,11 +13,13 @@ import {useSelector} from "react-redux";
 
 
 // Import External Molecules
-import Topic from './Topic'
-import Game from './Topicbundle/Gamebundle/Game'
+
 // import { Drawer } from 'react-native-paper';
 
 const Stack = createStackNavigator()
+
+
+
 
 function Routing() {
 
@@ -25,11 +28,12 @@ function Routing() {
   // let jobRoles_id = useSelector((state) => state.jobrole.jobrole_id)
   // let jobRoles_name = useSelector((state) => state.jobrole.jobrole_name)
   return (
-      <NavigationContainer options={{ headerShown: false }}>
-        <Stack.Navigator initialRouteName='Game'>
-          <Stack.Screen name="Topic" component={Topic} />
-          <Stack.Screen name="Game" component={Game} options={{ headerShown: false }}/>
-
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName='TopicIntroduction'  >
+          <Stack.Screen name="TopicIntroduction" component={TopicIntroduction} options={{headerShown: false}}/>
+          <Stack.Screen name="TopicLearning" component={TopicLearning} options={{headerShown: false}}/>
+          <Stack.Screen name="Stages" component={Stage} options={{headerShown: false}}/>
+          <Stack.Screen name="Topic" component={Topic} options={{headerShown: false}}/>
         </Stack.Navigator>
       </NavigationContainer>
   );

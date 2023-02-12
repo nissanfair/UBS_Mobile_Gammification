@@ -15,10 +15,10 @@ const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    // <Provider store={store}> 
-    //   {/* <Routing />  */}
+    <Provider store={store}> 
+      <Routing /> 
 
-    // </Provider>
+    </Provider>
     // ======= JP placeholder code, remove after the SSO is done ==========
     //   <NavigationContainer>
     //     <Stack.Navigator>
@@ -26,9 +26,6 @@ export default function App() {
     //     </Stack.Navigator>
     // </NavigationContainer>
 
-    <Provider store={store}>
-        <Routing/>
-    </Provider>
   )
 }
 
