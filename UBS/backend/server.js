@@ -39,7 +39,7 @@ app.use(cors())
 
 // Grabs all the necessary stuff from testingroute.js and puts it here
 // We can define the routes here. Over here, we declare /6bit/testing/.. Anything after that would be based on the routes in testingRoutes
-app.use('/6bit/topics',progressRoute)
+app.use('/6bit/topics',testingRoute)
 
 // Swagger UI
 // Can be improved and be put into a yaml file

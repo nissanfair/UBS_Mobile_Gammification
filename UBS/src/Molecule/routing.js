@@ -14,7 +14,7 @@ import {useSelector} from "react-redux";
 
 // Import External Molecules
 import TopicIntroduction from "../Molecule/Topicbundle/TopicIntroduction";
-import TopicLearning from "../Molecule/Topicbundle/TopicIntroduction"
+import TopicLearning from "../Molecule/Topicbundle/TopicLearning"
 import Progress from "../Molecule/progress"
 import Game from "../Molecule/Topicbundle/Gamebundle/Game";
 import HomeScreen from "../Molecule/homescreen"
