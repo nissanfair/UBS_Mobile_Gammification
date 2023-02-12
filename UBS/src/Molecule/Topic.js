@@ -22,7 +22,7 @@ const { width,height } = Dimensions.get('window');
 // Set up redux 
 
 
-const Stages = () => {
+const Topic = () => {
     const navigation = useNavigation();
     const dispatch = useDispatch();
     const [levels, addLevels] = useState([{}]);
@@ -54,6 +54,7 @@ const Stages = () => {
     }
     
     // Getting the firebase to display and generate the topics
+    // Getting the firebase to display and generate the topics
     useEffect(() => {
         // Get all the relevant stages from the firebase from express
 
@@ -77,10 +78,11 @@ const Stages = () => {
         .catch(error => {
             console.log(error)
         })
+
         // 
-        
      
     }, [])
+
     
 
 
@@ -149,4 +151,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default Stages;
+export default Topic;

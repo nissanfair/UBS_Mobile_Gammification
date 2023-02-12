@@ -13,8 +13,12 @@ import {useSelector} from "react-redux";
 
 
 // Import External Molecules
-
-// import { Drawer } from 'react-native-paper';
+import TopicIntroduction from "../Molecule/Topicbundle/TopicIntroduction";
+import TopicLearning from "../Molecule/Topicbundle/TopicIntroduction"
+import Progress from "../Molecule/progress"
+import Game from "../Molecule/Topicbundle/Gamebundle/Game";
+import HomeScreen from "../Molecule/homescreen"
+import Topic from "../Molecule/Topic"
 
 const Stack = createStackNavigator()
 
@@ -23,17 +27,15 @@ const Stack = createStackNavigator()
 
 function Routing() {
 
-  // React Redux Goes Here for Protected Route 
-  // let jobRoles_desc = useSelector((state) => state.login.jobrole_desc)
-  // let jobRoles_id = useSelector((state) => state.jobrole.jobrole_id)
-  // let jobRoles_name = useSelector((state) => state.jobrole.jobrole_name)
   return (
       <NavigationContainer>
-        <Stack.Navigator initialRouteName='TopicIntroduction'  >
+        <Stack.Navigator initialRouteName='HomeScreen'>
+          <Stack.Screen name="HomeScreen" component={HomeScreen} options={{headerShown: false}}/>
+          <Stack.Screen name="Topic" component={Topic} options={{headerShown: false}}/>
           <Stack.Screen name="TopicIntroduction" component={TopicIntroduction} options={{headerShown: false}}/>
           <Stack.Screen name="TopicLearning" component={TopicLearning} options={{headerShown: false}}/>
-          <Stack.Screen name="Stages" component={Stage} options={{headerShown: false}}/>
-          <Stack.Screen name="Topic" component={Topic} options={{headerShown: false}}/>
+          <Stack.Screen name="Progress" component={Progress} options={{headerShown: false}}/>
+          <Stack.Screen name="Game" component={Game} options={{headerShown: false}}/>
         </Stack.Navigator>
       </NavigationContainer>
   );

@@ -8,9 +8,10 @@ const styles = StyleSheet.create({
     }
 })
 
-export default function HomeScreen() {
+
+export default function HomeScreen({navigation}) {
   const GoogleSSO = () => {
-    console.log("Testing")
+    navigation.navigate("Topic")
   }
 
   return (

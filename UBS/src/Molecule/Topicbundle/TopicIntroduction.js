@@ -20,10 +20,10 @@ const Stack = createStackNavigator();
 
 const TopicIntroduction = ({navigation}) => {
   const Backbutton = () => {
-    navigation.navigate("Stages")
+    navigation.navigate("Topic")
   }
   const Startbutton = () => {
-    navigation.navigate("Topic")
+    navigation.navigate("Game")
   }
   // Get relevant information from the store
 
