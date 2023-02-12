@@ -19,44 +19,15 @@ import Inventory from './inventory';
 import HomeScreen from "./homescreen"
 import LevelMap from './LevelMap';
 import Progress from './progress';
+import Topic from './Topic'
+import Game from './Topicbundle/Gamebundle/Game'
 // import { Drawer } from 'react-native-paper';
 
 
 const Stack = createStackNavigator()
 const Tab = createBottomTabNavigator();
 
-function IsSignedIn() {
-  let id = useSelector((state) => state.login.login)
-  let name = useSelector((state) => state.login.profile_name)
-  let inventory = useSelector((state) => state.login.inventory)
 
-  if (id == "" ) {
-    return false
-  }
-  else {
-    return true
-  }
-};
-
-function NotAuth() {
-
-  return (
-    <Tab.Navigator>
-      <Tab.Screen name="Home" component={Home} options={{ headerShown: false }} />
-    </Tab.Navigator>
-  )
-}
-
-function Auth() {
-
-  return (
-    <Tab.Navigator>
-      <Tab.Screen name="Profile" component={Profile} />
-      <Tab.Screen name="ProfileSetting" component={Profilesetting} />
-      <Tab.Screen name="Inventory" component={Inventory} />
-    </Tab.Navigator>
-  )
-}
 
 function Routing() {
 
@@ -66,18 +37,10 @@ function Routing() {
   // let jobRoles_name = useSelector((state) => state.jobrole.jobrole_name)
   return (
       <NavigationContainer options={{ headerShown: false }}>
-        <Stack.Navigator >
+        <Stack.Navigator initialRouteName='Game'>
+          <Stack.Screen name="Topic" component={Topic} />
+          <Stack.Screen name="Game" component={Game} options={{ headerShown: false }}/>
 
-          {IsSignedIn() ?
-            // <Stack.Screen name="Authed" component={Auth} options={{ headerShown: false , orientation: "landscape" }}></Stack.Screen>
-            // <Stack.Screen name="Home Screen"  component={HomeScreen} options={{headerShown: false}}/>
-            <Stack.Screen name="Progress" component={Progress} options={{headerShown: false}}/>
-
-            :
-            // <Stack.Screen name="NotAuth" component={NotAuth} options={{ headerShown: false, orientation: "landscape" }}></Stack.Screen>
-            // <Stack.Screen name="Home Screen" component={HomeScreen} options={{headerShown: false}} />
-            <Stack.Screen name="Progress" component={Progress} options={{headerShown: false}}/>
-          }
         </Stack.Navigator>
       </NavigationContainer>
   );
