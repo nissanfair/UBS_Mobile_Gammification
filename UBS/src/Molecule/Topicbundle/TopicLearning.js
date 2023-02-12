@@ -29,7 +29,7 @@ const TopicLearning = () => {
       .catch(error => {
         console.log(error);
       });
-  }, []);
+  }, );
 
   return (
     <View style={styles.main}>
