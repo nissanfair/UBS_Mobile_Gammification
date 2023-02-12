@@ -250,7 +250,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    // For animated GIF support
+
     implementation 'com.facebook.fresco:animated-gif:2.6.0'
 
     // For WebP support, including animated WebP
