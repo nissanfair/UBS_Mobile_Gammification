@@ -77,12 +77,23 @@ const TopicLearning = () => {
       </View>
 
       <View style={styles.rightbox}>
-      <TouchableOpacity style={styles.button} onPress={Forwardbutton}>
-          <Image
-            source={require('../../../media/UI/forward.png')}
-            resizeMode="contain"
-          />
-        </TouchableOpacity>
+        <View style>
+          <TouchableOpacity onPress={Forwardbutton}>
+            <Image
+              source={require('../../../media/UI/forward.png')}
+              resizeMode="contain"
+            />
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.exitbutton}>
+          <TouchableOpacity style={styles.exitbutton} onPress={Exitbutton}>
+            <Image
+              source={require('../../../media/UI/exit.png')}
+              resizeMode="contain"
+            />
+          </TouchableOpacity>
+        </View>
       </View>
     </View>
   );

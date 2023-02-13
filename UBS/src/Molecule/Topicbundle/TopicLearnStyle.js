@@ -9,10 +9,10 @@ const styles = StyleSheet.create({
   },
   backgroundContainer: {
     position: 'absolute',
-    top: 0,
-    bottom: 0,
-    left: 0,
-    right: 0,
+    top: '0%',
+    bottom: '0%',
+    left: '0%',
+    right: '0%',
   },
   backdrop: {
     width: '100%',
@@ -37,25 +37,31 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    borderColor: "red",
-    borderWidth: 5
   },
   middlebox:{
     width: '100%',
     height: '100%',
     flex: 4,
-    borderColor: "green",
-    borderWidth: 5
   },
   rightbox: {
     width: '100%',
     height: '100%',
     flex: 1,
-    justifyContent: 'center',
+    flexDirection: 'column',
+    justifyContent: "center",
     alignItems: 'center',
-    borderColor: "yellow",
-    borderWidth: 5
   },
+  forwardbutton:{
+    flex:3,
+    alignItems: 'center',
+    justifyContent: "flex-end",
+  },
+  exitbutton:{
+    position: 'absolute',
+    bottom:'0%',
+    right:'2%'
+   
+  }
   
 });
 
