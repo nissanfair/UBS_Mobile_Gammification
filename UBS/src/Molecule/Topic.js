@@ -1,9 +1,9 @@
 /* eslint-disable prettier/prettier */
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, Text, Dimensions, Image, ScrollView, Button, ImageBackground} from 'react-native';
+import { StyleSheet, View, Text, Dimensions, Image, ScrollView, Button, ImageBackground, TouchableHighlight} from 'react-native';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { TouchableOpacity, TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { useDispatch } from 'react-redux';
 import TopicLearning from './Topicbundle/TopicLearning';
 import TopicIntroduction from './Topicbundle/TopicIntroduction';
@@ -22,6 +22,7 @@ const Topic = () => {
 
     // Handle the click when user clicks on a topic - Redirects them to the page 
     const handleClickInformation= (levelinformation) => {
+        console.log("Handle Click Information")
         // Reset stores for introduction, questions, and education - Rationale is that the user might have clicked other topics before
         dispatch(selectedTopic(""))
         // dispatch level information
@@ -32,6 +33,8 @@ const Topic = () => {
 
     // Handle the educational content
     const handleClickInformationEducation = (levelinformation) => {
+        console.log("Handle Click Education Information")
+
         // Reset stores for introduction, questions, and education - Rationale is that the user might have clicked other topics before
         dispatch(selectedTopic(""))
         dispatch(selectedTopic(levelinformation));
@@ -89,27 +92,77 @@ const Topic = () => {
                     </View>
                     {/* End of the Character Badge */}
 
-                    {/* Insert of Topic Badge */}
-                    <View style={{width:"100%",borderColor:"#0F0E0B",borderWidth:5, marginTop:10, alignItems:'center'}}>
+                    {/* Insert of Topic */}
+                    <View style={{width:"100%", marginTop:10, alignItems:'center'}}>
                         <View >
-                            <ImageBackground resizeMode="contain" style={{width: 300,height:80}} source={require("../../media/TopicJs/Sword.png")} >
-                            <View style={{ position: 'absolute', bottom: 0, width: '100%', height: 50 }}>
-                                <Text style={{ color: 'white', position: 'absolute', top: 10, left: 10, right: 10 }}>Text within the Image</Text>
+                            <View style={{flexDirection:'row', alignItems:'center'}}>
+                                <View>
+                                    <ImageBackground resizeMode="contain" style={{width: 300,height:80,alignItems:"center",alignContent:"center"}} source={require("../../media/TopicJs/Sword.png")} >
+                                        <View style={{ position: 'absolute', bottom:"40%",width:"100%",alignItems:"center" }}>
+                                            <Text onPress={()=>handleClickInformation()} style={{ color: 'white'}}>Battle of Online Scams</Text>
+                                        </View>
+                                    </ImageBackground>
+                                </View>
+                                <View  style={{width:'15%',height:'50%'}}>
+                                    <TouchableWithoutFeedback onPress={()=>handleClickInformationEducation()}>
+                                        <Image resizeMode='contain' style={{height:40,width:50}} source={require("../../media/TopicJs/book.png")}>
+                                        </Image>
+                                    </TouchableWithoutFeedback>
+                                </View>
                             </View>
-                            </ImageBackground>
-                        </View>
-                        <View  >
-                            <Image resizeMode="contain" style={{height:80,width:300}} source={require("../../media/TopicJs/SwordReverse.png")} ></Image>
-                        </View>
-                        <View  >
-                            <Image resizeMode="contain" style={{height:80,width:300}} source={require("../../media/TopicJs/Sword.png")} ></Image>
+                            {/* Seperated. */}
+                            <View style={{flexDirection:'row', alignItems:'center'}}>
+                                <View >
+                                    <ImageBackground resizeMode="contain" style={{width: 300,height:80,alignItems:"center",alignContent:"center"}} source={require("../../media/TopicJs/SwordReverse.png")} >
+                                        <View style={{ position: 'absolute', bottom:"40%",width:"100%",alignItems:"center" }}>
+                                            <Text style={{ color: 'white'}}>Battle of Online Scams</Text>
+                                        </View>
+                                    </ImageBackground>
+                                </View>
+                                <View  style={{width:'15%',height:'50%'}}>
+                                    <TouchableWithoutFeedback style={{}}>
+                                        <Image resizeMode='contain' style={{height:40,width:50}} source={require("../../media/TopicJs/book.png")}>
+                                        </Image>
+                                    </TouchableWithoutFeedback>
+                                </View>
+                            </View>
+                            {/* Seperated */}
+                            <View style={{flexDirection:'row', alignItems:'center'}}>
+                                <View >
+                                    <ImageBackground resizeMode="contain" style={{width: 300,height:80,alignItems:"center",alignContent:"center"}} source={require("../../media/TopicJs/Sword.png")} >
+                                        <View style={{ position: 'absolute', bottom:"40%",width:"100%",alignItems:"center" }}>
+                                            <Text style={{ color: 'white'}}>Battle of Online Scams</Text>
+                                        </View>
+                                    </ImageBackground>
+                                </View>
+                                <View  style={{width:'15%',height:'50%'}}>
+                                    <TouchableWithoutFeedback style={{}}>
+                                        <Image resizeMode='contain' style={{height:40,width:50}} source={require("../../media/TopicJs/book.png")}>
+                                        </Image>
+                                    </TouchableWithoutFeedback>
+                                </View>
+                            </View>
+                            {/*  */}
                         </View>
                     </View>
-                    {/* End of Topic Badge */}
+                    {/* End of Topic */}
+
+                    {/* Final Rows */}
+                    <View style={{flexDirection:"row",gap:"10%"}}>
+                        <View style={{flex:5}}>
+                            <Text style={{alignSelf:"center",color: 'white'}}>MARKETPLACE</Text>
+                        </View>
+                        <View style={{flex:5}}>
+                            <Text style={{alignSelf:"center",color: 'white'}}>TOPIC  SELECTION</Text>
+                        </View>
+                        <View style={{flex:5}}>
+                            <Text style={{alignSelf:"center",color: 'white'}}>EQUIPMENT</Text>
+                        </View>
+                    </View>
             </ImageBackground>
             
         </View>
-    );
+    )
 };
 
 const styles = StyleSheet.create({
