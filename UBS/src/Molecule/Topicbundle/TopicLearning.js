@@ -19,11 +19,14 @@ const Stack = createStackNavigator();
 const TopicLearning = () => {
   const navigation = useNavigation();
   const Backbutton = () => {
-   // navigation.navigate("Stages")
-  }
+    // navigation.navigate("Stages")
+  };
   const Forwardbutton = () => {
     //navigation.navigate("Topic")
-  }
+  };
+  const Exitbutton = () => {
+    navigation.navigate("Topic")
+  };
 
   const topic = useSelector(state => state.topic.topic);
 
@@ -75,12 +78,23 @@ const TopicLearning = () => {
       </View>
 
       <View style={styles.rightbox}>
-      <TouchableOpacity style={styles.button} onPress={Forwardbutton}>
-          <Image
-            source={require('../../../media/UI/forward.png')}
-            resizeMode="contain"
-          />
-        </TouchableOpacity>
+        <View style>
+          <TouchableOpacity onPress={Forwardbutton}>
+            <Image
+              source={require('../../../media/UI/forward.png')}
+              resizeMode="contain"
+            />
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.exitbutton}>
+          <TouchableOpacity style={styles.exitbutton} onPress={Exitbutton}>
+            <Image
+              source={require('../../../media/UI/exit.png')}
+              resizeMode="contain"
+            />
+          </TouchableOpacity>
+        </View>
       </View>
     </View>
   );
