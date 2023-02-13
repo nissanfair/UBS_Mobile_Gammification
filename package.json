@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@react-native-community/progress-bar-android": "^1.0.5"
+  }
+}

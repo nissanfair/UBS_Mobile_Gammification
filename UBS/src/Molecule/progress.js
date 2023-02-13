@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, Text, Dimensions, Image, ScrollView, Button} from 'react-native';
+import { StyleSheet, View, Text, Dimensions, Image, ScrollView, Button, ImageBackground} from 'react-native';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { TouchableOpacity } from 'react-native-gesture-handler';
@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux';
 import TopicLearning from './Topicbundle/TopicLearning';
 import TopicIntroduction from './Topicbundle/TopicIntroduction';
 import {ProgressBar} from '@react-native-community/progress-bar-android';
+import { white } from 'react-native-paper/lib/typescript/styles/themes/v2/colors';
 
 
 const Progress = () => {
@@ -14,31 +15,6 @@ const Progress = () => {
   const dispatch = useDispatch();
   const [levels, addLevels] = useState([{}]);
 
-  // // levels = [{topic:  "Topic1", display:  "Topic 1", education:  "Topic1Learning"}]
-
-  // // Functions
-  // // Usage of redux store, dispatch 
-
-  // // Handle the click when user clicks on a topic - Redirects them to the page 
-  // const handleClickInformation= (levelinformation) => {
-  //     // Reset stores for introduction, questions, and education - Rationale is that the user might have clicked other topics before
-  //     dispatch(selectedTopic(""))
-  //     // dispatch level information
-  //     dispatch(selectedTopic(levelinformation));
-  //     // Once done, navigate to the topicsIntroduction page 
-  //     navigation.navigate(TopicIntroduction);
-
-
-  // }
-  
-  // // Handle the educational content
-  // const handleClickInformationEducation = (levelinformation) => {
-  //     // Reset stores for introduction, questions, and education - Rationale is that the user might have clicked other topics before
-  //     dispatch(selectedTopic(""))
-  //     dispatch(selectedTopic(levelinformation));
-  //     // Once done, navigate to the topicsLearning page 
-  //     navigation.navigate(TopicLearning);
-  // }
   
   // Getting the firebase to display and generate the topics
   useEffect(() => {
@@ -73,8 +49,9 @@ const Progress = () => {
   }, [])
 
   function IsComplete(props) {
-    return <View style={styles.example}>
-            <Text>{props.topic}: Completed</Text>
+    return <View style={styles.complete}>
+            <ImageBackground source={require("../../media/Environment/panel_Example2.png")}/>
+            <Text style={styles.completeText}>  {props.topic}: Completed  </Text>
               <ProgressBar
                 styleAttr="Horizontal"
                 indeterminate={false}
@@ -85,8 +62,8 @@ const Progress = () => {
   }
 
   function IsNotComplete(props) {
-    return <View style={styles.example}>
-    <Text>{props.topic}: Not Completed</Text>
+    return <View style={styles.incomplete}>
+    <Text style={styles.incompleteText}>{props.topic}: Not Completed</Text>
       <ProgressBar
         styleAttr="Horizontal"
         indeterminate={false}
@@ -104,85 +81,28 @@ const Progress = () => {
       return <IsNotComplete topic = {obj["topic"]}/>
     }
   }
-
-  function outputting(arr) {
-    for (obj of arr) {
-      return trueOrFalse(obj);
-    }
-  
-  }
-
-
-  // function Output(props) {
-  //   for (let i=0; i < Object.keys(props).length; i++) {
-
-  //   }
-  // }
-  
-  // Output(levels)
-
-
  
 
 
   return (
       
       <ScrollView>
+        
       <View style={styles.levelContainer}>
-      
-     
-      
+      <ImageBackground source={require("../../media/Environment/s4m_ur4i-bg_clouds.png")} resizeMode="cover" style={styles.backgroundContainer}/>
 
-      
-
-      <View style={styles.example}>
+    
+      <View style={styles.title}>
         <Text style={styles.titleText}>Topic Progress</Text>
       </View>
 
-      { outputting(levels) }
-        
-
-      {/* <View style={styles.example}>
-                 <Text>Topic 1: Not Completed</Text>
-                   <ProgressBar
-                     styleAttr="Horizontal"
-                     indeterminate={false}
-                     progress={0}
-                     color="red"
-                   />
-      </View>
-                 
-      <View style={styles.example}>
-                 <Text>Topic 2: Not Completed</Text>
-                   <ProgressBar
-                     styleAttr="Horizontal"
-                     indeterminate={false}
-                     progress={1.0}
-                     color="red"
-                   />
-                   
-      </View>
-
-      <View style={styles.example}>
-                 <Text>Topic 3: Not Completed</Text>
-                   <ProgressBar
-                     styleAttr="Horizontal"
-                     indeterminate={false}
-                     progress={0}
-                     color="red"
-                   />
-      </View>
-
-      <View style={styles.example}>
-                 <Text>Topic 4: Not Completed</Text>
-                   <ProgressBar
-                     styleAttr="Horizontal"
-                     indeterminate={false}
-                     progress={0}
-                     color="red"
-                   />
-      </View> */}
-
+     {
+       levels.map((level) => {
+         return (
+           trueOrFalse(level)
+         )
+       })
+     }
 
       </View>
       </ScrollView>
@@ -190,94 +110,71 @@ const Progress = () => {
 };
 
 const styles = StyleSheet.create({
-  example: {
+  complete: {
       marginHorizontal: 5,
-      marginVertical: 24
+      marginVertical: 30,    
+      flex: 2,
+      backgroundColor: 'rgba(173, 255, 47, 1.0)',
+      borderRadius: 20,
+      borderWidth: 5,
+      padding: 10,
   },
+  incomplete: {
+    marginHorizontal: 5,
+    marginVertical: 30,    
+    flex: 2,
+    backgroundColor: 'rgba(128, 128, 128, 0.8)',
+    borderRadius: 20,
+    borderWidth: 5,
+    padding: 10,
+    color: 'white',
+},
   levelContainer: {
-      flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
+      width: '100%',
+      height: '100%',
+      flexDirection: 'column',
   },
   titleText: {
-    fontSize: 20,
+    fontSize: 50,
     fontWeight: 'bold',
+    fontFamily: 'monospace',
+    color: 'white',
+  },
+  title: {
+    flex: 1,
+    padding: 10,
+    paddingLeft: 15,
+    paddingRight: 15,
+    marginTop: 10,
+    borderWidth: 5,
+    backgroundColor: 'rgba(128,0,0, 0.8)',
+    borderColor: 'burlywood',
+    shadowColor: 'black',
+    borderRadius: 10,
   },
 
+  image: {
+    flex: 1,
+    justifyContent: 'center',
+  },
+  backgroundContainer: {
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
+  },
+  completeText: {
+    fontFamily: 'monospace',
+  },
+  incompleteText: {
+    fontFamily: 'monospace',
+    color: 'white',
+  }
+
 });
-
-
-// const Progress = () => {
-//   var fetchUserInfo = "http://10.0.2.2:3000/6bit/topics/topicStatus"
-//   fetch(fetchUserInfo)
-//   .then (response => response.json())
-//   .then(data => {
-//       var topicStatusDict = [];
-//       for (let i=1; i < data.topic_status + 1; i++) {
-//           topicStatusDict.push(data.topic_status[i]);
-//       }
-
-//   })
-//   .catch(error => {
-//       console.log(error)
-//   })
-
-//   for (let i=0; i < topicStatusDict.size(); i++) {
-//     if (topicStatusDict[i] == true) {
-//       return `<View style={styles.example}>
-//                <Text>Topic {i+1}: Completed</Text>
-//                <ProgressBar
-//                  styleAttr="Horizontal"
-//                  indeterminate={false}
-//                  progress={1.0}
-//                  color="green"
-//                />
-//              </View>`
-//     }
-//     else {
-//       return `<View style={styles.example}>
-//                 <Text>Topic {i+1}: Not Completed</Text>
-//                   <ProgressBar
-//                     styleAttr="Horizontal"
-//                     indeterminate={false}
-//                     progress={0}
-//                     color="red"
-//                   />
-//                 </View>`
-
-//     }
-//   }
-
-
-//   useEffect(() => {
-//     // Get all the relevant stages from the firebase from express
-
-//     // For some reason have to specify 10.0.2. This is because of the android emulator requiring different network config
-//     var fetchTopics = "http://10.0.2.2:3000/6bit/topics/topicStatus"
-
-//     // Dynamically get all the topics from firebase - On the firebase side i tweaked it in a way so i /3 lol
-//     fetch(fetchTopics)
-//     .then(response => response.json())
-//     .then(data => {
-//         // Manipulating the data here 
-//         alert("i am triggered here")
-//         var topicDict = []
-//         for (let i=1; i< data.topics + 1; i++) {
-//             topicDict.push({topic:  `Topic${i}`, display:  `Topic ${i}`, education:  `Topic${i}Learning`})
-//         }
-//       // add the new data to the list of dictionaries
-//       addLevels(topicDict)
-
-//     })
-//     .catch(error => {
-//         console.log(error)
-//     })
-//     // 
-    
- 
-// }, [])
-
-// }
 
 
 export default Progress;
