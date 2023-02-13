@@ -24,6 +24,9 @@ const TopicLearning = () => {
   const Forwardbutton = () => {
     navigation.navigate("TopicLearning2")
   }
+  const Exitbutton = () => {
+    navigation.navigate("Topic")
+  }
 
   const topic = useSelector(state => state.topic.topic);
 

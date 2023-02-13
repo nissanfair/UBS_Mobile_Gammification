@@ -26,6 +26,10 @@ const TopicLearning2 = () => {
     navigation.navigate("TopicLearning")
   }
 
+  const Exitbutton = () => {
+    navigation.navigate("Topic")
+  }
+
   const topic = useSelector(state => state.topic.topic);
 
   const [topicChosen, setTopic] = useState(topic);
@@ -87,6 +91,16 @@ const TopicLearning2 = () => {
             resizeMode="contain"
           />
         </TouchableOpacity>
+
+        <View style={styles.exitbutton}>
+          <TouchableOpacity style={styles.exitbutton} onPress={Exitbutton}>
+            <Image
+              source={require('../../../media/UI/exit.png')}
+              resizeMode="contain"
+            />
+          </TouchableOpacity>
+        </View>
+    
       </View>
     </View>
   );
