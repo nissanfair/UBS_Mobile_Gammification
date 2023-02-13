@@ -32,7 +32,7 @@ const AppNavigator = () => (
             <Stack.Screen name="Topic" component={Topic} />
             <Stack.Screen name="TopicIntroduction" component={TopicIntroduction} />
             <Stack.Screen name="TopicLearning" component={TopicLearning} /> */}
-            <Stack.Screen name="Progress" component={Progress} />
+            <Stack.Screen name="Progress" component={Progress} options={{headerShown: false}}/>
         </Stack.Navigator>
 );
 

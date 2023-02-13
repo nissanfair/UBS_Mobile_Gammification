@@ -36,7 +36,7 @@ const Progress = () => {
           }
         // add the new data to the list of dictionaries
         addLevels(topicDict)
-        // console.log(topicDict)
+        console.log(topicDict)
         
 
       })
@@ -50,7 +50,8 @@ const Progress = () => {
 
   function IsComplete(props) {
     return <View style={styles.complete}>
-            <ImageBackground source={require("../../media/Environment/panel_Example2.png")}/>
+            
+
             <Text style={styles.completeText}>  {props.topic}: Completed  </Text>
               <ProgressBar
                 styleAttr="Horizontal"
@@ -111,8 +112,9 @@ const Progress = () => {
 
 const styles = StyleSheet.create({
   complete: {
-      marginHorizontal: 5,
-      marginVertical: 30,    
+      // marginHorizontal: 5,
+      // marginVertical: 30,    
+      marginTop: 40,
       flex: 2,
       backgroundColor: 'rgba(173, 255, 47, 1.0)',
       borderRadius: 20,
@@ -120,8 +122,9 @@ const styles = StyleSheet.create({
       padding: 10,
   },
   incomplete: {
-    marginHorizontal: 5,
-    marginVertical: 30,    
+    // marginHorizontal: 5,
+    // marginVertical: 30,   
+    marginTop: 40, 
     flex: 2,
     backgroundColor: 'rgba(128, 128, 128, 0.8)',
     borderRadius: 20,
