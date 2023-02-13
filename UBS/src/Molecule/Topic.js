@@ -99,12 +99,12 @@ const Topic = () => {
                                 <View>
                                     <ImageBackground resizeMode="contain" style={{width: 300,height:80,alignItems:"center",alignContent:"center"}} source={require("../../media/TopicJs/Sword.png")} >
                                         <View style={{ position: 'absolute', bottom:"40%",width:"100%",alignItems:"center" }}>
-                                            <Text onPress={()=>handleClickInformation()} style={{ color: 'white'}}>Battle of Online Scams</Text>
+                                            <Text onPress={()=>handleClickInformation("Topic1")} style={{ color: 'white'}}>Battle of Malware Attacks</Text>
                                         </View>
                                     </ImageBackground>
                                 </View>
                                 <View  style={{width:'15%',height:'50%'}}>
-                                    <TouchableWithoutFeedback onPress={()=>handleClickInformationEducation()}>
+                                    <TouchableWithoutFeedback onPress={()=>handleClickInformationEducation("Topic1Learning")}>
                                         <Image resizeMode='contain' style={{height:40,width:50}} source={require("../../media/TopicJs/book.png")}>
                                         </Image>
                                     </TouchableWithoutFeedback>
