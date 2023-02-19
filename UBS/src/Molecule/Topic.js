@@ -116,7 +116,7 @@ const Topic = () => {
                                 <View >
                                     <ImageBackground resizeMode="contain" style={{width: 300,height:80,alignItems:"center",alignContent:"center"}} source={require("../../media/TopicJs/SwordReverse.png")} >
                                         <View style={{ position: 'absolute', bottom:"40%",width:"100%",alignItems:"center" }}>
-                                            <Text style={{ color: 'white'}}>Battle of Online Scams</Text>
+                                            <Text style={{ color: 'white'}}>Battle of Social Engineering Attacks</Text>
                                         </View>
                                     </ImageBackground>
                                 </View>
@@ -132,7 +132,7 @@ const Topic = () => {
                                 <View >
                                     <ImageBackground resizeMode="contain" style={{width: 300,height:80,alignItems:"center",alignContent:"center"}} source={require("../../media/TopicJs/Sword.png")} >
                                         <View style={{ position: 'absolute', bottom:"40%",width:"100%",alignItems:"center" }}>
-                                            <Text style={{ color: 'white'}}>Battle of Online Scams</Text>
+                                            <Text style={{ color: 'white'}}>Battle of Password Attacks</Text>
                                         </View>
                                     </ImageBackground>
                                 </View>

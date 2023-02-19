@@ -14,20 +14,22 @@ const TopicLearning = () => {
 const[Index, setIndex] = useState(0);
 
   const Backbutton = () => {
-   navigation.navigate("TopicLearning2")
+  //  navigation.navigate("TopicLearning2")
+  setIndex(Index - 1)
   };
 
   const Forwardbutton = () => {
-    navigation.navigate("TopicLearning2")
+    // navigation.navigate("TopicLearning2")
+    setIndex(Index + 1)
   };
 
   const Exitbutton = () => {
     navigation.navigate("Topic")
   };
 
-  const Increment = () => {
-    setIndex(Index + 1)
-  }
+  // const Increment = () => {
+  //   setIndex(Index + 1)
+  // }
 
   const topic = useSelector(state => state.topic.topic);
 
@@ -48,113 +50,267 @@ const[Index, setIndex] = useState(0);
       });
   }, []);
 
-  return (
-    // without indexing
-    <View style={styles.main}>
+  //   // WITHOUT INDEXING
+  // return (
+  //   <View style={styles.main}>
 
-    <View style={styles.backgroundContainer}>
-      <Image
-        source={require('../../../media/Environment/topicLearningBackground.png')}
-        resizeImage="stretch"
-        style={styles.backdrop}/>
-    </View>
+  //   <View style={styles.backgroundContainer}>
+  //     <Image
+  //       source={require('../../../media/Environment/topicLearningBackground.png')}
+  //       resizeImage="stretch"
+  //       style={styles.backdrop}/>
+  //   </View>
 
-    <View style={styles.leftbox}>
-      <TouchableOpacity style={styles.button} onPress={Backbutton}>
-        <Image
-          source={require('../../../media/UI/previous.png')}
-          resizeMode="contain"/>
-      </TouchableOpacity>
-    </View>
+  //   <View style={styles.leftbox}>
+  //     <TouchableOpacity style={styles.button} onPress={Backbutton}>
+  //       <Image
+  //         source={require('../../../media/UI/previous.png')}
+  //         resizeMode="contain"/>
+  //     </TouchableOpacity>
+  //   </View>
 
-    <View style={styles.middlebox}>
-      <ImageBackground
-        source={require('../../../media/UI/topicLearningScroll.png')}
-        resizeMode="contain"
-        style={styles.leftbackdrop}/>
+  //   <View style={styles.middlebox}>
+  //     <ImageBackground
+  //       source={require('../../../media/UI/topicLearningScroll.png')}
+  //       resizeMode="contain"
+  //       style={styles.leftbackdrop}/>
 
-      <View style={styles.desc}>
-        <Text style={{color: "black"}}>{learnSelectedTopic[0]}
-        </Text>
+  //     <View style={styles.desc}>
+  //       <Text style={{color: "black"}}>{learnSelectedTopic[0]}
+  //       </Text>
 
-      </View>
-    </View>
+  //     </View>
+  //   </View>
 
-    <View style={styles.rightbox}>
-      <View style>
-        <TouchableOpacity onPress={Forwardbutton}>
+  //   <View style={styles.rightbox}>
+  //     <View style>
+  //       <TouchableOpacity onPress={Forwardbutton}>
+  //         <Image
+  //           source={require('../../../media/UI/forward.png')}
+  //           resizeMode="contain"/>
+  //       </TouchableOpacity>
+  //     </View>
+
+  //     <View style={styles.exitbutton}>
+  //       <TouchableOpacity style={styles.exitbutton} onPress={Exitbutton}>
+  //         <Image
+  //           source={require('../../../media/UI/exit.png')}
+  //           resizeMode="contain"/>
+  //       </TouchableOpacity>
+  //     </View>
+  //   </View>
+
+  // </View>
+
+  // );
+  //   // WITHOUT INDEXING END
+
+  if (Index === 0) {
+    return (
+      <View style={styles.main}>
+
+        <View style={styles.backgroundContainer}>
           <Image
-            source={require('../../../media/UI/forward.png')}
-            resizeMode="contain"/>
-        </TouchableOpacity>
-      </View>
+            source={require('../../../media/Environment/topicLearningBackground.png')}
+            resizeImage="stretch"
+            style={styles.backdrop}/>
+        </View>
 
-      <View style={styles.exitbutton}>
-        <TouchableOpacity style={styles.exitbutton} onPress={Exitbutton}>
+        <View style={styles.leftbox}>
+        </View>
+
+        <View style={styles.middlebox}>
+          <ImageBackground
+            source={require('../../../media/UI/topicLearningScroll.png')}
+            resizeMode="contain"
+            style={styles.leftbackdrop}/>
+
+          <View style={styles.desc}>
+            <Text style={{color: "black"}}>{learnSelectedTopic[0]}
+            </Text>
+
+          </View>
+        </View>
+
+        <View style={styles.rightbox}>
+          <View style>
+            <TouchableOpacity onPress={Forwardbutton}>
+              <Image
+                source={require('../../../media/UI/forward.png')}
+                resizeMode="contain"/>
+            </TouchableOpacity>
+          </View>
+
+          <View style={styles.exitbutton}>
+            <TouchableOpacity style={styles.exitbutton} onPress={Exitbutton}>
+              <Image
+                source={require('../../../media/UI/exit.png')}
+                resizeMode="contain"/>
+            </TouchableOpacity>
+          </View>
+        </View>
+
+      </View>
+    );
+  };
+
+  if (Index === 1) {
+    return (
+      <View style={styles.main}>
+
+        <View style={styles.backgroundContainer}>
           <Image
-            source={require('../../../media/UI/exit.png')}
-            resizeMode="contain"/>
-        </TouchableOpacity>
+            source={require('../../../media/Environment/topicLearningBackground.png')}
+            resizeImage="stretch"
+            style={styles.backdrop}/>
+        </View>
+
+        <View style={styles.leftbox}>
+          <TouchableOpacity style={styles.button} onPress={Backbutton}>
+            <Image
+              source={require('../../../media/UI/previous.png')}
+              resizeMode="contain"/>
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.middlebox}>
+          <ImageBackground
+            source={require('../../../media/UI/topicLearningScroll.png')}
+            resizeMode="contain"
+            style={styles.leftbackdrop}/>
+
+          <View style={styles.desc}>
+            <Text style={{color: "black"}}>{learnSelectedTopic[1]}
+            </Text>
+
+          </View>
+        </View>
+
+        <View style={styles.rightbox}>
+          <View style>
+            <TouchableOpacity onPress={Forwardbutton}>
+              <Image
+                source={require('../../../media/UI/forward.png')}
+                resizeMode="contain"/>
+            </TouchableOpacity>
+          </View>
+
+          <View style={styles.exitbutton}>
+            <TouchableOpacity style={styles.exitbutton} onPress={Exitbutton}>
+              <Image
+                source={require('../../../media/UI/exit.png')}
+                resizeMode="contain"/>
+            </TouchableOpacity>
+          </View>
+        </View>
+
       </View>
-    </View>
+    );
+  };
 
-  </View>
-    
-    // // console.log(Index),
-    // <View style={styles.main}>
-    // </View>,
+  if (Index === 2) {
+    return (
+      <View style={styles.main}>
 
-    //   {Index ?
-    //   <View style={styles.backgroundContainer}>
-    //     <Image
-    //       source={require('../../../media/Environment/topicLearningBackground.png')}
-    //       resizeImage="stretch"
-    //       style={styles.backdrop}/>
-    //   </View>
+        <View style={styles.backgroundContainer}>
+          <Image
+            source={require('../../../media/Environment/topicLearningBackground.png')}
+            resizeImage="stretch"
+            style={styles.backdrop}/>
+        </View>
 
-    //   <View style={styles.leftbox}>
-    //     <TouchableOpacity style={styles.button} onPress={Backbutton}>
-    //       <Image
-    //         source={require('../../../media/UI/previous.png')}
-    //         resizeMode="contain"/>
-    //     </TouchableOpacity>
-    //   </View>
+        <View style={styles.leftbox}>
+          <TouchableOpacity style={styles.button} onPress={Backbutton}>
+            <Image
+              source={require('../../../media/UI/previous.png')}
+              resizeMode="contain"/>
+          </TouchableOpacity>
+        </View>
 
-    //   <View style={styles.middlebox}>
-    //     <ImageBackground
-    //       source={require('../../../media/UI/topicLearningScroll.png')}
-    //       resizeMode="contain"
-    //       style={styles.leftbackdrop}/>
+        <View style={styles.middlebox}>
+          <ImageBackground
+            source={require('../../../media/UI/topicLearningScroll.png')}
+            resizeMode="contain"
+            style={styles.leftbackdrop}/>
 
-    //     <View style={styles.desc}>
-    //       <Text style={{color: "black"}}>{learnSelectedTopic[0]}
-    //       </Text>
+          <View style={styles.desc}>
+            <Text style={{color: "black"}}>{learnSelectedTopic[2]}
+            </Text>
 
-    //     </View>
-    //   </View>
+          </View>
+        </View>
 
-    //   <View style={styles.rightbox}>
-    //     <View style>
-    //       <TouchableOpacity onPress={Forwardbutton}>
-    //         <Image
-    //           source={require('../../../media/UI/forward.png')}
-    //           resizeMode="contain"/>
-    //       </TouchableOpacity>
-    //     </View>
+        <View style={styles.rightbox}>
+          <View style>
+            <TouchableOpacity onPress={Forwardbutton}>
+              <Image
+                source={require('../../../media/UI/forward.png')}
+                resizeMode="contain"/>
+            </TouchableOpacity>
+          </View>
 
-    //     <View style={styles.exitbutton}>
-    //       <TouchableOpacity style={styles.exitbutton} onPress={Exitbutton}>
-    //         <Image
-    //           source={require('../../../media/UI/exit.png')}
-    //           resizeMode="contain"/>
-    //       </TouchableOpacity>
-    //     </View>
-    //   </View>
-    //   :
+          <View style={styles.exitbutton}>
+            <TouchableOpacity style={styles.exitbutton} onPress={Exitbutton}>
+              <Image
+                source={require('../../../media/UI/exit.png')}
+                resizeMode="contain"/>
+            </TouchableOpacity>
+          </View>
+        </View>
 
-    //   }
+      </View>
+    );
+  };
 
-  );
+  if (Index === 3) {
+    return (
+      <View style={styles.main}>
+
+        <View style={styles.backgroundContainer}>
+          <Image
+            source={require('../../../media/Environment/topicLearningBackground.png')}
+            resizeImage="stretch"
+            style={styles.backdrop}/>
+        </View>
+
+        <View style={styles.leftbox}>
+          <TouchableOpacity style={styles.button} onPress={Backbutton}>
+            <Image
+              source={require('../../../media/UI/previous.png')}
+              resizeMode="contain"/>
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.middlebox}>
+          <ImageBackground
+            source={require('../../../media/UI/topicLearningScroll.png')}
+            resizeMode="contain"
+            style={styles.leftbackdrop}/>
+
+          <View style={styles.desc}>
+            <Text style={{color: "black"}}>{learnSelectedTopic[3]}
+            </Text>
+
+          </View>
+        </View>
+
+        <View style={styles.rightbox}>
+          <View style>
+          </View>
+
+          <View style={styles.exitbutton}>
+            <TouchableOpacity style={styles.exitbutton} onPress={Exitbutton}>
+              <Image
+                source={require('../../../media/UI/exit.png')}
+                resizeMode="contain"/>
+            </TouchableOpacity>
+          </View>
+        </View>
+
+      </View>
+    );
+  };
+
 };
 
 export default TopicLearning;
