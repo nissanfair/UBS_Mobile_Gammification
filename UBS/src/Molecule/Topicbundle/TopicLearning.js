@@ -1,81 +1,75 @@
 /* eslint-disable prettier/prettier */
 import React, {useState, useEffect} from 'react';
-import {
-  StyleSheet,
-  View,
-  Text,
-  Dimensions,
-  Image,
-  ScrollView,
-  ImageBackground,
-  TouchableOpacity,
-} from 'react-native';
+import {StyleSheet, View, Text, Dimensions, Image, ScrollView, ImageBackground, TouchableOpacity } from 'react-native';
 import {NavigationContainer, useNavigation} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {useSelector} from 'react-redux';
 import {styles} from './TopicLearnStyle';
+
 const Stack = createStackNavigator();
 
 const TopicLearning = () => {
   const navigation = useNavigation();
+
   const Backbutton = () => {
    navigation.navigate("TopicLearning2")
-  }
+  };
+
   const Forwardbutton = () => {
     navigation.navigate("TopicLearning2")
-  }
+  };
+
   const Exitbutton = () => {
     navigation.navigate("Topic")
-  }
+  };
 
   const topic = useSelector(state => state.topic.topic);
 
   const [topicChosen, setTopic] = useState(topic);
-  const [introSelectedTopic, pushIntro] = useState('');
+  const [learnSelectedTopic, pushLearn] = useState('');
 
   useEffect(() => {
-    // Idea
     var fetchSelectedTopic = `http://10.0.2.2:3000/6bit/topics/${topic}`;
+    console.log(topic);
 
     fetch(fetchSelectedTopic)
       .then(response => response.json())
       .then(data => {
-        pushIntro(data.data[`${topic}_Learning`]);
+        pushLearn(data.data[`${topic}_Learning`]);
       })
       .catch(error => {
         console.log(error);
       });
-  });
+  }, []);
 
   return (
     <View style={styles.main}>
+
       <View style={styles.backgroundContainer}>
         <Image
-          source={require('../../../media/Environment/learning_background.png')}
+          source={require('../../../media/Environment/topicLearningBackground.png')}
           resizeImage="stretch"
-          style={styles.backdrop}
-        />
+          style={styles.backdrop}/>
       </View>
 
       <View style={styles.leftbox}>
         <TouchableOpacity style={styles.button} onPress={Backbutton}>
           <Image
             source={require('../../../media/UI/previous.png')}
-            resizeMode="contain"
-          />
+            resizeMode="contain"/>
         </TouchableOpacity>
       </View>
 
       <View style={styles.middlebox}>
         <ImageBackground
-          source={require('../../../media/UI/learn_board.png')}
+          source={require('../../../media/UI/topicLearningScroll.png')}
           resizeMode="contain"
-          style={styles.leftbackdrop}
-        />
+          style={styles.leftbackdrop}/>
+
         <View style={styles.desc}>
-          <Text style={{color: "white"}}>{introSelectedTopic}
-            Welcome fighter! Are you ready to take on Malware Attacks? Here we go!
+          <Text style={{color: "black"}}>{learnSelectedTopic[0]}
           </Text>
+
         </View>
       </View>
 
@@ -84,8 +78,7 @@ const TopicLearning = () => {
           <TouchableOpacity onPress={Forwardbutton}>
             <Image
               source={require('../../../media/UI/forward.png')}
-              resizeMode="contain"
-            />
+              resizeMode="contain"/>
           </TouchableOpacity>
         </View>
 
@@ -93,11 +86,11 @@ const TopicLearning = () => {
           <TouchableOpacity style={styles.exitbutton} onPress={Exitbutton}>
             <Image
               source={require('../../../media/UI/exit.png')}
-              resizeMode="contain"
-            />
+              resizeMode="contain"/>
           </TouchableOpacity>
         </View>
       </View>
+
     </View>
   );
 };

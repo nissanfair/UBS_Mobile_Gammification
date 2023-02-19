@@ -56,10 +56,11 @@ const Topic = () => {
             // Manipulating the data here 
             var topicDict = []
             for (let i=1; i< data.topics + 1; i++) {
-                topicDict.push({topic:  `Topic${i}`, display:  `Topic ${i}`, education:  `Topic${i}Learning`})
+                topicDict.push({topic:  `Topic${i}`, display:  `Topic ${i}`, education:  `Topic${i}`})
             }
           // add the new data to the list of dictionaries
           addLevels(topicDict)
+          console.log(topicDict)
         })
         .catch(error => {
             console.log(error)
@@ -104,7 +105,7 @@ const Topic = () => {
                                     </ImageBackground>
                                 </View>
                                 <View  style={{width:'15%',height:'50%'}}>
-                                    <TouchableWithoutFeedback onPress={()=>handleClickInformationEducation("Topic1Learning")}>
+                                    <TouchableWithoutFeedback onPress={()=>handleClickInformationEducation("Topic1")}>
                                         <Image resizeMode='contain' style={{height:40,width:50}} source={require("../../media/TopicJs/book.png")}>
                                         </Image>
                                     </TouchableWithoutFeedback>
@@ -120,7 +121,7 @@ const Topic = () => {
                                     </ImageBackground>
                                 </View>
                                 <View  style={{width:'15%',height:'50%'}}>
-                                    <TouchableWithoutFeedback style={{}}>
+                                    <TouchableWithoutFeedback onPress={()=>handleClickInformationEducation("Topic2")} style={{}}>
                                         <Image resizeMode='contain' style={{height:40,width:50}} source={require("../../media/TopicJs/book.png")}>
                                         </Image>
                                     </TouchableWithoutFeedback>
@@ -136,7 +137,7 @@ const Topic = () => {
                                     </ImageBackground>
                                 </View>
                                 <View  style={{width:'15%',height:'50%'}}>
-                                    <TouchableWithoutFeedback style={{}}>
+                                    <TouchableWithoutFeedback onPress={()=>handleClickInformationEducation("Topic3")} style={{}}>
                                         <Image resizeMode='contain' style={{height:40,width:50}} source={require("../../media/TopicJs/book.png")}>
                                         </Image>
                                     </TouchableWithoutFeedback>

@@ -39,7 +39,7 @@ const TopicIntroduction = ({navigation}) => {
   useEffect(() => {
     // Idea
     var fetchSelectedTopic = `http://10.0.2.2:3000/6bit/topics/${topic}`;
-
+    console.log(topic)
     fetch(fetchSelectedTopic)
       .then(response => response.json())
       .then(data => {
