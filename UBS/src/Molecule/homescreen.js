@@ -1,20 +1,19 @@
 import React, { useState, useEffect }  from 'react';
 // import Sound from 'react-native-sound';
 import { SafeAreaView,ScrollView,StatusBar,StyleSheet,Text,useColorScheme,View,Section, Pressable, Image, TouchableHighlight} from 'react-native';
-
-
 import adventure from '../../media/Soundtracks/main/adventure.wav'
+import { userPress } from '../Molecule/Sound/Sound'
 
 var Sound = require('react-native-sound');
 Sound.setCategory('Playback');
 
-var song = new Sound(adventure, error => {
+export var adven = new Sound(adventure, error => {
   if (error) {
     console.log('failed to load the sound', error);
     return;
   }
   // when loaded successfully
-  console.log('duration in seconds: ' + song.getDuration() + 'number of channels: ' + song.getNumberOfChannels());
+  console.log('duration in seconds: ' + adven.getDuration() + 'number of channels: ' + adven.getNumberOfChannels());
 })
 
 
@@ -28,34 +27,15 @@ const styles = StyleSheet.create({
 export default function HomeScreen({navigation}) {
   const GoogleSSO = () => {
     navigation.navigate("Topic");
-    song.setVolume(1);
-      song.play(success => {
-        if (success) {
-          console.log('successfully finished playing');
-        }
-        else {
-          console.log('playback failed due to audio decoding errors');
-        }
-      })
-  }
-
-  const playSong = () => {
-    song.setVolume(1);
-    song.play(success => {
-      if (success) {
-        console.log('successfully finished playing');
-      }
-      else {
-        console.log('playback failed due to audio decoding errors');
-      }
-    })
+    adven.setVolume(0.5);
+    adven.play();
+    adven.setNumberOfLoops(-1);
   }
 
 
 
   return (
-    <View onLoad={playSong}>
-        { playSong }
+    <View>
         <TouchableHighlight onPress={GoogleSSO}>
           <Image source={require("../../media/Environment/SSO.png")} style={styles.background} />
         </TouchableHighlight>

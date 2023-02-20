@@ -8,6 +8,21 @@ import { useDispatch } from 'react-redux';
 import {setSelectedTimeState} from "../../../Redux/questionSlice"
 import { current } from '@reduxjs/toolkit';
 
+// sfx
+import press from '../../../../media/Soundtracks/main/press.wav';
+
+var Sound = require('react-native-sound');
+Sound.setCategory('Playback');
+
+var song = new Sound(press, error => {
+  if (error) {
+    console.log('failed to load the sound', error);
+    return;
+  }
+  // when loaded successfully
+  console.log('duration in seconds: ' + song.getDuration() + 'number of channels: ' + song.getNumberOfChannels());
+})
+
 const Question = () => {
     const dispatch = useDispatch()
     // Change between different questions, by default we set the first question first
@@ -59,6 +74,10 @@ const Question = () => {
             //Step 4: Set The Prompt (To be Changed to Fetching API)
             setPrompt(sample_questions[questionIndex]["Explanation"])
 
+            // play sfx 
+            song.setVolume(1);
+            song.play();
+
         }
         else {
             // Step 1: Ensure that Timer is Paused 
@@ -72,6 +91,10 @@ const Question = () => {
 
             //Step 4: Set The Prompt (To be Changed to Fetching API)
             setPrompt(sample_questions[questionIndex]["Explanation"])
+
+            // play sfx
+            song.setVolume(1);
+            song.play();
         }
     }
     
@@ -90,6 +113,10 @@ const Question = () => {
         // Step 4: Set Prompt to Empty Again
         setPrompt("")
         
+
+        // play sfx
+        song.setVolume(1);
+        song.play();
     }
 
     return (

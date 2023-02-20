@@ -10,7 +10,8 @@ export default store = configureStore({
         // Step 2: Add the imported files here. 
         login: loginSlice,
         topic: topicSlice,
-        question: questionSlice
+        question: questionSlice,
+
         // alan: alanSlice
     }
 } 

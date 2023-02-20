@@ -14,16 +14,51 @@ import {NavigationContainer, useNavigation} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {useSelector} from 'react-redux';
 import {styles} from './TopicIntroStyle';
+import fighting from '../../../media/Soundtracks/main/fighting.wav'
+import press from '../../../media/Soundtracks/main/press.wav';
+import { adven } from '../homescreen';
+
+var Sound = require('react-native-sound');
+Sound.setCategory('Playback');
+
+var song = new Sound(fighting, error => {
+  if (error) {
+    console.log('failed to load the sound', error);
+    return;
+  }
+  // when loaded successfully
+  console.log('duration in seconds: ' + song.getDuration() + 'number of channels: ' + song.getNumberOfChannels());
+})
+
+
+var userPress = new Sound(press, error => {
+  if (error) {
+    console.log('failed to load the sound', error);
+    return;
+  }
+  // when loaded successfully
+  console.log('duration in seconds: ' + song.getDuration() + 'number of channels: ' + song.getNumberOfChannels());
+})
 
 const Stack = createStackNavigator();
 
 
 const TopicIntroduction = ({navigation}) => {
   const Backbutton = () => {
-    navigation.navigate("Topic")
+    navigation.navigate("Topic");
+    userPress.setVolume(1);
+    userPress.play();
   }
   const Startbutton = () => {
     navigation.navigate("Game")
+    song.setVolume(0.5);
+    song.play();
+    song.setNumberOfLoops(-1);
+
+    userPress.setVolume(1);
+    userPress.play();
+
+    adven.stop();
   }
   // Get relevant information from the store
 

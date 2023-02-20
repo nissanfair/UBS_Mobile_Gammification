@@ -12,6 +12,21 @@ import {ProgressBar} from '@react-native-community/progress-bar-android';
 // Redux slices 
 import {selectedTopic} from "../Redux/topicSlice"
 
+//sfx
+import press from '../../media/Soundtracks/main/press.wav';
+
+var Sound = require('react-native-sound');
+Sound.setCategory('Playback');
+
+var userPress = new Sound(press, error => {
+  if (error) {
+    console.log('failed to load the sound', error);
+    return;
+  }
+  // when loaded successfully
+  console.log('duration in seconds: ' + userPress.getDuration() + 'number of channels: ' + userPress.getNumberOfChannels());
+})
+
 const Stack = createStackNavigator();
 const { width,height } = Dimensions.get('window');
 
@@ -41,6 +56,13 @@ const Topic = () => {
         // Once done, navigate to the topicsLearning page 
         navigation.navigate(TopicLearning);
     }
+
+    const playSong = () => {
+        userPress.setVolume(1);
+        userPress.play();
+    }
+
+    
     
     // Getting the firebase to display and generate the topics
     useEffect(() => {
@@ -99,12 +121,12 @@ const Topic = () => {
                                 <View>
                                     <ImageBackground resizeMode="contain" style={{width: 300,height:80,alignItems:"center",alignContent:"center"}} source={require("../../media/TopicJs/Sword.png")} >
                                         <View style={{ position: 'absolute', bottom:"40%",width:"100%",alignItems:"center" }}>
-                                            <Text onPress={()=>handleClickInformation("Topic1")} style={{ color: 'white'}}>Battle of Malware Attacks</Text>
+                                            <Text onPress={()=>{ handleClickInformation("Topic1"); playSong() } } style={{ color: 'white'}}>Battle of Malware Attacks</Text>
                                         </View>
                                     </ImageBackground>
                                 </View>
                                 <View  style={{width:'15%',height:'50%'}}>
-                                    <TouchableWithoutFeedback onPress={()=>handleClickInformationEducation("Topic1Learning")}>
+                                    <TouchableWithoutFeedback onPress={()=> { handleClickInformationEducation("Topic1Learning"); playSong() } }>
                                         <Image resizeMode='contain' style={{height:40,width:50}} source={require("../../media/TopicJs/book.png")}>
                                         </Image>
                                     </TouchableWithoutFeedback>
