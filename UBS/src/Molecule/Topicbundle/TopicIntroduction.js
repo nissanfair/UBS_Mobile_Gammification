@@ -69,7 +69,7 @@ const TopicIntroduction = ({navigation}) => {
         />
 
         <View style={styles.desc}>
-          <Text>{introSelectedTopic}</Text>
+          <Text style={{ color: 'black', fontFamily: 'PressStart2P-Regular'}}>{introSelectedTopic}</Text>
         </View>
       </View>
 
@@ -81,7 +81,7 @@ const TopicIntroduction = ({navigation}) => {
               resizeMode="contain"
               styles={styles.wizard}
             />
-            <Text>Malware Wizard</Text>
+            <Text style={{ color: 'white', fontFamily: 'PressStart2P-Regular'}}>Malware Wizard</Text>
           </View>
 
           <View style={styles.buttonbox}>

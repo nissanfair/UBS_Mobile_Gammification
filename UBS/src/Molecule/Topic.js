@@ -151,13 +151,13 @@ const Topic = () => {
                     {/* Final Rows */}
                     <View style={{flexDirection:"row",gap:"10%"}}>
                         <View style={{flex:5}}>
-                            <Text style={{alignSelf:"center",color: 'white'}}>MARKETPLACE</Text>
+                            <Text style={{alignSelf:"center",color: 'white', fontFamily: 'PressStart2P-Regular'}}>MARKETPLACE</Text>
                         </View>
                         <View style={{flex:5}}>
-                            <Text style={{alignSelf:"center",color: 'white'}}>TOPIC  SELECTION</Text>
+                            <Text style={{alignSelf:"center",color: 'white', fontFamily: 'PressStart2P-Regular'}}>TOPIC  SELECTION</Text>
                         </View>
                         <View style={{flex:5}}>
-                            <Text style={{alignSelf:"center",color: 'white'}}>EQUIPMENT</Text>
+                            <Text style={{alignSelf:"center",color: 'white', fontFamily: 'PressStart2P-Regular'}}>EQUIPMENT</Text>
                         </View>
                     </View>
             </ImageBackground>
