@@ -19,6 +19,9 @@ export default function App() {
       <Routing /> 
 
     </Provider>
+    // place to add custom fonts
+
+
     // ======= JP placeholder code, remove after the SSO is done ==========
     //   <NavigationContainer>
     //     <Stack.Navigator>

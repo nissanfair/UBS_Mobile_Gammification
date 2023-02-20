@@ -158,7 +158,7 @@ const[Index, setIndex] = useState(0);
             style={styles.leftbackdrop}/>
 
           <View style={styles.desc}>
-            <Text style={{color: "black"}}>{learnSelectedTopic[0]}
+            <Text style={{color: "black", fontFamily: 'PressStart2P-Regular'}}>{learnSelectedTopic[0]}
             </Text>
 
           </View>
@@ -212,7 +212,7 @@ const[Index, setIndex] = useState(0);
             style={styles.leftbackdrop}/>
 
           <View style={styles.desc}>
-            <Text style={{color: "black"}}>{learnSelectedTopic[1]}
+            <Text style={{color: "black", fontFamily: 'PressStart2P-Regular'}}>{learnSelectedTopic[1]}
             </Text>
 
           </View>
@@ -266,7 +266,7 @@ const[Index, setIndex] = useState(0);
             style={styles.leftbackdrop}/>
 
           <View style={styles.desc}>
-            <Text style={{color: "black"}}>{learnSelectedTopic[2]}
+            <Text style={{color: "black", fontFamily: 'PressStart2P-Regular'}}>{learnSelectedTopic[2]}
             </Text>
 
           </View>
@@ -320,7 +320,7 @@ const[Index, setIndex] = useState(0);
             style={styles.leftbackdrop}/>
 
           <View style={styles.desc}>
-            <Text style={{color: "black"}}>{learnSelectedTopic[3]}
+            <Text style={{color: "black", fontFamily: 'PressStart2P-Regular'}}>{learnSelectedTopic[3]}
             </Text>
 
           </View>
@@ -344,5 +344,7 @@ const[Index, setIndex] = useState(0);
   };
 
 };
+
+
 
 export default TopicLearning;
