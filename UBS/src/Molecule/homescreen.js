@@ -51,12 +51,11 @@ export default function HomeScreen({navigation}) {
     })
   }
 
-  useEffect(() => {
-    playSong();
-  }, [])
+
 
   return (
     <View onLoad={playSong}>
+        { playSong }
         <TouchableHighlight onPress={GoogleSSO}>
           <Image source={require("../../media/Environment/SSO.png")} style={styles.background} />
         </TouchableHighlight>
