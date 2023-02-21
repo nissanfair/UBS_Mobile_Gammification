@@ -2,13 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { StyleSheet, View, Text, Dimensions, Image, ScrollView, TouchableHighlight, Button} from 'react-native';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { useDispatch } from 'react-redux';
 
 // Redux
-import {setSelectedTimeState} from "../../../Redux/questionSlice"
+import {setSelectedTimeState, setShowSummary , setTotal_Questions, set_answered_correctly, set_answered_wrongly} from "../../../Redux/questionSlice"
 import { current } from '@reduxjs/toolkit';
+import { useDispatch, useSelector,useStore } from 'react-redux'
 
 const Question = () => {
+    const navigation = useNavigation();
     const dispatch = useDispatch()
     // Change between different questions, by default we set the first question first
     
@@ -21,27 +22,46 @@ const Question = () => {
         "optionB" : "A malicious software designed to block access to a computer system until a sum of money is paid",
         "optionC" : "A failure of a machine's hardware",
         "optionD" : "A failure of a machine's software",
-        "Question": "What is malware?"
+        "Question": "Question 1?"
     },  {
         "Answer": "B",
         "Explanation": 'Yuxiang is geyzser',
         "S/N": 22,
-        "optionA" : "A malicious software developed by cybercriminals to steal data or destroy computers and computer systems",
-        "optionB" : "A malicious software designed to block access to a computer system until a sum of money is paid",
-        "optionC" : "A failure of a machine's hardware",
-        "optionD" : "A failure of a machine's software",
+        "optionA" : "A",
+        "optionB" : "B",
+        "optionC" : "C",
+        "optionD" : "D",
         "Question": "Question 2?"
     }]
     // Use State for Changing between Prompts 
     const [showQuestion, setShowQuestion ] = useState(true)
     const [correct, setCorrect ] = useState(false)
     const [prompt, setPrompt ] = useState("")
+
+    // UseSelector
+    const timestate = useSelector((state) => state.question.timestate);
     
     // Number for index of question
     const [questionIndex, setQuestionIndex] = useState(0)
     // Set current question
     const [currentQuestion, setQuestion] = useState(sample_questions[questionIndex])
 
+    useEffect(() => {
+
+    },[])
+    // This useEffect is to track if the Timer has ended.
+    useEffect(()=> {
+        if (timestate === "END") {
+            // Ran out of Time 
+            setShowQuestion(false);
+
+            setCorrect(false)
+
+            setPrompt(sample_questions[questionIndex]["Explanation"])
+        }
+        // This is to ensure that each time i change the question index, i set the current question
+        setQuestion(sample_questions[questionIndex])
+    },[timestate,questionIndex])
 
     const userAnswer = (answer) => {
         // console.log(answer), Yes this is working. 
@@ -59,6 +79,10 @@ const Question = () => {
             //Step 4: Set The Prompt (To be Changed to Fetching API)
             setPrompt(sample_questions[questionIndex]["Explanation"])
 
+            // Step 5: Change the Answered Correctly +1 
+            dispatch(set_answered_correctly(1))
+
+
         }
         else {
             // Step 1: Ensure that Timer is Paused 
@@ -72,13 +96,28 @@ const Question = () => {
 
             //Step 4: Set The Prompt (To be Changed to Fetching API)
             setPrompt(sample_questions[questionIndex]["Explanation"])
+
+            //Step 5: Set the Answered Wrongly to +1 
+            dispatch(set_answered_wrongly(1))
         }
     }
     
     const NextQuestion = () => {
         // Step 1: Change the Question Index
-        if (questionIndex + 1 ==sample_questions.length){
+        console.log(sample_questions.length)
+        console.log(questionIndex)
+        console.log(currentQuestion)
+        if (questionIndex + 1 == sample_questions.length){
+            // Set the Global Variable to show the Summary Table: 
+            dispatch(setShowSummary(true))
             console.log("You have reached the end of the questions")
+
+            
+            // Set the Total Questions 
+            dispatch(setTotal_Questions(sample_questions.length))
+            
+            // Navigate the person out to the Summary Page
+            navigation.navigate("Summary") 
         }
         else {
             setQuestionIndex(questionIndex + 1);
@@ -96,7 +135,7 @@ const Question = () => {
         <>
 
             <View style={{height:"20%", width: "100%", backgroundColor: "white", borderRadius:20, display:"flex", justifyContent:'center', alignItems: 'center'}}>
-                <Text>{currentQuestion["Question"]}</Text>
+                <Text>{currentQuestion["Question"]}{timestate}</Text>
             </View>
 
             {showQuestion ?
@@ -145,10 +184,21 @@ const Question = () => {
                             <Button title="Next" onPress={()=> NextQuestion()}/>
                         </View>
                     :
-                        <View style={{height:"70%", width:"100%",marginTop:10, borderRadius:10,backgroundColor:"red",justifyContent:'center', alignItems: 'center'}} >
-                            <Text style={{margin:10}}>You are wrong. {currentQuestion['Explanation']}</Text>
-                            <Button title="Next" onPress={()=> NextQuestion()}/>
-                        </View>
+                        <>
+                        { timestate === "END" ?
+                            <View style={{height:"70%", width:"100%",marginTop:10, borderRadius:10,backgroundColor:"red",justifyContent:'center', alignItems: 'center'}} >
+                                <Text style={{margin:10}}>You ran out of time.</Text>
+                                <Button title="Next" onPress={()=> NextQuestion()}/>
+                            </View>
+                            :
+                            <>
+                            <View style={{height:"70%", width:"100%",marginTop:10, borderRadius:10,backgroundColor:"red",justifyContent:'center', alignItems: 'center'}} >
+                                <Text style={{margin:10}}>You are wrong. {currentQuestion['Explanation']}</Text>
+                                <Button title="Next" onPress={()=> NextQuestion()}/>
+                            </View>
+                            </>
+                        }
+                        </>
                     }
                 </>
             }

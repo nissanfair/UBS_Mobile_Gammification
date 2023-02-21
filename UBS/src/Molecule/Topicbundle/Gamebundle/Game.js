@@ -2,9 +2,12 @@ import React, { useState } from 'react';
 import { StyleSheet, View, Text, Dimensions, Image, ScrollView, TouchableHighlight, ImageBackground} from 'react-native';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { useDispatch, useSelector,useStore } from 'react-redux'
+
 import Question from './Questions';
 import Health from './Health'
 import Timer from './Timeline'
+
 
 const Stack = createStackNavigator();
 const styles = StyleSheet.create({
@@ -22,11 +25,11 @@ const Game = () => {
             height: "100%"
         }
     })
-    
+
+    const showSummary = useSelector((state) => state.question.showSummary);
+
 
     // Calling of the question should be here 
-    
-
     return (
         <View>
             <ImageBackground source={require("../../../../media/Environment/craftpix-897715-free-pixel-art-fantasy-2d-battlegrounds/PNG/Battleground3/Bright/Battleground3.png")} style={styles.background}>
@@ -49,9 +52,12 @@ const Game = () => {
                             </View>
                         </View>
                         {/* Questions */}
+
                         <View style={{height:"100%", width:'100%',flex:3, alignContent:'center', alignItems:'center'}}>
                             <Question/>
                         </View>
+                        
+
 
                         {/* Character 2 */}
                         <View style={{flex:1}}>
