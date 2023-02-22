@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   StyleSheet,
   View,
@@ -10,15 +10,15 @@ import {
   ImageBackground,
   TouchableOpacity,
 } from 'react-native';
-import {NavigationContainer, useNavigation} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
-import {useSelector} from 'react-redux';
-import {styles} from './TopicIntroStyle';
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { useSelector } from 'react-redux';
+import { styles } from './TopicIntroStyle';
 
 const Stack = createStackNavigator();
 
 
-const TopicIntroduction = ({navigation}) => {
+const TopicIntroduction = ({ navigation }) => {
   const Backbutton = () => {
     navigation.navigate("Topic")
   }
@@ -49,28 +49,43 @@ const TopicIntroduction = ({navigation}) => {
       .catch(error => {
         console.log(error);
       });
-  }, );
+  },);
 
   return (
     <View style={styles.main}>
       <View style={styles.backgroundContainer}>
         <Image
-          source={require('../../../media/Environment/s4m_ur4i-bg_clouds.png')}
+          source={require('../../../media/UI/matrix_bg.jpg')}
           resizeImage="stretch"
           style={styles.backdrop}
         />
       </View>
 
       <View style={styles.leftbox}>
-        <ImageBackground
-          source={require('../../../media/Environment/panel_Example2.png')}
-          resizeMode="stretch"
-          style={styles.leftbackdrop}
-        />
-
-        <View style={styles.desc}>
-          <Text style={{ color: 'black', fontFamily: 'PressStart2P-Regular'}}>{introSelectedTopic}</Text>
+        <View style={styles.back}>
+          <TouchableOpacity style={styles.button} onPress={Backbutton}>
+            <Image
+              source={require('../../../media/UI/back_v2.png')}
+              resizeMode="contain"
+            />
+          </TouchableOpacity>
+          <View style={styles.desc}>
+            <Text style={{ color: 'black', fontFamily: 'PressStart2P-Regular' }}>{introSelectedTopic}</Text>
+          </View>
         </View>
+
+
+      </View>
+
+      <View style={styles.centerbox}>
+      
+        <ImageBackground
+          source={require('../../../media/UI/computer_screen.png')}
+          resizeImage="contain"
+          style={styles.backdrop}
+        />
+       
+
       </View>
 
       <View style={styles.rightbox}>
@@ -81,25 +96,18 @@ const TopicIntroduction = ({navigation}) => {
               resizeMode="contain"
               styles={styles.wizard}
             />
-            <Text style={{ color: 'white', fontFamily: 'PressStart2P-Regular'}}>Malware Wizard</Text>
+            <Text style={{ color: 'white', fontFamily: 'PressStart2P-Regular' }}>Malware Wizard</Text>
           </View>
 
           <View style={styles.buttonbox}>
-            <View style={styles.back}>
-              <TouchableOpacity style={styles.button} onPress={Backbutton}>
-                <Image
-                  source={require('../../../media/UI/back_v2.png')}
-                  resizeMode="contain"
-                />
-              </TouchableOpacity>
-            </View>
+
             <View style={styles.start}>
 
-            <TouchableOpacity style={styles.button} onPress={Startbutton}>
-              <Image
-                source={require('../../../media/UI/start_v2.png')}
-                resizeMode="contain"
-              />
+              <TouchableOpacity style={styles.button} onPress={Startbutton}>
+                <Image
+                  source={require('../../../media/UI/start_v2.png')}
+                  resizeMode="contain"
+                />
               </TouchableOpacity>
             </View>
           </View>
