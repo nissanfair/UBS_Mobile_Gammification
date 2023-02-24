@@ -30,9 +30,8 @@ const Game = () => {
 
     // Health decreases due to wrong question
     const wronglyAnsweredQuestion = useSelector((state) => state.question.answered_wrongly);
-    // Track this 
-
-    // Health decrease due to wrong time
+    // Health decrease due to lack of time
+    const noTimeLeft = useSelector((state) => state.question.timestate)
 
     const showSummary = useSelector((state) => state.question.showSummary);
 
@@ -93,7 +92,7 @@ const Game = () => {
                 <View style={{flex: 1, backgroundColor: 'lightgray', flexDirection: 'row', alignItems: 'center'}}>
                     <View style={{flex: 1, flexDirection: 'row', alignItems: 'center', paddingLeft: 10}}>
                         {/* Passing down from global state to props */}
-                        <HealthBar numWrongAnswers={wronglyAnsweredQuestion}/>
+                        <HealthBar numWrongAnswers={wronglyAnsweredQuestion} timeState={noTimeLeft}/>
                     </View>
 
                     <View>

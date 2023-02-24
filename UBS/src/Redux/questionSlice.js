@@ -31,7 +31,7 @@ export const question_detail_slice = createSlice({
         }
         ,
         set_answered_wrongly : (state,action) => {
-            state.answered_wrongly -= action.payload
+            state.answered_wrongly += action.payload
         }
     }
 })

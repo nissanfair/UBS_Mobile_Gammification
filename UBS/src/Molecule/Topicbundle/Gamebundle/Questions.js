@@ -115,6 +115,8 @@ const Question = () => {
             
             // Set the Total Questions 
             dispatch(setTotal_Questions(sample_questions.length))
+
+            // rest states of question
             
             // Navigate the person out to the Summary Page
             navigation.navigate("Summary") 
