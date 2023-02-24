@@ -47,7 +47,7 @@ export default function Summary({navigation}) {
   return (
     <View>
         <TouchableHighlight >
-          <Text>This is the Summary Page
+          <Text >This is the Summary Page
             Out of {total_question}, correctly:  {answer_correctly}, wrong: {answered_wrongly}
           </Text>
 

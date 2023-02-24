@@ -14,40 +14,44 @@ const Question = ({gameStatus}) => {
     // Change between different questions, by default we set the first question first
     
     // Questions to simulate the firebase
-    const sample_questions = [ {
-        "Answer": "A",
-        "Explanation": 'Malware is short for "malicious software" and it refers to any intrusive software developed by criminals (who are often refered to as "hackers") to steal data and damage or destroy computers and computer systems!',
-        "S/N": 21,
-        "optionA" : "A malicious software developed by cybercriminals to steal data or destroy computers and computer systems",
-        "optionB" : "A malicious software designed to block access to a computer system until a sum of money is paid",
-        "optionC" : "A failure of a machine's hardware",
-        "optionD" : "A failure of a machine's software",
-        "Question": "Question 1?"
-    },  {
-        "Answer": "B",
-        "Explanation": 'Yuxiang is geyzser',
-        "S/N": 22,
-        "optionA" : "A",
-        "optionB" : "B",
-        "optionC" : "C",
-        "optionD" : "D",
-        "Question": "Question 2?"
-    }]
+    const actual_questions = useSelector((state) => state.question.topicQuestionObject)
+    // const actual_questions = [ {
+    //     "Answer": "A",
+    //     "Explanation": 'Malware is short for "malicious software" and it refers to any intrusive software developed by criminals (who are often refered to as "hackers") to steal data and damage or destroy computers and computer systems!',
+    //     "S/N": 21,
+    //     "optionA" : "A malicious software developed by cybercriminals to steal data or destroy computers and computer systems",
+    //     "optionB" : "A malicious software designed to block access to a computer system until a sum of money is paid",
+    //     "optionC" : "A failure of a machine's hardware",
+    //     "optionD" : "A failure of a machine's software",
+    //     "Question": "Question 1?"
+    // },  {
+    //     "Answer": "B",
+    //     "Explanation": 'Yuxiang is geyzser',
+    //     "S/N": 22,
+    //     "optionA" : "A",
+    //     "optionB" : "B",
+    //     "optionC" : "C",
+    //     "optionD" : "D",
+    //     "Question": "Question 2?"
+    // }]
+
     // Use State for Changing between Prompts 
     const [showQuestion, setShowQuestion ] = useState(true)
     const [correct, setCorrect ] = useState(false)
     const [prompt, setPrompt ] = useState("")
-
+    
     // UseSelector
     const timestate = useSelector((state) => state.question.timestate);
     
     // Number for index of question
     const [questionIndex, setQuestionIndex] = useState(0)
     // Set current question
-    const [currentQuestion, setQuestion] = useState(sample_questions[questionIndex])
+    const [currentQuestion, setQuestion] = useState(actual_questions[questionIndex])
+    
 
+    // Not sure whether this is need , yuxiang this is your code
     useEffect(() => {
-
+        dispatch(setTotal_Questions(actual_questions.length))
     },[])
     // This useEffect is to track if the Timer has ended.
     useEffect(()=> {
@@ -57,10 +61,10 @@ const Question = ({gameStatus}) => {
 
             setCorrect(false)
 
-            setPrompt(sample_questions[questionIndex]["Explanation"])
+            setPrompt(actual_questions[questionIndex]["Explanation"])
         }
         // This is to ensure that each time i change the question index, i set the current question
-        setQuestion(sample_questions[questionIndex])
+        setQuestion(actual_questions[questionIndex])
     },[timestate,questionIndex])
 
     const userAnswer = (answer) => {
@@ -77,7 +81,7 @@ const Question = ({gameStatus}) => {
             setCorrect(true)
 
             //Step 4: Set The Prompt (To be Changed to Fetching API)
-            setPrompt(sample_questions[questionIndex]["Explanation"])
+            setPrompt(actual_questions[questionIndex]["Explanation"])
 
             // Step 5: Change the Answered Correctly +1 
             dispatch(set_answered_correctly(1))
@@ -95,7 +99,7 @@ const Question = ({gameStatus}) => {
             setCorrect(false)
 
             //Step 4: Set The Prompt (To be Changed to Fetching API)
-            setPrompt(sample_questions[questionIndex]["Explanation"])
+            setPrompt(actual_questions[questionIndex]["Explanation"])
 
             //Step 5: Set the Answered Wrongly to +1 
             dispatch(set_answered_wrongly(1))
@@ -105,10 +109,10 @@ const Question = ({gameStatus}) => {
     const NextQuestion = () => {
         // Step 1: Change the Question Index
         console.log("help me ?")
-        console.log(sample_questions.length)
+        console.log(actual_questions.length)
         console.log(questionIndex)
         console.log(currentQuestion)
-        if (questionIndex + 1 == sample_questions.length){
+        if (questionIndex + 1 == actual_questions.length){
             // Set the Global Variable to show the Summary Table: 
             dispatch(setShowSummary(true))
             console.log("You have reached the end of the questions")
@@ -116,12 +120,12 @@ const Question = ({gameStatus}) => {
             // reset the state of the question
             // Reset health, reset the index of the questions 
             setQuestionIndex(0)
-            setQuestion(sample_questions[questionIndex])
+            setQuestion(actual_questions[questionIndex])
             dispatch(set_game_status("RESET"))
 
             
             // Set the Total Questions 
-            dispatch(setTotal_Questions(sample_questions.length))
+            // dispatch(setTotal_Questions(actual_questions.length))
 
 
             
@@ -145,7 +149,7 @@ const Question = ({gameStatus}) => {
 
     //     if (gameStatus == "RESET") {
     //         setQuestionIndex(0)
-    //         setQuestion(sample_questions[questionIndex])
+    //         setQuestion(actual_questions[questionIndex])
     //         dispatch(setTotal_Questions(0))
     //         dispatch(set_answered_correctly( - useSelector((state) => state.question.answered_correctly)))
     //         dispatch(set_answered_wrongly( - useSelector((state) => state.question.answered_wrongly)))
@@ -160,10 +164,10 @@ const Question = ({gameStatus}) => {
 
     //     //     setCorrect(false)
 
-    //     //     setPrompt(sample_questions[questionIndex]["Explanation"])
+    //     //     setPrompt(actual_questions[questionIndex]["Explanation"])
     //     // }
     //     // // This is to ensure that each time i change the question index, i set the current question
-    //     // setQuestion(sample_questions[questionIndex])
+    //     // setQuestion(actual_questions[questionIndex])
     // },[gameStatus])
 
     return (

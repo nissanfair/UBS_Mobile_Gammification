@@ -14,30 +14,41 @@ const HealthBar = ({ numWrongAnswers, timeState, gameStatus }) => {
     
     
     useEffect(() => {
-        // alert("gamestate is this " + gameStatus)
-        // alert("timestate is this " + timeState)
+        alert("gamestate is this " + gameStatus)
+        alert("timestate is this " + timeState)
 
         // Check when timeState is paused because they would have answered the question + Check whether gamestatus is running
         if (timeState == "PAUSE" && gameStatus == "RUNNING"){
-            alert("pause blocked")
-            if (currentHealth > 0) {
-                updateCurrentHealth(currentHealth - 1)
-            }
-            else if (currentHealth < 0) {
-                dispatch(set_game_status("RESET"))
+            alert("pause block and gamestatus is running")
+            // One because if minus 1 and get wrong, it would end the 
+            if (currentHealth == 1) {
+                alert("my health is zero now")
                 updateCurrentHealth(maxHealth)
+                // Reset time to run for the next iteration and set game status to reset
+                dispatch(setSelectedTimeState("RUN"))
+                dispatch(set_game_status("RESET"))
 
-        } 
+            } else {
+                updateCurrentHealth(currentHealth - 1)
+
+            }
+            
+        //     if (currentHealth == 0) {
+
+        // } 
         }
         // Check when timeState has ended because they would missed their chance to answer their question  + Check whether gamestatus is running
         if (timeState == "END" && gameStatus == "RUNNING") {
-            if (currentHealth > 0) {
-                updateCurrentHealth(currentHealth - 1)
-            }
-            else if (currentHealth < 0) {
-                dispatch(set_game_status("RESET"))
+            if (currentHealth == 1 ) {
+                alert("my health is zero now")
                 updateCurrentHealth(maxHealth)
-        } 
+                // Reset time to run for the next iteration and set game status to reset
+                dispatch(setSelectedTimeState("RUN"))
+                dispatch(set_game_status("RESET"))            }
+                else {
+                    updateCurrentHealth(currentHealth - 1)
+    
+                }
         }
 
         // gameStatus is account for when game ends at the questions.js side
@@ -66,7 +77,7 @@ const HealthBar = ({ numWrongAnswers, timeState, gameStatus }) => {
 
     return (
         <View>
-            <Text>Current health: {currentHealth} / {maxHealth} </Text>
+            <Text style={{color: "black"}}>Current health: {currentHealth} / {maxHealth} </Text>
         </View>
     );
 };

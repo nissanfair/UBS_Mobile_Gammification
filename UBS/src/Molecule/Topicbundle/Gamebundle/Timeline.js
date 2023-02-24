@@ -4,7 +4,7 @@ import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import * as Progress from 'react-native-progress'
 
 import { useDispatch, useSelector,useStore } from 'react-redux';
-import { setSelectedTimeState  } from "../../../Redux/questionSlice"
+import { setSelectedTimeState, set_answered_correctly, set_answered_wrongly  } from "../../../Redux/questionSlice"
 
 
 const Timer = () => {   
@@ -44,6 +44,8 @@ const Timer = () => {
       }
       else if (timestate === "END") {
         clearInterval(intervalId.current);
+        // Over here, once time end the question is wrong, so need to account for this
+        dispatch(set_answered_wrongly(1))
       }
       return () => clearInterval(intervalId.current);
     },[timestate,timeLeft])

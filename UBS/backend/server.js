@@ -48,7 +48,7 @@ app.use('/6bit/topics',testingRoute)
 // Can be improved and be put into a yaml file
 app.use('/6bit-api-docs',swaggerUI.serve,swaggerUI.setup(swaggerDocs));
 
-app.use('/6bit/characters', characterRoute)
+// app.use('/6bit/characters', characterRoute)
 
 // /*
 

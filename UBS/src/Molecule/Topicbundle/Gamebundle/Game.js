@@ -3,6 +3,7 @@ import React, { useEffect, useState} from 'react';
 import { Image, ImageBackground, StyleSheet, Text, View, Button } from 'react-native';
 import { useDispatch, useSelector,useStore } from 'react-redux';
 import {setSelectedTimeState, setShowSummary , setTotal_Questions, set_answered_correctly, set_answered_wrongly, set_game_status} from "../../../Redux/questionSlice"
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
 
 import Question from './Questions';
 import Timer from './Timeline';
@@ -16,6 +17,7 @@ const styles = StyleSheet.create({
     }
 })
 const Game = () => {
+    const navigation = useNavigation();
     const dispatch = useDispatch()
     // const navigation = useNavigation();
     // Get relevant information from the store
@@ -38,6 +40,12 @@ const Game = () => {
     const gamestatus = useSelector((state) => state.question.gamestatus)
 
     const showSummary = useSelector((state) => state.question.showSummary);
+
+    useEffect(() => {
+        if (gamestatus == "RESET") {
+            navigation.navigate("Summary") 
+        }
+    },[gamestatus])
 
     return (
         <View style={{flexDirection: "column", flex: 1,

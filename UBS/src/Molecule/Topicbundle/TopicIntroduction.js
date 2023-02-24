@@ -14,7 +14,7 @@ import {NavigationContainer, useNavigation} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {useDispatch, useSelector,useStore} from 'react-redux';
 import {styles} from './TopicIntroStyle';
-import {setSelectedTimeState, setShowSummary , setTotal_Questions, set_answered_correctly, set_answered_wrongly, set_game_status} from "../../Redux/questionSlice"
+import {setSelectedTimeState, setShowSummary , setTotal_Questions, set_answered_correctly, set_answered_wrongly, set_game_status, set_topic_selected} from "../../Redux/questionSlice"
 
 const Stack = createStackNavigator();
 
@@ -40,7 +40,7 @@ const TopicIntroduction = ({navigation}) => {
     console.log(answered_correctly)
     console.log(answered_wrongly)
 
-    alert()
+    alert("asdasd")
     // Change status to running again
     dispatch(set_game_status("RUNNING"))
     navigation.navigate("Game")
@@ -58,13 +58,18 @@ const TopicIntroduction = ({navigation}) => {
 
   useEffect(() => {
     // Idea
-    var fetchSelectedTopic = `http://10.0.2.2:3000/6bit/topics/${topic}`;
+    // For JP phone 
+    var fetchSelectedTopic = `http://192.168.29.14:3000/6bit/topics/${topic}`;
+    // For emulator
+    // var fetchSelectedTopic = `http://10.0.2.2:3000/6bit/topics/${topic}`;
 
+    // state.question.topicQuestionObject
     fetch(fetchSelectedTopic)
       .then(response => response.json())
       .then(data => {
         // pushing the intro here. We can add more stuff here then use redux accordingly
         pushIntro(data.data[`${topic}_Introduction`])
+        dispatch(set_topic_selected(data.data[`${topic}_Questions`]))
       })
       .catch(error => {
         console.log(error);
