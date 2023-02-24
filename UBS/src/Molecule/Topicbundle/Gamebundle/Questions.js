@@ -4,11 +4,11 @@ import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 // Redux
-import {setSelectedTimeState, setShowSummary , setTotal_Questions, set_answered_correctly, set_answered_wrongly} from "../../../Redux/questionSlice"
+import {setSelectedTimeState, setShowSummary , setTotal_Questions, set_answered_correctly, set_answered_wrongly, set_game_status} from "../../../Redux/questionSlice"
 import { current } from '@reduxjs/toolkit';
 import { useDispatch, useSelector,useStore } from 'react-redux'
 
-const Question = () => {
+const Question = ({gameStatus}) => {
     const navigation = useNavigation();
     const dispatch = useDispatch()
     // Change between different questions, by default we set the first question first
@@ -104,6 +104,7 @@ const Question = () => {
     
     const NextQuestion = () => {
         // Step 1: Change the Question Index
+        console.log("help me ?")
         console.log(sample_questions.length)
         console.log(questionIndex)
         console.log(currentQuestion)
@@ -112,11 +113,17 @@ const Question = () => {
             dispatch(setShowSummary(true))
             console.log("You have reached the end of the questions")
 
+            // reset the state of the question
+            // Reset health, reset the index of the questions 
+            setQuestionIndex(0)
+            setQuestion(sample_questions[questionIndex])
+            dispatch(set_game_status("RESET"))
+
             
             // Set the Total Questions 
             dispatch(setTotal_Questions(sample_questions.length))
 
-            // rest states of question
+
             
             // Navigate the person out to the Summary Page
             navigation.navigate("Summary") 
@@ -132,6 +139,32 @@ const Question = () => {
         setPrompt("")
         
     }
+
+    // UseEffect to track props gameStatus
+    // useEffect(()=> {
+
+    //     if (gameStatus == "RESET") {
+    //         setQuestionIndex(0)
+    //         setQuestion(sample_questions[questionIndex])
+    //         dispatch(setTotal_Questions(0))
+    //         dispatch(set_answered_correctly( - useSelector((state) => state.question.answered_correctly)))
+    //         dispatch(set_answered_wrongly( - useSelector((state) => state.question.answered_wrongly)))
+
+
+    //         // Reset number of questions correct and incorrect and total number of questions
+
+    //     } 
+    //     // if (timestate === "END") {
+    //     //     // Ran out of Time 
+    //     //     setShowQuestion(false);
+
+    //     //     setCorrect(false)
+
+    //     //     setPrompt(sample_questions[questionIndex]["Explanation"])
+    //     // }
+    //     // // This is to ensure that each time i change the question index, i set the current question
+    //     // setQuestion(sample_questions[questionIndex])
+    // },[gameStatus])
 
     return (
         <>

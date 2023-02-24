@@ -2,6 +2,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import React, { useEffect, useState} from 'react';
 import { Image, ImageBackground, StyleSheet, Text, View, Button } from 'react-native';
 import { useDispatch, useSelector,useStore } from 'react-redux';
+import {setSelectedTimeState, setShowSummary , setTotal_Questions, set_answered_correctly, set_answered_wrongly, set_game_status} from "../../../Redux/questionSlice"
 
 import Question from './Questions';
 import Timer from './Timeline';
@@ -15,6 +16,7 @@ const styles = StyleSheet.create({
     }
 })
 const Game = () => {
+    const dispatch = useDispatch()
     // const navigation = useNavigation();
     // Get relevant information from the store
     const styles = StyleSheet.create({
@@ -32,11 +34,11 @@ const Game = () => {
     const wronglyAnsweredQuestion = useSelector((state) => state.question.answered_wrongly);
     // Health decrease due to lack of time
     const noTimeLeft = useSelector((state) => state.question.timestate)
+    // Accounting for gamestatus 
+    const gamestatus = useSelector((state) => state.question.gamestatus)
 
     const showSummary = useSelector((state) => state.question.showSummary);
 
-
-    // Calling of the question should be here 
     return (
         <View style={{flexDirection: "column", flex: 1,
     }} >
@@ -64,7 +66,7 @@ const Game = () => {
                         {/* Questions */}
 
                         <View style={{height:"100%", width:'100%',flex:3, alignContent:'center', alignItems:'center'}}>
-                            <Question/>
+                            <Question gameStatus={gamestatus}/>
                         </View>
                         
 
@@ -92,7 +94,7 @@ const Game = () => {
                 <View style={{flex: 1, backgroundColor: 'lightgray', flexDirection: 'row', alignItems: 'center'}}>
                     <View style={{flex: 1, flexDirection: 'row', alignItems: 'center', paddingLeft: 10}}>
                         {/* Passing down from global state to props */}
-                        <HealthBar numWrongAnswers={wronglyAnsweredQuestion} timeState={noTimeLeft}/>
+                        <HealthBar numWrongAnswers={wronglyAnsweredQuestion} timeState={noTimeLeft} gameStatus = {gamestatus}/>
                     </View>
 
                     <View>
