@@ -1,12 +1,10 @@
-import React, { useState } from 'react';
-import { StyleSheet, View, Text, Dimensions, Image, ScrollView, TouchableHighlight, ImageBackground} from 'react-native';
-import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { useDispatch, useSelector,useStore } from 'react-redux'
+import React from 'react';
+import { Image, ImageBackground, StyleSheet, Text, View, Button } from 'react-native';
+import { useSelector } from 'react-redux';
 
 import Question from './Questions';
-import Health from './Health'
-import Timer from './Timeline'
+import Timer from './Timeline';
 
 
 const Stack = createStackNavigator();
@@ -31,7 +29,9 @@ const Game = () => {
 
     // Calling of the question should be here 
     return (
-        <View>
+        <View style={{flexDirection: "column", flex: 1,
+    }} >
+            <View style={{flex:10}}>
             <ImageBackground source={require("../../../../media/Environment/craftpix-897715-free-pixel-art-fantasy-2d-battlegrounds/PNG/Battleground3/Bright/Battleground3.png")} style={styles.background}>
                 <View style={{width:"100%", height:"100%"}}>
                     <View style={{alignContent:"center",alignItems:"center", marginTop:15}}>
@@ -48,6 +48,7 @@ const Game = () => {
                                     <Image style={{height:"100%", width:"100%",alignSelf:'center'}}  source={require("../../../adventure.gif")} />                                    
                                 </View>
                                 <View style={{flex:1}}></View>
+
 
                             </View>
                         </View>
@@ -74,6 +75,22 @@ const Game = () => {
 
                 </View>
             </ImageBackground>
+
+            </View>
+
+
+            <View style={{flex:1}}>
+                <View style={{flex: 1, backgroundColor: 'lightgray', flexDirection: 'row', alignItems: 'center'}}>
+                    <View style={{flex: 1, flexDirection: 'row', alignItems: 'center', paddingLeft: 10}}>
+                        <Text>adasdas</Text>
+                    </View>
+
+                    <View>
+                        <Button title="Consumable"/>
+                    </View>
+                </View>
+            </View>
+
         </View>
     );
 };
