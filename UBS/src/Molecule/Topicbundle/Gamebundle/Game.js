@@ -1,11 +1,11 @@
 import { createStackNavigator } from '@react-navigation/stack';
-import React from 'react';
+import React, { useEffect, useState} from 'react';
 import { Image, ImageBackground, StyleSheet, Text, View, Button } from 'react-native';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector,useStore } from 'react-redux';
 
 import Question from './Questions';
 import Timer from './Timeline';
-
+import HealthBar from './Health';
 
 const Stack = createStackNavigator();
 const styles = StyleSheet.create({
@@ -23,6 +23,16 @@ const Game = () => {
             height: "100%"
         }
     })
+    
+    // Health variables
+    const [health,modifyHealth] = useState(3)
+
+
+    // Health decreases due to wrong question
+    const wronglyAnsweredQuestion = useSelector((state) => state.question.answered_wrongly);
+    // Track this 
+
+    // Health decrease due to wrong time
 
     const showSummary = useSelector((state) => state.question.showSummary);
 
@@ -82,11 +92,12 @@ const Game = () => {
             <View style={{flex:1}}>
                 <View style={{flex: 1, backgroundColor: 'lightgray', flexDirection: 'row', alignItems: 'center'}}>
                     <View style={{flex: 1, flexDirection: 'row', alignItems: 'center', paddingLeft: 10}}>
-                        <Text>adasdas</Text>
+                        {/* Passing down from global state to props */}
+                        <HealthBar numWrongAnswers={wronglyAnsweredQuestion}/>
                     </View>
 
                     <View>
-                        <Button title="Consumable"/>
+                        <Text>adasdas</Text>
                     </View>
                 </View>
             </View>
