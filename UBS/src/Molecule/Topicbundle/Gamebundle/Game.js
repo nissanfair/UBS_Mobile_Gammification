@@ -48,8 +48,7 @@ const Game = () => {
     },[gamestatus])
 
     return (
-        <View style={{flexDirection: "column", flex: 1,
-    }} >
+        <View style={{flexDirection: "column", flex: 1,}} >
             <View style={{flex:10}}>
             <ImageBackground source={require("../../../../media/Environment/craftpix-897715-free-pixel-art-fantasy-2d-battlegrounds/PNG/Battleground3/Bright/Battleground3.png")} style={styles.background}>
                 <View style={{width:"100%", height:"100%"}}>
@@ -103,10 +102,6 @@ const Game = () => {
                     <View style={{flex: 1, flexDirection: 'row', alignItems: 'center', paddingLeft: 10}}>
                         {/* Passing down from global state to props */}
                         <HealthBar numWrongAnswers={wronglyAnsweredQuestion} timeState={noTimeLeft} gameStatus = {gamestatus}/>
-                    </View>
-
-                    <View>
-                        <Text>adasdas</Text>
                     </View>
                 </View>
             </View>

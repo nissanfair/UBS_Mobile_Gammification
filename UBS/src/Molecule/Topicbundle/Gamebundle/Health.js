@@ -29,7 +29,7 @@ const HealthBar = ({ numWrongAnswers, timeState, gameStatus }) => {
 
             }
             
-        //     if (currentHealth == 0) {
+        // if (currentHealth == 0) {
 
         // } 
         }
