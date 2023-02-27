@@ -17,8 +17,13 @@ export default function App() {
   return (
     <Provider store={store}> 
       <Routing /> 
+      {/* // place to add custom fonts */}
+      
 
     </Provider>
+    
+
+
     // ======= JP placeholder code, remove after the SSO is done ==========
     //   <NavigationContainer>
     //     <Stack.Navigator>

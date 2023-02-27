@@ -18,7 +18,6 @@ import {setSelectedTimeState, setShowSummary , setTotal_Questions, set_answered_
 
 const Stack = createStackNavigator();
 
-
 const TopicIntroduction = ({navigation}) => {
   const dispatch = useDispatch()
   // To substract away from the 
@@ -29,8 +28,8 @@ const TopicIntroduction = ({navigation}) => {
 
 
   const Backbutton = () => {
-    navigation.navigate("Topic")
-  }
+    navigation.navigate('Topic');
+  };
   const Startbutton = () => {
     // At this point the Gamestatus is reset, reset the total number of questions , correct questions and wrong questions
     dispatch(setTotal_Questions(0))
@@ -63,6 +62,7 @@ const TopicIntroduction = ({navigation}) => {
     var fetchSelectedTopic = `http://10.0.2.2:3000/6bit/topics/${topic}`;
 
     // state.question.topicQuestionObject
+    console.log(topic);
     fetch(fetchSelectedTopic)
       .then(response => response.json())
       .then(data => {
@@ -73,61 +73,81 @@ const TopicIntroduction = ({navigation}) => {
       .catch(error => {
         console.log(error);
       });
-  }, );
+  });
 
   return (
     <View style={styles.main}>
       <View style={styles.backgroundContainer}>
-        <Image
-          source={require('../../../media/Environment/s4m_ur4i-bg_clouds.png')}
+        <ImageBackground
+          source={require('../../../media/UI/matrix_bg.jpg')}
           resizeImage="stretch"
           style={styles.backdrop}
         />
       </View>
 
       <View style={styles.leftbox}>
-        <ImageBackground
-          source={require('../../../media/Environment/panel_Example2.png')}
-          resizeMode="stretch"
-          style={styles.leftbackdrop}
-        />
-
-        <View style={styles.desc}>
-          <Text>{introSelectedTopic}</Text>
+        <View style={styles.back}>
+          <TouchableOpacity style={styles.button} onPress={Backbutton}>
+            <Image
+              source={require('../../../media/UI/back_v2.png')}
+              resizeMode="contain"
+            />
+          </TouchableOpacity>
         </View>
       </View>
 
-      <View style={styles.rightbox}>
-        <View style={styles.innerrightbox}>
-          <View style={styles.monsterbox}>
-            <Image
-              source={require('../../../media/sorcereridle.gif')}
-              resizeMode="contain"
-              styles={styles.wizard}
-            />
-            <Text>Malware Wizard</Text>
+      <View style={styles.centerbox}>
+        <ImageBackground
+          source={require('../../../media/UI/computer_screen.png')}
+          resizeImage="contain"
+          style={styles.backdrop}>
+
+          <View style={styles.topbox}>
+
+            <View style={styles.lefttopbox}>
+              <View style={styles.monsterbox}>
+                <Image
+                  source={require('../../../media/sorcereridle_sm.gif')}
+                  resizeMode="contain"
+                  style={styles.monster}
+                />
+                <Text style={styles.textstyle}>Malware Wizard</Text>
+              </View>
+
+            </View>
+
+            <View style={styles.righttopbox}>
+              <View style={styles.reward}>
+                <Text style={styles.textrewardheaderstyle}>Reward</Text>
+                <Text style={styles.textrewardstyle}>E$15000</Text>
+              </View>
+            </View>
           </View>
 
-          <View style={styles.buttonbox}>
-            <View style={styles.back}>
-              <TouchableOpacity style={styles.button} onPress={Backbutton}>
+          <View style={styles.bottombox}>
+            <View style={styles.desc}>
+              <Text
+                style={styles.textdescheaderstyle}>
+                Description
+              </Text>
+              <Text
+                style={styles.textdescstyle}>
+                {introSelectedTopic}
+              </Text>
+            </View>
+          </View>
+        </ImageBackground>
+      </View>
+
+      <View style={styles.rightbox}>
+        <View style={styles.start}>
+              <TouchableOpacity style={styles.button} onPress={Startbutton}>
                 <Image
-                  source={require('../../../media/UI/back_v2.png')}
+                  source={require('../../../media/UI/start_v2.png')}
                   resizeMode="contain"
                 />
               </TouchableOpacity>
             </View>
-            <View style={styles.start}>
-
-            <TouchableOpacity style={styles.button} onPress={Startbutton}>
-              <Image
-                source={require('../../../media/UI/start_v2.png')}
-                resizeMode="contain"
-              />
-              </TouchableOpacity>
-            </View>
-          </View>
-        </View>
       </View>
     </View>
   );

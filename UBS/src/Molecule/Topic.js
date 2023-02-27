@@ -7,7 +7,7 @@ import { TouchableOpacity, TouchableWithoutFeedback } from 'react-native-gesture
 import { useDispatch } from 'react-redux';
 import TopicLearning from './Topicbundle/TopicLearning';
 import TopicIntroduction from './Topicbundle/TopicIntroduction';
-import { ProgressBar } from '@react-native-community/progress-bar-android';
+import {ProgressBar} from '@react-native-community/progress-bar-android';
 
 // Redux slices 
 import { selectedTopic } from "../Redux/topicSlice"
@@ -59,7 +59,7 @@ const Topic = () => {
                 // Manipulating the data here 
                 var topicDict = []
                 for (let i = 1; i < data.topics + 1; i++) {
-                    topicDict.push({ topic: `Topic${i}`, display: `Topic ${i}`, education: `Topic${i}Learning` })
+                    topicDict.push({ topic: `Topic${i}`, display: `Topic ${i}`, education: `Topic${i}` })
                 }
                 // add the new data to the list of dictionaries
                 addLevels(topicDict)
@@ -188,11 +188,11 @@ const styles = StyleSheet.create({
         flexDirection: 'row'
     },
 
-    levelIcon: {
-        width: 30,
-        height: 30,
-        marginRight: 10,
-    },
+//     levelIcon: {
+//         width: 30,
+//         height: 30,
+//         marginRight: 10,
+//     },
 });
 
 export default Topic;
