@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux';
 import TopicLearning from './Topicbundle/TopicLearning';
 import TopicIntroduction from './Topicbundle/TopicIntroduction';
 import {ProgressBar} from '@react-native-community/progress-bar-android';
+import {styles} from '../Styling';
 
 // Redux slices 
 import {selectedTopic} from "../Redux/topicSlice"
@@ -56,10 +57,11 @@ const Topic = () => {
             // Manipulating the data here 
             var topicDict = []
             for (let i=1; i< data.topics + 1; i++) {
-                topicDict.push({topic:  `Topic${i}`, display:  `Topic ${i}`, education:  `Topic${i}Learning`})
+                topicDict.push({topic:  `Topic${i}`, display:  `Topic ${i}`, education:  `Topic${i}`})
             }
           // add the new data to the list of dictionaries
           addLevels(topicDict)
+          console.log(topicDict)
         })
         .catch(error => {
             console.log(error)
@@ -96,15 +98,15 @@ const Topic = () => {
                     <View style={{width:"100%", marginTop:10, alignItems:'center'}}>
                         <View >
                             <View style={{flexDirection:'row', alignItems:'center'}}>
-                                <View>
+                                <View >
                                     <ImageBackground resizeMode="contain" style={{width: 300,height:80,alignItems:"center",alignContent:"center"}} source={require("../../media/TopicJs/Sword.png")} >
                                         <View style={{ position: 'absolute', bottom:"40%",width:"100%",alignItems:"center" }}>
-                                            <Text onPress={()=>handleClickInformation("Topic1")} style={{ color: 'white'}}>Battle of Malware Attacks</Text>
+                                            <Text style={styles.topicHome} onPress={()=>handleClickInformation("Topic1")}>Battle of Malware Attacks</Text>
                                         </View>
                                     </ImageBackground>
                                 </View>
                                 <View  style={{width:'15%',height:'50%'}}>
-                                    <TouchableWithoutFeedback onPress={()=>handleClickInformationEducation("Topic1Learning")}>
+                                    <TouchableWithoutFeedback onPress={()=>handleClickInformationEducation("Topic1")}>
                                         <Image resizeMode='contain' style={{height:40,width:50}} source={require("../../media/TopicJs/book.png")}>
                                         </Image>
                                     </TouchableWithoutFeedback>
@@ -115,12 +117,12 @@ const Topic = () => {
                                 <View >
                                     <ImageBackground resizeMode="contain" style={{width: 300,height:80,alignItems:"center",alignContent:"center"}} source={require("../../media/TopicJs/SwordReverse.png")} >
                                         <View style={{ position: 'absolute', bottom:"40%",width:"100%",alignItems:"center" }}>
-                                            <Text style={{ color: 'white'}}>Battle of Online Scams</Text>
+                                            <Text style={styles.topicHome}>Battle of Social Engineering Attacks</Text>
                                         </View>
                                     </ImageBackground>
                                 </View>
                                 <View  style={{width:'15%',height:'50%'}}>
-                                    <TouchableWithoutFeedback style={{}}>
+                                    <TouchableWithoutFeedback onPress={()=>handleClickInformationEducation("Topic2")} style={{}}>
                                         <Image resizeMode='contain' style={{height:40,width:50}} source={require("../../media/TopicJs/book.png")}>
                                         </Image>
                                     </TouchableWithoutFeedback>
@@ -131,12 +133,12 @@ const Topic = () => {
                                 <View >
                                     <ImageBackground resizeMode="contain" style={{width: 300,height:80,alignItems:"center",alignContent:"center"}} source={require("../../media/TopicJs/Sword.png")} >
                                         <View style={{ position: 'absolute', bottom:"40%",width:"100%",alignItems:"center" }}>
-                                            <Text style={{ color: 'white'}}>Battle of Online Scams</Text>
+                                            <Text style={styles.topicHome}>Battle of Password Attacks</Text>
                                         </View>
                                     </ImageBackground>
                                 </View>
                                 <View  style={{width:'15%',height:'50%'}}>
-                                    <TouchableWithoutFeedback style={{}}>
+                                    <TouchableWithoutFeedback onPress={()=>handleClickInformationEducation("Topic3")} style={{}}>
                                         <Image resizeMode='contain' style={{height:40,width:50}} source={require("../../media/TopicJs/book.png")}>
                                         </Image>
                                     </TouchableWithoutFeedback>
@@ -150,13 +152,13 @@ const Topic = () => {
                     {/* Final Rows */}
                     <View style={{flexDirection:"row",gap:"10%"}}>
                         <View style={{flex:5}}>
-                            <Text style={{alignSelf:"center",color: 'white'}}>MARKETPLACE</Text>
+                            <Text style={styles.topicTabs}>MARKETPLACE</Text>
                         </View>
                         <View style={{flex:5}}>
-                            <Text style={{alignSelf:"center",color: 'white'}}>TOPIC  SELECTION</Text>
+                            <Text style={styles.topicTabs}>TOPIC  SELECTION</Text>
                         </View>
                         <View style={{flex:5}}>
-                            <Text style={{alignSelf:"center",color: 'white'}}>EQUIPMENT</Text>
+                            <Text sstyle={styles.topicTabs}>EQUIPMENT</Text>
                         </View>
                     </View>
             </ImageBackground>
@@ -165,40 +167,40 @@ const Topic = () => {
     )
 };
 
-const styles = StyleSheet.create({
-    example: {
-        marginHorizontal: 5
-    },
+// const styles = StyleSheet.create({
+//     example: {
+//         marginHorizontal: 5
+//     },
     
-    levelText: {
-        fontSize: 30,
-        textAlign: 'center',
-        width: width / 2,
-        borderWidth: 2,
-        borderColor: '#F00',
-        borderRadius: 10,
-        padding: 10,
-        marginVertical: height * 0.05,
+//     levelText: {
+//         fontSize: 30,
+//         textAlign: 'center',
+//         width: width / 2,
+//         borderWidth: 2,
+//         borderColor: '#F00',
+//         borderRadius: 10,
+//         padding: 10,
+//         marginVertical: height * 0.05,
         
-    },
-    levelContainer: {
-        flexDirection: 'row',
-        justifyContent: 'space-around',
-        alignItems: 'center',
-        padding: 1,
-        flexWrap: 'wrap',
-    },
-    levelButton: {
-        alignItems: 'center',
-        flexDirection: 'row'
-      },
+//     },
+//     levelContainer: {
+//         flexDirection: 'row',
+//         justifyContent: 'space-around',
+//         alignItems: 'center',
+//         padding: 1,
+//         flexWrap: 'wrap',
+//     },
+//     levelButton: {
+//         alignItems: 'center',
+//         flexDirection: 'row'
+//       },
 
-    levelIcon: {
-        width: 30,
-        height: 30,
-        marginRight: 10,
-    },
-});
+//     levelIcon: {
+//         width: 30,
+//         height: 30,
+//         marginRight: 10,
+//     },
+// });
 
 export default Topic;
 
