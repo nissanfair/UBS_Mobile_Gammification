@@ -17,9 +17,11 @@ export default function App() {
   return (
     <Provider store={store}> 
       <Routing /> 
+      {/* // place to add custom fonts */}
+      
 
     </Provider>
-    // place to add custom fonts
+    
 
 
     // ======= JP placeholder code, remove after the SSO is done ==========

@@ -11,15 +11,15 @@ const Stack = createStackNavigator();
 const TopicLearning = () => {
   const navigation = useNavigation();
 
+// const TopicLearning = ({navigation}) => { //reference to homepage
+
 const[Index, setIndex] = useState(0);
 
   const Backbutton = () => {
-  //  navigation.navigate("TopicLearning2")
   setIndex(Index - 1)
   };
 
   const Forwardbutton = () => {
-    // navigation.navigate("TopicLearning2")
     setIndex(Index + 1)
   };
 
@@ -30,10 +30,6 @@ const[Index, setIndex] = useState(0);
   const Startbutton = () => {
     navigation.navigate("Game")
   }
-
-  // const Increment = () => {
-  //   setIndex(Index + 1)
-  // }
 
   const topic = useSelector(state => state.topic.topic);
 
@@ -158,8 +154,8 @@ const[Index, setIndex] = useState(0);
             style={styles.leftbackdrop}/>
 
           <View style={styles.desc}>
-            <Text style={{color: "black", fontFamily: 'PressStart2P-Regular'}}>{learnSelectedTopic[0]}
-            </Text>
+            <Text style={{color: "black", fontFamily: 'PressStart2P-Regular'}}> PLACEHOLDER HERE!! </Text>
+            <Text style={{color: "black", fontFamily: 'PressStart2P-Regular'}}>{learnSelectedTopic[0]}</Text>
 
           </View>
         </View>
@@ -212,8 +208,8 @@ const[Index, setIndex] = useState(0);
             style={styles.leftbackdrop}/>
 
           <View style={styles.desc}>
-            <Text style={{color: "black", fontFamily: 'PressStart2P-Regular'}}>{learnSelectedTopic[1]}
-            </Text>
+            <Text style={{color: "black", fontFamily: 'PressStart2P-Regular'}}> PLACEHOLDER HERE!! </Text>
+            <Text style={{color: "black", fontFamily: 'PressStart2P-Regular'}}>{learnSelectedTopic[1]}</Text>
 
           </View>
         </View>
@@ -266,8 +262,8 @@ const[Index, setIndex] = useState(0);
             style={styles.leftbackdrop}/>
 
           <View style={styles.desc}>
-            <Text style={{color: "black", fontFamily: 'PressStart2P-Regular'}}>{learnSelectedTopic[2]}
-            </Text>
+            <Text style={{color: "black", fontFamily: 'PressStart2P-Regular'}}> PLACEHOLDER HERE!! </Text>
+            <Text style={{color: "black", fontFamily: 'PressStart2P-Regular'}}>{learnSelectedTopic[2]}</Text>
 
           </View>
         </View>
@@ -320,8 +316,8 @@ const[Index, setIndex] = useState(0);
             style={styles.leftbackdrop}/>
 
           <View style={styles.desc}>
-            <Text style={{color: "black", fontFamily: 'PressStart2P-Regular'}}>{learnSelectedTopic[3]}
-            </Text>
+            <Text style={{color: "black", fontFamily: 'PressStart2P-Regular'}}> PLACEHOLDER HERE!! </Text>
+            <Text style={{color: "black", fontFamily: 'PressStart2P-Regular'}}>{learnSelectedTopic[3]}</Text>
 
           </View>
         </View>
