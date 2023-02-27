@@ -40,7 +40,6 @@ const TopicIntroduction = ({navigation}) => {
     console.log(answered_correctly)
     console.log(answered_wrongly)
 
-    alert("asdasd")
     // Change status to running again
     dispatch(set_game_status("RUNNING"))
     navigation.navigate("Game")
@@ -59,9 +58,9 @@ const TopicIntroduction = ({navigation}) => {
   useEffect(() => {
     // Idea
     // For JP phone 
-    var fetchSelectedTopic = `http://192.168.29.14:3000/6bit/topics/${topic}`;
+    // var fetchSelectedTopic = `http://192.168.29.14:3000/6bit/topics/${topic}`;
     // For emulator
-    // var fetchSelectedTopic = `http://10.0.2.2:3000/6bit/topics/${topic}`;
+    var fetchSelectedTopic = `http://10.0.2.2:3000/6bit/topics/${topic}`;
 
     // state.question.topicQuestionObject
     fetch(fetchSelectedTopic)

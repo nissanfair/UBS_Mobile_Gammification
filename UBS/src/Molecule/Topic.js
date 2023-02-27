@@ -48,9 +48,9 @@ const Topic = () => {
 
         // For some reason have to specify 10.0.2. This is because of the android emulator requiring different network config
         // For JP use for his phone
-        var fetchTopics = "http://192.168.29.14:3000/6bit/topics/totalquizzes"
-        // For Emulator
         // var fetchTopics = "http://192.168.29.14:3000/6bit/topics/totalquizzes"
+        // For Emulator
+        var fetchTopics = "http://10.0.2.2:3000/6bit/topics/totalquizzes"
         
         // Dynamically get all the topics from firebase - On the firebase side i tweaked it in a way so i /3 lol
         fetch(fetchTopics)
