@@ -12,18 +12,37 @@ import {
 } from 'react-native';
 import {NavigationContainer, useNavigation} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector,useStore} from 'react-redux';
 import {styles} from './TopicIntroStyle';
+import {setSelectedTimeState, setShowSummary , setTotal_Questions, set_answered_correctly, set_answered_wrongly, set_game_status, set_topic_selected} from "../../Redux/questionSlice"
 
 const Stack = createStackNavigator();
 
 const TopicIntroduction = ({navigation}) => {
+  const dispatch = useDispatch()
+  // To substract away from the 
+  const gamestate = useSelector((state) => state.question.gamestatus);
+  const total_question = useSelector((state) => state.question.total_question);
+  const answered_correctly = useSelector((state) => state.question.answered_correctly);
+  const answered_wrongly = useSelector((state) => state.question.answered_wrongly);
+
+
   const Backbutton = () => {
     navigation.navigate('Topic');
   };
   const Startbutton = () => {
-    navigation.navigate('Game');
-  };
+    // At this point the Gamestatus is reset, reset the total number of questions , correct questions and wrong questions
+    dispatch(setTotal_Questions(0))
+    dispatch(set_answered_correctly(-answered_correctly))
+    dispatch(set_answered_wrongly(-answered_wrongly))
+    console.log(total_question)
+    console.log(answered_correctly)
+    console.log(answered_wrongly)
+
+    // Change status to running again
+    dispatch(set_game_status("RUNNING"))
+    navigation.navigate("Game")
+  }
   // Get relevant information from the store
 
   // Get what topic to be displayed here
@@ -37,13 +56,19 @@ const TopicIntroduction = ({navigation}) => {
 
   useEffect(() => {
     // Idea
+    // For JP phone 
+    // var fetchSelectedTopic = `http://192.168.29.14:3000/6bit/topics/${topic}`;
+    // For emulator
     var fetchSelectedTopic = `http://10.0.2.2:3000/6bit/topics/${topic}`;
+
+    // state.question.topicQuestionObject
     console.log(topic);
     fetch(fetchSelectedTopic)
       .then(response => response.json())
       .then(data => {
         // pushing the intro here. We can add more stuff here then use redux accordingly
-        pushIntro(data.data[`${topic}_Introduction`]);
+        pushIntro(data.data[`${topic}_Introduction`])
+        dispatch(set_topic_selected(data.data[`${topic}_Questions`]))
       })
       .catch(error => {
         console.log(error);

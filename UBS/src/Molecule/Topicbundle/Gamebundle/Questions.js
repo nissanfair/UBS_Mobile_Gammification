@@ -2,46 +2,70 @@ import React, { useEffect, useState } from 'react';
 import { StyleSheet, View, Text, Dimensions, Image, ScrollView, TouchableHighlight, Button} from 'react-native';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { useDispatch } from 'react-redux';
 
 // Redux
-import {setSelectedTimeState} from "../../../Redux/questionSlice"
+import {setSelectedTimeState, setShowSummary , setTotal_Questions, set_answered_correctly, set_answered_wrongly, set_game_status} from "../../../Redux/questionSlice"
 import { current } from '@reduxjs/toolkit';
+import { useDispatch, useSelector,useStore } from 'react-redux'
 
-const Question = () => {
+const Question = ({gameStatus}) => {
+    const navigation = useNavigation();
     const dispatch = useDispatch()
     // Change between different questions, by default we set the first question first
     
     // Questions to simulate the firebase
-    const sample_questions = [ {
-        "Answer": "A",
-        "Explanation": 'Malware is short for "malicious software" and it refers to any intrusive software developed by criminals (who are often refered to as "hackers") to steal data and damage or destroy computers and computer systems!',
-        "S/N": 21,
-        "optionA" : "A malicious software developed by cybercriminals to steal data or destroy computers and computer systems",
-        "optionB" : "A malicious software designed to block access to a computer system until a sum of money is paid",
-        "optionC" : "A failure of a machine's hardware",
-        "optionD" : "A failure of a machine's software",
-        "Question": "What is malware?"
-    },  {
-        "Answer": "B",
-        "Explanation": 'Yuxiang is geyzser',
-        "S/N": 22,
-        "optionA" : "A malicious software developed by cybercriminals to steal data or destroy computers and computer systems",
-        "optionB" : "A malicious software designed to block access to a computer system until a sum of money is paid",
-        "optionC" : "A failure of a machine's hardware",
-        "optionD" : "A failure of a machine's software",
-        "Question": "Question 2?"
-    }]
+    const actual_questions = useSelector((state) => state.question.topicQuestionObject)
+    // const actual_questions = [ {
+    //     "Answer": "A",
+    //     "Explanation": 'Malware is short for "malicious software" and it refers to any intrusive software developed by criminals (who are often refered to as "hackers") to steal data and damage or destroy computers and computer systems!',
+    //     "S/N": 21,
+    //     "optionA" : "A malicious software developed by cybercriminals to steal data or destroy computers and computer systems",
+    //     "optionB" : "A malicious software designed to block access to a computer system until a sum of money is paid",
+    //     "optionC" : "A failure of a machine's hardware",
+    //     "optionD" : "A failure of a machine's software",
+    //     "Question": "Question 1?"
+    // },  {
+    //     "Answer": "B",
+    //     "Explanation": 'Yuxiang is geyzser',
+    //     "S/N": 22,
+    //     "optionA" : "A",
+    //     "optionB" : "B",
+    //     "optionC" : "C",
+    //     "optionD" : "D",
+    //     "Question": "Question 2?"
+    // }]
+
     // Use State for Changing between Prompts 
     const [showQuestion, setShowQuestion ] = useState(true)
     const [correct, setCorrect ] = useState(false)
     const [prompt, setPrompt ] = useState("")
     
+    // UseSelector
+    const timestate = useSelector((state) => state.question.timestate);
+    
     // Number for index of question
     const [questionIndex, setQuestionIndex] = useState(0)
     // Set current question
-    const [currentQuestion, setQuestion] = useState(sample_questions[questionIndex])
+    const [currentQuestion, setQuestion] = useState(actual_questions[questionIndex])
+    
 
+    // Not sure whether this is need , yuxiang this is your code
+    useEffect(() => {
+        dispatch(setTotal_Questions(actual_questions.length))
+    },[])
+    // This useEffect is to track if the Timer has ended.
+    useEffect(()=> {
+        if (timestate === "END") {
+            // Ran out of Time 
+            setShowQuestion(false);
+
+            setCorrect(false)
+
+            setPrompt(actual_questions[questionIndex]["Explanation"])
+        }
+        // This is to ensure that each time i change the question index, i set the current question
+        setQuestion(actual_questions[questionIndex])
+    },[timestate,questionIndex])
 
     const userAnswer = (answer) => {
         // console.log(answer), Yes this is working. 
@@ -57,7 +81,11 @@ const Question = () => {
             setCorrect(true)
 
             //Step 4: Set The Prompt (To be Changed to Fetching API)
-            setPrompt(sample_questions[questionIndex]["Explanation"])
+            setPrompt(actual_questions[questionIndex]["Explanation"])
+
+            // Step 5: Change the Answered Correctly +1 
+            dispatch(set_answered_correctly(1))
+
 
         }
         else {
@@ -71,14 +99,38 @@ const Question = () => {
             setCorrect(false)
 
             //Step 4: Set The Prompt (To be Changed to Fetching API)
-            setPrompt(sample_questions[questionIndex]["Explanation"])
+            setPrompt(actual_questions[questionIndex]["Explanation"])
+
+            //Step 5: Set the Answered Wrongly to +1 
+            dispatch(set_answered_wrongly(1))
         }
     }
     
     const NextQuestion = () => {
         // Step 1: Change the Question Index
-        if (questionIndex + 1 ==sample_questions.length){
+        console.log("help me ?")
+        console.log(actual_questions.length)
+        console.log(questionIndex)
+        console.log(currentQuestion)
+        if (questionIndex + 1 == actual_questions.length){
+            // Set the Global Variable to show the Summary Table: 
+            dispatch(setShowSummary(true))
             console.log("You have reached the end of the questions")
+
+            // reset the state of the question
+            // Reset health, reset the index of the questions 
+            setQuestionIndex(0)
+            setQuestion(actual_questions[questionIndex])
+            dispatch(set_game_status("RESET"))
+
+            
+            // Set the Total Questions 
+            // dispatch(setTotal_Questions(actual_questions.length))
+
+
+            
+            // Navigate the person out to the Summary Page
+            navigation.navigate("Summary") 
         }
         else {
             setQuestionIndex(questionIndex + 1);
@@ -92,11 +144,37 @@ const Question = () => {
         
     }
 
+    // UseEffect to track props gameStatus
+    // useEffect(()=> {
+
+    //     if (gameStatus == "RESET") {
+    //         setQuestionIndex(0)
+    //         setQuestion(actual_questions[questionIndex])
+    //         dispatch(setTotal_Questions(0))
+    //         dispatch(set_answered_correctly( - useSelector((state) => state.question.answered_correctly)))
+    //         dispatch(set_answered_wrongly( - useSelector((state) => state.question.answered_wrongly)))
+
+
+    //         // Reset number of questions correct and incorrect and total number of questions
+
+    //     } 
+    //     // if (timestate === "END") {
+    //     //     // Ran out of Time 
+    //     //     setShowQuestion(false);
+
+    //     //     setCorrect(false)
+
+    //     //     setPrompt(actual_questions[questionIndex]["Explanation"])
+    //     // }
+    //     // // This is to ensure that each time i change the question index, i set the current question
+    //     // setQuestion(actual_questions[questionIndex])
+    // },[gameStatus])
+
     return (
         <>
 
             <View style={{height:"20%", width: "100%", backgroundColor: "white", borderRadius:20, display:"flex", justifyContent:'center', alignItems: 'center'}}>
-                <Text>{currentQuestion["Question"]}</Text>
+                <Text>{currentQuestion["Question"]}{timestate}</Text>
             </View>
 
             {showQuestion ?
@@ -145,10 +223,21 @@ const Question = () => {
                             <Button title="Next" onPress={()=> NextQuestion()}/>
                         </View>
                     :
-                        <View style={{height:"70%", width:"100%",marginTop:10, borderRadius:10,backgroundColor:"red",justifyContent:'center', alignItems: 'center'}} >
-                            <Text style={{margin:10}}>You are wrong. {currentQuestion['Explanation']}</Text>
-                            <Button title="Next" onPress={()=> NextQuestion()}/>
-                        </View>
+                        <>
+                        { timestate === "END" ?
+                            <View style={{height:"70%", width:"100%",marginTop:10, borderRadius:10,backgroundColor:"red",justifyContent:'center', alignItems: 'center'}} >
+                                <Text style={{margin:10}}>You ran out of time.</Text>
+                                <Button title="Next" onPress={()=> NextQuestion()}/>
+                            </View>
+                            :
+                            <>
+                            <View style={{height:"70%", width:"100%",marginTop:10, borderRadius:10,backgroundColor:"red",justifyContent:'center', alignItems: 'center'}} >
+                                <Text style={{margin:10}}>You are wrong. {currentQuestion['Explanation']}</Text>
+                                <Button title="Next" onPress={()=> NextQuestion()}/>
+                            </View>
+                            </>
+                        }
+                        </>
                     }
                 </>
             }
