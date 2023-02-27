@@ -26,11 +26,32 @@ const styles = StyleSheet.create({
         height: "100%",
     },
 
-    topicDesc: {
+    topicHome: {
       fontFamily: 'PressStart2P-Regular',
       color: 'white',
       fontSize: normalize(5),
-    }
+    },
+
+    topicTabs: {
+      fontFamily: 'PressStart2P-Regular',
+      color: 'white',
+      alignSelf:"center",
+      fontSize: normalize(9),
+    },
+
+    topicLearning: {
+      fontFamily: 'PressStart2P-Regular',
+      color: 'white',
+      alignSelf:"center",
+      fontSize: normalize(10),
+    }, // still dependent on TopicLearnStyle
+
+    topicIntro: {
+      fontFamily: 'PressStart2P-Regular',
+      color: 'white',
+      alignSelf:"center",
+      fontSize: normalize(),
+    } // still dependent on TopicLearnStyle
 
 });
 

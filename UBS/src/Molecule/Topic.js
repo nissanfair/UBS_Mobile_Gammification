@@ -101,7 +101,7 @@ const Topic = () => {
                                 <View >
                                     <ImageBackground resizeMode="contain" style={{width: 300,height:80,alignItems:"center",alignContent:"center"}} source={require("../../media/TopicJs/Sword.png")} >
                                         <View style={{ position: 'absolute', bottom:"40%",width:"100%",alignItems:"center" }}>
-                                            <Text style={styles.topicDesc} onPress={()=>handleClickInformation("Topic1")}>Battle of Malware Attacks</Text>
+                                            <Text style={styles.topicHome} onPress={()=>handleClickInformation("Topic1")}>Battle of Malware Attacks</Text>
                                         </View>
                                     </ImageBackground>
                                 </View>
@@ -117,7 +117,7 @@ const Topic = () => {
                                 <View >
                                     <ImageBackground resizeMode="contain" style={{width: 300,height:80,alignItems:"center",alignContent:"center"}} source={require("../../media/TopicJs/SwordReverse.png")} >
                                         <View style={{ position: 'absolute', bottom:"40%",width:"100%",alignItems:"center" }}>
-                                            <Text style={styles.topicDesc}>Battle of Social Engineering Attacks</Text>
+                                            <Text style={styles.topicHome}>Battle of Social Engineering Attacks</Text>
                                         </View>
                                     </ImageBackground>
                                 </View>
@@ -133,7 +133,7 @@ const Topic = () => {
                                 <View >
                                     <ImageBackground resizeMode="contain" style={{width: 300,height:80,alignItems:"center",alignContent:"center"}} source={require("../../media/TopicJs/Sword.png")} >
                                         <View style={{ position: 'absolute', bottom:"40%",width:"100%",alignItems:"center" }}>
-                                            <Text style={styles.topicDesc}>Battle of Password Attacks</Text>
+                                            <Text style={styles.topicHome}>Battle of Password Attacks</Text>
                                         </View>
                                     </ImageBackground>
                                 </View>
@@ -152,13 +152,13 @@ const Topic = () => {
                     {/* Final Rows */}
                     <View style={{flexDirection:"row",gap:"10%"}}>
                         <View style={{flex:5}}>
-                            <Text style={{alignSelf:"center",color: 'white', fontFamily: 'PressStart2P-Regular'}}>MARKETPLACE</Text>
+                            <Text style={styles.topicTabs}>MARKETPLACE</Text>
                         </View>
                         <View style={{flex:5}}>
-                            <Text style={{alignSelf:"center",color: 'white', fontFamily: 'PressStart2P-Regular'}}>TOPIC  SELECTION</Text>
+                            <Text style={styles.topicTabs}>TOPIC  SELECTION</Text>
                         </View>
                         <View style={{flex:5}}>
-                            <Text style={{alignSelf:"center",color: 'white', fontFamily: 'PressStart2P-Regular'}}>EQUIPMENT</Text>
+                            <Text sstyle={styles.topicTabs}>EQUIPMENT</Text>
                         </View>
                     </View>
             </ImageBackground>
