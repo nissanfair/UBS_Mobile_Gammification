@@ -8,10 +8,9 @@ import {styles} from './TopicLearnStyle';
 
 const Stack = createStackNavigator();
 
+// const TopicLearning = ({navigation}) => { //reference to homepage
 const TopicLearning = () => {
   const navigation = useNavigation();
-
-// const TopicLearning = ({navigation}) => { //reference to homepage
 
 const[Index, setIndex] = useState(0);
 
@@ -45,6 +44,10 @@ const[Index, setIndex] = useState(0);
       .then(response => response.json())
       .then(data => {
         pushLearn(data.data[`${topic}_Learning`]);
+
+        var learnDict = data.data[`${topic}_Learning`]
+        varLearnDictKeys = Object.keys(learnDict)
+        console.log(varLearnDictKeys)
       })
       .catch(error => {
         console.log(error);
@@ -118,12 +121,19 @@ const[Index, setIndex] = useState(0);
         <View style={styles.backgroundContainer}>
           <TouchableOpacity onPress={Forwardbutton}>
             <Image
-              source={require('../../../media/Environment/topicLearning1.png')}
+              source={require('../../../media/Environment/topicLearningBackground.png')}
               resizeImage="stretch"
               style={styles.backdrop}/>
           </TouchableOpacity>
         </View>
 
+          <View style={styles.desc}>
+              {/* <Text style={{color: "black", fontFamily: 'PressStart2P-Regular'}}> PLACEHOLDER HERE!! </Text> */}
+              <Text style={{color: "black", fontFamily: 'PressStart2P-Regular'}}>{varLearnDictKeys[0]}</Text>
+              <Text style={{color: "black", fontFamily: 'PressStart2P-Regular'}}>{varLearnDictKeys[1]}</Text>
+              <Text style={{color: "black", fontFamily: 'PressStart2P-Regular'}}>{varLearnDictKeys[2]}</Text>
+              <Text style={{color: "black", fontFamily: 'PressStart2P-Regular'}}>{varLearnDictKeys[3]}</Text>
+          </View>
       </View>
     );
   };
@@ -155,8 +165,7 @@ const[Index, setIndex] = useState(0);
 
           <View style={styles.desc}>
             {/* <Text style={{color: "black", fontFamily: 'PressStart2P-Regular'}}> PLACEHOLDER HERE!! </Text> */}
-            <Text style={{color: "black", fontFamily: 'PressStart2P-Regular'}}>{learnSelectedTopic[0]}</Text>
-
+            <Text style={{color: "black", fontFamily: 'PressStart2P-Regular'}}>{learnSelectedTopic['Origin of the Attack']}</Text>
           </View>
         </View>
 
@@ -209,7 +218,7 @@ const[Index, setIndex] = useState(0);
 
           <View style={styles.desc}>
             {/* <Text style={{color: "black", fontFamily: 'PressStart2P-Regular'}}> PLACEHOLDER HERE!! </Text> */}
-            <Text style={{color: "black", fontFamily: 'PressStart2P-Regular'}}>{learnSelectedTopic[1]}</Text>
+            <Text style={{color: "black", fontFamily: 'PressStart2P-Regular'}}>{learnSelectedTopic['Introducing the Attack']}</Text>
 
           </View>
         </View>
@@ -263,7 +272,7 @@ const[Index, setIndex] = useState(0);
 
           <View style={styles.desc}>
             {/* <Text style={{color: "black", fontFamily: 'PressStart2P-Regular'}}> PLACEHOLDER HERE!! </Text> */}
-            <Text style={{color: "black", fontFamily: 'PressStart2P-Regular'}}>{learnSelectedTopic[2]}</Text>
+            <Text style={{color: "black", fontFamily: 'PressStart2P-Regular'}}>{learnSelectedTopic['Common Types of Attacks']}</Text>
 
           </View>
         </View>
@@ -317,7 +326,7 @@ const[Index, setIndex] = useState(0);
 
           <View style={styles.desc}>
             {/* <Text style={{color: "black", fontFamily: 'PressStart2P-Regular'}}> PLACEHOLDER HERE!! </Text> */}
-            <Text style={{color: "black", fontFamily: 'PressStart2P-Regular'}}>{learnSelectedTopic[3]}</Text>
+            <Text style={{color: "black", fontFamily: 'PressStart2P-Regular'}}>{learnSelectedTopic['Avoid Falling Victim']}</Text>
 
           </View>
         </View>

@@ -63,6 +63,7 @@ const Topic = () => {
                 }
                 // add the new data to the list of dictionaries
                 addLevels(topicDict)
+                console.log(topicDict)
             })
             .catch(error => {
                 console.log(error)

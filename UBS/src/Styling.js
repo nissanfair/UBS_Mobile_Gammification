@@ -11,7 +11,7 @@ const scale = SCREEN_WIDTH / 500;
 
 export function normalize(size) {
   const newSize = size * scale 
-  if (Platform.OS === 'andriod') {
+  if (Platform.OS === 'android') {
     return Math.round(PixelRatio.roundToNearestPixel(newSize))
   } else {
     return Math.round(PixelRatio.roundToNearestPixel(newSize)) - 2
