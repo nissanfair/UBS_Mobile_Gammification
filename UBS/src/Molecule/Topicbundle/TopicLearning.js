@@ -9,6 +9,7 @@ import press from '../../../media/Soundtracks/main/press.wav';
 import { fight } from './TopicIntroduction';
 import { adven } from '../homescreen'
 import Sound from 'react-native-sound';
+import { AppState } from 'react-native';
 
 //sfx
 Sound.setCategory('Playback');
@@ -84,6 +85,36 @@ const[Index, setIndex] = useState(0);
         console.log(error);
       });
   }, []);
+
+  // const [appState, setAppState] = useState(AppState.currentState);
+
+  
+  // useEffect(() => {
+  //   AppState.addEventListener('change', handleAppStateChange);
+  //   return () => {
+  //     AppState.removeEventListener('change', handleAppStateChange);
+  //   };
+  // }, []);
+
+  // const handleAppStateChange = (nextAppState) => {
+  //   if (nextAppState === 'active') {
+  //     // App has come to the foreground
+  //     // Start playing sound again
+  //       fight.setVolume(0.5);
+  //       fight.play();
+  //       fight.setNumberOfLoops(-1);
+  //   } else if (appState === 'active' && nextAppState.match(/inactive|background/)) {
+  //     // App has gone to the background
+  //     // Stop playing sound
+  //     fight.pause();
+  //   }
+  //   setAppState(nextAppState);
+  // };
+
+
+
+
+
 
   //   // WITHOUT INDEXING
   // return (

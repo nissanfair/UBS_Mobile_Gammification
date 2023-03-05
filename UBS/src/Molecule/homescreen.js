@@ -24,6 +24,7 @@ Sound.setCategory('Playback');
 var adven;
 
 export default function HomeScreen({navigation}) {
+  const [activeScreen, setActiveScreen] = useState('');
   const [appState, setAppState] = useState(AppState.currentState);
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -41,6 +42,22 @@ export default function HomeScreen({navigation}) {
     }
     );
   }, []);
+
+  //   useEffect(() => {
+  //   const handleAppStateChange = (nextAppState) => {
+  //     if (nextAppState === 'active') {
+  //       setActiveScreen('HomeScreen');
+  //     } else if (nextAppState === 'background') {
+  //       setActiveScreen('');
+  //     }
+  //   };
+
+  //   AppState.addEventListener('change', handleAppStateChange);
+
+  //   return () => {
+  //     AppState.removeEventListener('change', handleAppStateChange);
+  //   };
+  // }, []);
 
   useEffect(() => {
     AppState.addEventListener('change', handleAppStateChange);
