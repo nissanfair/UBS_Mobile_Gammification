@@ -8,6 +8,18 @@ import {setSelectedTimeState, setShowSummary , setTotal_Questions, set_answered_
 import { current } from '@reduxjs/toolkit';
 import { useDispatch, useSelector,useStore } from 'react-redux'
 
+// sfx
+import press from '../../../../media/Soundtracks/main/press.wav'
+import Sound from 'react-native-sound';
+Sound.setCategory('Playback');
+export var userPress = new Sound(press, (error) => {
+    if (error) {
+      console.log('failed to load the sound', error);
+      return;
+    }
+  });
+// end sfx
+
 const Question = ({gameStatus}) => {
     const navigation = useNavigation();
     const dispatch = useDispatch()
@@ -86,6 +98,9 @@ const Question = ({gameStatus}) => {
             // Step 5: Change the Answered Correctly +1 
             dispatch(set_answered_correctly(1))
 
+            // sfx for pressing
+            userPress.setVolume(1.0);
+            userPress.play();
 
         }
         else {
@@ -103,6 +118,10 @@ const Question = ({gameStatus}) => {
 
             //Step 5: Set the Answered Wrongly to +1 
             dispatch(set_answered_wrongly(1))
+
+            // sfx for pressing
+            userPress.setVolume(1.0);
+            userPress.play();
         }
     }
     

@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, Text, Dimensions, Image, ScrollView, Button, ImageBackground, TouchableHighlight } from 'react-native';
+import { StyleSheet, View, Text, Dimensions, Image, ScrollView, Button, ImageBackground, TouchableHighlight, processColor } from 'react-native';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { TouchableOpacity, TouchableWithoutFeedback } from 'react-native-gesture-handler';
@@ -8,6 +8,17 @@ import { useDispatch } from 'react-redux';
 import TopicLearning from './Topicbundle/TopicLearning';
 import TopicIntroduction from './Topicbundle/TopicIntroduction';
 import {ProgressBar} from '@react-native-community/progress-bar-android';
+import press from '../../media/Soundtracks/main/press.wav';
+import Sound from 'react-native-sound';
+
+//sfx
+Sound.setCategory('Playback');
+export var userPress = new Sound(press, (error) => {
+    if (error) {
+      console.log('failed to load the sound', error);
+      return;
+    }
+});
 
 // Redux slices 
 import { selectedTopic } from "../Redux/topicSlice"
@@ -29,6 +40,10 @@ const Topic = () => {
         dispatch(selectedTopic(levelinformation));
         // Once done, navigate to the topicsIntroduction page 
         navigation.navigate(TopicIntroduction);
+
+        //sfx
+        userPress.setVolume(1.0);
+        userPress.play();
     }
 
     // Handle the educational content
@@ -40,6 +55,10 @@ const Topic = () => {
         dispatch(selectedTopic(levelinformation));
         // Once done, navigate to the topicsLearning page 
         navigation.navigate(TopicLearning);
+
+        //sfx
+        userPress.setVolume(1.0);
+        userPress.play();
     }
 
     // Getting the firebase to display and generate the topics

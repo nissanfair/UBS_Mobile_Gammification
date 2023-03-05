@@ -4,6 +4,13 @@ import { SafeAreaView,ScrollView,StatusBar,StyleSheet,Text,useColorScheme,View,S
 import { useDispatch, useSelector,useStore } from 'react-redux'
 import {NavigationContainer, useNavigation} from '@react-navigation/native';
 
+// sfx
+import { fight } from '../TopicIntroduction';
+import { adven } from '../../homescreen';
+import Sound from 'react-native-sound';
+Sound.setCategory('Playback');
+//end sfx
+
 import TopicIntroduction from '../TopicIntroduction';
 // Redux Toolkit Variables 
 
@@ -44,6 +51,12 @@ export default function Summary({navigation}) {
       // Handle button press here
       console.log('Button pressed!');
       navigation.navigate(TopicIntroduction) 
+
+      //sfx stop and start
+      fight.stop();
+      adven.setVolume(0.5);
+      adven.play();
+      adven.setNumberOfLoops(-1);
     }
     // Disable back button
     useEffect(() => {

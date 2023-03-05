@@ -5,6 +5,20 @@ import {NavigationContainer, useNavigation} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {useSelector} from 'react-redux';
 import {styles} from './TopicLearnStyle';
+import press from '../../../media/Soundtracks/main/press.wav';
+import { fight } from './TopicIntroduction';
+import { adven } from '../homescreen'
+import Sound from 'react-native-sound';
+
+//sfx
+Sound.setCategory('Playback');
+export var userPress = new Sound(press, (error) => {
+    if (error) {
+      console.log('failed to load the sound', error);
+      return;
+    }
+});
+
 
 const Stack = createStackNavigator();
 
@@ -15,20 +29,40 @@ const TopicLearning = () => {
 
 const[Index, setIndex] = useState(0);
 
+  const playSound = () => {
+    userPress.setVolume(1.0);
+    userPress.play();
+  }
+
   const Backbutton = () => {
-  setIndex(Index - 1)
+    setIndex(Index - 1);
+    userPress.setVolume(1.0);
+    userPress.play();
   };
 
   const Forwardbutton = () => {
-    setIndex(Index + 1)
+    setIndex(Index + 1);
+    userPress.setVolume(1.0);
+    userPress.play();
   };
 
   const Exitbutton = () => {
-    navigation.navigate("Topic")
+    navigation.navigate("Topic");
+    userPress.setVolume(1.0);
+    userPress.play();
   };
 
   const Startbutton = () => {
-    navigation.navigate("Game")
+    navigation.navigate("Game");
+    userPress.setVolume(1.0);
+    userPress.play();
+
+    // start and stop bg music
+    adven.stop();
+    
+    fight.setVolume(0.5);
+    fight.play();
+    fight.setNumberOfLoops(-1);
   }
 
   const topic = useSelector(state => state.topic.topic);
