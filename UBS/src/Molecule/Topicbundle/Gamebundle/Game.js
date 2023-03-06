@@ -98,10 +98,11 @@ const Game = () => {
 
 
             <View style={{flex:1}}>
-                <View style={{flex: 1, backgroundColor: 'lightgray', flexDirection: 'row', alignItems: 'center'}}>
-                    <View style={{flex: 1, flexDirection: 'row', alignItems: 'center', paddingLeft: 10}}>
+                <View style={{flex: 1, backgroundColor: 'lightgray', flexDirection: 'row'}}>
+                    <View style={{ flex: 2, align: 'left',borderColor:'yellow',justifyContent:"center", marginLeft:"5%"}}>
                         {/* Passing down from global state to props */}
                         <HealthBar numWrongAnswers={wronglyAnsweredQuestion} timeState={noTimeLeft} gameStatus = {gamestatus}/>
+                        {/* <Text>Hello</Text> */}
                     </View>
                 </View>
             </View>
@@ -109,5 +110,7 @@ const Game = () => {
         </View>
     );
 };
+
+
 
 export default Game 

@@ -57,9 +57,9 @@ const TopicIntroduction = ({navigation}) => {
   useEffect(() => {
     // Idea
     // For JP phone 
-    // var fetchSelectedTopic = `http://192.168.29.14:3000/6bit/topics/${topic}`;
+    var fetchSelectedTopic = `http://192.168.29.14:3000/6bit/topics/${topic}`;
     // For emulator
-    var fetchSelectedTopic = `http://10.0.2.2:3000/6bit/topics/${topic}`;
+    // var fetchSelectedTopic = `http://10.0.2.2:3000/6bit/topics/${topic}`;
 
     // state.question.topicQuestionObject
     console.log(topic);
