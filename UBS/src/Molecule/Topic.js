@@ -72,7 +72,7 @@ const Topic = () => {
     return (
 
         <View>
-            <ImageBackground source={require("../../media/TopicJs/TopicBackground.png")} style={{ width: "100%", height: "100%" }} >
+            <ImageBackground source={require("../../media/TopicJs/Topic.gif")} style={{ width: "100%", height: "100%" }} >
                 {/* To Account for the  Character Badge and Currency*/}
                 <View style={{ flexDirection: "row", alignContent: "flex-end", alignItems: "center", marginTop: "2%", height: "10%" }}>
                     <View style={{ marginLeft: "5%", flex: 2 }}>
