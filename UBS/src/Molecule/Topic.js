@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux';
 import TopicLearning from './Topicbundle/TopicLearning';
 import TopicIntroduction from './Topicbundle/TopicIntroduction';
 import {ProgressBar} from '@react-native-community/progress-bar-android';
+import {styles} from './Styling';
 
 // Redux slices 
 import { selectedTopic } from "../Redux/topicSlice"
@@ -161,40 +162,40 @@ const Topic = () => {
     )
 };
 
-const styles = StyleSheet.create({
-    example: {
-        marginHorizontal: 5
-    },
-
-    levelText: {
-        fontSize: 30,
-        textAlign: 'center',
-        width: width / 2,
-        borderWidth: 2,
-        borderColor: '#F00',
-        borderRadius: 10,
-        padding: 10,
-        marginVertical: height * 0.05,
-
-    },
-    levelContainer: {
-        flexDirection: 'row',
-        justifyContent: 'space-around',
-        alignItems: 'center',
-        padding: 1,
-        flexWrap: 'wrap',
-    },
-    levelButton: {
-        alignItems: 'center',
-        flexDirection: 'row'
-    },
-
-//     levelIcon: {
-//         width: 30,
-//         height: 30,
-//         marginRight: 10,
+// const styles = StyleSheet.create({
+//     example: {
+//         marginHorizontal: 5
 //     },
-});
+
+//     levelText: {
+//         fontSize: 30,
+//         textAlign: 'center',
+//         width: width / 2,
+//         borderWidth: 2,
+//         borderColor: '#F00',
+//         borderRadius: 10,
+//         padding: 10,
+//         marginVertical: height * 0.05,
+
+//     },
+//     levelContainer: {
+//         flexDirection: 'row',
+//         justifyContent: 'space-around',
+//         alignItems: 'center',
+//         padding: 1,
+//         flexWrap: 'wrap',
+//     },
+//     levelButton: {
+//         alignItems: 'center',
+//         flexDirection: 'row'
+//     },
+
+// //     levelIcon: {
+// //         width: 30,
+// //         height: 30,
+// //         marginRight: 10,
+// //     },
+// });
 
 export default Topic;
 
