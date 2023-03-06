@@ -92,6 +92,7 @@ export default function Summary({navigation}) {
   }, []);
   const fadeInAnim = useRef(new Animated.Value(0)).current;
   const slideAnim = useRef(new Animated.Value(100)).current;
+  
   useEffect(() => {
     Animated.sequence([
       Animated.delay(3000),
