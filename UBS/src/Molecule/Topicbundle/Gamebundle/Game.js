@@ -16,6 +16,7 @@ const styles = StyleSheet.create({
         height: "100%"
     }
 })
+
 const Game = () => {
     const navigation = useNavigation();
     const dispatch = useDispatch()
