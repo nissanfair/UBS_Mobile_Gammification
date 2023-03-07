@@ -129,10 +129,10 @@ const[Index, setIndex] = useState(0);
 
           <View style={styles.desc}>
               {/* <Text style={{color: "black", fontFamily: 'PressStart2P-Regular'}}> PLACEHOLDER HERE!! </Text> */}
-              <Text style={{color: "black", fontFamily: 'PressStart2P-Regular'}}>{varLearnDictKeys[0]}</Text>
-              <Text style={{color: "black", fontFamily: 'PressStart2P-Regular'}}>{varLearnDictKeys[1]}</Text>
-              <Text style={{color: "black", fontFamily: 'PressStart2P-Regular'}}>{varLearnDictKeys[2]}</Text>
               <Text style={{color: "black", fontFamily: 'PressStart2P-Regular'}}>{varLearnDictKeys[3]}</Text>
+              <Text style={{color: "black", fontFamily: 'PressStart2P-Regular'}}>{varLearnDictKeys[2]}</Text>
+              <Text style={{color: "black", fontFamily: 'PressStart2P-Regular'}}>{varLearnDictKeys[1]}</Text>
+              <Text style={{color: "black", fontFamily: 'PressStart2P-Regular'}}>{varLearnDictKeys[0]}</Text>
           </View>
       </View>
     );
@@ -158,6 +158,11 @@ const[Index, setIndex] = useState(0);
         </View>
 
         <View style={styles.middlebox}>
+
+        <Image
+            source={require('../../../media/Characters/LearningPartner/idle.gif')}
+            resizeMode="contain"/>
+
           <ImageBackground
             source={require('../../../media/UI/topicLearningScroll.png')}
             resizeMode="contain"

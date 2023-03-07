@@ -60,8 +60,15 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom:'0%',
     right:'2%'
-   
-  }
+  },
+  learningpartnerbox: {
+    top: '10%',
+    bottom: '0%',
+    left: '35%',
+    height: '70%',
+    width: '65%',
+    justifyContent: 'center',
+  },
   
 });
 
