@@ -1,0 +1,56 @@
+{
+  "project_info": {
+    "project_number": "451469943802",
+    "firebase_url": "https://is483-ecd48-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "is483-ecd48",
+    "storage_bucket": "is483-ecd48.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:451469943802:android:5f65d52567a3250100ba43",
+        "android_client_info": {
+          "package_name": "com.ubs"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "451469943802-eibhs4g89m6afvoccmaoggmrvo4etm9h.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ubs",
+            "certificate_hash": "6937b2049f420d3e03c62181dfd64b49ae7f853d"
+          }
+        },
+        {
+          "client_id": "451469943802-lnh947uoljlr7ted15pd2a8i81m9278g.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ubs",
+            "certificate_hash": "88de14670ce3436eaab7a66b4033a2a6019daba1"
+          }
+        },
+        {
+          "client_id": "451469943802-skhjd4i129udvodkadu714qlnq7peoa4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBKgNSGTpo4XwU04CEC4Q4Wr13ionLEEgs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "451469943802-jk2mbshpiq039uf4l4k55q1i6kip8knl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
