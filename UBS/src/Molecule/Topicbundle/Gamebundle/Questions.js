@@ -210,8 +210,8 @@ const Question = ({gameStatus}) => {
                     {/* This Part will show if the  */}
                     {correct ?
                         <View style={{height:"70%", width:"98%",margin:"1%", borderRadius:10,backgroundColor:"#4FB45C",justifyContent:'center', alignItems: 'center'}} >
-                            <Text style={{fontFamily: 'PressStart2P-Regular', fontSize:normalize(7),lineHeight:normalize(7),margin:10}}>You are correct! </Text>
-                            <Text style={{fontFamily: 'PressStart2P-Regular', fontSize:normalize(7),lineHeight:normalize(7),margin:10}}>{currentQuestion['Explanation']}</Text>
+                            <Text style={{fontFamily: 'PressStart2P-Regular', fontSize:normalize(7),lineHeight:normalize(7)}}>You are correct! </Text>
+                            <Text style={{fontFamily: 'PressStart2P-Regular', fontSize:normalize(7),lineHeight:normalize(7)}}>{currentQuestion['Explanation']}</Text>
 
                             <TouchableHighlight style={{height:"20%", width:"20%", borderRadius:10, justifyContent:'center', alignItems: 'center'}} onPress={()=> userAnswer("D")}>
                                     <View>
@@ -235,8 +235,8 @@ const Question = ({gameStatus}) => {
                             :
                             <>
                             <View style={{height:"70%", width:"98%",margin:"1%", borderRadius:10,backgroundColor:"#CF3B2E",justifyContent:'center', alignItems: 'center'}} >
-                                <Text style={{fontFamily: 'PressStart2P-Regular', fontSize:normalize(7),lineHeight:normalize(7),margin:10}}>You are wrong.</Text>
-                                <Text style={{fontFamily: 'PressStart2P-Regular', fontSize:normalize(7),lineHeight:normalize(7),margin:10}}>{currentQuestion['Explanation']}</Text>
+                                <Text style={{fontFamily: 'PressStart2P-Regular', fontSize:normalize(7),lineHeight:normalize(7)}}>You are wrong.</Text>
+                                <Text style={{fontFamily: 'PressStart2P-Regular', fontSize:normalize(7),lineHeight:normalize(7)}}>{currentQuestion['Explanation']}</Text>
 
                                 {/* <Button  title="Next" onPress={()=> NextQuestion()}/> */}
                                 <TouchableHighlight style={{height:"20%", width:"20%", borderRadius:10, justifyContent:'center', alignItems: 'center'}}>
