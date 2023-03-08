@@ -74,29 +74,26 @@ const Topic = () => {
         <View>
             <ImageBackground source={require("../../media/TopicJs/Topic.gif")} style={{ width: "100%", height: "100%" }} >
                 {/* To Account for the  Character Badge and Currency*/}
-                <View style={{ flexDirection: "row", alignContent: "flex-end", alignItems: "center", marginTop: "2%", height: "10%" }}>
-                    <View style={{ marginLeft: "5%", flex: 2 }}>
-                        <View style={{ marginRight: "5%", flex: 2, backgroundColor: "#FCD250", height: "100%", width: "100%", borderRadius: 20, alignContent: "center" }}>
-                            {/* Insert the User Name Here */}
-                        </View>
+                <View style={{flex:3, flexDirection: "row", alignItems: "center", marginTop: "2%" }}>
+                    <View style={{ marginLeft: "5%", flex: 4, backgroundColor:"" }}>
+                        {/* Insert the user name here */}
+                        <Image source={require("../../media/Username.png")} resizeMode="contain" style={{ width:"100%" }}/>
+                        {/* Insert the user name here */}
+
                     </View>
 
-                    <View style={{ flex: 10 }}></View>
+                    <View style={{ flex: 10 ,backgroundColor:"red"}}></View>
 
-                    <View style={{ marginRight: "5%", flex: 2, backgroundColor: "#FCD250", height: "100%", width: "100%", borderRadius: 20, alignContent: "center" }}>
+                    <View style={{ marginRight: "0%", flex: 4,alignItems: "center",marginRight:"5%" }}>
                         {/* To make the Currency Sign */}
-                        {/* Outer Circle */}
-                        <View style={{ width: "30%", height: "100%", borderRadius: 50, backgroundColor: "#FFA100", alignContent: "center", alignItems: "center" }}>
-                            {/* Inner Circle */}
-                            {/* Maybe can add a SVG Here */}
-                        </View>
+                        <Image source={require("../../media/Coin.png")} resizeMode="contain" style={{width:"100%"}}></Image>
                     </View>
 
                 </View>
                 {/* End of the Character Badge */}
 
                 {/* Insert of Topic */}
-                <View style={{ width: "100%", marginTop: 10, alignItems: 'center' }}>
+                <View style={{ width: "100%", marginTop: 9, alignItems: 'center',flex:10 }}>
                     <View >
                         {/* First topic */}
                         {levels.map((topic, index) => (
@@ -142,8 +139,11 @@ const Topic = () => {
                 </View>
                 {/* End of Topic */}
 
+
+                {/* I removed these parts ba, cos very hard to align @jiEPeng */}
+                
                 {/* Final Rows */}
-                <View style={{ flexDirection: "row", gap: "10%" }}>
+                {/* <View style={{ flexDirection: "row", gap: "10%" }}>
                     <View style={{ flex: 5 }}>
                         <Text style={{ alignSelf: "center", color: 'white' }}>MARKETPLACE</Text>
                     </View>
@@ -153,7 +153,7 @@ const Topic = () => {
                     <View style={{ flex: 5 }}>
                         <Text style={{ alignSelf: "center", color: 'white' }}>EQUIPMENT</Text>
                     </View>
-                </View>
+                </View> */}
             </ImageBackground>
 
         </View>
