@@ -224,6 +224,8 @@ const Question = ({gameStatus}) => {
                         { timestate === "END" ?
                             <View style={{height:"70%", width:"98%",margin:"1%", borderRadius:10,backgroundColor:"#CF3B2E",justifyContent:'center', alignItems: 'center'}} >
                                 <Text style={{fontFamily: 'PressStart2P-Regular', fontSize:normalize(7),lineHeight:normalize(7),margin:10}}>You ran out of time.</Text>
+                                <Text style={{fontFamily: 'PressStart2P-Regular', fontSize:normalize(7),lineHeight:normalize(7),margin:10}}>                                                    </Text>
+
                                 <TouchableHighlight style={{height:"20%", width:"20%", borderRadius:10, justifyContent:'center', alignItems: 'center'}} >
                                     <View>
                                         <Text style={{fontFamily: 'PressStart2P-Regular', fontSize:normalize(6),lineHeight:normalize(6),margin:"1%", textDecorationLine:"underline"}} onPress={()=> NextQuestion()}>N E X T</Text>
