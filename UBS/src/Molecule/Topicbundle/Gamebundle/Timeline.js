@@ -2,10 +2,28 @@ import React, { useState, useEffect, useRef} from 'react';
 import { StyleSheet, View, Text, Dimensions, Image, ScrollView, Button } from 'react-native';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import * as Progress from 'react-native-progress'
+import { Platform, PixelRatio} from 'react-native';
+
 
 import { useDispatch, useSelector,useStore } from 'react-redux';
 import { setSelectedTimeState, set_answered_correctly, set_answered_wrongly  } from "../../../Redux/questionSlice"
 
+// Front-Related Implementation
+const {
+  width: SCREEN_WIDTH,
+  height: SCREEN_HEIGHT,
+} = Dimensions.get('window');
+
+const scale = SCREEN_WIDTH / 500;
+
+export function normalize(size) {
+  const newSize = size * scale 
+  if (Platform.OS === 'andriod') {
+    return Math.round(PixelRatio.roundToNearestPixel(newSize))
+  } else {
+    return Math.round(PixelRatio.roundToNearestPixel(newSize)) - 2
+  }
+}
 
 const Timer = () => {   
     const dispatch = useDispatch(); 
@@ -76,9 +94,9 @@ const Timer = () => {
             <View>
               {percentage == 0 
                 ?
-                <Text style={{color:"white"}}>Time's up!</Text> 
+                <Text style={{fontFamily: 'PressStart2P-Regular', fontSize:normalize(7),lineHeight:normalize(10),color:"white", marginTop:"1%"}}>Time's up!</Text> 
                 :
-                <Text style={{color:"white"}}>{timeLeft} seconds left</Text>}
+                <Text style={{fontFamily: 'PressStart2P-Regular', fontSize:normalize(7),lineHeight:normalize(10),color:"white", marginTop:"1%"}}>{timeLeft} seconds left</Text>}
             </View>
         </View>
     );

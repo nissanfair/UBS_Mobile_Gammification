@@ -1,13 +1,31 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, View, Text, Dimensions, Image, ScrollView, TouchableHighlight, Button} from 'react-native';
+import { StyleSheet, View, Text, Image, ScrollView, TouchableHighlight, Button} from 'react-native';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import {Dimensions, Platform, PixelRatio} from 'react-native';
 
 // Redux
 import {setSelectedTimeState, setShowSummary , setTotal_Questions, set_answered_correctly, set_answered_wrongly, set_game_status} from "../../../Redux/questionSlice"
 import { current } from '@reduxjs/toolkit';
 import { useDispatch, useSelector,useStore } from 'react-redux'
 
+
+// Front-Related Implementation
+const {
+    width: SCREEN_WIDTH,
+    height: SCREEN_HEIGHT,
+  } = Dimensions.get('window');
+  
+  const scale = SCREEN_WIDTH / 500;
+  
+  export function normalize(size) {
+    const newSize = size * scale 
+    if (Platform.OS === 'andriod') {
+      return Math.round(PixelRatio.roundToNearestPixel(newSize))
+    } else {
+      return Math.round(PixelRatio.roundToNearestPixel(newSize)) - 2
+    }
+  }
 
 const Question = ({gameStatus}) => {
     const navigation = useNavigation();
@@ -143,11 +161,11 @@ const Question = ({gameStatus}) => {
     return (
         <View style={{height:"100%",width:"100%",backgroundColor:'#072205'}}>
             <View style={{ width: "98%", backgroundColor: "#4FB45C", display:"flex", margin:"1%"}}>
-                <Text style={{marginLeft:"1%"}}>Q U E S T I O N </Text>
+                <Text style={{fontFamily: 'PressStart2P-Regular', fontSize:normalize(6),margin:"1%",width:"100%"}} >Q U E S T I O N </Text>
             </View>
 
             <View style={{margin:"1%", marginTop:"1%"}}>
-                <Text style={{color:"#4FB45C"}}>{displayText} </Text>
+                <Text style={{ fontFamily: 'PressStart2P-Regular', fontSize:normalize(7), color:"#4FB45C"}}>{displayText} </Text>
             </View>
 
             {showQuestion && isQuestionRendered ?
@@ -156,7 +174,7 @@ const Question = ({gameStatus}) => {
                     <View style={{width:"98%",height:"30%", flexDirection:"row",margin:"1%"}}> 
                         <TouchableHighlight style={{height:"100%", width:"49%", backgroundColor:"#4FB45C", borderRadius:10, justifyContent:'center', alignItems: 'center'}} onPress={()=> userAnswer("A")}>
                             <View>
-                                <Text style={{margin:5, color:"black"}}>{currentQuestion['optionA']}</Text>
+                                <Text style={{ fontFamily: 'PressStart2P-Regular', fontSize:normalize(6),lineHeight:normalize(10), margin:5, color:"black"}}>{currentQuestion['optionA']}</Text>
                             </View>
                         </TouchableHighlight>
 
@@ -165,7 +183,7 @@ const Question = ({gameStatus}) => {
                         
                         <TouchableHighlight style={{height:"100%", width:"49%", backgroundColor:"#4FB45C", borderRadius:10, justifyContent:'center', alignItems: 'center'}} onPress={()=> userAnswer("B")}>
                             <View>
-                                <Text style={{margin:5}}>{currentQuestion['optionB']}</Text>
+                                <Text style={{fontFamily: 'PressStart2P-Regular', fontSize:normalize(6),lineHeight:normalize(10),margin:5}}>{currentQuestion['optionB']}</Text>
                             </View>
                         </TouchableHighlight>
                     </View>
@@ -173,7 +191,7 @@ const Question = ({gameStatus}) => {
                     <View style={{width:"98%",height:"30%", flexDirection:"row",margin:"1%"}}> 
                         <TouchableHighlight style={{height:"100%", width:"49%", backgroundColor:"#4FB45C", borderRadius:10, justifyContent:'center', alignItems: 'center'}} onPress={()=> userAnswer("C")}>
                             <View>
-                                <Text style={{margin:5}}>{currentQuestion['optionC']}</Text>
+                                <Text style={{fontFamily: 'PressStart2P-Regular', fontSize:normalize(6),lineHeight:normalize(10),margin:5}}>{currentQuestion['optionC']}</Text>
                             </View>
                         </TouchableHighlight>
 
@@ -182,7 +200,7 @@ const Question = ({gameStatus}) => {
                         
                         <TouchableHighlight style={{height:"100%", width:"49%", backgroundColor:"#4FB45C", borderRadius:10, justifyContent:'center', alignItems: 'center'}} onPress={()=> userAnswer("D")}>
                             <View>
-                                <Text style={{margin:5}}>{currentQuestion['optionD']}</Text>
+                                <Text style={{fontFamily: 'PressStart2P-Regular', fontSize:normalize(6),lineHeight:normalize(10),margin:5}}>{currentQuestion['optionD']}</Text>
                             </View>
                         </TouchableHighlight>
                     </View>
@@ -192,10 +210,12 @@ const Question = ({gameStatus}) => {
                     {/* This Part will show if the  */}
                     {correct ?
                         <View style={{height:"70%", width:"98%",margin:"1%", borderRadius:10,backgroundColor:"#4FB45C",justifyContent:'center', alignItems: 'center'}} >
-                            <Text style={{margin:10}}>You are correct! {currentQuestion['Explanation']}</Text>
+                            <Text style={{fontFamily: 'PressStart2P-Regular', fontSize:normalize(7),lineHeight:normalize(7),margin:10}}>You are correct! </Text>
+                            <Text style={{fontFamily: 'PressStart2P-Regular', fontSize:normalize(7),lineHeight:normalize(7),margin:10}}>{currentQuestion['Explanation']}</Text>
+
                             <TouchableHighlight style={{height:"20%", width:"20%", borderRadius:10, justifyContent:'center', alignItems: 'center'}} onPress={()=> userAnswer("D")}>
                                     <View>
-                                        <Text style={{margin:"1%", textDecorationLine:"underline"}} onPress={()=> NextQuestion()}>N E X T</Text>
+                                        <Text style={{fontFamily: 'PressStart2P-Regular', fontSize:normalize(6),lineHeight:normalize(6),margin:"1%", textDecorationLine:"underline"}} onPress={()=> NextQuestion()}>N E X T</Text>
                                     </View>
                                 </TouchableHighlight>
                         </View>
@@ -203,21 +223,23 @@ const Question = ({gameStatus}) => {
                         <>
                         { timestate === "END" ?
                             <View style={{height:"70%", width:"98%",margin:"1%", borderRadius:10,backgroundColor:"#CF3B2E",justifyContent:'center', alignItems: 'center'}} >
-                                <Text style={{margin:10}}>You ran out of time.</Text>
+                                <Text style={{fontFamily: 'PressStart2P-Regular', fontSize:normalize(7),lineHeight:normalize(7),margin:10}}>You ran out of time.</Text>
                                 <TouchableHighlight style={{height:"20%", width:"20%", borderRadius:10, justifyContent:'center', alignItems: 'center'}} >
                                     <View>
-                                        <Text style={{margin:"1%", textDecorationLine:"underline"}} onPress={()=> NextQuestion()}>N E X T</Text>
+                                        <Text style={{fontFamily: 'PressStart2P-Regular', fontSize:normalize(6),lineHeight:normalize(6),margin:"1%", textDecorationLine:"underline"}} onPress={()=> NextQuestion()}>N E X T</Text>
                                     </View>
                                 </TouchableHighlight>
                             </View>
                             :
                             <>
                             <View style={{height:"70%", width:"98%",margin:"1%", borderRadius:10,backgroundColor:"#CF3B2E",justifyContent:'center', alignItems: 'center'}} >
-                                <Text style={{margin:10}}>You are wrong. {currentQuestion['Explanation']}</Text>
+                                <Text style={{fontFamily: 'PressStart2P-Regular', fontSize:normalize(7),lineHeight:normalize(7),margin:10}}>You are wrong.</Text>
+                                <Text style={{fontFamily: 'PressStart2P-Regular', fontSize:normalize(7),lineHeight:normalize(7),margin:10}}>{currentQuestion['Explanation']}</Text>
+
                                 {/* <Button  title="Next" onPress={()=> NextQuestion()}/> */}
                                 <TouchableHighlight style={{height:"20%", width:"20%", borderRadius:10, justifyContent:'center', alignItems: 'center'}}>
                                     <View>
-                                        <Text style={{margin:"1%", textDecorationLine:"underline"}} onPress={()=> NextQuestion()}>N E X T</Text>
+                                        <Text style={{fontFamily: 'PressStart2P-Regular', fontSize:normalize(6),lineHeight:normalize(6),margin:"1%", textDecorationLine:"underline"}} onPress={()=> NextQuestion()}>N E X T</Text>
                                     </View>
                                 </TouchableHighlight>
                             </View>
