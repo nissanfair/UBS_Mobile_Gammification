@@ -54,6 +54,7 @@ export default function Summary({navigation}) {
 
       //sfx stop and start
       fight.stop();
+      
       adven.setVolume(0.5);
       adven.play();
       adven.setNumberOfLoops(-1);

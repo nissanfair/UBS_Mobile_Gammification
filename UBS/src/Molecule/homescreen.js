@@ -43,21 +43,6 @@ export default function HomeScreen({navigation}) {
     );
   }, []);
 
-  //   useEffect(() => {
-  //   const handleAppStateChange = (nextAppState) => {
-  //     if (nextAppState === 'active') {
-  //       setActiveScreen('HomeScreen');
-  //     } else if (nextAppState === 'background') {
-  //       setActiveScreen('');
-  //     }
-  //   };
-
-  //   AppState.addEventListener('change', handleAppStateChange);
-
-  //   return () => {
-  //     AppState.removeEventListener('change', handleAppStateChange);
-  //   };
-  // }, []);
 
   useEffect(() => {
     AppState.addEventListener('change', handleAppStateChange);
@@ -70,9 +55,13 @@ export default function HomeScreen({navigation}) {
     if (nextAppState === 'active') {
       // App has come to the foreground
       // Start playing sound again
-        adven.setVolume(0.5);
-        adven.play();
-        adven.setNumberOfLoops(-1);
+        adven.getCurrentTime((seconds) => {
+          if (seconds != 0) {
+            adven.setVolume(0.5);
+            adven.play();
+            adven.setNumberOfLoops(-1);
+          }
+        });
     } else if (appState === 'active' && nextAppState.match(/inactive|background/)) {
       // App has gone to the background
       // Stop playing sound
