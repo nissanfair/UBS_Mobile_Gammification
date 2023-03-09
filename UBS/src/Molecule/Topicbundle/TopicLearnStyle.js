@@ -1,5 +1,24 @@
 /* eslint-disable prettier/prettier */
 import {StyleSheet} from 'react-native';
+import {Dimensions, Platform, PixelRatio} from 'react-native';
+
+// start of size mathing
+const {
+  width: SCREEN_WIDTH,
+  height: SCREEN_HEIGHT,
+} = Dimensions.get('window');
+
+const scale = SCREEN_WIDTH / 500;
+
+export function normalize(size) {
+  const newSize = size * scale 
+  if (Platform.OS === 'andriod') {
+    return Math.round(PixelRatio.roundToNearestPixel(newSize))
+  } else {
+    return Math.round(PixelRatio.roundToNearestPixel(newSize)) - 2
+  }
+}
+// end of size mathing
 
 const styles = StyleSheet.create({
   main: {
@@ -61,7 +80,8 @@ const styles = StyleSheet.create({
     fontFamily: 'PressStart2P-Regular',
     fontSize: 18,
     lineHeight: 25,
-    alignSelf: "center"
+    alignSelf: "center",
+    fontSize: normalize(8),
   },
   speechImage:{
     width:"100%",
@@ -72,6 +92,7 @@ const styles = StyleSheet.create({
     color: 'white',
     fontFamily: 'PressStart2P-Regular',
     fontSize: 20,
+    fontSize: normalize(10),
   },
   titleText: {
     color: 'white',

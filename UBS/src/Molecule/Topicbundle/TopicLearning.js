@@ -122,7 +122,6 @@ const TopicLearning = () => {
             source={require('../../../media/Environment/Battleground2.png')}
             resizeImage="contain"
             style={styles.backdrop} />
-
         </View>
 
         <View style={styles.titleContainer}>
@@ -133,7 +132,7 @@ const TopicLearning = () => {
                 resizeMode="contain" />
             </TouchableOpacity>
           </View>
-          <Text style={styles.titleText}>Learning About Malware Attacks</Text>
+          <Text style={styles.titleText}>Learning About {learnSelectedTopic["Topic Name"]}</Text>
         </View>
 
         <View style={styles.middleContainer}>
@@ -142,8 +141,7 @@ const TopicLearning = () => {
             <Image
               source={require('../../../media/UI/origins_trans.gif')}
               resizeMode="contain"
-              style={styles.origins}
-            />
+              style={styles.origins}/>
             <Text style={styles.textstyle}>Origins</Text>
           </View>
 
@@ -151,8 +149,7 @@ const TopicLearning = () => {
             <Image
               source={require('../../../media/UI/reading_trans.gif')}
               resizeMode="contain"
-              style={styles.origins}
-            />
+              style={styles.origins}/>
             <Text style={styles.textstyle}>Introduction</Text>
           </View>
 
@@ -160,8 +157,7 @@ const TopicLearning = () => {
             <Image
               source={require('../../../media/UI/Sword_trans.gif')}
               resizeMode="contain"
-              style={styles.origins}
-            />
+              style={styles.origins}/>
             <Text style={styles.textstyle}>Common Attacks</Text>
           </View>
 
@@ -169,8 +165,7 @@ const TopicLearning = () => {
             <Image
               source={require('../../../media/UI/Shield_trans.gif')}
               resizeMode="contain"
-              style={styles.origins}
-            />
+              style={styles.origins}/>
             <Text style={styles.textstyle}>Protecting Ourselves</Text>
           </View>
 
@@ -178,24 +173,22 @@ const TopicLearning = () => {
 
         <View style={styles.bottomContainer}>
 
-         
             <ImageBackground
               source={require('../../../media/Environment/speech_box.png')}
               resizeImage="contain"
-              style={styles.speechImage}
-            >
+              style={styles.speechImage}>
+
               <View style={styles.avatar}>
                 <Image
                   source={require('../../../media/Characters/LearningPartner/orangeman.gif')}
                   resizeMode="contain"
-                  style={styles.teacher}
-                />
+                  style={styles.teacher}/>
                 <Text style={styles.avatarText}>Teacher</Text>
               </View>
 
               <View style={styles.speechBox}>
                 <TouchableWithoutFeedback onPress={Forwardbutton}>
-                  <Text style={styles.speechText}>Hey Newbie,these are the topics you will learn about to better prepare for the malware Attacks. {"\n"}</Text>
+                  <Text style={styles.speechText}>{"\n"} Hey Newbie, these are the topics you will learn about to better prepare for {learnSelectedTopic["Topic Name"]}. {"\n"}</Text>
                   <Text style={styles.speechText}>Click Here To Continue.</Text>
                 </TouchableWithoutFeedback>
               </View>
@@ -227,50 +220,43 @@ const TopicLearning = () => {
                 resizeMode="contain" />
             </TouchableOpacity>
           </View>
-          <Text style={styles.titleText}>Learning About Malware Attacks</Text>
+          <Text style={styles.titleText}>Learning About {learnSelectedTopic["Topic Name"]}</Text>
         </View>
 
         <View style={styles.middleContainer}>
           <View style={styles.desc}>
-            {/* <Text style={{color: "black", fontFamily: 'PressStart2P-Regular'}}> PLACEHOLDER HERE!! </Text> */}
-            <Text style={{ color: "black", fontFamily: 'PressStart2P-Regular' }}>{learnSelectedTopic[0]}</Text>
             <Image
               source={require('../../../media/UI/origins_trans.gif')}
               resizeMode="contain"
-              style={styles.origins}
-            />
+              style={styles.origins}/>
             <Text style={styles.textstyle}>Origins</Text>
 
           </View>
         </View>
+
         <View style={styles.bottomContainer}>
 
-         
             <ImageBackground
               source={require('../../../media/Environment/speech_box.png')}
               resizeImage="contain"
-              style={styles.speechImage}
-            >
+              style={styles.speechImage}>
               <View style={styles.avatar}>
                 <Image
                   source={require('../../../media/Characters/LearningPartner/orangeman.gif')}
                   resizeMode="contain"
-                  style={styles.teacher}
-                />
+                  style={styles.teacher}/>
                 <Text style={styles.avatarText}>Teacher</Text>
               </View>
 
               <View style={styles.speechBox}>
                 <TouchableWithoutFeedback onPress={Forwardbutton}>
-                  <Text style={styles.speechText}>Insert Description of the origins {"\n"}</Text>
+                  <Text style={styles.speechText}> {"\n"} {learnSelectedTopic["Origin of the Attack"]} {"\n"}</Text>
                   <Text style={styles.speechText}>Click Here To Continue.</Text>
                 </TouchableWithoutFeedback>
               </View>
 
-
             </ImageBackground>
 
-         
           <View style={styles.exitContainer}>
             <TouchableOpacity style={styles.exitbutton} onPress={Exitbutton}>
               <Image
@@ -304,13 +290,13 @@ const TopicLearning = () => {
                 resizeMode="contain" />
             </TouchableOpacity>
           </View>
-          <Text style={styles.titleText}>Learning About Malware Attacks</Text>
+          <Text style={styles.titleText}>Learning About {learnSelectedTopic["Topic Name"]}</Text>
         </View>
 
         <View style={styles.middleContainer}>
           <View style={styles.desc}>
             {/* <Text style={{color: "black", fontFamily: 'PressStart2P-Regular'}}> PLACEHOLDER HERE!! </Text> */}
-            <Text style={{ color: "black", fontFamily: 'PressStart2P-Regular' }}>{learnSelectedTopic[0]}</Text>
+            <Text style={{ color: "black", fontFamily: 'PressStart2P-Regular' }}></Text>
             <Image
               source={require('../../../media/UI/reading_trans.gif')}
               resizeMode="contain"
@@ -339,7 +325,7 @@ const TopicLearning = () => {
 
               <View style={styles.speechBox}>
                 <TouchableWithoutFeedback onPress={Forwardbutton}>
-                  <Text style={styles.speechText}>Insert Description of the Introductionzzzzzzzzzzzzzzzzz {"\n"}</Text>
+                  <Text style={styles.speechText}> {"\n"} {learnSelectedTopic["Introducing the Attack"]} {"\n"}</Text>
                   <Text style={styles.speechText}>Click Here To Continue.</Text>
                 </TouchableWithoutFeedback>
               </View>
@@ -381,13 +367,11 @@ const TopicLearning = () => {
               resizeMode="contain" />
           </TouchableOpacity>
         </View>
-        <Text style={styles.titleText}>Learning About Malware Attacks</Text>
+        <Text style={styles.titleText}>Learning About {learnSelectedTopic["Topic Name"]}</Text>
       </View>
 
       <View style={styles.middleContainer}>
         <View style={styles.desc}>
-          {/* <Text style={{color: "black", fontFamily: 'PressStart2P-Regular'}}> PLACEHOLDER HERE!! </Text> */}
-          <Text style={{ color: "black", fontFamily: 'PressStart2P-Regular' }}>{learnSelectedTopic[0]}</Text>
           <Image
               source={require('../../../media/UI/Sword_trans.gif')}
               resizeMode="contain"
@@ -416,7 +400,7 @@ const TopicLearning = () => {
 
             <View style={styles.speechBox}>
               <TouchableWithoutFeedback onPress={Forwardbutton}>
-                <Text style={styles.speechText}>Insert Description of the Introductionzzzzzzzzzzzzzzzzz {"\n"}</Text>
+                <Text style={styles.speechText}> {"\n"} {learnSelectedTopic["Common Types of Attacks"]} {"\n"}</Text>
                 <Text style={styles.speechText}>Click Here To Continue.</Text>
               </TouchableWithoutFeedback>
             </View>
@@ -458,7 +442,7 @@ const TopicLearning = () => {
               resizeMode="contain" />
           </TouchableOpacity>
         </View>
-        <Text style={styles.titleText}>Learning About Malware Attacks</Text>
+        <Text style={styles.titleText}>Learning About {learnSelectedTopic["Topic Name"]}</Text>
       </View>
 
       <View style={styles.middleContainer}>
@@ -493,7 +477,7 @@ const TopicLearning = () => {
 
             <View style={styles.speechBox}>
               
-                <Text style={styles.speechText}>Insert Description of the Introductionzzzzzzzzzzzzzzzzz {"\n"}</Text>
+                <Text style={styles.speechText}> {"\n"} {learnSelectedTopic["Avoid Falling Victim"]} {"\n"}</Text>
               
             </View>
 
