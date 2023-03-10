@@ -241,9 +241,9 @@ const Topic = () => {
                 {/* Insert of Topic */}
                 <View style={{
                     alignItems: 'center', justifyContent: "center", flex: 4, flexDirection: "column",
-                    backgroundColor: 'rgba(40, 40, 40, 0.8)',
-                    shadowColor: 'rgba(0, 0, 0, 0.3)',
-                    shadowOpacity: 0.8,
+                    // backgroundColor: 'rgba(40, 40, 40, 0.8)',
+                    // shadowColor: 'rgba(0, 0, 0, 0.3)',
+                    // shadowOpacity: 0.8,
                     shadowRadius: 6, padding: 20, width: "60%", borderRadius: 24, alignItems: 'center', alignSelf: "center", justifyContent: "center", flex: 5, flexDirection: "column"
                 }}>
 
@@ -252,7 +252,7 @@ const Topic = () => {
                     <Animated.View
                         style={{
                             borderRadius: 10,
-                            backgroundColor: 'rgba(0, 0, 0, 0.1)', // Set alpha to 0.7 for slight transparency
+                            // backgroundColor: 'rgba(0, 0, 0, 0.1)', // Set alpha to 0.7 for slight transparency
                             width: "130%",
                             height: "130%",
                             zIndex: 1,
