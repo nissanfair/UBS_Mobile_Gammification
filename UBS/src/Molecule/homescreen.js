@@ -1,33 +1,9 @@
 // import React from 'react'
-import { SafeAreaView,ScrollView,StatusBar,StyleSheet,Text,useColorScheme,View,Section, Pressable, Image, TouchableHighlight, TouchableOpacity, ImageBackground} from 'react-native';
+import { SafeAreaView,ScrollView,StatusBar,StyleSheet,Text,useColorScheme,View,Section, Pressable, Image, TouchableHighlight, TouchableOpacity, ImageBackground, Button} from 'react-native';
 import React, { useEffect, useState } from 'react'
 import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
 import auth from '@react-native-firebase/auth';
 import {NavigationContainer, useNavigation} from '@react-navigation/native';
-
-
-// const styles = StyleSheet.create({
-//     background : {
-//         width: "100%",
-//         height: "100%"
-//     }
-// })
-
-
-// export default function HomeScreen({navigation}) {
-//   const GoogleSSO = () => {
-//     navigation.navigate("Topic")
-//   }
-
-//   return (
-//     <View>
-//         <TouchableHighlight onPress={GoogleSSO}>
-//           <Image source={require("../../media/Environment/SSO.png")} style={styles.background} />
-//         </TouchableHighlight>
-//     </View>
-//   )
-// }
-
 
 const styles = StyleSheet.create({
   background : {
@@ -37,14 +13,14 @@ const styles = StyleSheet.create({
  
   }, 
   safeArea: {
-    // backgroundColor: "#262b2f"
+    backgroundColor: "#262b2f"
     // flex: 1
    },
    container: {
     // height: Dimensions.get('window').height,
-    height: 1,
-    // flex: 1
-    // backgroundColor: "#262b2f",
+    // height: 1,
+    // flex: 1,
+    backgroundColor: "#262b2f",
    },
    topContent: {
     // flex: 1,
@@ -81,12 +57,13 @@ const styles = StyleSheet.create({
    }
 })
 
-const App = () => {
+const HomeScreen = () => {
   const [userDataID, setUserDataID] = useState()
   const [userData, setUserData] = useState()
   const [userName, setUserName] = useState()
   // const [userDataScope, setUserDataSCope] = useState()
   const [loggedIn, setloggedIn] = useState(false);
+  const navigation = useNavigation();
 
   console.log('I am logging')
 
@@ -104,6 +81,7 @@ const App = () => {
   console.log('I am about to sign in')
 
   const signinWithGoogle = async () => {
+    // const navigation = useNavigation();
     try{
       const { idToken, user } = await GoogleSignin.signIn();
       // const navigation = useNavigation();
@@ -113,17 +91,26 @@ const App = () => {
       console.log("This is the TokenID" , userDataID);
       console.log("This is the User Data" , userData);
       // console.log("This is the Scopes" , userDataScope);
-      if (userData !== null) {
+      
+      if (Object.keys(userData).length !== 0) {
         console.log(userData)
         console.log(typeof userData)
         console.log(userData['givenName'])
         setloggedIn(true);
-        // setUserName(this.userData['givenName']);
-        alert('WELCOME BACK', userName);
+        setUserName(userData['givenName']);
+
+        navigation.navigate('Topic')
+        // alert('WELCOME BACK');
         } 
       const googleCredential = auth.GoogleAuthProvider.credential(idToken);
       // console.log(googleCredential)
-      return auth().signinWithCredential(googleCredential);
+      // return auth().signinWithCredential(googleCredential);
+      const user_signin =  auth().signinWithCredential(googleCredential);
+      user_signin.then((user) => {
+        console.log(user)
+      })
+      .catch((error) => 
+      console.log(error))
 
     //Catching Errors here 
     } catch(error){
@@ -131,39 +118,35 @@ const App = () => {
         alert('Cancel');
       } else if (error.code === statusCodes.IN_PROGRESS) {
         alert('Signin in progress');}
-        else{
-          alert(error.message)
-        }
+        // else{
+        //   alert(error.message)
+        // }
     }
   }; 
 
   // const Forwardbutton = () => {
   //   const navigation = useNavigation();
-  //   navigation.navigate("Topic")
+  //   navigation.navigate("Progress")
   // }
 
 
+//   const signout = async () =>{
+//     try {
+//       await GoogleSignin.revokeAccess();
+//       await auth().signOut().then(() => alert('Your are signed out!'));
+//       setloggedIn(false);
+//       console.log('sign out success')
+//     } catch (error) {
+//       console.error(error);
+//     }
+// };
 
-
-
-
-  const signout = async () =>{
-    try {
-      await GoogleSignin.revokeAccess();
-      await auth().signOut().then(() => alert('Your are signed out!'));
-      setloggedIn(false);
-      console.log('sign out success')
-    } catch (error) {
-      console.error(error);
-    }
-};
-
-
+  if(loggedIn == false){
   return (
     <View>
-        {/* <TouchableHighlight> */}
+        <TouchableHighlight>
           <ImageBackground resizeMode="cover" source={require("../../media/Environment/SSO.png")} style={styles.background} />
-        {/* </TouchableHighlight> */}
+        </TouchableHighlight>
         <SafeAreaView style={styles.safeArea}>
           <StatusBar barStyle="light-content" />
           <View style={styles.container}>
@@ -201,9 +184,9 @@ const App = () => {
             </View>
 
 {/* for sign out */}
-          <View style={styles.bottomContent}>
+          {/* <View style={styles.bottomContent}> */}
             {/* <TouchableOpacity style={styles.googleButton} onPress={signinWithGoogle}> */}
-            <TouchableOpacity 
+            {/* <TouchableOpacity 
             onPress={
               () => signout() 
               .then(res => {console.log(res);
@@ -219,8 +202,8 @@ const App = () => {
               }}
               />
               <Text style={styles.googleButtonText}>Sign Out with Google</Text>
-            </TouchableOpacity>
-          </View>
+            </TouchableOpacity> */}
+          {/* </View> */}
 
             
           </View>
@@ -229,10 +212,21 @@ const App = () => {
 
     </View>
   )
-
   }
 
-  export default App;
+//   else{
+//     return(
+//       <View>
+//         {/* <Button title="Let's start!" onPress={() =>
+//           navigation.navigate("Topic")}/> */}
+//         {/* <Button title="Let's start!" onPress={Forwardbutton}/> */}
+//         <Text>kjasbcijaciajbcaijbcjacbjka</Text>
+//       </View>
+//     )
+
+// }
+}
+export default HomeScreen;
 
 
 
