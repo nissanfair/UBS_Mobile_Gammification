@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect} from 'react';
 import { StyleSheet, View, Text, Dimensions, Image, ScrollView, Button, ImageBackground, TouchableHighlight, Animated } from 'react-native';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -49,10 +49,10 @@ const Topic = () => {
 
         // For some reason have to specify 10.0.2. This is because of the android emulator requiring different network config
         // For JP use for his phone
-        var fetchTopics = "http://192.168.0.109:3000/6bit/topics/totalquizzes"
+        var fetchTopics = "http://192.168.29.14:3000/6bit/topics/totalquizzes"
         // For Emulator
         // var fetchTopics = "http://10.0.2.2:3000/6bit/topics/totalquizzes"
-        console.log("i am in use Effect")
+
         // Dynamically get all the topics from firebase - On the firebase side i tweaked it in a way so i /3 lol
         fetch(fetchTopics)
             .then(response => response.json())
@@ -60,7 +60,7 @@ const Topic = () => {
                 // Manipulating the data here 
                 var topicDict = []
                 for (let i = 1; i < data.topics + 1; i++) {
-                    topicDict.push({ topic: `Topic${i}`, display: `Topic ${i}`, education: `Topic${i}`, topicName: data.mainbody[`Topic${i}_Learning`]["Topic Name"] })
+                    topicDict.push({ topic: `Topic${i}`, display: `Topic ${i}`, education: `Topic${i}`, topicName: data.mainbody[`Topic${i}_Learning`]["Topic Name"]})
                 }
                 // add the new data to the list of dictionaries
                 console.log(topicDict)
@@ -73,7 +73,7 @@ const Topic = () => {
 
     // ANIMATIONS STUFF
 
-
+  
     //   Handle press animation end
     const moveFromLeft = new Animated.ValueXY({ x: -500, y: 0 });
     const moveFromRight = new Animated.ValueXY({ x: 500, y: 0 });
@@ -134,13 +134,9 @@ const Topic = () => {
                 {/* End of the Character Badge */}
 
                 {/* Insert of Topic */}
-                <View style={{
-                    alignItems: 'center', justifyContent: "center", flex: 4, flexDirection: "column",
-                    backgroundColor: 'rgba(40, 40, 40, 0.8)',
-                    shadowColor: 'rgba(0, 0, 0, 0.3)',
-                    shadowOpacity: 0.8,
-                    shadowRadius: 6, padding: 20, width: "60%", borderRadius: 24, alignItems: 'center', alignSelf: "center", justifyContent: "center", flex: 5, flexDirection: "column"
-                }}>
+                <View style={{flex:1}}></View>
+
+                <View style={{alignItems: 'center', justifyContent: "center", flex: 4, flexDirection: "column" }}>
 
 
                     {levels.map((topic, index) => (
@@ -152,17 +148,28 @@ const Topic = () => {
 
                             ]}
                         >
-                            {console.log(topic)}
                             {/* Image swords */}
-                            <Animated.View style={[{ flex: 4 }]}>
-                                <TouchableOpacity style={{ width: "100%", height: "100%", alignItems: 'center', justifyContent: "center", alignSelf: "center", alignContent: "center" }}>
-                                    <ImageBackground resizeMode="cover" style={[{ aspectRatio: 4, alignSelf: "center", justifyContent: "center", alignItems: "center", paddingLeft: "1%", flexDirection: "row", width: "100%", height: "100%", flex: 4 }]} source={index % 2 == 0 ? require("../../media/TopicJs/block.png") : require("../../media/TopicJs/block.png")}>
-                                        <Text style={{ paddingBottom: "7%", paddingEnd: "3%" }}>{topic.topicName}</Text>
+                            <Animated.View style={[{flex:4}]}>
+                                <TouchableOpacity style={{ width: "100%", height: "100%", alignItems: 'center', justifyContent: "center", alignSelf: "center",alignContent: "center"}}>
+                                    <ImageBackground resizeMode="cover" style={[{ aspectRatio: 4, alignSelf: "center",justifyContent: "center", alignItems: "center", paddingLeft: "1%", flexDirection: "row" ,width: "100%", height: "100%", flex: 4}]} source={index % 2 == 0 ? require("../../media/TopicJs/block.png") : require("../../media/TopicJs/block.png")}>
+                                    <Text style={{paddingBottom: "7%", paddingEnd: "3%"}}>{topic.topicName}</Text>
                                     </ImageBackground>
 
                                 </TouchableOpacity>
                             </Animated.View>
 
+                            {/* <View style={{borderWidth:2, flex:1, flexDirection: "column", borderWidth: 2, width: '100%', height: '100%', alignContent: "flex-start",justifyContent: "flex-start", alignSelf: "flex-start"}}>
+                                <View style={{borderWidth:2, flex:5}}>
+                                <TouchableOpacity style={{borderWidth:2, borderColor: "cyan", width: '100%', height: '100%'}}>
+                                <Image resizeMode='cover' style={{ borderWidth:2,height: "120%", width: "120%"}} source={require("../../media/TopicJs/learn.png")} />
+                                </TouchableOpacity>
+                                </View>
+                                <View style={{borderWidth:2, flex:2}}>
+                                    <Text>hi</Text>
+                                </View>
+
+                            </View> */}
+                         
 
 
                         </Animated.View>
@@ -194,7 +201,7 @@ const Topic = () => {
 
                     </View> */}
                 </View>
-                <View style={{ flex: 1 }}></View>
+                <View style={{flex:1}}></View>
                 {/* End of Topic */}
 
 
