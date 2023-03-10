@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import React, { useState, useEffect, useRef } from 'react';
-import { StyleSheet, View, Text, Dimensions, Image, ScrollView, Button, ImageBackground, TouchableHighlight, Animated, PixelRatio } from 'react-native';
+import { StyleSheet, View, Text, Dimensions, Image, ScrollView, Button, ImageBackground, TouchableHighlight, Animated, PixelRatio , Platform} from 'react-native';
 import { DarkTheme, NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { TouchableOpacity, TouchableWithoutFeedback } from 'react-native-gesture-handler';
@@ -8,9 +8,26 @@ import { useDispatch } from 'react-redux';
 import TopicLearning from './Topicbundle/TopicLearning';
 import TopicIntroduction from './Topicbundle/TopicIntroduction';
 import { ProgressBar } from '@react-native-community/progress-bar-android';
+// import {Dimensions ,Platform, PixelRatio} from 'react-native';
 
 // Redux slices 
 import { selectedTopic } from "../Redux/topicSlice"
+
+const {
+    width: SCREEN_WIDTH,
+    height: SCREEN_HEIGHT,
+  } = Dimensions.get('window');
+  
+  const scale = SCREEN_WIDTH / 500;
+  
+  export function normalize(size) {
+    const newSize = size * scale 
+    if (Platform.OS === 'andriod') {
+      return Math.round(PixelRatio.roundToNearestPixel(newSize))
+    } else {
+      return Math.round(PixelRatio.roundToNearestPixel(newSize)) - 2
+    }
+  }
 
 const Stack = createStackNavigator();
 const { width, height } = Dimensions.get('window');
@@ -128,7 +145,7 @@ const MainScreen = () => {
                     <Animated.View style={[{ flex: 4, transform: [{ scale: scaleValue }] }]}>
                         <TouchableOpacity onPress={() => navigation.navigate("Topic")} style={{ width: "100%", height: "100%", alignItems: 'center', justifyContent: "center", alignSelf: "center", alignContent: "center" }}>
                             <ImageBackground resizeMode="cover" style={[{ aspectRatio: 4, alignSelf: "center", justifyContent: "center", alignItems: "center", paddingLeft: "1%", flexDirection: "row", width: "100%", height: "100%", flex: 4 }]} source={require("../../media/TopicJs/block.png")}>
-                                <Text style={{ paddingBottom: "7%", paddingEnd: "3%" }}>Play</Text>
+                                <Text style={{fontFamily: 'PressStart2P-Regular', fontSize:normalize(10),lineHeight:normalize(10), paddingBottom: "7%", paddingEnd: "3%" }}>Play</Text>
                             </ImageBackground>
 
                         </TouchableOpacity>
@@ -136,9 +153,9 @@ const MainScreen = () => {
 
 
                     <Animated.View style={[{ flex: 4, transform: [{ scale: scaleValue }] }]}>
-                        <TouchableOpacity style={{ width: "100%", height: "100%", alignItems: 'center', justifyContent: "center", alignSelf: "center", alignContent: "center" }}>
+                        <TouchableOpacity  onPress={() => navigation.navigate("Education")}  style={{ width: "100%", height: "100%", alignItems: 'center', justifyContent: "center", alignSelf: "center", alignContent: "center" }}>
                             <ImageBackground resizeMode="cover" style={[{ aspectRatio: 4, alignSelf: "center", justifyContent: "center", alignItems: "center", paddingLeft: "1%", flexDirection: "row", width: "100%", height: "100%", flex: 4 }]} source={require("../../media/TopicJs/block.png")}>
-                                <Text style={{ paddingBottom: "7%", paddingEnd: "3%" }}>Get Educated</Text>
+                                <Text style={{ fontFamily: 'PressStart2P-Regular', fontSize:normalize(10),lineHeight:normalize(10), paddingBottom: "7%", paddingEnd: "3%" }}>Get Educated</Text>
                             </ImageBackground>
 
                         </TouchableOpacity>
@@ -147,7 +164,7 @@ const MainScreen = () => {
                     <Animated.View style={[{ flex: 4, transform: [{ scale: scaleValue }] }]}>
                         <TouchableOpacity style={{ width: "100%", height: "100%", alignItems: 'center', justifyContent: "center", alignSelf: "center", alignContent: "center" }}>
                             <ImageBackground resizeMode="cover" style={[{ aspectRatio: 4, alignSelf: "center", justifyContent: "center", alignItems: "center", paddingLeft: "1%", flexDirection: "row", width: "100%", height: "100%", flex: 4 }]} source={require("../../media/TopicJs/block.png")}>
-                                <Text style={{ paddingBottom: "7%", paddingEnd: "3%" }}>About</Text>
+                                <Text style={{fontFamily: 'PressStart2P-Regular', fontSize:normalize(10),lineHeight:normalize(10), paddingBottom: "7%", paddingEnd: "3%" }}>About</Text>
                             </ImageBackground>
 
                         </TouchableOpacity>

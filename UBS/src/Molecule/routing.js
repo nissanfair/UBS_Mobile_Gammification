@@ -21,6 +21,7 @@ import HomeScreen from "../Molecule/homescreen";
 import Topic from "../Molecule/Topic";
 import Summary from "../Molecule/Topicbundle/Gamebundle/Summary"
 import MainScreen from "../Molecule/mainMenu"
+import Education from '../Molecule/Education';
 
 const Stack = createStackNavigator()
 
@@ -34,6 +35,8 @@ function Routing() {
           <Stack.Screen name="HomeScreen" component={HomeScreen} options={{headerShown: false}}/>
           <Stack.Screen name="MainScreen" component={MainScreen} options={{headerShown: false}}/>
           <Stack.Screen name="Topic" component={Topic} options={{headerShown: false}}/>
+          <Stack.Screen name="Education" component={Education} options={{headerShown: false}}/>
+
           <Stack.Screen name="TopicIntroduction" component={TopicIntroduction} options={{headerShown: false}}/>
           <Stack.Screen name="TopicLearning" component={TopicLearning} options={{headerShown: false}}/>
           <Stack.Screen name="Progress" component={Progress} options={{headerShown: false}}/>
