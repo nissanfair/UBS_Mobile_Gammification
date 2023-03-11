@@ -64,7 +64,7 @@ const Topic = () => {
 
         // For some reason have to specify 10.0.2. This is because of the android emulator requiring different network config
         // For JP use for his phone
-        var fetchTopics = "http://192.168.0.109:3000/6bit/topics/totalquizzes"
+        var fetchTopics = "http://192.168.29.14:3000/6bit/topics/totalquizzes"
         // For Emulator
         // var fetchTopics = "http://10.0.2.2:3000/6bit/topics/totalquizzes"
         console.log("i am in use Effect")

@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import React, { useState, useEffect, useRef } from 'react';
-import { StyleSheet, View, Text, Dimensions, Image, ScrollView, Button, ImageBackground, TouchableHighlight, Animated, PixelRatio , Platform} from 'react-native';
+import { StyleSheet, View, Text, Dimensions, Image, ScrollView, Button, ImageBackground, TouchableHighlight, Animated, PixelRatio, Platform } from 'react-native';
 import { DarkTheme, NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { TouchableOpacity, TouchableWithoutFeedback } from 'react-native-gesture-handler';
@@ -16,18 +16,18 @@ import { selectedTopic } from "../Redux/topicSlice"
 const {
     width: SCREEN_WIDTH,
     height: SCREEN_HEIGHT,
-  } = Dimensions.get('window');
-  
-  const scale = SCREEN_WIDTH / 500;
-  
-  export function normalize(size) {
-    const newSize = size * scale 
+} = Dimensions.get('window');
+
+const scale = SCREEN_WIDTH / 500;
+
+export function normalize(size) {
+    const newSize = size * scale
     if (Platform.OS === 'andriod') {
-      return Math.round(PixelRatio.roundToNearestPixel(newSize))
+        return Math.round(PixelRatio.roundToNearestPixel(newSize))
     } else {
-      return Math.round(PixelRatio.roundToNearestPixel(newSize)) - 2
+        return Math.round(PixelRatio.roundToNearestPixel(newSize)) - 2
     }
-  }
+}
 
 const Stack = createStackNavigator();
 const { width, height } = Dimensions.get('window');
@@ -118,15 +118,26 @@ const MainScreen = () => {
             <ImageBackground source={require("../../media/TopicJs/Topic.gif")} style={{ width: "100%", height: "100%" }}>
 
                 {/* Logo */}
-                <View style={{flex: 2 }}>
+                <View style={{ flex: 2 }}>
                     <ImageBackground resizeMode="cover" style={[{ marginTop: "2%", aspectRatio: 4, alignSelf: "center", justifyContent: "center", alignItems: "center", paddingLeft: "1%", flexDirection: "row", width: "100%", height: "100%", flex: 4 }]} source={require("../../media/TopicJs/menulogo.png")} />
-                <View style={{ position: "absolute", borderWidth: 2, width: "20%" , height: "100%",zIndex: 2 }}>
-                    <TouchableOpacity style={{ width: "100%", height: "100%" }}onPress={() => console.log("Settings button pressed")}>
-                    <ImageBackground resizeMode="cover" style={[{ marginTop: "2%", aspectRatio: 4, alignSelf: "center", justifyContent: "center", alignItems: "center", paddingLeft: "1%", flexDirection: "row", width: "100%", height: "100%", flex: 4 }]} source={require("../../media/TopicJs/setting.png")} >
-                    </ImageBackground>
-                    </TouchableOpacity>
 
-                </View>
+                    {/* For settings button */}
+                    <View style={{ position: "absolute", width: "20%", height: "100%", zIndex: 2 }}>
+                        <TouchableOpacity style={{ width: "100%", height: "100%" }} onPress={() => console.log("Settings button pressed")}>
+                            <ImageBackground resizeMode="cover" style={[{ marginTop: "2%", aspectRatio: 4, alignSelf: "center", justifyContent: "center", alignItems: "center", paddingLeft: "1%", flexDirection: "row", width: "100%", height: "100%", flex: 4 }]} source={require("../../media/TopicJs/setting.png")} >
+                            </ImageBackground>
+                        </TouchableOpacity>
+
+                    </View>
+
+                    {/* For user button */}
+                    <View style={{ position: "absolute", width: "20%", height: "100%", zIndex: 2, right: 0 }}>
+                        <TouchableOpacity style={{ width: "100%", height: "100%" }} onPress={() => console.log("Profile button pressed")}>
+                            <ImageBackground resizeMode="cover" style={[{ marginTop: "2%", aspectRatio: 4, alignSelf: "center", justifyContent: "center", alignItems: "center", paddingLeft: "1%", flexDirection: "row", width: "100%", height: "100%", flex: 4 }]} source={require("../../media/TopicJs/profile.png")} >
+                            </ImageBackground>
+                        </TouchableOpacity>
+
+                    </View>
                 </View>
 
                 {/* Settings button */}
@@ -136,7 +147,7 @@ const MainScreen = () => {
                 </View> */}
 
                 <Animated.View style={{
-                  
+
                     shadowOpacity: 0.8,
                     shadowRadius: 6, padding: 20, width: "60%", borderRadius: 24, alignItems: 'center', alignSelf: "center", justifyContent: "center", flex: 5, flexDirection: "column"
                 }}>
@@ -144,7 +155,7 @@ const MainScreen = () => {
                     <Animated.View style={[{ flex: 4, transform: [{ scale: scaleValue }] }]}>
                         <TouchableOpacity onPress={() => navigation.navigate("Topic")} style={{ width: "100%", height: "100%", alignItems: 'center', justifyContent: "center", alignSelf: "center", alignContent: "center" }}>
                             <ImageBackground resizeMode="cover" style={[{ aspectRatio: 4, alignSelf: "center", justifyContent: "center", alignItems: "center", paddingLeft: "1%", flexDirection: "row", width: "100%", height: "100%", flex: 4 }]} source={require("../../media/TopicJs/block.png")}>
-                                <Text style={{fontFamily: 'PressStart2P-Regular', fontSize:normalize(10),lineHeight:normalize(10), paddingBottom: "7%", paddingEnd: "3%" }}>Play</Text>
+                                <Text style={{ fontFamily: 'PressStart2P-Regular', fontSize: normalize(10), lineHeight: normalize(10), paddingBottom: "7%", paddingEnd: "3%" }}>Play</Text>
                             </ImageBackground>
 
                         </TouchableOpacity>
@@ -152,9 +163,9 @@ const MainScreen = () => {
 
 
                     <Animated.View style={[{ flex: 4, transform: [{ scale: scaleValue }] }]}>
-                        <TouchableOpacity  onPress={() => navigation.navigate("Education")}  style={{ width: "100%", height: "100%", alignItems: 'center', justifyContent: "center", alignSelf: "center", alignContent: "center" }}>
+                        <TouchableOpacity onPress={() => navigation.navigate("Education")} style={{ width: "100%", height: "100%", alignItems: 'center', justifyContent: "center", alignSelf: "center", alignContent: "center" }}>
                             <ImageBackground resizeMode="cover" style={[{ aspectRatio: 4, alignSelf: "center", justifyContent: "center", alignItems: "center", paddingLeft: "1%", flexDirection: "row", width: "100%", height: "100%", flex: 4 }]} source={require("../../media/TopicJs/block.png")}>
-                                <Text style={{ fontFamily: 'PressStart2P-Regular', fontSize:normalize(10),lineHeight:normalize(10), paddingBottom: "7%", paddingEnd: "3%" }}>Get Educated</Text>
+                                <Text style={{ fontFamily: 'PressStart2P-Regular', fontSize: normalize(10), lineHeight: normalize(10), paddingBottom: "7%", paddingEnd: "3%" }}>Get Educated</Text>
                             </ImageBackground>
 
                         </TouchableOpacity>
@@ -163,7 +174,7 @@ const MainScreen = () => {
                     <Animated.View style={[{ flex: 4, transform: [{ scale: scaleValue }] }]}>
                         <TouchableOpacity style={{ width: "100%", height: "100%", alignItems: 'center', justifyContent: "center", alignSelf: "center", alignContent: "center" }}>
                             <ImageBackground resizeMode="cover" style={[{ aspectRatio: 4, alignSelf: "center", justifyContent: "center", alignItems: "center", paddingLeft: "1%", flexDirection: "row", width: "100%", height: "100%", flex: 4 }]} source={require("../../media/TopicJs/block.png")}>
-                                <Text style={{fontFamily: 'PressStart2P-Regular', fontSize:normalize(10),lineHeight:normalize(10), paddingBottom: "7%", paddingEnd: "3%" }}>About</Text>
+                                <Text style={{ fontFamily: 'PressStart2P-Regular', fontSize: normalize(10), lineHeight: normalize(10), paddingBottom: "7%", paddingEnd: "3%" }}>About</Text>
                             </ImageBackground>
 
                         </TouchableOpacity>
