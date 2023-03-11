@@ -51,14 +51,14 @@ export default function Summary({navigation}) {
     // Get the Answer Wrongly
     const answered_wrongly = useSelector((state) => state.question.answered_wrongly);
 
-    const is_win = true;
+    const is_win = null;
     // Get the Status of Lost or Win
-    // if (answered_wrongly > 3) {
-    //   const is_win = false
-    // }
-    // else{
-    //   const is_win = true;
-    // }
+    if (answered_wrongly > 3) {
+      const is_win = false
+    }
+    else{
+      const is_win = true;
+    }
 
     const handlePress = () => {
       // Handle button press here

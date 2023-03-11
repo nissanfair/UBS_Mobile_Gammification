@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, View, Text, Image, ScrollView, TouchableHighlight, TouchableOpacity, Button } from 'react-native';
+import { StyleSheet, View, Text, Image, ScrollView, TouchableHighlight, TouchableOpacity, Button, TouchableWithoutFeedback } from 'react-native';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Dimensions, Platform, PixelRatio } from 'react-native';
@@ -172,7 +172,7 @@ const Question = ({ gameStatus }) => {
                 <>
                     {/* This is for Option A and B */}
                     <View style={{ width: "98%", height: "30%", flexDirection: "row", margin: "1%" }}>
-                        <TouchableHighlight style={{ height: "100%", width: "49%", backgroundColor: "#4FB45C", borderRadius: 10, justifyContent: 'center', alignItems: 'center' }} onPress={() => userAnswer("A")}>
+                        <TouchableHighlight underlayColor='#4FB45C' style={{ height: "100%", width: "49%", backgroundColor: "#4FB45C", borderRadius: 10, justifyContent: 'center', alignItems: 'center' }} onPress={() => userAnswer("A")}>
                             <View>
                                 <Text style={{ fontFamily: 'PressStart2P-Regular', fontSize: normalize(6), lineHeight: normalize(10), margin: 5, color: "black" }}>{currentQuestion['optionA']}</Text>
                             </View>
@@ -181,7 +181,7 @@ const Question = ({ gameStatus }) => {
 
                         <View style={{ height: "100%", width: "2%" }}></View>
 
-                        <TouchableHighlight style={{ height: "100%", width: "49%", backgroundColor: "#4FB45C", borderRadius: 10, justifyContent: 'center', alignItems: 'center' }} onPress={() => userAnswer("B")}>
+                        <TouchableHighlight underlayColor='#4FB45C' style={{ height: "100%", width: "49%", backgroundColor: "#4FB45C", borderRadius: 10, justifyContent: 'center', alignItems: 'center' }} onPress={() => userAnswer("B")}>
                             <View>
                                 <Text style={{ fontFamily: 'PressStart2P-Regular', fontSize: normalize(6), lineHeight: normalize(10), margin: 5, color: "black" }}>{currentQuestion['optionB']}</Text>
                             </View>
@@ -190,7 +190,7 @@ const Question = ({ gameStatus }) => {
                     </View>
                     {/* THIS IS FOR OPTION C AND D  */}
                     <View style={{ width: "98%", height: "30%", flexDirection: "row", margin: "1%" }}>
-                        <TouchableHighlight style={{ height: "100%", width: "49%", backgroundColor: "#4FB45C", borderRadius: 10, justifyContent: 'center', alignItems: 'center' }} onPress={() => userAnswer("C")}>
+                        <TouchableHighlight underlayColor='#4FB45C' style={{ height: "100%", width: "49%", backgroundColor: "#4FB45C", borderRadius: 10, justifyContent: 'center', alignItems: 'center' }} onPress={() => userAnswer("C")}>
                             <View>
                                 <Text style={{ fontFamily: 'PressStart2P-Regular', fontSize: normalize(6), lineHeight: normalize(10), margin: 5 }}>{currentQuestion['optionC']}</Text>
                             </View>
@@ -199,7 +199,7 @@ const Question = ({ gameStatus }) => {
 
                         <View style={{ height: "100%", width: "2%" }}></View>
 
-                        <TouchableHighlight style={{ height: "100%", width: "49%", backgroundColor: "#4FB45C", borderRadius: 10, justifyContent: 'center', alignItems: 'center' }} onPress={() => userAnswer("D")}>
+                        <TouchableHighlight underlayColor='#4FB45C' style={{ height: "100%", width: "49%", backgroundColor: "#4FB45C", borderRadius: 10, justifyContent: 'center', alignItems: 'center' }} onPress={() => userAnswer("D")}>
                             <View>
                                 <Text style={{ fontFamily: 'PressStart2P-Regular', fontSize: normalize(6), lineHeight: normalize(10), margin: 5 }}>{currentQuestion['optionD']}</Text>
                             </View>

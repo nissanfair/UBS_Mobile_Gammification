@@ -63,7 +63,7 @@ const Game = () => {
         // fade out Question component from 0th to 1st second
         Animated.timing(questionFadeAnimation, {
         toValue: 0,
-        duration: 100,
+        duration: 10,
         useNativeDriver: true,
         }).start(() => {
         // set HeroState to "attack" and change back to "idle" at the end of it (2nd to 3rd seconds)
@@ -125,7 +125,7 @@ const Game = () => {
         // fade out Question component from 0th to 1st second
         Animated.timing(questionFadeAnimation, {
         toValue: 0,
-        duration: 100,
+        duration: 10,
         useNativeDriver: true,
         }).start(() => {
         // set HeroState to "attack" and change back to "idle" at the end of it (2nd to 3rd seconds)
