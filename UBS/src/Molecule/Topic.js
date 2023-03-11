@@ -273,7 +273,7 @@ const Topic = () => {
                             top:0,
                             
                             aspectRatio:1,
-                            height: '150%'}}  source={require("../../media/TopicJs/bgattack.png")}/>
+                            height: '120%'}}  source={require("../../media/TopicJs/bgattack.png")}/>
                     </Animated.View>
 
 
