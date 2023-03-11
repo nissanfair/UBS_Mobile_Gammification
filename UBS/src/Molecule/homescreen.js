@@ -1,8 +1,25 @@
-import { SafeAreaView,ScrollView,StatusBar,StyleSheet,Text,useColorScheme,View,Section, Pressable, Image, TouchableHighlight, TouchableOpacity, ImageBackground, Button, Dimensions} from 'react-native';
-import React, { useEffect, useState } from 'react'
+import { SafeAreaView,ScrollView,StatusBar,StyleSheet,Text,useColorScheme,View,Section, Pressable, Image, TouchableHighlight, TouchableOpacity, ImageBackground, Button, Dimensions, Animated} from 'react-native';
+import React, { useEffect, useState, useRef } from 'react'
 import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
 import auth from '@react-native-firebase/auth';
 import {NavigationContainer, useNavigation} from '@react-navigation/native';
+import { Easing, useSharedValue, withTiming } from "react-native-reanimated";
+import Svg, {Path} from "react-native-svg";
+
+
+// const colors = ["#FFC27A", "#7EDAB9", "#45A6E5", "#FE8777"];
+// const vWidth=800;
+// const vHeight=600;
+// const width = Dimensions.get('window').width - 64; 
+// const height = (width * vHeight) / vWidth;
+// const paths = [
+
+// "M6 42V36H0V12H6V6H12V0H36V6H18V12H12V18H36V24H42V36H36V42H6ZM12 36H30V24H12V36Z" ,
+// "M96 42V0H132V6H138V18H132V24H138V36H132V42H96ZM108 18H126V6H108V18ZM108 36H126V24H108V36Z" ,
+// "M150 42V36H162V6H150V0H186V6H174V36H186V42H150Z" ,
+// "M210 42V6H198V0H234V6H222V42H210Z" ,
+
+// ];
 
 const styles = StyleSheet.create({
 
@@ -83,8 +100,31 @@ const styles = StyleSheet.create({
     height: 24,
     width: 24,
     zIndex: 1
-   }
+   },
+
+   layer: {
+     flex: 0.5, 
+     justifyContent: 'center', 
+     alignItems: 'center',
+    //  width: "20%"
+    //  fontSize: 18,
+    // borderColor: 'red',
+    // borderWidth: 5,  
+   }, 
+
+   container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  image: {
+    width: 400,
+    height: 390,
+    borderRadius: 10,
+  },
 })
+
+
 
 const HomeScreen = () => {
   const [userDataID, setUserDataID] = useState()
@@ -95,6 +135,45 @@ const HomeScreen = () => {
   const navigation = useNavigation();
 
   console.log('I am logging')
+
+//standalone function 
+  const ImageLoader = ({ style, source }) => {
+    const [opacity] = useState(new Animated.Value(0));
+    const scale = useRef(opacity.interpolate({
+      inputRange: [0, 1],
+      outputRange: [0.85, 1],
+    })).current;
+  
+    const onLoad = () => {
+      Animated.timing(opacity, {
+        toValue: 1,
+        duration: 1500,
+        useNativeDriver: true,
+      }).start();
+    };
+  
+    return (
+      <Animated.Image
+        onLoad={onLoad()}
+        source={source}
+        style={[
+          {
+            opacity,
+            transform: [
+              {
+                scale,
+              },
+            ],
+          },
+          style,
+        ]}
+      />
+    );
+  };
+
+    
+//standalone function 
+
 
   useEffect(()=>{
     const configureGoogleSignIn = async () => {
@@ -175,10 +254,19 @@ const HomeScreen = () => {
           </TouchableHighlight>
         </View>
 
-        <View style={styles.backgroundContainer}>
-          {/* <TouchableHighlight>
-            <ImageBackground resizeMode="cover" source={require("../../media/UI/cloud_homepage.gif")} style={styles.background} />
-          </TouchableHighlight> */}
+        <View style={styles.layer}>
+          {/* <Svg  viewBox={[0, 0, vWidth, vHeight].join(" ")}> */}
+          {/* <Svg style={{width: '100%', height: "100%"}}>
+            {paths.map((d, key) => (<Path d={d} stroke='white' strokeWidth={10} key={key} />))}
+          </Svg> */}
+
+            <View style={styles.container}>
+              <ImageLoader
+                style={styles.image}
+                source={require("../../media/UI/6bit_Homepage.png")}
+              />
+            </View>
+
         </View>
 
         <View style={styles.viewContainer1}>
