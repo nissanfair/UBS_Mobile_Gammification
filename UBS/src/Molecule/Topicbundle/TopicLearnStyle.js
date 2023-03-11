@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
   },
   avatar:{
     flex: 1,
-    marginLeft: "12%",
+    marginLeft: "13%",
     marginBottom: "6%",
     justifyContent: "center",
   },
