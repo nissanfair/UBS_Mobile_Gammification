@@ -51,14 +51,14 @@ export default function Summary({navigation}) {
     // Get the Answer Wrongly
     const answered_wrongly = useSelector((state) => state.question.answered_wrongly);
 
-    const is_win = null;
+    const is_win = true;
     // Get the Status of Lost or Win
-    if (answered_wrongly > 3) {
-      const is_win = false
-    }
-    else{
-      const is_win = true;
-    }
+    // if (answered_wrongly > 3) {
+    //   const is_win = false
+    // }
+    // else{
+    //   const is_win = true;
+    // }
 
     const handlePress = () => {
       // Handle button press here
@@ -120,28 +120,27 @@ export default function Summary({navigation}) {
 
     
   return (
-      <ImageBackground source={require("../../../../media/Summarypage.gif")} style={{width: "100%",height: "100%",alignItems:'center',
+      <ImageBackground source={require("../../../../media/Environment/bulkhead-walls-files/bulkhead-wallsx3.png")} style={{width: "100%",height: "100%",alignItems:'center',
       // alignContent:'center',
       justifyContent:'center'}}>
-        <View style ={{"borderRadius":20,"width":'80%','height':'90%','backgroundColor':"black","opacity":0.8}}>
+            {is_win ? 
+            <Animated.Image source={require("../../../../media/Summary/WinPage2.gif")} style={{opacity: fadeAnim, height:"40%",aspectRatio:1, opacity:1}} />
+            :
+            <Animated.Image source={require("../../../../media/Summary/LosingPage.gif")} style={{opacity: fadeAnim, height:"40%",aspectRatio:1, opacity:1}} />
+            }
+        <View style ={{"borderRadius":20,"width":'80%','height':'30%','backgroundColor':"black","opacity":0.8}}>
          <View style={{flex:1, flexDirection:"row"}}>
 
             <View style={{"flex":1}}></View>
             <View style={{"flex":10}}>
               <View style={{"flex":1,flexDirection:"column"}}>
-                <View style={{"flex":3, "alignItems":'center'}}>
-                  {/* This is the Rendering of the Win or Death Picture */}
-                  {is_win ? 
-                  <Animated.Image source={require("../../../../media/Characters/Adventurer/Individual_Sprites/adventurer-idle-2-00.png")} style={{opacity: fadeAnim, height:"80%",aspectRatio:1, opacity:1}} />
-                  :
-                  <Animated.Image source={require("../../../../media/Characters/Adventurer/Grave.png")} style={{opacity: fadeAnim, height:"80%",aspectRatio:1, opacity:1}} />
-                  }
+                <View style={{"flex":1, "alignItems":'center'}}>
                 </View>
-                <View style={{"flex":3,alignItems:'center', marginTop:"2%"}}>
+                <View style={{"flex":3,alignItems:'center'}}>
                   {/* This will render the Button as well as the Type Script Effect */}
                   <Text style={{fontFamily: 'PressStart2P-Regular', fontSize:normalize(10),lineHeight:normalize(10),color:"#656894", opacity:1,align:"center"}}>{displayText}</Text>
                 </View>
-                <Animated.View style={{"flex":1,alignItems:'center',opacity: fadeInAnim, transform: [{ translateY: slideAnim }]}}>
+                <Animated.View style={{"flex":3,alignItems:'center',opacity: fadeInAnim, transform: [{ translateY: slideAnim }]}}>
                   {/* This will render the Button as well as the Type Script Effect */}
                   <TouchableHighlight style={{height:"70%", width:"50%",borderRadius:15, justifyContent:'center', alignItems: 'center',backgroundColor:"#656894"}}>
                     <View>

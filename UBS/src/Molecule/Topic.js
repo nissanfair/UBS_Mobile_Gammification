@@ -64,9 +64,9 @@ const Topic = () => {
 
         // For some reason have to specify 10.0.2. This is because of the android emulator requiring different network config
         // For JP use for his phone
-        var fetchTopics = "http://192.168.29.14:3000/6bit/topics/totalquizzes"
+        // var fetchTopics = "http://192.168.29.14:3000/6bit/topics/totalquizzes"
         // For Emulator
-        // var fetchTopics = "http://10.0.2.2:3000/6bit/topics/totalquizzes"
+        var fetchTopics = "http://10.0.2.2:3000/6bit/topics/totalquizzes"
         console.log("i am in use Effect")
         // Dynamically get all the topics from firebase - On the firebase side i tweaked it in a way so i /3 lol
         fetch(fetchTopics)
@@ -272,8 +272,8 @@ const Topic = () => {
                             borderWidth: 2,
                             top:0,
                             
-      width: '120%',
-      height: '240%'}}  source={require("../../media/TopicJs/bgattack.png")}/>
+                            aspectRatio:1,
+                            height: '150%'}}  source={require("../../media/TopicJs/bgattack.png")}/>
                     </Animated.View>
 
 
@@ -293,7 +293,7 @@ const Topic = () => {
                             <Animated.View style={[{ flex: 4 }]}>
                                 <TouchableOpacity onPress={() => handleClickInformation(topic.topic)} style={{ width: "100%", height: "100%", alignItems: 'center', justifyContent: "center", alignSelf: "center", alignContent: "center" }}>
                                     <ImageBackground resizeMode="cover" style={[{ aspectRatio: 4, alignSelf: "center", justifyContent: "center", alignItems: "center", paddingLeft: "1%", flexDirection: "row", width: "100%", height: "80%", flex: 4 }]} source={index % 2 == 0 ? require("../../media/TopicJs/attack.png") : require("../../media/TopicJs/attack.png")}>
-                                        <Text style={{ fontFamily: 'PressStart2P-Regular', fontSize:normalize(8),lineHeight:normalize(8), textAlign: "center", paddingStart: "7%", paddingEnd: "14%" }}>{topic.topicName}</Text>
+                                        <Text style={{ fontFamily: 'PressStart2P-Regular', fontSize:normalize(8),lineHeight:normalize(8), textAlign: "center", paddingStart: "7%", paddingEnd: "14%", color:"white" }}>{topic.topicName}</Text>
                                     </ImageBackground>
                                 </TouchableOpacity>
                             </Animated.View>
