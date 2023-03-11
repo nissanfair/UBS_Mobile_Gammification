@@ -119,7 +119,7 @@ const TopicLearning = () => {
 
         <View style={styles.backgroundContainer}>
           <ImageBackground
-            source={require('../../../media/Environment/Battleground2.png')}
+            source={require('../../../media/Environment/LearningGround.png')}
             resizeImage="contain"
             style={styles.backdrop} />
         </View>
@@ -188,7 +188,7 @@ const TopicLearning = () => {
 
               <View style={styles.speechBox}>
                 <TouchableWithoutFeedback onPress={Forwardbutton}>
-                  <Text style={styles.speechText}>{"\n"} Hey Newbie, these are the topics you will learn about to better prepare for {learnSelectedTopic["Topic Name"]}. {"\n"}</Text>
+                  <Text style={styles.speechText}>Hey Newbie, these are the topics you will learn about to better prepare for {learnSelectedTopic["Topic Name"]}. {"\n"}</Text>
                   <Text style={styles.speechText}>Click Here To Continue.</Text>
                 </TouchableWithoutFeedback>
               </View>
@@ -207,7 +207,7 @@ const TopicLearning = () => {
 
         <View style={styles.backgroundContainer}>
           <Image
-            source={require('../../../media/Environment/Battleground2.png')}
+            source={require('../../../media/Environment/LearningGround.png')}
             resizeImage="stretch"
             style={styles.backdrop} />
         </View>
@@ -250,7 +250,7 @@ const TopicLearning = () => {
 
               <View style={styles.speechBox}>
                 <TouchableWithoutFeedback onPress={Forwardbutton}>
-                  <Text style={styles.speechText}> {"\n"} {learnSelectedTopic["Origin of the Attack"]} {"\n"}</Text>
+                  <Text style={styles.speechText}> {learnSelectedTopic["Origin of the Attack"]} {"\n"}</Text>
                   <Text style={styles.speechText}>Click Here To Continue.</Text>
                 </TouchableWithoutFeedback>
               </View>
@@ -277,7 +277,7 @@ const TopicLearning = () => {
 
         <View style={styles.backgroundContainer}>
           <Image
-            source={require('../../../media/Environment/Battleground2.png')}
+            source={require('../../../media/Environment/LearningGround.png')}
             resizeImage="stretch"
             style={styles.backdrop} />
         </View>
@@ -325,7 +325,7 @@ const TopicLearning = () => {
 
               <View style={styles.speechBox}>
                 <TouchableWithoutFeedback onPress={Forwardbutton}>
-                  <Text style={styles.speechText}> {"\n"} {learnSelectedTopic["Introducing the Attack"]} {"\n"}</Text>
+                  <Text style={styles.speechText}> {learnSelectedTopic["Introducing the Attack"]} {"\n"}</Text>
                   <Text style={styles.speechText}>Click Here To Continue.</Text>
                 </TouchableWithoutFeedback>
               </View>
@@ -354,7 +354,7 @@ const TopicLearning = () => {
 
       <View style={styles.backgroundContainer}>
         <Image
-          source={require('../../../media/Environment/Battleground2.png')}
+          source={require('../../../media/Environment/LearningGround.png')}
           resizeImage="stretch"
           style={styles.backdrop} />
       </View>
@@ -400,7 +400,7 @@ const TopicLearning = () => {
 
             <View style={styles.speechBox}>
               <TouchableWithoutFeedback onPress={Forwardbutton}>
-                <Text style={styles.speechText}> {"\n"} {learnSelectedTopic["Common Types of Attacks"]} {"\n"}</Text>
+                <Text style={styles.speechText}> {learnSelectedTopic["Common Types of Attacks"]} {"\n"}</Text>
                 <Text style={styles.speechText}>Click Here To Continue.</Text>
               </TouchableWithoutFeedback>
             </View>
@@ -429,7 +429,7 @@ const TopicLearning = () => {
 
       <View style={styles.backgroundContainer}>
         <Image
-          source={require('../../../media/Environment/Battleground2.png')}
+          source={require('../../../media/Environment/LearningGround.png')}
           resizeImage="stretch"
           style={styles.backdrop} />
       </View>
@@ -477,7 +477,7 @@ const TopicLearning = () => {
 
             <View style={styles.speechBox}>
               
-                <Text style={styles.speechText}> {"\n"} {learnSelectedTopic["Avoid Falling Victim"]} {"\n"}</Text>
+                <Text style={styles.speechText}> {learnSelectedTopic["Avoid Falling Victim"]} {"\n"}</Text>
               
             </View>
 
