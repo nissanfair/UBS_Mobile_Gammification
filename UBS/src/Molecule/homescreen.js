@@ -1,59 +1,88 @@
-// import React from 'react'
-import { SafeAreaView,ScrollView,StatusBar,StyleSheet,Text,useColorScheme,View,Section, Pressable, Image, TouchableHighlight, TouchableOpacity, ImageBackground, Button} from 'react-native';
+import { SafeAreaView,ScrollView,StatusBar,StyleSheet,Text,useColorScheme,View,Section, Pressable, Image, TouchableHighlight, TouchableOpacity, ImageBackground, Button, Dimensions} from 'react-native';
 import React, { useEffect, useState } from 'react'
 import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
 import auth from '@react-native-firebase/auth';
 import {NavigationContainer, useNavigation} from '@react-navigation/native';
 
 const styles = StyleSheet.create({
+
+  backgroundMainContainer: {
+    flexDirection: 'column',
+    width: "100%",
+    height: "100%", 
+    // borderColor: 'red',
+    // borderWidth: 10,  
+  },
+
   background : {
-      // width: "100%",
-      // height: "100%", 
-      flex: 1
+      width: "100%",
+      height: "100%", 
+      // zIndex: 1
+      // flex: 1
+      // borderColor: 'orange',
+      // borderWidth: 10,  
  
   }, 
-  safeArea: {
-    backgroundColor: "#262b2f"
-    // flex: 1
-   },
-   container: {
-    // height: Dimensions.get('window').height,
-    // height: 1,
-    // flex: 1,
-    backgroundColor: "#262b2f",
-   },
-   topContent: {
-    // flex: 1,
-    // alignItems: 'center',
-    // justifyContent: 'center'
-   },
+
+  backgroundContainer: {
+    position: 'absolute',
+    top: '0%',
+    bottom: '0%',
+    left: '0%',
+    right: '0%',
+    // flexDirection: 'column'
+    // borderColor: 'green',
+    // borderWidth: 10,  
+  },
+
+  viewContainer1: {
+    flex: 1, 
+    alignSelf: 'center',
+    // borderColor: 'blue',
+    // borderWidth: 2,  
+    // height: '5%', 
+    width: '35%',
+    marginBottom: '2%'
+  }, 
+
    bottomContent: {
-    // flex: 1,
-    // alignItems: 'center',
-    // justifyContent: 'center'
+    flex: 1,
+    // borderColor: 'red',
+    // borderWidth: 2,  
+    height: '20%', 
+    justifyContent: 'flex-end'
    },
+
    mainText: {
     fontSize: 54,
-    color: "white",
+    // color: "white",
+    zIndex: 1
    },
+
    googleButton: {
     backgroundColor: "white",
-    borderRadius: 4,
-    paddingHorizontal: 34,
-    paddingVertical: 15,
+    borderRadius: 8,
+    paddingHorizontal: '5%',
+    paddingVertical: '5%',
     flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center', 
+    // justifyContent: 'flex-end'
+    // zIndex: 1,
+    // justifyContent: 'center',
+    // alignItems: 'center', 
     // flex: 1
    },
+
    googleButtonText: {
-    marginLeft: 16,
+    marginLeft: "15%",
     fontSize: 18,
-    fontWeight: '600'
+    fontWeight: '600',
+    zIndex: 1
    },
+
    googleIcon: {
     height: 24,
-    width: 24
+    width: 24,
+    zIndex: 1
    }
 })
 
@@ -81,16 +110,15 @@ const HomeScreen = () => {
   console.log('I am about to sign in')
 
   const signinWithGoogle = async () => {
-    // const navigation = useNavigation();
+
     try{
       const { idToken, user } = await GoogleSignin.signIn();
-      // const navigation = useNavigation();
+
       setUserDataID(idToken);
       setUserData(user);
 
       console.log("This is the TokenID" , userDataID);
       console.log("This is the User Data" , userData);
-      // console.log("This is the Scopes" , userDataScope);
       
       if (Object.keys(userData).length !== 0) {
         console.log(userData)
@@ -98,12 +126,12 @@ const HomeScreen = () => {
         console.log(userData['givenName'])
         setloggedIn(true);
         setUserName(userData['givenName']);
-
         navigation.navigate('Topic')
-        // alert('WELCOME BACK');
-        } 
+      } 
+
+      //firebase 
       const googleCredential = auth.GoogleAuthProvider.credential(idToken);
-      // console.log(googleCredential)
+      console.log(googleCredential)
       // return auth().signinWithCredential(googleCredential);
       const user_signin =  auth().signinWithCredential(googleCredential);
       user_signin.then((user) => {
@@ -112,22 +140,18 @@ const HomeScreen = () => {
       .catch((error) => 
       console.log(error))
 
+
     //Catching Errors here 
     } catch(error){
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
         alert('Cancel');
       } else if (error.code === statusCodes.IN_PROGRESS) {
         alert('Signin in progress');}
-        // else{
-        //   alert(error.message)
-        // }
+        else{
+          alert(error.message)
+        }
     }
   }; 
-
-  // const Forwardbutton = () => {
-  //   const navigation = useNavigation();
-  //   navigation.navigate("Progress")
-  // }
 
 
 //   const signout = async () =>{
@@ -143,36 +167,41 @@ const HomeScreen = () => {
 
   if(loggedIn == false){
   return (
-    <View>
-        <TouchableHighlight>
-          <ImageBackground resizeMode="cover" source={require("../../media/Environment/SSO.png")} style={styles.background} />
-        </TouchableHighlight>
-        <SafeAreaView style={styles.safeArea}>
-          <StatusBar barStyle="light-content" />
-          <View style={styles.container}>
-            {/* <View style={styles.topContent}>
-            <Text style={styles.mainText}>
-              Cybersecurity through Gamification
-            </Text>
-            </View> */}
+    <View style={styles.backgroundMainContainer}>
+
+        <View style={styles.backgroundContainer}>
+          <TouchableHighlight>
+            <ImageBackground resizeMode="cover" source={require("../../media/UI/cloud_homepage.gif")} style={styles.background} />
+          </TouchableHighlight>
+        </View>
+
+        <View style={styles.backgroundContainer}>
+          {/* <TouchableHighlight>
+            <ImageBackground resizeMode="cover" source={require("../../media/UI/cloud_homepage.gif")} style={styles.background} />
+          </TouchableHighlight> */}
+        </View>
+
+        <View style={styles.viewContainer1}>
+          <View style={styles.bottomContent}>
+              <TouchableOpacity onPressIn={() => signinWithGoogle()} style={styles.googleButton} >
+                <Image
+                style={styles.googleIcon}
+                source={{
+                  uri: "https://i.ibb.co/j82DCcR/search.png",
+                }}
+                />
+                <Text style={styles.googleButtonText}>Sign In with Google</Text>
+              </TouchableOpacity>
+            </View>
+        </View>
+
+        {/* <View style={styles.viewContainer2}></View>
+        <View style={styles.viewContainer3}></View> */}
 
 {/* for sign in */}
-            <View style={styles.bottomContent}>
-            {/* <TouchableOpacity style={styles.googleButton} onPress={signinWithGoogle}> */}
-            <TouchableOpacity 
-            // onPress={() =>signinWithGoogle()
-            //   // .then(res => {console.log(res);
-            //   // this.setUserData(res)}) 
-            //   // .catch (error => console.log("This is the error message at sign in:", error.message)) 
-            // }
-            onPressIn={() =>
-              signinWithGoogle()
-            }
-            // onPress={
-            //   () => Forwardbutton()
-            // }
-            style={styles.googleButton} >
+          {/* <View style={styles.bottomContent}>
 
+            <TouchableOpacity onPressIn={() => signinWithGoogle()} style={styles.googleButton} >
               <Image
               style={styles.googleIcon}
               source={{
@@ -181,7 +210,8 @@ const HomeScreen = () => {
               />
               <Text style={styles.googleButtonText}>Sign In with Google</Text>
             </TouchableOpacity>
-            </View>
+
+          </View> */}
 
 {/* for sign out */}
           {/* <View style={styles.bottomContent}> */}
@@ -206,28 +236,23 @@ const HomeScreen = () => {
           {/* </View> */}
 
             
-          </View>
-        </SafeAreaView>
-
+          {/* </View> */}
 
     </View>
   )
   }
 
-//   else{
-//     return(
-//       <View>
-//         {/* <Button title="Let's start!" onPress={() =>
-//           navigation.navigate("Topic")}/> */}
-//         {/* <Button title="Let's start!" onPress={Forwardbutton}/> */}
-//         <Text>kjasbcijaciajbcaijbcjacbjka</Text>
-//       </View>
-//     )
+  else{
+    return(
+      <View>
+        {/* <Button title="Let's start!" onPress={() =>
+          navigation.navigate("Topic")}/> */}
+        {/* <Button title="Let's start!" onPress={Forwardbutton}/> */}
+        <Text>Resume Game</Text>
+      </View>
+    )
 
-// }
+}
 }
 export default HomeScreen;
-
-
-
 
