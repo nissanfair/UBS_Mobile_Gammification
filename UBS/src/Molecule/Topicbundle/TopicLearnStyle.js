@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
   speechText:{
     color: 'white',
     fontFamily: 'PressStart2P-Regular',
-    lineHeight: normalize(11),
+    lineHeight: normalize(10),
     alignSelf: "center",
     fontSize: normalize(8),
   },

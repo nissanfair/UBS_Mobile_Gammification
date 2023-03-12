@@ -25,7 +25,7 @@ const TopicLearning = () => {
   };
 
   const Exitbutton = () => {
-    navigation.navigate("Topic")
+    navigation.navigate("Education")
   };
 
   const Startbutton = () => {
