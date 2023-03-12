@@ -63,7 +63,7 @@ export default function Summary({navigation}) {
     const handlePress = () => {
       // Handle button press here
       console.log('Button pressed!');
-      navigation.navigate(TopicIntroduction) 
+      // navigation.navigate(TopicIntroduction) 
     }
     // Disable back button
     useEffect(() => {
