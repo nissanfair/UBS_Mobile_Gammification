@@ -12,7 +12,7 @@ import {styles} from '../Styling';
 
 export default function HomeScreen({navigation}) {
   const GoogleSSO = () => {
-    navigation.navigate("Topic")
+    navigation.navigate("MainScreen")
   }
 
   return (
