@@ -1,5 +1,24 @@
 /* eslint-disable prettier/prettier */
 import {StyleSheet} from 'react-native';
+import {Dimensions, Platform, PixelRatio} from 'react-native';
+
+// start of size mathing
+const {
+  width: SCREEN_WIDTH,
+  height: SCREEN_HEIGHT,
+} = Dimensions.get('window');
+
+const scale = SCREEN_WIDTH / 500;
+
+export function normalize(size) {
+  const newSize = size * scale 
+  if (Platform.OS === 'andriod') {
+    return Math.round(PixelRatio.roundToNearestPixel(newSize))
+  } else {
+    return Math.round(PixelRatio.roundToNearestPixel(newSize)) - 2
+  }
+}
+// end of size mathing
 
 const styles = StyleSheet.create({
   main: {
@@ -80,30 +99,30 @@ const styles = StyleSheet.create({
   textstyle: {
     color: 'white',
     fontFamily: 'PressStart2P-Regular',
-    fontSize: 12,
+    fontSize: normalize(8),
   },
   textdescheaderstyle: {
     color: 'red',
     fontFamily: 'PressStart2P-Regular',
-    fontSize: 12,
+    fontSize: normalize(10),
   },
   textrewardheaderstyle: {
     color: 'white',
     fontFamily: 'PressStart2P-Regular',
-    fontSize: 14,
+    fontSize: normalize(10),
     textAlign: 'center',
   },
   textrewardstyle: {
     color: 'gold',
     fontFamily: 'PressStart2P-Regular',
-    fontSize: 14,
+    fontSize: normalize(10),
     textAlign: 'center',
   },
   textdescstyle: {
     color: 'white',
     fontFamily: 'PressStart2P-Regular',
-    fontSize: 10,
-    lineHeight: 18,
+    fontSize: normalize(7),
+    lineHeight: normalize(11),
   },
 });
 
