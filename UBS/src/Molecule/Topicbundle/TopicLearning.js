@@ -22,6 +22,7 @@ const TopicLearning = () => {
 
   const Forwardbutton = () => {
     setIndex(Index + 1)
+ 
   };
 
   const Exitbutton = () => {
@@ -36,7 +37,17 @@ const TopicLearning = () => {
 
   const [topicChosen, setTopic] = useState(topic);
   const [learnSelectedTopic, pushLearn] = useState('');
+  const [displayText, setDisplayText] = useState('');
+  const [currentPage, setPage] = useState(["Origin of the Attack","Introducing the Attack","Common Types of Attacks","Avoid Falling Victim"]);
 
+  const typeWriter = (text, i) => {
+     if (i < text.length) {
+      setDisplayText(text.substring(0, i + 1));
+       setTimeout(() => {
+         typeWriter(text, i + 1);
+       }, 5);
+     }
+   }
   useEffect(() => {
     var fetchSelectedTopic = `http://10.0.2.2:3000/6bit/topics/${topic}`;
     console.log(topic);
@@ -51,6 +62,19 @@ const TopicLearning = () => {
         console.log(error);
       });
   }, []);
+
+  //Keep track of the index 
+  useEffect(() => {
+    if(Index !=0){
+      console.log(learnSelectedTopic[currentPage[Index-1]]);
+      typeWriter(learnSelectedTopic[currentPage[Index-1]],0);
+      
+    }
+    
+
+    //setIsQuestionRendered(true);
+
+  }, [Index]);
 
   //   // WITHOUT INDEXING
   // return (
@@ -141,7 +165,7 @@ const TopicLearning = () => {
             <Image
               source={require('../../../media/UI/origins_trans.gif')}
               resizeMode="contain"
-              style={styles.origins}/>
+              style={styles.origins} />
             <Text style={styles.textstyle}>Origins</Text>
           </View>
 
@@ -149,7 +173,7 @@ const TopicLearning = () => {
             <Image
               source={require('../../../media/UI/reading_trans.gif')}
               resizeMode="contain"
-              style={styles.origins}/>
+              style={styles.origins} />
             <Text style={styles.textstyle}>Introduction</Text>
           </View>
 
@@ -157,7 +181,7 @@ const TopicLearning = () => {
             <Image
               source={require('../../../media/UI/Sword_trans.gif')}
               resizeMode="contain"
-              style={styles.origins}/>
+              style={styles.origins} />
             <Text style={styles.textstyle}>Common Attacks</Text>
           </View>
 
@@ -165,7 +189,7 @@ const TopicLearning = () => {
             <Image
               source={require('../../../media/UI/Shield_trans.gif')}
               resizeMode="contain"
-              style={styles.origins}/>
+              style={styles.origins} />
             <Text style={styles.textstyle}>Protecting Ourselves</Text>
           </View>
 
@@ -173,27 +197,27 @@ const TopicLearning = () => {
 
         <View style={styles.bottomContainer}>
 
-            <ImageBackground
-              source={require('../../../media/Environment/speech_box.png')}
-              resizeImage="contain"
-              style={styles.speechImage}>
+          <ImageBackground
+            source={require('../../../media/Environment/speech_box.png')}
+            resizeImage="contain"
+            style={styles.speechImage}>
 
-              <View style={styles.avatar}>
-                <Image
-                  source={require('../../../media/Characters/LearningPartner/orangeman.gif')}
-                  resizeMode="contain"
-                  style={styles.teacher}/>
-                <Text style={styles.avatarText}>Teacher</Text>
-              </View>
+            <View style={styles.avatar}>
+              <Image
+                source={require('../../../media/Characters/LearningPartner/orangeman.gif')}
+                resizeMode="contain"
+                style={styles.teacher} />
+              <Text style={styles.avatarText}>Teacher</Text>
+            </View>
 
-              <View style={styles.speechBox}>
-                <TouchableWithoutFeedback onPress={Forwardbutton}>
-                  <Text style={styles.speechText}>Hey Newbie, these are the topics you will learn about to better prepare for {learnSelectedTopic["Topic Name"]}. {"\n"}</Text>
-                  <Text style={styles.speechText}>Click Here To Continue.</Text>
-                </TouchableWithoutFeedback>
-              </View>
+            <View style={styles.speechBox}>
+              <TouchableWithoutFeedback onPress={Forwardbutton}>
+                <Text style={styles.speechText}>Hey Newbie, these are the topics you will learn about to better prepare for {learnSelectedTopic["Topic Name"]}. {"\n"}</Text>
+                <Text style={styles.speechText}>Click Here To Continue.</Text>
+              </TouchableWithoutFeedback>
+            </View>
 
-            </ImageBackground>
+          </ImageBackground>
 
         </View>
 
@@ -228,7 +252,7 @@ const TopicLearning = () => {
             <Image
               source={require('../../../media/UI/origins_trans.gif')}
               resizeMode="contain"
-              style={styles.origins}/>
+              style={styles.origins} />
             <Text style={styles.textstyle}>Origins</Text>
 
           </View>
@@ -236,26 +260,26 @@ const TopicLearning = () => {
 
         <View style={styles.bottomContainer}>
 
-            <ImageBackground
-              source={require('../../../media/Environment/speech_box.png')}
-              resizeImage="contain"
-              style={styles.speechImage}>
-              <View style={styles.avatar}>
-                <Image
-                  source={require('../../../media/Characters/LearningPartner/orangeman.gif')}
-                  resizeMode="contain"
-                  style={styles.teacher}/>
-                <Text style={styles.avatarText}>Teacher</Text>
-              </View>
+          <ImageBackground
+            source={require('../../../media/Environment/speech_box.png')}
+            resizeImage="contain"
+            style={styles.speechImage}>
+            <View style={styles.avatar}>
+              <Image
+                source={require('../../../media/Characters/LearningPartner/orangeman.gif')}
+                resizeMode="contain"
+                style={styles.teacher} />
+              <Text style={styles.avatarText}>Teacher</Text>
+            </View>
 
-              <View style={styles.speechBox}>
-                <TouchableWithoutFeedback onPress={Forwardbutton}>
-                  <Text style={styles.speechText}> {learnSelectedTopic["Origin of the Attack"]} {"\n"}</Text>
-                  <Text style={styles.speechText}>Click Here To Continue.</Text>
-                </TouchableWithoutFeedback>
-              </View>
+            <View style={styles.speechBox}>
+              <TouchableWithoutFeedback onPress={Forwardbutton}>
+                <Text style={styles.speechText}> {displayText} {"\n"}</Text>
+                <Text style={styles.speechText}>Click Here To Continue.</Text>
+              </TouchableWithoutFeedback>
+            </View>
 
-            </ImageBackground>
+          </ImageBackground>
 
           <View style={styles.exitContainer}>
             <TouchableOpacity style={styles.exitbutton} onPress={Exitbutton}>
@@ -308,32 +332,32 @@ const TopicLearning = () => {
         </View>
         <View style={styles.bottomContainer}>
 
-         
-            <ImageBackground
-              source={require('../../../media/Environment/speech_box.png')}
-              resizeImage="contain"
-              style={styles.speechImage}
-            >
-              <View style={styles.avatar}>
-                <Image
-                  source={require('../../../media/Characters/LearningPartner/orangeman.gif')}
-                  resizeMode="contain"
-                  style={styles.teacher}
-                />
-                <Text style={styles.avatarText}>Teacher</Text>
-              </View>
 
-              <View style={styles.speechBox}>
-                <TouchableWithoutFeedback onPress={Forwardbutton}>
-                  <Text style={styles.speechText}> {learnSelectedTopic["Introducing the Attack"]} {"\n"}</Text>
-                  <Text style={styles.speechText}>Click Here To Continue.</Text>
-                </TouchableWithoutFeedback>
-              </View>
+          <ImageBackground
+            source={require('../../../media/Environment/speech_box.png')}
+            resizeImage="contain"
+            style={styles.speechImage}
+          >
+            <View style={styles.avatar}>
+              <Image
+                source={require('../../../media/Characters/LearningPartner/orangeman.gif')}
+                resizeMode="contain"
+                style={styles.teacher}
+              />
+              <Text style={styles.avatarText}>Teacher</Text>
+            </View>
+
+            <View style={styles.speechBox}>
+              <TouchableWithoutFeedback onPress={Forwardbutton}>
+                <Text style={styles.speechText}> {displayText} {"\n"}</Text>
+                <Text style={styles.speechText}>Click Here To Continue.</Text>
+              </TouchableWithoutFeedback>
+            </View>
 
 
-            </ImageBackground>
+          </ImageBackground>
 
-         
+
           <View style={styles.exitContainer}>
             <TouchableOpacity style={styles.exitbutton} onPress={Exitbutton}>
               <Image
@@ -352,38 +376,38 @@ const TopicLearning = () => {
     return (
       <View style={styles.main}>
 
-      <View style={styles.backgroundContainer}>
-        <Image
-          source={require('../../../media/Environment/LearningGround.png')}
-          resizeImage="stretch"
-          style={styles.backdrop} />
-      </View>
-
-      <View style={styles.titleContainer}>
-        <View style={styles.backButtonContainer}>
-          <TouchableOpacity style={styles.button} onPress={Backbutton}>
-            <Image
-              source={require('../../../media/UI/previous.png')}
-              resizeMode="contain" />
-          </TouchableOpacity>
-        </View>
-        <Text style={styles.titleText}>Learning About {learnSelectedTopic["Topic Name"]}</Text>
-      </View>
-
-      <View style={styles.middleContainer}>
-        <View style={styles.desc}>
+        <View style={styles.backgroundContainer}>
           <Image
+            source={require('../../../media/Environment/LearningGround.png')}
+            resizeImage="stretch"
+            style={styles.backdrop} />
+        </View>
+
+        <View style={styles.titleContainer}>
+          <View style={styles.backButtonContainer}>
+            <TouchableOpacity style={styles.button} onPress={Backbutton}>
+              <Image
+                source={require('../../../media/UI/previous.png')}
+                resizeMode="contain" />
+            </TouchableOpacity>
+          </View>
+          <Text style={styles.titleText}>Learning About {learnSelectedTopic["Topic Name"]}</Text>
+        </View>
+
+        <View style={styles.middleContainer}>
+          <View style={styles.desc}>
+            <Image
               source={require('../../../media/UI/Sword_trans.gif')}
               resizeMode="contain"
               style={styles.origins}
             />
-          <Text style={styles.textstyle}>Common Attacks</Text>
+            <Text style={styles.textstyle}>Common Attacks</Text>
 
+          </View>
         </View>
-      </View>
-      <View style={styles.bottomContainer}>
+        <View style={styles.bottomContainer}>
 
-       
+
           <ImageBackground
             source={require('../../../media/Environment/speech_box.png')}
             resizeImage="contain"
@@ -400,7 +424,7 @@ const TopicLearning = () => {
 
             <View style={styles.speechBox}>
               <TouchableWithoutFeedback onPress={Forwardbutton}>
-                <Text style={styles.speechText}> {learnSelectedTopic["Common Types of Attacks"]} {"\n"}</Text>
+                <Text style={styles.speechText}> {displayText} {"\n"}</Text>
                 <Text style={styles.speechText}>Click Here To Continue.</Text>
               </TouchableWithoutFeedback>
             </View>
@@ -408,18 +432,18 @@ const TopicLearning = () => {
 
           </ImageBackground>
 
-       
-        <View style={styles.exitContainer}>
-          <TouchableOpacity style={styles.exitbutton} onPress={Exitbutton}>
-            <Image
-              source={require('../../../media/UI/exit.png')}
-              resizeMode="contain" />
-          </TouchableOpacity>
+
+          <View style={styles.exitContainer}>
+            <TouchableOpacity style={styles.exitbutton} onPress={Exitbutton}>
+              <Image
+                source={require('../../../media/UI/exit.png')}
+                resizeMode="contain" />
+            </TouchableOpacity>
+          </View>
+
         </View>
 
       </View>
-
-    </View>
     );
   };
 
@@ -427,40 +451,40 @@ const TopicLearning = () => {
     return (
       <View style={styles.main}>
 
-      <View style={styles.backgroundContainer}>
-        <Image
-          source={require('../../../media/Environment/LearningGround.png')}
-          resizeImage="stretch"
-          style={styles.backdrop} />
-      </View>
-
-      <View style={styles.titleContainer}>
-        <View style={styles.backButtonContainer}>
-          <TouchableOpacity style={styles.button} onPress={Backbutton}>
-            <Image
-              source={require('../../../media/UI/previous.png')}
-              resizeMode="contain" />
-          </TouchableOpacity>
-        </View>
-        <Text style={styles.titleText}>Learning About {learnSelectedTopic["Topic Name"]}</Text>
-      </View>
-
-      <View style={styles.middleContainer}>
-        <View style={styles.desc}>
-          {/* <Text style={{color: "black", fontFamily: 'PressStart2P-Regular'}}> PLACEHOLDER HERE!! </Text> */}
-          <Text style={{ color: "black", fontFamily: 'PressStart2P-Regular' }}>{learnSelectedTopic[0]}</Text>
+        <View style={styles.backgroundContainer}>
           <Image
+            source={require('../../../media/Environment/LearningGround.png')}
+            resizeImage="stretch"
+            style={styles.backdrop} />
+        </View>
+
+        <View style={styles.titleContainer}>
+          <View style={styles.backButtonContainer}>
+            <TouchableOpacity style={styles.button} onPress={Backbutton}>
+              <Image
+                source={require('../../../media/UI/previous.png')}
+                resizeMode="contain" />
+            </TouchableOpacity>
+          </View>
+          <Text style={styles.titleText}>Learning About {learnSelectedTopic["Topic Name"]}</Text>
+        </View>
+
+        <View style={styles.middleContainer}>
+          <View style={styles.desc}>
+            {/* <Text style={{color: "black", fontFamily: 'PressStart2P-Regular'}}> PLACEHOLDER HERE!! </Text> */}
+      
+            <Image
               source={require('../../../media/UI/Shield_trans.gif')}
               resizeMode="contain"
               style={styles.origins}
             />
-          <Text style={styles.textstyle}>Protecting Ourselves</Text>
+            <Text style={styles.textstyle}>Protecting Ourselves</Text>
 
+          </View>
         </View>
-      </View>
-      <View style={styles.bottomContainer}>
+        <View style={styles.bottomContainer}>
 
-       
+
           <ImageBackground
             source={require('../../../media/Environment/speech_box.png')}
             resizeImage="contain"
@@ -476,26 +500,26 @@ const TopicLearning = () => {
             </View>
 
             <View style={styles.speechBox}>
-              
-                <Text style={styles.speechText}> {learnSelectedTopic["Avoid Falling Victim"]} {"\n"}</Text>
-              
+
+              <Text style={styles.speechText}> {displayText} {"\n"}</Text>
+
             </View>
 
 
           </ImageBackground>
 
-       
-        <View style={styles.exitContainer}>
-          <TouchableOpacity style={styles.exitbutton} onPress={Exitbutton}>
-            <Image
-              source={require('../../../media/UI/exit.png')}
-              resizeMode="contain" />
-          </TouchableOpacity>
+
+          <View style={styles.exitContainer}>
+            <TouchableOpacity style={styles.exitbutton} onPress={Exitbutton}>
+              <Image
+                source={require('../../../media/UI/exit.png')}
+                resizeMode="contain" />
+            </TouchableOpacity>
+          </View>
+
         </View>
 
       </View>
-
-    </View>
     );
   };
 
