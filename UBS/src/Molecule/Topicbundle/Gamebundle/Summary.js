@@ -30,7 +30,9 @@ export function normalize(size) {
 }
 
 
-export default function Summary({navigation}) {
+export default function Summary() {
+  const navigation = useNavigation();
+
     // This is the Fading In Effect. 
     const fadeAnim = useRef(new Animated.Value(0)).current;
 
@@ -63,7 +65,7 @@ export default function Summary({navigation}) {
     const handlePress = () => {
       // Handle button press here
       console.log('Button pressed!');
-      // navigation.navigate(TopicIntroduction) 
+      navigation.navigate(TopicIntroduction) 
     }
     // Disable back button
     useEffect(() => {
