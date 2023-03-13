@@ -9,6 +9,17 @@ import TopicLearning from './Topicbundle/TopicLearning';
 import TopicIntroduction from './Topicbundle/TopicIntroduction';
 import { ProgressBar } from '@react-native-community/progress-bar-android';
 
+//sfx
+import press from '../../media/Soundtracks/main/press.wav';
+import Sound from 'react-native-sound';
+Sound.setCategory('Playback');
+export var userPress = new Sound(press, (error) => {
+    if (error) {
+      console.log('failed to load the sound', error);
+      return;
+    }
+});
+
 // Redux slices 
 import { selectedTopic } from "../Redux/topicSlice"
 const {
@@ -45,6 +56,9 @@ const Topic = () => {
         dispatch(selectedTopic(levelinformation));
         // Once done, navigate to the topicsIntroduction page 
         navigation.navigate(TopicIntroduction);
+
+        userPress.setVolume(1.0);
+        userPress.play();
     }
 
     // Handle the educational content
@@ -56,6 +70,9 @@ const Topic = () => {
         dispatch(selectedTopic(levelinformation));
         // Once done, navigate to the topicsLearning page 
         navigation.navigate(TopicLearning);
+
+        userPress.setVolume(1.0);
+        userPress.play();
     }
 
     // Getting the firebase to display and generate the topics

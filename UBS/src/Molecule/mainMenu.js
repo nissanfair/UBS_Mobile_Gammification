@@ -13,6 +13,17 @@ import { ProgressBar } from '@react-native-community/progress-bar-android';
 // Redux slices 
 import { selectedTopic } from "../Redux/topicSlice"
 
+//sfx 
+import press from '../../media/Soundtracks/main/press.wav';
+import Sound from 'react-native-sound';
+Sound.setCategory('Playback');
+export var userPress = new Sound(press, (error) => {
+    if (error) {
+      console.log('failed to load the sound', error);
+      return;
+    }
+});
+
 const {
     width: SCREEN_WIDTH,
     height: SCREEN_HEIGHT,
@@ -153,7 +164,7 @@ const MainScreen = () => {
                 }}>
 
                     <Animated.View style={[{ flex: 4, transform: [{ scale: scaleValue }] }]}>
-                        <TouchableOpacity onPress={() => navigation.navigate("Topic")} style={{ width: "100%", height: "100%", alignItems: 'center', justifyContent: "center", alignSelf: "center", alignContent: "center" }}>
+                        <TouchableOpacity onPress={() => {navigation.navigate("Topic"); userPress.setVolume(1.0); userPress.play()}} style={{ width: "100%", height: "100%", alignItems: 'center', justifyContent: "center", alignSelf: "center", alignContent: "center" }}>
                             <ImageBackground resizeMode="cover" style={[{ aspectRatio: 4, alignSelf: "center", justifyContent: "center", alignItems: "center", paddingLeft: "1%", flexDirection: "row", width: "100%", height: "100%", flex: 4 }]} source={require("../../media/TopicJs/block.png")}>
                                 <Text style={{ fontFamily: 'PressStart2P-Regular', fontSize: normalize(10), lineHeight: normalize(10), paddingBottom: "7%", paddingEnd: "3%" }}>Play</Text>
                             </ImageBackground>
@@ -163,7 +174,7 @@ const MainScreen = () => {
 
 
                     <Animated.View style={[{ flex: 4, transform: [{ scale: scaleValue }] }]}>
-                        <TouchableOpacity onPress={() => navigation.navigate("Education")} style={{ width: "100%", height: "100%", alignItems: 'center', justifyContent: "center", alignSelf: "center", alignContent: "center" }}>
+                        <TouchableOpacity onPress={() => {navigation.navigate("Education"); userPress.setVolume(1.0); userPress.play()}} style={{ width: "100%", height: "100%", alignItems: 'center', justifyContent: "center", alignSelf: "center", alignContent: "center" }}>
                             <ImageBackground resizeMode="cover" style={[{ aspectRatio: 4, alignSelf: "center", justifyContent: "center", alignItems: "center", paddingLeft: "1%", flexDirection: "row", width: "100%", height: "100%", flex: 4 }]} source={require("../../media/TopicJs/block.png")}>
                                 <Text style={{ fontFamily: 'PressStart2P-Regular', fontSize: normalize(10), lineHeight: normalize(10), paddingBottom: "7%", paddingEnd: "3%" }}>Get Educated</Text>
                             </ImageBackground>
@@ -172,7 +183,7 @@ const MainScreen = () => {
                     </Animated.View>
 
                     <Animated.View style={[{ flex: 4, transform: [{ scale: scaleValue }] }]}>
-                        <TouchableOpacity style={{ width: "100%", height: "100%", alignItems: 'center', justifyContent: "center", alignSelf: "center", alignContent: "center" }}>
+                        <TouchableOpacity onPress={() => {userPress.setVolume(1.0); userPress.play()}} style={{ width: "100%", height: "100%", alignItems: 'center', justifyContent: "center", alignSelf: "center", alignContent: "center" }}>
                             <ImageBackground resizeMode="cover" style={[{ aspectRatio: 4, alignSelf: "center", justifyContent: "center", alignItems: "center", paddingLeft: "1%", flexDirection: "row", width: "100%", height: "100%", flex: 4 }]} source={require("../../media/TopicJs/block.png")}>
                                 <Text style={{ fontFamily: 'PressStart2P-Regular', fontSize: normalize(10), lineHeight: normalize(10), paddingBottom: "7%", paddingEnd: "3%" }}>About</Text>
                             </ImageBackground>

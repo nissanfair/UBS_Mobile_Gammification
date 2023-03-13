@@ -12,8 +12,15 @@ import { Animated } from 'react-native';
 // sfx
 import { fight } from '../TopicIntroduction';
 import { adven } from '../../homescreen';
+import press from '../../../../media/Soundtracks/main/press.wav';
 import Sound from 'react-native-sound';
 Sound.setCategory('Playback');
+export var userPress = new Sound(press, (error) => {
+    if (error) {
+      console.log('failed to load the sound', error);
+      return;
+    }
+});
 //end sfx
 
 import TopicIntroduction from '../TopicIntroduction';
@@ -80,6 +87,9 @@ export default function Summary() {
       adven.setVolume(0.5);
       adven.play();
       adven.setNumberOfLoops(-1);
+
+      userPress.setVolume(1.0);
+      userPress.play();
     }
     // Disable back button
     useEffect(() => {

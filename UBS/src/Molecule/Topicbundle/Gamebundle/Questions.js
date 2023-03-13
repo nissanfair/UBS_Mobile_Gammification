@@ -166,6 +166,8 @@ const Question = ({ gameStatus }) => {
         }
         else {
             setQuestionIndex(questionIndex + 1);
+            userPress.setVolume(1.0);
+            userPress.play();
         }
         // Step 2: Set True to Show Question
         setShowQuestion(true)
