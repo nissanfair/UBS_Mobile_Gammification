@@ -15,6 +15,30 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {useDispatch, useSelector,useStore} from 'react-redux';
 import {styles} from './TopicIntroStyle';
 import {setSelectedTimeState, setShowSummary , setTotal_Questions, set_answered_correctly, set_answered_wrongly, set_game_status, set_topic_selected} from "../../Redux/questionSlice"
+import press from '../../../media/Soundtracks/main/press.wav';
+import fighting from '../../../media/Soundtracks/main/fighting.wav'
+import Sound from 'react-native-sound';
+import { adven } from '../homescreen';
+import { AppState } from 'react-native';
+
+//sfx
+Sound.setCategory('Playback');
+
+export var fight = new Sound(fighting, (error) => {
+  if (error) {
+    console.log('failed to load the sound', error);
+    return;
+  }
+});
+
+export var userPress = new Sound(press, (error) => {
+  if (error) {
+    console.log('failed to load the sound', error);
+    return;
+  }
+});
+
+// end sfx
 
 const Stack = createStackNavigator();
 
@@ -29,6 +53,8 @@ const TopicIntroduction = ({navigation}) => {
 
   const Backbutton = () => {
     navigation.navigate('Topic');
+    userPress.setVolume(1.0);
+    userPress.play();
   };
   const Startbutton = () => {
     // At this point the Gamestatus is reset, reset the total number of questions , correct questions and wrong questions
@@ -42,6 +68,18 @@ const TopicIntroduction = ({navigation}) => {
     // Change status to running again
     dispatch(set_game_status("RUNNING"))
     navigation.navigate("Game")
+
+    // stop bg music
+    adven.stop();
+
+    //sfx for pressing
+    userPress.setVolume(1.0);
+    userPress.play();
+
+    // start fighting music
+    fight.setVolume(0.5);
+    fight.play();
+    fight.setNumberOfLoops(-1);
   }
   // Get relevant information from the store
 
@@ -74,6 +112,35 @@ const TopicIntroduction = ({navigation}) => {
         console.log(error);
       });
   });
+
+  const [appState, setAppState] = useState(AppState.currentState);
+
+  useEffect(() => {
+    AppState.addEventListener('change', handleAppStateChange);
+    return () => {
+      AppState.removeEventListener('change', handleAppStateChange);
+    };
+  }, []);
+
+  
+  const handleAppStateChange = (nextAppState) => {
+    if (nextAppState === 'active') {
+      // App has come to the foreground
+      // Start playing sound again
+      fight.getCurrentTime((seconds) => {
+        if (seconds != 0) {
+          fight.setVolume(0.5);
+          fight.play();
+          fight.setNumberOfLoops(-1);
+        }
+      });
+    } else if (appState === 'active' && nextAppState.match(/inactive|background/)) {
+      // App has gone to the background
+      // Stop playing sound
+      fight.pause();
+    }
+    setAppState(nextAppState);
+  };
 
   return (
     <View style={styles.main}>

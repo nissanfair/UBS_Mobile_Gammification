@@ -9,6 +9,13 @@ import {Dimensions ,Platform, PixelRatio} from 'react-native';
 import { Animated } from 'react-native';
 
 
+// sfx
+import { fight } from '../TopicIntroduction';
+import { adven } from '../../homescreen';
+import Sound from 'react-native-sound';
+Sound.setCategory('Playback');
+//end sfx
+
 import TopicIntroduction from '../TopicIntroduction';
 // Redux Toolkit Variables 
 
@@ -66,6 +73,13 @@ export default function Summary() {
       // Handle button press here
       console.log('Button pressed!');
       navigation.navigate(TopicIntroduction) 
+
+      //sfx stop and start
+      fight.stop();
+      
+      adven.setVolume(0.5);
+      adven.play();
+      adven.setNumberOfLoops(-1);
     }
     // Disable back button
     useEffect(() => {

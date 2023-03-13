@@ -10,24 +10,37 @@ import { current } from '@reduxjs/toolkit';
 import { useDispatch, useSelector, useStore } from 'react-redux'
 
 
-// Front-Related Implementation
-const {
-    width: SCREEN_WIDTH,
-    height: SCREEN_HEIGHT,
-} = Dimensions.get('window');
-
-const scale = SCREEN_WIDTH / 500;
-
-export function normalize(size) {
-    const newSize = size * scale
-    if (Platform.OS === 'andriod') {
-        return Math.round(PixelRatio.roundToNearestPixel(newSize))
-    } else {
-        return Math.round(PixelRatio.roundToNearestPixel(newSize)) - 2
+// sfx
+import press from '../../../../media/Soundtracks/main/press.wav'
+import Sound from 'react-native-sound';
+Sound.setCategory('Playback');
+export var userPress = new Sound(press, (error) => {
+    if (error) {
+      console.log('failed to load the sound', error);
+      return;
     }
-}
+  });
+// end sfx
+
 
 const Question = ({ gameStatus }) => {
+
+    // Front-Related Implementation
+    const {
+        width: SCREEN_WIDTH,
+        height: SCREEN_HEIGHT,
+    } = Dimensions.get('window');
+
+    const scale = SCREEN_WIDTH / 500;
+
+    export function normalize(size) {
+        const newSize = size * scale
+        if (Platform.OS === 'andriod') {
+            return Math.round(PixelRatio.roundToNearestPixel(newSize))
+        } else {
+            return Math.round(PixelRatio.roundToNearestPixel(newSize)) - 2
+        }
+        
     const navigation = useNavigation();
     const dispatch = useDispatch()
     // Change between different questions, by default we set the first question first
@@ -97,6 +110,11 @@ const Question = ({ gameStatus }) => {
             // Step 5: Change the Answered Correctly +1 
             dispatch(set_answered_correctly(1))
 
+
+            // sfx for pressing
+            userPress.setVolume(1.0);
+            userPress.play();
+
         }
         else {
             // Step 1: Ensure that Timer is Paused 
@@ -113,6 +131,10 @@ const Question = ({ gameStatus }) => {
 
             //Step 5: Set the Answered Wrongly to +1 
             dispatch(set_answered_wrongly(1))
+
+            // sfx for pressing
+            userPress.setVolume(1.0);
+            userPress.play();
         }
     }
 

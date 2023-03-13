@@ -1,4 +1,5 @@
 /* eslint-disable prettier/prettier */
+
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, Dimensions, Image, ScrollView, ImageBackground, TouchableOpacity, TouchableHighlight, TouchableNativeFeedback } from 'react-native';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
@@ -6,6 +7,20 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { useSelector } from 'react-redux';
 import { styles } from './TopicLearnStyle';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
+import press from '../../../media/Soundtracks/main/press.wav';
+import { fight } from './TopicIntroduction';
+import { adven } from '../homescreen'
+import Sound from 'react-native-sound';
+import { AppState } from 'react-native';
+
+//sfx
+Sound.setCategory('Playback');
+export var userPress = new Sound(press, (error) => {
+    if (error) {
+      console.log('failed to load the sound', error);
+      return;
+    }
+});
 
 const Stack = createStackNavigator();
 
@@ -16,21 +31,41 @@ const TopicLearning = () => {
 
   const [Index, setIndex] = useState(0);
 
+  const playSound = () => {
+    userPress.setVolume(1.0);
+    userPress.play();
+  }
+
   const Backbutton = () => {
-    setIndex(Index - 1)
+
+    setIndex(Index - 1);
+    userPress.setVolume(1.0);
+    userPress.play();
   };
 
   const Forwardbutton = () => {
-    setIndex(Index + 1)
- 
+    setIndex(Index + 1);
+    userPress.setVolume(1.0);
+    userPress.play();
   };
 
   const Exitbutton = () => {
-    navigation.navigate("Education")
+    navigation.navigate("Education");
+    userPress.setVolume(1.0);
+    userPress.play();
   };
 
   const Startbutton = () => {
-    navigation.navigate("Game")
+    navigation.navigate("Game");
+    userPress.setVolume(1.0);
+    userPress.play();
+
+    // start and stop bg music
+    adven.stop();
+    
+    fight.setVolume(0.5);
+    fight.play();
+    fight.setNumberOfLoops(-1);
   }
 
   const topic = useSelector(state => state.topic.topic);
@@ -62,6 +97,32 @@ const TopicLearning = () => {
         console.log(error);
       });
   }, []);
+
+  // const [appState, setAppState] = useState(AppState.currentState);
+
+  
+  // useEffect(() => {
+  //   AppState.addEventListener('change', handleAppStateChange);
+  //   return () => {
+  //     AppState.removeEventListener('change', handleAppStateChange);
+  //   };
+  // }, []);
+
+  // const handleAppStateChange = (nextAppState) => {
+  //   if (nextAppState === 'active') {
+  //     // App has come to the foreground
+  //     // Start playing sound again
+  //       fight.setVolume(0.5);
+  //       fight.play();
+  //       fight.setNumberOfLoops(-1);
+  //   } else if (appState === 'active' && nextAppState.match(/inactive|background/)) {
+  //     // App has gone to the background
+  //     // Stop playing sound
+  //     fight.pause();
+  //   }
+  //   setAppState(nextAppState);
+  // };
+
 
   //Keep track of the index 
   useEffect(() => {
