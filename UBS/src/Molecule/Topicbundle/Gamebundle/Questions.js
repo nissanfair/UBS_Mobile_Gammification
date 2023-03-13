@@ -22,25 +22,27 @@ export var userPress = new Sound(press, (error) => {
   });
 // end sfx
 
+const {
+    width: SCREEN_WIDTH,
+    height: SCREEN_HEIGHT,
+} = Dimensions.get('window');
+
+const scale = SCREEN_WIDTH / 500;
+
+export function normalize(size) {
+    const newSize = size * scale
+    if (Platform.OS === 'andriod') {
+        return Math.round(PixelRatio.roundToNearestPixel(newSize))
+    } else {
+        return Math.round(PixelRatio.roundToNearestPixel(newSize)) - 2
+    }
+}
+
 
 const Question = ({ gameStatus }) => {
 
     // Front-Related Implementation
-    const {
-        width: SCREEN_WIDTH,
-        height: SCREEN_HEIGHT,
-    } = Dimensions.get('window');
 
-    const scale = SCREEN_WIDTH / 500;
-
-    export function normalize(size) {
-        const newSize = size * scale
-        if (Platform.OS === 'andriod') {
-            return Math.round(PixelRatio.roundToNearestPixel(newSize))
-        } else {
-            return Math.round(PixelRatio.roundToNearestPixel(newSize)) - 2
-        }
-        
     const navigation = useNavigation();
     const dispatch = useDispatch()
     // Change between different questions, by default we set the first question first
@@ -287,4 +289,4 @@ const Question = ({ gameStatus }) => {
     );
 };
 
-export default Question
+export default Question;
