@@ -71,10 +71,7 @@ export default function HomeScreen({navigation}) {
   };
   
   const GoogleSSO = () => {
-    navigation.navigate("Topic")
-    // adven.setVolume(0.5);
-    // adven.play();
-    // adven.setNumberOfLoops(-1);
+    navigation.navigate("MainScreen")
   }
 
   

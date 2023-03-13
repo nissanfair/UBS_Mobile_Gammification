@@ -146,7 +146,7 @@ const TopicIntroduction = ({navigation}) => {
     <View style={styles.main}>
       <View style={styles.backgroundContainer}>
         <ImageBackground
-          source={require('../../../media/UI/matrix_bg.jpg')}
+          source={require('../../../media/Environment/LearningGround.png')}
           resizeImage="stretch"
           style={styles.backdrop}
         />
