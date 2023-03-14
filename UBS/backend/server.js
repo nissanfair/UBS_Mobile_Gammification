@@ -20,16 +20,13 @@ require('dotenv').config()
 const cors = require("cors")
 const YAML = require('yamljs')
 const swaggerDocs = YAML.load('swaggerapi.yaml');
-<<<<<<< Updated upstream
+
 
 // Import routes here
 const testingRoute = require('./routes/topicroute')
 const progressRoute = require('./routes/progressRoute')
 const characterRoute = require('./routes/characterRoute')
-=======
-const testingRoute = require('./routes/topicroute');
-const progressRoute = require('./routes/progressRoute');
->>>>>>> Stashed changes
+
 
 // === Initialisation of Firebase materials ===
 admin.initializeApp({

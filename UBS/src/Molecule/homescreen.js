@@ -164,7 +164,7 @@ const HomeScreen = () => {
         //   isLoggedin: loggedIn, //loggedIn stores boolean values 
         //   userName: userName
         // }));
-        const updatedUserData = {...userData, isLoggedin: 'true', userName: 'Bobby123UPDATED2'};
+        const updatedUserData = {...userData, isLoggedin: 'true', userName: 'Bobby123UPDATED'};
         console.log(updatedUserData)
 
         //dispatching 
