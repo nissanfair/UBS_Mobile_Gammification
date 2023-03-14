@@ -1,3 +1,5 @@
+
+// start of Backend server initialisation 
 const Joi = require('joi');
 const express = require('express');
 const swaggerJSDoc = require('swagger-jsdoc');
@@ -18,8 +20,8 @@ require('dotenv').config()
 const cors = require("cors")
 const YAML = require('yamljs')
 const swaggerDocs = YAML.load('swaggerapi.yaml');
-const testingRoute = require('./routes/topicroute')
-const progressRoute = require('./routes/progressRoute')
+const testingRoute = require('./routes/topicroute');
+const progressRoute = require('./routes/progressRoute');
 
 // === Initialisation of Firebase materials ===
 admin.initializeApp({
@@ -27,8 +29,6 @@ admin.initializeApp({
     databaseURL: "https://is483-ecd48-default-rtdb.asia-southeast1.firebasedatabase.app"
 });
 const db = admin.database();
-
-
 
 
 // === Usage of app.use, app.use creates a new middleware ===
@@ -59,11 +59,82 @@ app.post('/items', (req, res) => {
     //     description: "AK47"
     // })
     // If you want to update have to use the update clause
+
+    
     db.ref('data/testingitem').update(req.body)
     res.send(req.body);
   });
 
+ // ------------------------------ Start of Login Route ----------------------------------------------------------------
+// import statements 
+// import {useDispatch, useSelector} from 'react-redux';
+// import {useNavigate} from 'react-router-dom';
+// import {setloginStatus, setuserData, setuserName} from "../src/Redux/loginSlice";
+// import React, { useEffect, useState, useRef } from 'react'
 
+//  const navigation = useNavigation(); 
+//  let dispatch = useDispatch();
+//  let userDataRedux= useSelector((state) => state.login.userData)
+//  let userNameRedux= useSelector((state) => state.login.userName)
+//  let loginStatusRedux= useSelector((state) => state.login.loginStatus)
+
+ app.put('/login', (req, res) => {
+    const userData = req.body;
+    console.log("This is for PUT" ,userData)
+    try{
+        const itemsRef = admin.database().ref("Character/" + userData.id);
+        itemsRef.once('value', function(snapshot,error){
+            console.log(snapshot.val())
+            if(snapshot.val() !== null){
+                itemsRef.update({
+                    isLoggedin: true
+                });
+                res.status(200).json({});
+            }
+
+            else if (snapshot.val() === null) {
+                res.status(404).send({
+                    error: "No data is found at the specified location in the database. Did you type correctly?"
+                })
+            } else {
+                res.status(500).send({
+                    error:"No data found at the specified location"
+                });
+            }
+        });
+        }
+
+        catch(err) {
+            res.status(500).send({ error: 'Error retrieving data from Firebase, does the given params exist?' });
+        }
+    // db.ref('data/testingitem').update(req.body)
+    res.send(req.body);
+  });
+
+
+app.post('/login', (req, res) => {
+    const userData = req.body;
+    console.log("This is for POST" ,userData)
+    try{
+        const charactersRef = admin.database().ref('Character');
+        charactersRef.child(userData.id).set(userData)
+        .then(() => {
+            console.log('Data saved to Firebase');
+        })
+        .catch((error) => {
+            console.error('Error saving data to Firebase:', error);
+        });
+    }
+    catch(err){
+        res.status(500).send({ error: 'Error retrieving data from Firebase, does the given params exist?' });
+    }
+});
+
+
+
+
+
+  //------------------------------ End of Login Route ----------------------------------------------------------------
 
 // ==== Defining Port Number, similar to the flask run application ====
 const port = process.env.PORT || 3000
