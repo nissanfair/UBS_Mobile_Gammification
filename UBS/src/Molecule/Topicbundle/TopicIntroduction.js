@@ -12,18 +12,74 @@ import {
 } from 'react-native';
 import {NavigationContainer, useNavigation} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector,useStore} from 'react-redux';
 import {styles} from './TopicIntroStyle';
+import {setSelectedTimeState, setShowSummary , setTotal_Questions, set_answered_correctly, set_answered_wrongly, set_game_status, set_topic_selected} from "../../Redux/questionSlice"
+import press from '../../../media/Soundtracks/main/press.wav';
+import fighting from '../../../media/Soundtracks/main/fighting.wav'
+import Sound from 'react-native-sound';
+import { adven } from '../homescreen';
+import { AppState } from 'react-native';
+
+//sfx
+Sound.setCategory('Playback');
+
+export var fight = new Sound(fighting, (error) => {
+  if (error) {
+    console.log('failed to load the sound', error);
+    return;
+  }
+});
+
+export var userPress = new Sound(press, (error) => {
+  if (error) {
+    console.log('failed to load the sound', error);
+    return;
+  }
+});
+
+// end sfx
 
 const Stack = createStackNavigator();
 
-
 const TopicIntroduction = ({navigation}) => {
+  const dispatch = useDispatch()
+  // To substract away from the 
+  const gamestate = useSelector((state) => state.question.gamestatus);
+  const total_question = useSelector((state) => state.question.total_question);
+  const answered_correctly = useSelector((state) => state.question.answered_correctly);
+  const answered_wrongly = useSelector((state) => state.question.answered_wrongly);
+
+
   const Backbutton = () => {
-    navigation.navigate("Topic")
-  }
+    navigation.navigate('Topic');
+    userPress.setVolume(1.0);
+    userPress.play();
+  };
   const Startbutton = () => {
+    // At this point the Gamestatus is reset, reset the total number of questions , correct questions and wrong questions
+    dispatch(setTotal_Questions(0))
+    dispatch(set_answered_correctly(-answered_correctly))
+    dispatch(set_answered_wrongly(-answered_wrongly))
+    console.log(total_question)
+    console.log(answered_correctly)
+    console.log(answered_wrongly)
+
+    // Change status to running again
+    dispatch(set_game_status("RUNNING"))
     navigation.navigate("Game")
+
+    // stop bg music
+    adven.stop();
+
+    //sfx for pressing
+    userPress.setVolume(1.0);
+    userPress.play();
+
+    // start fighting music
+    fight.setVolume(0.5);
+    fight.play();
+    fight.setNumberOfLoops(-1);
   }
   // Get relevant information from the store
 
@@ -38,72 +94,127 @@ const TopicIntroduction = ({navigation}) => {
 
   useEffect(() => {
     // Idea
+    // For JP phone 
+    // var fetchSelectedTopic = `http://192.168.29.14:3000/6bit/topics/${topic}`;
+    // For emulator
     var fetchSelectedTopic = `http://10.0.2.2:3000/6bit/topics/${topic}`;
 
+    // state.question.topicQuestionObject
+    console.log(topic);
     fetch(fetchSelectedTopic)
       .then(response => response.json())
       .then(data => {
         // pushing the intro here. We can add more stuff here then use redux accordingly
         pushIntro(data.data[`${topic}_Introduction`])
+        dispatch(set_topic_selected(data.data[`${topic}_Questions`]))
       })
       .catch(error => {
         console.log(error);
       });
-  }, );
+  });
+
+  const [appState, setAppState] = useState(AppState.currentState);
+
+  useEffect(() => {
+    AppState.addEventListener('change', handleAppStateChange);
+    return () => {
+      AppState.removeEventListener('change', handleAppStateChange);
+    };
+  }, []);
+
+  
+  const handleAppStateChange = (nextAppState) => {
+    if (nextAppState === 'active') {
+      // App has come to the foreground
+      // Start playing sound again
+      fight.getCurrentTime((seconds) => {
+        if (seconds != 0) {
+          fight.setVolume(0.5);
+          fight.play();
+          fight.setNumberOfLoops(-1);
+        }
+      });
+    } else if (appState === 'active' && nextAppState.match(/inactive|background/)) {
+      // App has gone to the background
+      // Stop playing sound
+      fight.pause();
+    }
+    setAppState(nextAppState);
+  };
 
   return (
     <View style={styles.main}>
       <View style={styles.backgroundContainer}>
-        <Image
-          source={require('../../../media/Environment/s4m_ur4i-bg_clouds.png')}
+        <ImageBackground
+          source={require('../../../media/Environment/LearningGround.png')}
           resizeImage="stretch"
           style={styles.backdrop}
         />
       </View>
 
       <View style={styles.leftbox}>
-        <ImageBackground
-          source={require('../../../media/Environment/panel_Example2.png')}
-          resizeMode="stretch"
-          style={styles.leftbackdrop}
-        />
-
-        <View style={styles.desc}>
-          <Text>{introSelectedTopic}</Text>
+        <View style={styles.back}>
+          <TouchableOpacity style={styles.button} onPress={Backbutton}>
+            <Image
+              source={require('../../../media/UI/back_v2.png')}
+              resizeMode="contain"
+            />
+          </TouchableOpacity>
         </View>
       </View>
 
-      <View style={styles.rightbox}>
-        <View style={styles.innerrightbox}>
-          <View style={styles.monsterbox}>
-            <Image
-              source={require('../../../media/sorcereridle.gif')}
-              resizeMode="contain"
-              styles={styles.wizard}
-            />
-            <Text>Malware Wizard</Text>
+      <View style={styles.centerbox}>
+        <ImageBackground
+          source={require('../../../media/UI/computer_screen.png')}
+          resizeImage="contain"
+          style={styles.backdrop}>
+
+          <View style={styles.topbox}>
+
+            <View style={styles.lefttopbox}>
+              <View style={styles.monsterbox}>
+                <Image
+                  source={require('../../../media/sorcereridle_sm.gif')}
+                  resizeMode="contain"
+                  style={styles.monster}
+                />
+                <Text style={styles.textstyle}>Malware Wizard</Text>
+              </View>
+
+            </View>
+
+            <View style={styles.righttopbox}>
+              <View style={styles.reward}>
+                <Text style={styles.textrewardheaderstyle}>Reward</Text>
+                <Text style={styles.textrewardstyle}>E$15000</Text>
+              </View>
+            </View>
           </View>
 
-          <View style={styles.buttonbox}>
-            <View style={styles.back}>
-              <TouchableOpacity style={styles.button} onPress={Backbutton}>
+          <View style={styles.bottombox}>
+            <View style={styles.desc}>
+              <Text
+                style={styles.textdescheaderstyle}>
+                Description
+              </Text>
+              <Text
+                style={styles.textdescstyle}>
+                {introSelectedTopic}
+              </Text>
+            </View>
+          </View>
+        </ImageBackground>
+      </View>
+
+      <View style={styles.rightbox}>
+        <View style={styles.start}>
+              <TouchableOpacity style={styles.button} onPress={Startbutton}>
                 <Image
-                  source={require('../../../media/UI/back_v2.png')}
+                  source={require('../../../media/UI/start_v2.png')}
                   resizeMode="contain"
                 />
               </TouchableOpacity>
             </View>
-            <View style={styles.start}>
-
-            <TouchableOpacity style={styles.button} onPress={Startbutton}>
-              <Image
-                source={require('../../../media/UI/start_v2.png')}
-                resizeMode="contain"
-              />
-              </TouchableOpacity>
-            </View>
-          </View>
-        </View>
       </View>
     </View>
   );

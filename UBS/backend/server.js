@@ -18,8 +18,11 @@ require('dotenv').config()
 const cors = require("cors")
 const YAML = require('yamljs')
 const swaggerDocs = YAML.load('swaggerapi.yaml');
+
+// Import routes here
 const testingRoute = require('./routes/topicroute')
 const progressRoute = require('./routes/progressRoute')
+const characterRoute = require('./routes/characterRoute')
 
 // === Initialisation of Firebase materials ===
 admin.initializeApp({
@@ -45,6 +48,7 @@ app.use('/6bit/topics',testingRoute)
 // Can be improved and be put into a yaml file
 app.use('/6bit-api-docs',swaggerUI.serve,swaggerUI.setup(swaggerDocs));
 
+// app.use('/6bit/characters', characterRoute)
 
 // /*
 

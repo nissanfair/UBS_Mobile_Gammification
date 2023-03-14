@@ -1,102 +1,76 @@
-import React, { useState } from 'react';
-import { StyleSheet, View, Text, Dimensions, Image, ScrollView, Button, Title, Alert, Modal } from 'react-native';
-import { NavigationContainer, useNavigation } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-
-import Icon from 'react-native-vector-icons/Ionicons'
 import { current } from '@reduxjs/toolkit';
+import React, { useEffect, useState } from 'react';
+import { View, Text, StyleSheet, Image } from 'react-native';
+import { useDispatch, useSelector, useStore } from 'react-redux';
+import { setSelectedTimeState, setShowSummary, setTotal_Questions, set_answered_correctly, set_answered_wrongly, set_game_status } from "../../../Redux/questionSlice"
 
-const Health = () => {
-    // const navigation = useNavigation();
-    // Base health would be 3 in this case
-    const [playerhealth, decrementHealth] = useState(3);
-    const [modalVisible, setModalVisible] = useState(false);
-    const [currentQuestionSet, setCurrentQuestionSet] = useState(0);
-    const [questionSets, setQuestionSets] = useState([
-        {
-            questions: [
-                'Question1',
-                'What is your name?',
-                'What is your favorite color?'
-            ]
-        },
-        {
-            questions: [
-                'Question2',
-                'What is your favorite food?',
-                'What is your favorite hobby?'
-            ]
-        },
-        // add more question sets here
-    ]);
+const HealthBar = ({ numWrongAnswers, timeState, gameStatus }) => {
+    const dispatch = useDispatch()
+    const gamestate = useSelector((state) => state.question.gamestatus);
 
-    const simulateDamage = () => {
+    // Max health to keep track of future equipment i guess
+    const [maxHealth, setMaxHealth] = useState(3)
+    const [currentHealth, updateCurrentHealth] = useState(maxHealth)
+    const [heartHTML, setHeartHTML] = useState([])
 
-        if (playerhealth != 0) {
-            decrementHealth(playerhealth - 1)
-            setModalVisible(true)
+    useEffect(() => {
+
+        // Check when timeState is paused because they would have answered the question + Check whether gamestatus is running
+        if (timeState == "PAUSE" && gameStatus == "RUNNING") {
+            // One because if minus 1 and get wrong, it would end the 
+            if (currentHealth == 1) {
+                updateCurrentHealth(maxHealth)
+                // Reset time to run for the next iteration and set game status to reset
+                dispatch(setSelectedTimeState("RUN"))
+                dispatch(set_game_status("RESET"))
+
+            } else {
+                updateCurrentHealth(currentHealth - 1)
+
+            }
+
+            // if (currentHealth == 0) {
+
+            // } 
         }
-    }
-// Flow.
-/* 
-1. When the player is damaged, popup would appear and show which statement is correct etc. In this case we use a modal
-2. Upon pressing the button,set the currentquestion to the next one. 
+        // Check when timeState has ended because they would missed their chance to answer their question  + Check whether gamestatus is running
+        if (timeState == "END" && gameStatus == "RUNNING") {
+            if (currentHealth == 1) {
+                updateCurrentHealth(maxHealth)
+                // Reset time to run for the next iteration and set game status to reset
+                dispatch(setSelectedTimeState("RUN"))
+                dispatch(set_game_status("RESET"))
+            }
+            else {
+                updateCurrentHealth(currentHealth - 1)
+            }
+        }
+        // gameStatus is account for when game ends at the questions.js side
+    }, [numWrongAnswers]);
 
-- In the actual scenario, we would populate all the questions and answers in the Game.js page instead of hardcoding
+    useEffect(() => {
 
 
 
-*/
+
+    }, [currentHealth])
 
 
     return (
-        <View style={styles.container}>
-            <View>
-                <Image source={require('./heart.png')} style={{ height: 30, width: 30 }} />
-                <Text style={styles.text}>{playerhealth}</Text>
-                <Button onPress={simulateDamage} title="Press Me To Simulate Damage decrease" />
-                <Button onPress={restoreHealth} title="Press Me To Simulate Damage decrease" />
-
-            </View>
-
-            <View style={{ padding: 20 }}>
-                <Text>{questionSets[currentQuestionSet].questions}</Text>
-            </View>
-
-            <Modal
-                animationType="fade"
-                transparent={false}
-                visible={modalVisible}
-                onRequestClose={() => setModalVisible(false)}
-            >
-                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                    <Text>You took damage!</Text>
-                    <Button
-                        title="Close"
-                        onPress={() => {
-                            setModalVisible(false);
-                            setCurrentQuestionSet((currentQuestionSet + 1) % questionSets.length);
-                        }}
-                    />
-                </View>
-            </Modal>
+        <View style={{ flexDirection: 'row', alignItems: 'center'  }}>
+      {Array.from({ length: currentHealth }).map((_, index) => (
+        <View key={index}>
+          <Image
+            source={require('./heart.png')}
+            resizeMode='contain'
+            style={{ height: "90%", aspectRatio:1 }}
+          />
         </View>
+      ))}
+    </View>
     );
 };
 
-const styles = StyleSheet.create({
-    container: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        backgroundColor: "white"
-    },
-    label: {
-        fontWeight: 'bold',
-        marginRight: 8,
-    },
-    text: {
-        fontSize: 20,
-        marginHorizontal: 8
-    }
-});
-export default Health
+
+
+export default HealthBar;
