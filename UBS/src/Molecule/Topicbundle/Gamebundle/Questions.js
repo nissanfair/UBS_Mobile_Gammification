@@ -10,7 +10,7 @@ import { current } from '@reduxjs/toolkit';
 import { useDispatch, useSelector, useStore } from 'react-redux'
 
 
-// sfx
+// SFX
 import press from '../../../../media/Soundtracks/main/press.wav'
 import Sound from 'react-native-sound';
 Sound.setCategory('Playback');

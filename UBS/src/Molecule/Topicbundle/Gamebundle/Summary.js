@@ -4,8 +4,6 @@ import { SafeAreaView,ScrollView,StatusBar,StyleSheet,Text,useColorScheme,View,S
 import { useDispatch, useSelector,useStore } from 'react-redux'
 import {NavigationContainer, useNavigation} from '@react-navigation/native';
 import {Dimensions ,Platform, PixelRatio} from 'react-native';
-
-
 import { Animated } from 'react-native';
 
 
@@ -14,6 +12,11 @@ import { fight } from '../TopicIntroduction';
 import { adven } from '../../homescreen';
 import press from '../../../../media/Soundtracks/main/press.wav';
 import Sound from 'react-native-sound';
+import gameover from "../../../../media/Soundtracks/main/gameover.wav";
+import success from "../../../../media/Soundtracks/main/success.wav"
+import Forest from "../../../../media/Soundtracks/main/theme_foret.mp3"
+
+// Function
 Sound.setCategory('Playback');
 export var userPress = new Sound(press, (error) => {
     if (error) {
@@ -43,9 +46,32 @@ export function normalize(size) {
   }
 }
 
+// New Sound for Winning 
+var SuccessObject = new Sound(success, (error) => {
+  if (error) {
+    console.log('failed to load the sound', error);
+    return;
+  }
+});
+
+// New Sound for Losing
+var LosingObject = new Sound(gameover, (error) => {
+  if (error) {
+    console.log('failed to load the sound', error);
+    return;
+  }
+});
+
+var ForestObject = new Sound(Forest,(error) => {
+  if (error) {
+    console.log('failed to load the sound', error);
+    return;
+  }
+});
 
 export default function Summary() {
   const navigation = useNavigation();
+
 
     // This is the Fading In Effect. 
     const fadeAnim = useRef(new Animated.Value(0)).current;
@@ -71,25 +97,49 @@ export default function Summary() {
     // Get the Status of Lost or Win
     if (answered_wrongly > 3) {
       const is_win = false
+      // Playing the 
     }
     else{
       const is_win = true;
     }
+
+    // OnLoad 
+    useEffect(() => {
+      //sfx stop and start
+      fight.stop();
+      
+      if (is_win){
+        SuccessObject.setVolume(0.5)
+        SuccessObject.play();
+
+        ForestObject.setVolume(0.5)
+        ForestObject.play()
+      }
+      else{
+        LosingObject.setVolume(0.5)
+        LosingObject.play()
+
+        ForestObject.setVolume(0.5)
+        ForestObject.play()
+      }
+    },[])
+
+
 
     const handlePress = () => {
       // Handle button press here
       console.log('Button pressed!');
       navigation.navigate(TopicIntroduction) 
 
-      //sfx stop and start
-      fight.stop();
-      
+      ForestObject.stop();
+
       adven.setVolume(0.5);
       adven.play();
       adven.setNumberOfLoops(-1);
 
       userPress.setVolume(1.0);
       userPress.play();
+
     }
     // Disable back button
     useEffect(() => {

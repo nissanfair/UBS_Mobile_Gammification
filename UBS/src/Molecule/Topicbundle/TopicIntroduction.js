@@ -15,6 +15,8 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {useDispatch, useSelector,useStore} from 'react-redux';
 import {styles} from './TopicIntroStyle';
 import {setSelectedTimeState, setShowSummary , setTotal_Questions, set_answered_correctly, set_answered_wrongly, set_game_status, set_topic_selected} from "../../Redux/questionSlice"
+
+// Import Music  
 import press from '../../../media/Soundtracks/main/press.wav';
 import fighting from '../../../media/Soundtracks/main/fighting.wav'
 import Sound from 'react-native-sound';
@@ -24,6 +26,7 @@ import { AppState } from 'react-native';
 //sfx
 Sound.setCategory('Playback');
 
+// This is the Fighting Music
 export var fight = new Sound(fighting, (error) => {
   if (error) {
     console.log('failed to load the sound', error);
@@ -31,7 +34,8 @@ export var fight = new Sound(fighting, (error) => {
   }
 });
 
-export var userPress = new Sound(press, (error) => {
+// The button sound 
+var userPress = new Sound(press, (error) => {
   if (error) {
     console.log('failed to load the sound', error);
     return;

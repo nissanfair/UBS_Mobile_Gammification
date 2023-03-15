@@ -8,6 +8,16 @@ import {setloginStatus, setuserData, setuserName} from "../Redux/loginSlice";
 // import { Easing, useSharedValue, withTiming } from "react-native-reanimated";
 import ImageLoader from "./ImageLoader";
 
+// This is for Sound Module.
+import adventure from '../../media/Soundtracks/main/adventure.wav';
+import Sound from 'react-native-sound';
+import { AppState } from 'react-native';
+
+// Default Code to make sure the music can play.
+Sound.setCategory('Playback');
+
+var adven;
+
 
 const styles = StyleSheet.create({
 
@@ -117,6 +127,54 @@ const HomeScreen = () => {
   const [userName, setUserName] = useState()
   const [loggedIn, setLoggedIn] = useState(false)
 
+  // Use State for Music 
+  const [appState, setAppState] = useState(AppState.currentState);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  // On Load to start playing
+  useEffect(() => {
+    adven = new Sound(adventure, (error) => {
+      if (error) {
+        console.log('Error loading sound: ', error);
+      } else {
+        console.log('Sound loaded successfully');
+        setIsLoaded(true);
+        adven.setVolume(0.5);
+        adven.play();
+        adven.setNumberOfLoops(-1);
+      };
+    }
+    );
+  }, []);
+
+  // To prevent the music from continue playing 
+  useEffect(() => {
+    AppState.addEventListener('change', handleAppStateChange);
+    return () => {
+      AppState.removeEventListener('change', handleAppStateChange);
+    };
+  }, []);
+
+
+  const handleAppStateChange = (nextAppState) => {
+    // If the user is currently in the app 
+    if (nextAppState === 'active') {
+      // App has come to the foreground
+      // Start playing sound again
+        adven.getCurrentTime((seconds) => {
+          if (seconds != 0) {
+            adven.setVolume(0.5);
+            adven.play();
+            adven.setNumberOfLoops(-1);
+          }
+        });
+    } else if (appState === 'active' && nextAppState.match(/inactive|background/)) {
+      // App has gone to the background
+      // Stop playing sound
+      adven.pause();
+    }
+    setAppState(nextAppState);
+  };
 
   const navigation = useNavigation(); 
   let dispatch = useDispatch();
@@ -164,7 +222,7 @@ const HomeScreen = () => {
         //   isLoggedin: loggedIn, //loggedIn stores boolean values 
         //   userName: userName
         // }));
-        const updatedUserData = {...userData, isLoggedin: 'true', userName: 'Bobby123UPDATED'};
+        const updatedUserData = {...userData, isLoggedin: 'true', userName: 'yuxiang123UPDATED'};
         console.log(updatedUserData)
 
         //dispatching 
@@ -192,7 +250,8 @@ const HomeScreen = () => {
       }
 
         //navigate to the next page when userData is populated 
-        navigation.navigate('Topic')
+        console.log("MainScreen")
+        navigation.navigate('MainScreen')
       }
 
       //firebase 
@@ -217,17 +276,6 @@ const HomeScreen = () => {
         // }
     }
   }; 
-
-//   const signout = async () =>{
-//     try {
-//       await GoogleSignin.revokeAccess();
-//       await auth().signOut().then(() => alert('Your are signed out!'));
-//       setloggedIn(false);
-//       console.log('sign out success')
-//     } catch (error) {
-//       console.error(error);
-//     }
-// };
 
   if(loggedIn == false){
   return (
@@ -302,4 +350,6 @@ const HomeScreen = () => {
 // }
 }
 export default HomeScreen;
+export { adven };
+
 
