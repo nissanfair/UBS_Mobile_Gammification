@@ -268,12 +268,12 @@ const HomeScreen = () => {
     //Catching Errors here 
     catch(error){
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
-        alert('Cancel');
+        console.log('Cancel');
       } else if (error.code === statusCodes.IN_PROGRESS) {
-        alert('Signin in progress');}
-        // else{
-        //   alert(error.message)
-        // }
+        console.log('Signin in progress');}
+        else{
+          console.log(error.message)
+        }
     }
   }; 
 

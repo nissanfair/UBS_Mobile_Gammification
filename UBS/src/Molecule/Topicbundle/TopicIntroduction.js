@@ -56,9 +56,9 @@ const TopicIntroduction = ({navigation}) => {
 
 
   const Backbutton = () => {
+    // userPress.setVolume(1.0);
+    // userPress.play();
     navigation.navigate('Topic');
-    userPress.setVolume(1.0);
-    userPress.play();
   };
   const Startbutton = () => {
     // At this point the Gamestatus is reset, reset the total number of questions , correct questions and wrong questions
@@ -119,32 +119,55 @@ const TopicIntroduction = ({navigation}) => {
 
   const [appState, setAppState] = useState(AppState.currentState);
 
-  useEffect(() => {
-    AppState.addEventListener('change', handleAppStateChange);
-    return () => {
-      AppState.removeEventListener('change', handleAppStateChange);
+
+  useEffect (() => {
+    const handleAppStateChange = () => {
+      console.log("Sound tEst "+appState)
+      if (appState === 'active') {
+        // App has come to the foreground
+        // Start playing sound again
+        fight.getCurrentTime((seconds) => {
+          if (seconds != 0) {
+            fight.setVolume(0.5);
+            fight.play();
+            fight.setNumberOfLoops(-1);
+          }
+        });
+      } else if (appState === 'background' && appState==="inactive") {
+        // App has gone to the background
+        // Stop playing sound
+        fight.pause();
+      }
+      setAppState(appState);
     };
-  }, []);
+    handleAppStateChange('change')
+  },[appState])
+  // useEffect(() => {
+  //   AppState.addEventListener('change', handleAppStateChange);
+  //   return () => {
+  //     AppState.removeEventListener('change', handleAppStateChange);
+  //   };
+  // }, []);
 
   
-  const handleAppStateChange = (nextAppState) => {
-    if (nextAppState === 'active') {
-      // App has come to the foreground
-      // Start playing sound again
-      fight.getCurrentTime((seconds) => {
-        if (seconds != 0) {
-          fight.setVolume(0.5);
-          fight.play();
-          fight.setNumberOfLoops(-1);
-        }
-      });
-    } else if (appState === 'active' && nextAppState.match(/inactive|background/)) {
-      // App has gone to the background
-      // Stop playing sound
-      fight.pause();
-    }
-    setAppState(nextAppState);
-  };
+  // const handleAppStateChange = (nextAppState) => {
+  //   if (nextAppState === 'active') {
+  //     // App has come to the foreground
+  //     // Start playing sound again
+  //     fight.getCurrentTime((seconds) => {
+  //       if (seconds != 0) {
+  //         fight.setVolume(0.5);
+  //         fight.play();
+  //         fight.setNumberOfLoops(-1);
+  //       }
+  //     });
+  //   } else if (appState === 'active' && nextAppState.match(/inactive|background/)) {
+  //     // App has gone to the background
+  //     // Stop playing sound
+  //     fight.pause();
+  //   }
+  //   setAppState(nextAppState);
+  // };
 
   return (
     <View style={styles.main}>

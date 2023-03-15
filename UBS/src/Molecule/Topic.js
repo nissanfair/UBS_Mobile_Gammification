@@ -16,7 +16,7 @@ import Sound from 'react-native-sound';
 
 //sfx
 Sound.setCategory('Playback');
-export var userPress = new Sound(press, (error) => {
+var userPress = new Sound(press, (error) => {
     if (error) {
       console.log('failed to load the sound', error);
       return;
@@ -33,7 +33,7 @@ const {
   
   const scale = SCREEN_WIDTH / 500;
   
-  export function normalize(size) {
+function normalize(size) {
     const newSize = size * scale 
     if (Platform.OS === 'andriod') {
       return Math.round(PixelRatio.roundToNearestPixel(newSize))

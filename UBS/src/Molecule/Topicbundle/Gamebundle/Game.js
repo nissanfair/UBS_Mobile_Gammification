@@ -17,15 +17,6 @@ const Stack = createStackNavigator();
 const Game = () => {
     const navigation = useNavigation();
     const dispatch = useDispatch()
-    // const navigation = useNavigation();
-    // Get relevant information from the store
-
-    // const styles = StyleSheet.create({
-    //     background : {
-    //         width: "100%",
-    //         height: "100%"
-    //     }
-    // })
 
     // Health variables
     const [health, modifyHealth] = useState(3)
