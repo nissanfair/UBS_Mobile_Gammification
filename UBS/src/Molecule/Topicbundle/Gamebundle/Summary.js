@@ -93,21 +93,22 @@ export default function Summary() {
     // Get the Answer Wrongly
     const answered_wrongly = useSelector((state) => state.question.answered_wrongly);
 
-    const is_win = null;
+    var is_win = null;
     // Get the Status of Lost or Win
-    if (answered_wrongly > 3) {
-      const is_win = false
+    if (answered_wrongly == 3) {
+      is_win = false
       // Playing the 
     }
     else{
-      const is_win = true;
+      is_win = true;
     }
 
     // OnLoad 
     useEffect(() => {
       //sfx stop and start
       fight.stop();
-      
+
+      console.log(is_win)
       if (is_win){
         SuccessObject.setVolume(0.5)
         SuccessObject.play();

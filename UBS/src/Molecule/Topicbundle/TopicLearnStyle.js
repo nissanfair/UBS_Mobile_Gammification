@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
   avatarText:{
     color: 'white',
     fontFamily: 'PressStart2P-Regular',
-    fontSize: normalize(10),
+    fontSize: normalize(9),
     alignSelf: 'center',
     marginBottom: "5%"
   },
