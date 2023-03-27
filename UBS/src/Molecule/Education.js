@@ -222,7 +222,7 @@ const Topic = () => {
 
     return (
 
-        <View style={{ width: windowWidth, height: windowHeight, flexDirection: "column" }} >
+        <View style={{ width: "100%", height: "100%", flexDirection: "column", borderColor:"red", borderWidth:3 }} >
             <ImageBackground source={require("../../media/TopicJs/Topic.gif")} style={{ width: "100%", height: "100%" }}>
                 {/* Popup */}
 
@@ -238,33 +238,144 @@ const Topic = () => {
                 </Animated.View> */}
 
                 {/* To Account for the  Character Badge and Currency*/}
-                <View style={{ flex: 1, flexDirection: "row", alignItems: "center", marginTop: "2%" }}>
-                    <View style={{ marginLeft: "5%", flex: 2, backgroundColor: "" }}>
-                        {/* Insert the user name here */}
-                        <Image source={require("../../media/Username.png")} resizeMode="contain" style={{ width: windowWidth * 0.2 }} />
-                        {/* Insert the user name here */}
+               {/* Logo & Top Container */}
+               <View style={{ flex: 1}}>
+                    <ImageBackground resizeMode="cover" style={[{ marginTop: "2%", aspectRatio: 4, alignSelf: "center", justifyContent: "center", alignItems: "center", paddingLeft: "1%", flexDirection: "row", width: "100%", height: "100%", flex: 4 }]} source={require("../../media/TopicJs/menulogo.png")} />
+
+                    {/* For settings button */}
+                    <View style={{ position: "absolute", width: "20%", height: "100%", zIndex: 2 }}>
+                        <TouchableOpacity style={{ width: "100%", height: "100%" }} onPress={() => console.log("Settings button pressed")}>
+                            {/* <ImageBackground resizeMode="cover" style={[{ marginTop: "2%", aspectRatio: 4, alignSelf: "center", justifyContent: "center", alignItems: "center", paddingLeft: "1%", flexDirection: "row", width: "100%", height: "100%", flex: 4 }]} source={require("../../media/TopicJs/setting.png")} >
+                            </ImageBackground> */}
+
+                            <ImageBackground source={require("../../media/Username.png")} resizeMode="contain" style={{ width:"100%", height:"100%"}}>
+                            <View style={{ width:"100%", top:"10%", paddingTop: "8%",}}>
+                            <Text style={{color: 'black', fontFamily: 'PressStart2P-Regular', fontSize: normalize(8.2), alignSelf: 'center'}}>17 TIBIXS</Text>
+                            </View>
+                            </ImageBackground>
+                        
+                        
+                        </TouchableOpacity>
+
                     </View>
 
-                    <View style={{ flex: 2, backgroundColor: "red" }}></View>
+                    {/* For user button */}
+                    <View style={{ position: "absolute", width: "20%", height: "100%", zIndex: 2, right: 0 }}>
+                        <TouchableOpacity style={{ width: "100%", height: "100%" }} onPress={() => console.log("Profile button pressed")}>
+                            {/* <ImageBackground resizeMode="cover" style={[{ marginTop: "2%", aspectRatio: 4, alignSelf: "center", justifyContent: "center", alignItems: "center", paddingLeft: "1%", flexDirection: "row", width: "100%", height: "100%", flex: 4 }]} source={require("../../media/TopicJs/profile.png")} >
+                            </ImageBackground> */}
 
-                    <View style={{ marginRight: "0%", flex: 2, alignItems: "center", marginRight: "5%" }}>
-                        {/* To make the Currency Sign */}
-                        <Image source={require("../../media/Coin.png")} resizeMode="contain" style={{ width: windowWidth * 0.2 }}></Image>
+                            <ImageBackground source={require("../../media/Coin.png")} resizeMode="contain" style={{ width:"100%", height:"100%"}}>
+                            <View style={{ width:"100%", top:"10%",left:"5%", paddingTop: "8%"}}>
+                            <Text style={{color: 'black', fontFamily: 'PressStart2P-Regular', fontSize: normalize(8.2), alignSelf: 'center'}}>2819</Text>
+                            </View>
+                            </ImageBackground>
+                        </TouchableOpacity>
+
                     </View>
-
                 </View>
                 {/* End of the Character Badge */}
+              
+
+
+                <View style={{flex: 5, flexDirection: "row", alignItems: "center", borderColor:"red", borderWidth:3}}>
+
+                <View style={{position: "absolute", top:"0%",left:"33%", width:"35%",paddingTop:"10%", height: "20%", borderColor:"green", borderWidth:3}}>
+                <Text style={{color: 'white', fontFamily: 'PressStart2P-Regular', fontSize: normalize(10), alignSelf: 'center'}}>Learning Contents:</Text>
+                           
+                </View>
+                    
+                <View style={{flex: 2, flexDirection: "column" }}>
+                    <Animated.View style={[{ flex: 4, transform: [{ scale: scaleValue }] }]}>
+                    <TouchableOpacity onPress={() => {navigation.navigate("Topic"); userPress.setVolume(1.0); userPress.play()}}>
+                    <ImageBackground
+                        source={require('../../media/UI/play_panelv2.png')}
+                        resizeMode="cover"
+                        style={{height: "100%", width:"100%"}} >
+
+                        {/*/Image */}  
+                        <View style={{ flex:2, marginTop: "10%", marginLeft: "3%", paddingTop:"24%", alignItems: "center"}}>
+                        <Image
+                            source={require('../../media/UI/Shield_trans.gif')}
+                            resizeMode="contain"
+                            style={{height: "100%", width:"100%"}} />
+
+                        </View>
+                        {/*/Text */}     
+                        <View style={{ flex:1, marginTop:"3%", marginBottom:"25%",borderColor:"blue", borderWidth:3}}>
+                        <Text style={{color: 'white', fontFamily: 'PressStart2P-Regular', fontSize: normalize(8), alignSelf: 'center', marginBottom: "5%"}}>Malware Attacks</Text>
+                        </View> 
+                    </ImageBackground>
+                    </TouchableOpacity>
+                    </Animated.View>
+                    
+                
+                    </View>
+
+                    <View style={{flex: 2,flexDirection: "column" }}>
+                    <Animated.View style={[{ flex: 4, transform: [{ scale: scaleValue }] }]}>
+                    <TouchableOpacity onPress={() => {navigation.navigate("Education"); userPress.setVolume(1.0); userPress.play()}}>
+                    <ImageBackground
+                        source={require('../../media/UI/learn_panelv2.png')}
+                        resizeMode="cover"
+                        style={{height: "100%", width:"100%"}} >
+
+                        {/*/Image */}  
+                        <View style={{ flex:3, marginTop: "10%", marginLeft: "3%",paddingTop:"24%", alignItems: "center", borderColor:"red", borderWidth:3}}>
+                        <Image
+                            source={require('../../media/UI/Sword_trans.gif')}
+                            resizeMode="contain"
+                            style={{height: "100%", width:"100%"}} />
+
+                        </View>
+                        {/*/Text */}     
+                        <View style={{ flex:1, marginBottom:"32%",borderColor:"blue", borderWidth:3}}>
+                        <Text style={{color: 'white', fontFamily: 'PressStart2P-Regular', fontSize: normalize(8), alignSelf: 'center', marginBottom: "5%"}}>Trojan</Text>
+                        </View> 
+                    </ImageBackground>
+                    </TouchableOpacity>
+                    </Animated.View>
+
+                    </View>
+
+                    <View style={{flex: 2, flexDirection: "column" }}>
+                        <Animated.View style={[{ flex: 4, transform: [{ scale: scaleValue }] }]}>
+                        <TouchableOpacity onPress={() => {userPress.setVolume(1.0); userPress.play()}}>
+                        <ImageBackground
+                            source={require('../../media/UI/setting_panelv2.png')}
+                            resizeMode="cover"
+                            style={{height: "100%", width:"100%"}} >
+
+                        {/*/Image */}  
+                        <View style={{ flex:3, marginTop: "10%", marginLeft: "3%", alignItems: "center"}}>
+                        <Image
+                            source={require('../../media/UI/star_trans.gif')}
+                            resizeMode="contain"
+                            style={{height: "140%", width:"100%"}} />
+
+                        </View>
+                        {/*/Text */}     
+                        <View style={{ flex:1, marginTop:"3%", marginBottom:"25%",borderColor:"blue", borderWidth:3}}>
+                        <Text style={{color: 'white', fontFamily: 'PressStart2P-Regular', fontSize: normalize(8), alignSelf: 'center', marginBottom: "5%"}}>Something</Text>
+                        </View> 
+                        </ImageBackground>
+                        </TouchableOpacity>
+                        </Animated.View>
+
+
+                    </View>
+                </View>
 
                 {/* Insert of Topic */}
-                <View style={{
+                {/* <View style={{
                     alignItems: 'center', justifyContent: "center", flex: 4, flexDirection: "column",
                     // backgroundColor: 'rgba(40, 40, 40, 0.8)',
                     // shadowColor: 'rgba(0, 0, 0, 0.3)',
                     // shadowOpacity: 0.8,
                     shadowRadius: 6, padding: 20, width: "60%", borderRadius: 24, alignItems: 'center', alignSelf: "center", justifyContent: "center", flex: 5, flexDirection: "column"
-                }}>
+                }}> */}
 
-                    {/* Pop up to be inside the flex 4 container */}
+                    {/* Pop up to be inside the flex 4 container
                     <Animated.View
                         style={{
                             borderRadius: 10,
@@ -283,18 +394,18 @@ const Topic = () => {
                             fontWeight: 'bold',
                             color: "black"
                         }}
-                    >
-                        <Image style={{
+                    > */}
+                        {/* <Image style={{
                             borderWidth: 2,
                             top:0,
                             aspectRatio:1,
                             height: '120%'}}  source={require("../../media/TopicJs/bgeducation.png")}/>
-                    </Animated.View>
+                    </Animated.View> */}
 
 
 
 
-                    {levels.map((topic, index) => (
+                    {/* {levels.map((topic, index) => (
                         <Animated.View
                             key={index}
                             style={[
@@ -302,25 +413,26 @@ const Topic = () => {
                                 { flexDirection: "row", width: "100%", height: "100%", flex: 2, alignItems: 'center', justifyContent: "center" },
 
                             ]}
-                        >
-                            {console.log(topic)}
+                        > */}
+                            {/* {console.log(topic)}
                             {/* Image swords */}
-                            <Animated.View style={[{ flex: 4 }]}>
-                                <TouchableOpacity onPress={() => handleClickInformationEducation(topic.education)} style={{ width: "100%", height: "100%", alignItems: 'center', justifyContent: "center", alignSelf: "center", alignContent: "center" }}>
+                            {/* <Animated.View style={[{ flex: 4 }]}> */}
+                                {/* <TouchableOpacity onPress={() => handleClickInformationEducation(topic.education)} style={{ width: "100%", height: "100%", alignItems: 'center', justifyContent: "center", alignSelf: "center", alignContent: "center" }}>
                                     <ImageBackground resizeMode="cover" style={[{ aspectRatio: 4, alignSelf: "center", justifyContent: "center", alignItems: "center", paddingLeft: "1%", flexDirection: "row", width: "100%", height: "80%", flex: 4 }]} source={index % 2 == 0 ? require("../../media/TopicJs/education.png") : require("../../media/TopicJs/education.png")}>
                                     <Text style={{ fontFamily: 'PressStart2P-Regular', fontSize:normalize(8),lineHeight:normalize(8), textAlign: "center", paddingStart: "7%", paddingEnd: "7%", color:"white" }}>{topic.topicName} [E]</Text>
                                     </ImageBackground>
-                                </TouchableOpacity>
-                            </Animated.View>
+                                </TouchableOpacity> */}
+                            {/* </Animated.View>
                         </Animated.View>
-                    ))}
+                    ))} */}
 
-                </View>
-                <View style={{ flex: 1 }}></View>
+                {/* </View> */}
+                {/* // <View style={{ flex: 1 }}></View> */}
 
             </ImageBackground>
 
         </View>
+
     )
 };
 
