@@ -367,7 +367,18 @@ const Topic = () => {
                         </TouchableOpacity>
                         </Animated.View>
 
+                        
 
+
+                    </View>
+                    
+                    <View style={{ position: "absolute", height:"20%", width:"30%", bottom: "0%", paddingLeft:"0%"}}>
+                    <TouchableOpacity onPress={() => {navigation.navigate("MainScreen"); userPress.setVolume(1.0); userPress.play()}}>
+                    <Image
+                        source={require('../../media/UI/back_v2.png')}
+                        resizeMode="cover"
+                        style={{height:"90%", width:"50%", marginTop:"2%"}} />
+                    </TouchableOpacity>
                     </View>
 
                 </View>
