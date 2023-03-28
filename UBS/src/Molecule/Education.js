@@ -286,28 +286,31 @@ const Topic = () => {
                            
                 </View>
 
-
+                
+                   
                 {/*Container for Malware Attacks */}
+                {levels.map((topic, index) => (
+
                 <View style={{flex: 2, flexDirection: "column" }}>
-                        
+                    {console.log(index)}
                     <Animated.View style={[{ flex: 4, transform: [{ scale: scaleValue }] }]}>
-                    <TouchableOpacity onPress={() => {navigation.navigate("Topic"); userPress.setVolume(1.0); userPress.play()}}>
+                    <TouchableOpacity onPress={() => {handleClickInformationEducation(topic.education); userPress.setVolume(1.0); userPress.play()}}>
                     <ImageBackground
-                        source={require('../../media/UI/play_panelv2.png')}
+                        source={index == 0 ? require('../../media/UI/play_panelv2.png'): index == 1 ? require('../../media/UI/learn_panelv2.png'):require('../../media/UI/setting_panelv2.png')}
                         resizeMode="cover"
                         style={{height: "100%", width:"100%"}} >
 
                         {/*/Image */}  
                         <View style={{ flex:2, marginTop: "10%", marginLeft: "3%", paddingTop:"24%", alignItems: "center"}}>
                         <Image
-                            source={require('../../media/UI/Shield_trans.gif')}
+                            source={ index == 0 ? require('../../media/UI/Shield_trans.gif'): index== 1 ? require("../../media/UI/Sword_trans.gif"):require("../../media/UI/star_trans.gif")}
                             resizeMode="contain"
                             style={{height: "100%", width:"100%"}} />
 
                         </View>
                         {/*/Text */}     
                         <View style={{ flex:1, marginTop:"3%", marginBottom:"25%",}}>
-                        <Text style={{color: 'white', fontFamily: 'PressStart2P-Regular', fontSize: normalize(8), alignSelf: 'center', marginBottom: "5%"}}>Malware Attacks</Text>
+                        <Text style={{color: 'white', fontFamily: 'PressStart2P-Regular', fontSize: normalize(8), alignSelf: 'center', marginBottom: "5%"}}>{topic.topicName}</Text>
                         </View> 
                     </ImageBackground>
                     </TouchableOpacity>
@@ -315,62 +318,9 @@ const Topic = () => {
                 
                 </View>
                 
-                {/*Container for Trojan Attacks */}
-                <View style={{flex: 2,flexDirection: "column" }}>
-                    <Animated.View style={[{ flex: 4, transform: [{ scale: scaleValue }] }]}>
-                    <TouchableOpacity onPress={() => {navigation.navigate("Education"); userPress.setVolume(1.0); userPress.play()}}>
-                    <ImageBackground
-                        source={require('../../media/UI/learn_panelv2.png')}
-                        resizeMode="cover"
-                        style={{height: "100%", width:"100%"}} >
-
-                        {/*/Image */}  
-                        <View style={{ flex:3, marginTop: "10%", marginLeft: "3%",paddingTop:"24%", alignItems: "center",}}>
-                        <Image
-                            source={require('../../media/UI/Sword_trans.gif')}
-                            resizeMode="contain"
-                            style={{height: "100%", width:"100%"}} />
-
-                        </View>
-                        {/*/Text */}     
-                        <View style={{ flex:1, marginBottom:"32%",}}>
-                        <Text style={{color: 'white', fontFamily: 'PressStart2P-Regular', fontSize: normalize(8), alignSelf: 'center', marginBottom: "5%"}}>Trojan</Text>
-                        </View> 
-                    </ImageBackground>
-                    </TouchableOpacity>
-                    </Animated.View>
-
-                </View>
-
-                    {/*Container for third Attacks */}
-                    <View style={{flex: 2, flexDirection: "column" }}>
-                        <Animated.View style={[{ flex: 4, transform: [{ scale: scaleValue }] }]}>
-                        <TouchableOpacity onPress={() => {userPress.setVolume(1.0); userPress.play()}}>
-                        <ImageBackground
-                            source={require('../../media/UI/setting_panelv2.png')}
-                            resizeMode="cover"
-                            style={{height: "100%", width:"100%"}} >
-
-                        {/*/Image */}  
-                        <View style={{ flex:3, marginTop: "10%", marginLeft: "3%", alignItems: "center"}}>
-                        <Image
-                            source={require('../../media/UI/star_trans.gif')}
-                            resizeMode="contain"
-                            style={{height: "140%", width:"100%"}} />
-
-                        </View>
-                        {/*/Text */}     
-                        <View style={{ flex:1, marginTop:"3%", marginBottom:"25%",}}>
-                        <Text style={{color: 'white', fontFamily: 'PressStart2P-Regular', fontSize: normalize(8), alignSelf: 'center', marginBottom: "5%"}}>Something</Text>
-                        </View> 
-                        </ImageBackground>
-                        </TouchableOpacity>
-                        </Animated.View>
-
-                        
-
-
-                    </View>
+                ))}
+                
+               
                     
                     <View style={{ position: "absolute", height:"20%", width:"30%", bottom: "0%", paddingLeft:"0%"}}>
                     <TouchableOpacity onPress={() => {navigation.navigate("MainScreen"); userPress.setVolume(1.0); userPress.play()}}>
