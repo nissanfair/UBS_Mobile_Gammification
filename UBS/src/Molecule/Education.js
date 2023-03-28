@@ -278,7 +278,7 @@ const Topic = () => {
               
 
                 {/*Container for all three buttons */}
-                <View style={{flex: 5, flexDirection: "row", alignItems: "center",}}>
+                <View style={{flex: 5, flexDirection: "row", alignItems: "center"}}>
 
                 {/*Container for Learning Content Title */}
                 <View style={{position: "absolute", top:"0%",left:"33%", width:"35%",paddingTop:"10%", height: "20%",}}>
@@ -301,7 +301,7 @@ const Topic = () => {
                         style={{height: "100%", width:"100%"}} >
 
                         {/*/Image */}  
-                        <View style={{ flex:2, marginTop: "10%", marginLeft: "3%", paddingTop:"24%", alignItems: "center"}}>
+                        <View style={{ flex:2, marginTop: "30%", marginLeft: "3%", alignItems: "center"}}>
                         <Image
                             source={ index == 0 ? require('../../media/UI/Shield_trans.gif'): index== 1 ? require("../../media/UI/Sword_trans.gif"):require("../../media/UI/star_trans.gif")}
                             resizeMode="contain"
@@ -309,7 +309,7 @@ const Topic = () => {
 
                         </View>
                         {/*/Text */}     
-                        <View style={{ flex:1, marginTop:"3%", marginBottom:"25%",}}>
+                        <View style={{ flex:1,marginLeft:"13%", marginBottom:"25%", width:"75%" }}>
                         <Text style={{color: 'white', fontFamily: 'PressStart2P-Regular', fontSize: normalize(8), alignSelf: 'center', marginBottom: "5%"}}>{topic.topicName}</Text>
                         </View> 
                     </ImageBackground>

@@ -43,17 +43,23 @@ const styles = StyleSheet.create({
   },
   lefttopbox: {
     flex: 3,
+    borderColor: "red",
+    borderWidth: 3
   },
   monsterbox: {
-    top: '10%',
+    top: '25%',
     bottom: '0%',
     left: '35%',
     height: '70%',
-    width: '65%',
+    width: '68%',
     justifyContent: 'center',
+    borderColor: "red",
+    borderWidth: 3
   },
   monster: {
     alignSelf: 'center',
+    height:"90%",
+    width: "90%"
   },
   righttopbox: {
     flex: 3,
@@ -99,7 +105,9 @@ const styles = StyleSheet.create({
   textstyle: {
     color: 'white',
     fontFamily: 'PressStart2P-Regular',
-    fontSize: normalize(8),
+    fontSize: normalize(7),
+    marginTop: "5%",
+    textAlign: 'center'
   },
   textdescheaderstyle: {
     color: 'red',

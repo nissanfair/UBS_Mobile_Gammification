@@ -181,10 +181,10 @@ const TopicIntroduction = ({navigation}) => {
 
       <View style={styles.leftbox}>
         <View style={styles.back}>
-          <TouchableOpacity style={styles.button} onPress={Backbutton}>
+          <TouchableOpacity onPress={Backbutton}>
             <Image
               source={require('../../../media/UI/back_v2.png')}
-              resizeMode="contain"
+              resizeMode="cover"
             />
           </TouchableOpacity>
         </View>
@@ -199,13 +199,14 @@ const TopicIntroduction = ({navigation}) => {
           <View style={styles.topbox}>
 
             <View style={styles.lefttopbox}>
+              
               <View style={styles.monsterbox}>
                 <Image
-                  source={require('../../../media/sorcereridle_sm.gif')}
-                  resizeMode="contain"
+                  source={topic == "Topic1" ? require('../../../media/sorcerer_lg.gif'):topic == "Topic2"? require('../../../media/Characters/Dark_Knight/dark_knight_sm.gif'):require('../../../media/slime.gif')}
+                  resizeMode={topic == "Topic2"? "contain": "cover"}
                   style={styles.monster}
                 />
-                <Text style={styles.textstyle}>Malware Wizard</Text>
+                <Text style={styles.textstyle}>Target Monster</Text>
               </View>
 
             </View>

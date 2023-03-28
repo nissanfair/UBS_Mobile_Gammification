@@ -342,15 +342,15 @@ const Topic = () => {
                         style={{height: "100%", width:"100%"}} >
 
                         {/*/Image */}  
-                        <View style={{ flex:2, marginTop: "10%", marginLeft: "3%",paddingTop:"24%", alignItems: "center",borderColor:"red", borderWidth:3}}>
+                        <View style={{ flex:2, marginTop: "30%", marginLeft: "3%", alignItems: "center"}}>
                         <Image
-                            source={index == 0 ? require('../../media/sorcerer_lg.gif'): index == 1? require('../../media/Characters/Dark_Knight/dark_knight_idle.gif'):require('../../media/sorcerer_lg.gif')}
+                            source={index == 0 ? require('../../media/sorcerer_lg.gif'): index == 1? require('../../media/Characters/Dark_Knight/dark_knight_sm.gif'):require('../../media/slime.gif')}
                             resizeMode="contain"
-                            style={{height: "100%", width:"100%"}} />
+                            style={index == 0 ?{height: "100%", width:"100%"}:{height: "80%", width:"100%", marginTop:"5%"}} />
 
                         </View>
                         {/*/Text */}     
-                        <View style={{ flex:1, marginTop:"3%", marginBottom:"25%",borderColor:"blue", borderWidth:3}}>
+                        <View style={{ flex:1, marginLeft:"13%", marginBottom:"25%", width:"75%"}}>
                         <Text style={{color: 'white', fontFamily: 'PressStart2P-Regular', fontSize: normalize(8), alignSelf: 'center', marginBottom: "5%"}}>{topic.topicName}</Text>
                         </View> 
                     </ImageBackground>
