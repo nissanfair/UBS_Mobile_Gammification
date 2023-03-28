@@ -43,8 +43,6 @@ const styles = StyleSheet.create({
   },
   lefttopbox: {
     flex: 3,
-    borderColor: "red",
-    borderWidth: 3
   },
   monsterbox: {
     top: '25%',
@@ -53,8 +51,6 @@ const styles = StyleSheet.create({
     height: '70%',
     width: '68%',
     justifyContent: 'center',
-    borderColor: "red",
-    borderWidth: 3
   },
   monster: {
     alignSelf: 'center',
