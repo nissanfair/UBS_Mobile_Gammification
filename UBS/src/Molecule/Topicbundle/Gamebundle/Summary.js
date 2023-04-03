@@ -10,6 +10,7 @@ import { Animated } from 'react-native';
 // sfx
 import { fight } from '../TopicIntroduction';
 import { adven } from '../../homescreen';
+import { topic_intro } from '../../Topic'
 import press from '../../../../media/Soundtracks/main/press.wav';
 import Sound from 'react-native-sound';
 import gameover from "../../../../media/Soundtracks/main/gameover.wav";
@@ -134,9 +135,9 @@ export default function Summary() {
 
       ForestObject.stop();
 
-      adven.setVolume(0.5);
-      adven.play();
-      adven.setNumberOfLoops(-1);
+      topic_intro.setVolume(0.5);
+      topic_intro.play();
+      topic_intro.setNumberOfLoops(-1);
 
       userPress.setVolume(1.0);
       userPress.play();

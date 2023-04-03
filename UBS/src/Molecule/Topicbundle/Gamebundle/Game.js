@@ -5,6 +5,26 @@ import { useDispatch, useSelector, useStore } from 'react-redux';
 import { setSelectedTimeState, setShowSummary, setTotal_Questions, set_answered_correctly, set_answered_wrongly, set_game_status } from "../../../Redux/questionSlice"
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 
+//sfx
+import heroAttack from '../../../../media/Soundtracks/main/hero_attack.wav';
+import monsterAttack from '../../../../media/Soundtracks/main/monster_attack.wav';
+import Sound from 'react-native-sound';
+Sound.setCategory('Playback');
+var hero = new Sound(heroAttack, (error) => {
+    if (error) {
+      console.log('failed to load the sound', error);
+      return;
+    }
+});
+
+var monster = new Sound(monsterAttack, (error) => {
+    if (error) {
+      console.log('failed to load the sound', error);
+      return;
+    }
+});
+//end of sfx
+
 import { styles } from "../../../Styling";
 
 import Question from './Questions';
@@ -74,6 +94,11 @@ const Game = () => {
                     setHeroState('idle');
                 }, 1000); // assuming HeroState has a 1 second animation
 
+                if (gamestatus != "RESET") {
+                    hero.setVolume(1);
+                    hero.play();
+                }
+
                 // tint color animation for Character 2 Image Component from 4th to 6th seconds
                 Animated.sequence([
                     Animated.timing(characterFadeAnimation, {
@@ -135,6 +160,13 @@ const Game = () => {
                 setTimeout(() => {
                     setBossState('idle');
                 }, 2000); // assuming HeroState has a 1 second animation
+
+                //sfx
+                if (gamestatus != "RESET") {
+                    monster.setVolume(1);
+                    monster.play();
+                }
+                
 
                 // tint color animation for Character 2 Image Component from 4th to 6th seconds
                 Animated.sequence([

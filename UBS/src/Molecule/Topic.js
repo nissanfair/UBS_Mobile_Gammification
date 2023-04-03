@@ -13,6 +13,10 @@ import TopicIntroduction from './Topicbundle/TopicIntroduction';
 import {ProgressBar} from '@react-native-community/progress-bar-android';
 import press from '../../media/Soundtracks/main/press.wav';
 import Sound from 'react-native-sound';
+import intro from '../../media/Soundtracks/main/theme_topic.mp3'
+
+import { adven } from './homescreen'
+import { AppState } from 'react-native';
 
 //sfx
 Sound.setCategory('Playback');
@@ -22,6 +26,14 @@ var userPress = new Sound(press, (error) => {
       return;
     }
 });
+
+var topic_intro = new Sound(intro, (error) => {
+    if (error) {
+      console.log('failed to load the sound', error);
+      return;
+    }
+});
+
 
 
 // Redux slices 
@@ -64,7 +76,48 @@ const Topic = () => {
         //sfx
         userPress.setVolume(1.0);
         userPress.play();
+
+        adven.stop();
+        topic_intro.setVolume(0.5);
+        topic_intro.play(success => {  
+            if (success) {  
+              console.log('topic intro playing ended successfully here');  
+            } 
+            else {  
+              console.log('topic intro sound failed by audio decoding error');
+            }
+          });
+        topic_intro.setNumberOfLoops(-1);
     }
+
+    const [appState, setAppState] = useState(AppState.currentState);
+
+    useEffect(() => {
+        AppState.addEventListener('change', handleAppStateChange);
+        return () => {
+        AppState.removeEventListener('change', handleAppStateChange);
+        };
+    }, []);
+
+  
+    const handleAppStateChange = (nextAppState) => {
+        if (nextAppState === 'active') {
+        // App has come to the foreground
+        // Start playing sound again
+        topic_intro.getCurrentTime((seconds) => {
+            if (seconds != 0) {
+            topic_intro.setVolume(0.5);
+            topic_intro.play();
+            topic_intro.setNumberOfLoops(-1);
+            }
+    });
+    } else if (appState === 'active' && nextAppState.match(/inactive|background/)) {
+      // App has gone to the background
+      // Stop playing sound
+      topic_intro.pause();
+    }
+    setAppState(nextAppState);
+  };
 
     // Handle the educational content
     const handleClickInformationEducation = (levelinformation) => {
@@ -409,6 +462,7 @@ const Topic = () => {
 
 
 export default Topic;
+export { topic_intro };
 
 // Code Dump
 {/* {levels.map((level, index) => (
