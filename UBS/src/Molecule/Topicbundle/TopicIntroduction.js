@@ -204,10 +204,14 @@ const TopicIntroduction = ({navigation}) => {
                 <Image
                   source={topic == "Topic1" ? require('../../../media/sorcerer_lg.gif'):topic == "Topic2"? require('../../../media/Characters/Dark_Knight/dark_knight_sm.gif'):require('../../../media/slime.gif')}
                   resizeMode={topic == "Topic2"? "contain": "cover"}
-                  style={styles.monster}
+                  style={ topic == "Topic1" ? styles.monster: styles.monsterr}
                 />
+                 <View style={styles.monstername}>
                 <Text style={styles.textstyle}>Target Monster</Text>
               </View>
+                
+              </View>
+             
 
             </View>
 
@@ -217,6 +221,7 @@ const TopicIntroduction = ({navigation}) => {
                 <Text style={styles.textrewardstyle}>E$15000</Text>
               </View>
             </View>
+            
           </View>
 
           <View style={styles.bottombox}>

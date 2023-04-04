@@ -140,8 +140,8 @@ const MainScreen = () => {
                             </ImageBackground> */}
 
                             <ImageBackground source={require("../../media/Username.png")} resizeMode="contain" style={{ width:"100%", height:"100%"}}>
-                            <View style={{ width:"100%", top:"10%", paddingTop: "8%",}}>
-                            <Text style={{color: 'black', fontFamily: 'PressStart2P-Regular', fontSize: normalize(8.2), alignSelf: 'center'}}>17 TIBIXS</Text>
+                            <View style={{ width:"60%", top:"27%",left:"20%"}}>
+                            <Text style={{color: 'black', fontFamily: 'PressStart2P-Regular', fontSize: normalize(7), alignSelf: 'center'}}>17 TIBIXS</Text>
                             </View>
                             </ImageBackground>
                         
@@ -151,14 +151,14 @@ const MainScreen = () => {
                     </View>
 
                     {/* For user button */}
-                    <View style={{ position: "absolute", width: "20%", height: "100%", zIndex: 2, right: 0 }}>
+                    <View style={{ position: "absolute", width: "20%", height: "100%", zIndex: 2, right: "0%" }}>
                         <TouchableOpacity style={{ width: "100%", height: "100%" }} onPress={() => console.log("Profile button pressed")}>
                             {/* <ImageBackground resizeMode="cover" style={[{ marginTop: "2%", aspectRatio: 4, alignSelf: "center", justifyContent: "center", alignItems: "center", paddingLeft: "1%", flexDirection: "row", width: "100%", height: "100%", flex: 4 }]} source={require("../../media/TopicJs/profile.png")} >
                             </ImageBackground> */}
 
                             <ImageBackground source={require("../../media/Coin.png")} resizeMode="contain" style={{ width:"100%", height:"100%"}}>
-                            <View style={{ width:"100%", top:"10%",left:"5%", paddingTop: "8%"}}>
-                            <Text style={{color: 'black', fontFamily: 'PressStart2P-Regular', fontSize: normalize(8.2), alignSelf: 'center'}}>2819</Text>
+                            <View style={{ width:"100%", top:"27%",paddingLeft:"10%"}}>
+                            <Text style={{color: 'black', fontFamily: 'PressStart2P-Regular', fontSize: normalize(7), alignSelf: 'center'}}>2819</Text>
                             </View>
                             </ImageBackground>
                         </TouchableOpacity>
@@ -179,7 +179,7 @@ const MainScreen = () => {
                         style={{height: "100%", width:"100%"}} >
 
                         {/*/Image */}  
-                        <View style={{ flex:2, marginTop: "10%", marginLeft: "3%", paddingTop:"24%", alignItems: "center"}}>
+                        <View style={{ flex:3, marginTop: "10%",top:"10%", marginLeft: "3%"}}>
                         <Image
                             source={require('../../media/UI/play_trans.gif')}
                             resizeMode="contain"
@@ -187,7 +187,7 @@ const MainScreen = () => {
 
                         </View>
                         {/*/Text */}     
-                        <View style={{ flex:1, marginTop:"3%", marginBottom:"25%",}}>
+                        <View style={{ flex:1, marginTop:"3%", marginBottom:"25%"}}>
                         <Text style={{color: 'white', fontFamily: 'PressStart2P-Regular', fontSize: normalize(13), alignSelf: 'center', marginBottom: "5%"}}>Play</Text>
                         </View> 
                     </ImageBackground>
@@ -214,7 +214,7 @@ const MainScreen = () => {
 
                         </View>
                         {/*/Text */}     
-                        <View style={{ flex:1, marginTop:"3%", marginBottom:"25%",}}>
+                        <View style={{ flex:1, marginTop:"3%", marginBottom:"25%"}}>
                         <Text style={{color: 'white', fontFamily: 'PressStart2P-Regular', fontSize: normalize(13), alignSelf: 'center', marginBottom: "5%"}}>Learn</Text>
                         </View> 
                     </ImageBackground>
@@ -240,7 +240,7 @@ const MainScreen = () => {
 
                         </View>
                         {/*/Text */}     
-                        <View style={{ flex:1, marginTop:"3%", marginBottom:"25%",}}>
+                        <View style={{ flex:1, marginTop:"3%", marginBottom:"25%"}}>
                         <Text style={{color: 'white', fontFamily: 'PressStart2P-Regular', fontSize: normalize(13), alignSelf: 'center', marginBottom: "5%"}}>Settings</Text>
                         </View> 
                         </ImageBackground>
