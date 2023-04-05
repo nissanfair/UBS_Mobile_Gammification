@@ -248,10 +248,7 @@ const Topic = () => {
                             {/* <ImageBackground resizeMode="cover" style={[{ marginTop: "2%", aspectRatio: 4, alignSelf: "center", justifyContent: "center", alignItems: "center", paddingLeft: "1%", flexDirection: "row", width: "100%", height: "100%", flex: 4 }]} source={require("../../media/TopicJs/setting.png")} >
                             </ImageBackground> */}
 
-                            <ImageBackground source={require("../../media/Username.png")} resizeMode="contain" style={{ width:"100%", height:"100%"}}>
-                            <View style={{width:"60%", top:"27%",left:"20%"}}>
-                            <Text style={{color: 'black', fontFamily: 'PressStart2P-Regular', fontSize: normalize(7), alignSelf: 'center'}}>17 TIBIXS</Text>
-                            </View>
+                            <ImageBackground source={require("../../media/UI/username.png")} resizeMode="cover" style={{ width:"100%", height:"100%"}}>
                             </ImageBackground>
                         
                         
@@ -265,10 +262,7 @@ const Topic = () => {
                             {/* <ImageBackground resizeMode="cover" style={[{ marginTop: "2%", aspectRatio: 4, alignSelf: "center", justifyContent: "center", alignItems: "center", paddingLeft: "1%", flexDirection: "row", width: "100%", height: "100%", flex: 4 }]} source={require("../../media/TopicJs/profile.png")} >
                             </ImageBackground> */}
 
-                            <ImageBackground source={require("../../media/Coin.png")} resizeMode="contain" style={{ width:"100%", height:"100%"}}>
-                            <View style={{  width:"100%", top:"27%",paddingLeft:"10%"}}>
-                            <Text style={{color: 'black', fontFamily: 'PressStart2P-Regular', fontSize: normalize(7), alignSelf: 'center'}}>2819</Text>
-                            </View>
+                            <ImageBackground source={require("../../media/UI/coin.png")} resizeMode="cover" style={{ width:"100%", height:"100%", bottom: "10%"}}>
                             </ImageBackground>
                         </TouchableOpacity>
 
