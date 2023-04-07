@@ -17,6 +17,7 @@ const HealthBar = ({ numWrongAnswers, timeState, gameStatus }) => {
 
         // Check when timeState is paused because they would have answered the question + Check whether gamestatus is running
         if (timeState == "PAUSE" && gameStatus == "RUNNING") {
+            console.log("Paused and running ")
             // One because if minus 1 and get wrong, it would end the 
             if (currentHealth == 1) {
                 updateCurrentHealth(maxHealth)
@@ -35,8 +36,12 @@ const HealthBar = ({ numWrongAnswers, timeState, gameStatus }) => {
         }
         // Check when timeState has ended because they would missed their chance to answer their question  + Check whether gamestatus is running
         if (timeState == "END" && gameStatus == "RUNNING") {
+            console.log("End and running ")
+            console.log(" current health is" + currentHealth)
             if (currentHealth == 1) {
                 updateCurrentHealth(maxHealth)
+                console.log(" updating  current health to max" + currentHealth)
+
                 // Reset time to run for the next iteration and set game status to reset
                 dispatch(setSelectedTimeState("RUN"))
                 dispatch(set_game_status("RESET"))
@@ -59,7 +64,8 @@ const HealthBar = ({ numWrongAnswers, timeState, gameStatus }) => {
     return (
         <View style={{ flexDirection: 'row', alignItems: 'center'  }}>
       {Array.from({ length: currentHealth }).map((_, index) => (
-        <View key={index}>
+          <View key={index}>
+            {console.log("printing out hearts",currentHealth)}
           <Image
             source={require('./heart.png')}
             resizeMode='contain'

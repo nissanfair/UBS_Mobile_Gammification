@@ -38,6 +38,7 @@ const Timer = () => {
           if (timeLeft === 0 ) {
             setTimeLeft(0)
             clearInterval(intervalId.current);
+            console.log("Setting timestate to end , no more time")
             dispatch(setSelectedTimeState("END"))
           }
           else {

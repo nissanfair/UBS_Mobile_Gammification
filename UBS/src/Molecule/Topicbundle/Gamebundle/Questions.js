@@ -171,6 +171,7 @@ const Question = ({ gameStatus }) => {
             setPrompt(actual_questions[questionIndex]["Explanation"])
 
             //Step 5: Set the Answered Wrongly to +1 
+            console.log(" i am triggered in userAnswer for wrong questions")
             dispatch(set_answered_wrongly(1))
 
             // sfx for pressing

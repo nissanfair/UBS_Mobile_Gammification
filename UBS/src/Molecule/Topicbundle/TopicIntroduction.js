@@ -67,9 +67,10 @@ const TopicIntroduction = ({navigation}) => {
     dispatch(set_answered_wrongly(-answered_wrongly))
     console.log(total_question)
     console.log(answered_correctly)
-    console.log(answered_wrongly)
+    console.log(answered_wrongly) 
 
     // Change status to running again
+    dispatch(setSelectedTimeState("RUN")) //TRY, the problem is the thing thing is triggering 2 times
     dispatch(set_game_status("RUNNING"))
     navigation.navigate("Loading")
 
@@ -103,7 +104,7 @@ const TopicIntroduction = ({navigation}) => {
     // For emulator
     var fetchSelectedTopic = `https://express-6bit.onrender.com/6bit/topics/${topic}`;
     // state.question.topicQuestionObject
-    console.log(topic);
+    console.log(topic + " asdas I AM IN TOPIC INTRO");
     fetch(fetchSelectedTopic)
       .then(response => response.json())
       .then(data => {

@@ -215,7 +215,7 @@ const HomeScreen = () => {
         console.log(userData['givenName'])
         console.log(typeof userData['givenName'])
         setLoggedIn(true)
-        console.log(loggedIn)
+        // console.log(loggedIn)
         setUserName(userData['givenName']);
         console.log('This is the UserName:', userName)
         // setUserData(prevState => ({...prevState,

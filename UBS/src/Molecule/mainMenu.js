@@ -240,7 +240,7 @@ const MainScreen = () => {
     // setUserDataMM(userDataRedux)
     let userLoginStatusRedux = useSelector((state) => state.login.loginStatus)
     console.log("From Redux: " , userDataRedux)
-    console.log("From Redux: " ,userLoginStatusRedux)
+    // console.log("From Redux: " ,userLoginStatusRedux)
 
     useEffect(() => {
         if (userDataRedux) {
@@ -429,7 +429,7 @@ const MainScreen = () => {
                         </View>
                         {/*/Text */}     
                         <View style={{ flex:1, marginTop:"3%", marginBottom:"25%"}}>
-                        <Text style={{color: 'white', fontFamily: 'PressStart2P-Regular', fontSize: normalize(13), alignSelf: 'center', marginBottom: "5%"}}>Play</Text>
+                        <Text style={{color: 'white', fontFamily: 'PressStart2P-Regular', fontSize: normalize(11), alignSelf: 'center', marginBottom: "5%"}}>Play</Text>
                         </View> 
                     </ImageBackground>
                     </TouchableOpacity>
@@ -456,7 +456,7 @@ const MainScreen = () => {
                         </View>
                         {/*/Text */}     
                         <View style={{ flex:1, marginTop:"3%", marginBottom:"25%"}}>
-                        <Text style={{color: 'white', fontFamily: 'PressStart2P-Regular', fontSize: normalize(13), alignSelf: 'center', marginBottom: "5%"}}>Learn</Text>
+                        <Text style={{color: 'white', fontFamily: 'PressStart2P-Regular', fontSize: normalize(11), alignSelf: 'center', marginBottom: "5%"}}>Learn</Text>
                         </View> 
                     </ImageBackground>
                     </TouchableOpacity>
@@ -482,7 +482,7 @@ const MainScreen = () => {
                         </View>
                         {/*/Text */}     
                         <View style={{ flex:1, marginTop:"3%", marginBottom:"25%"}}>
-                        <Text style={{color: 'white', fontFamily: 'PressStart2P-Regular', fontSize: normalize(13), alignSelf: 'center', marginBottom: "5%"}}>Settings</Text>
+                        <Text style={{color: 'white', fontFamily: 'PressStart2P-Regular', fontSize: normalize(11), alignSelf: 'center', marginBottom: "5%"}}>Settings</Text>
                         </View> 
                         </ImageBackground>
                         </TouchableOpacity>

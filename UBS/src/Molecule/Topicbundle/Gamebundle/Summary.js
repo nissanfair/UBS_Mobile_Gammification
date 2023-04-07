@@ -99,7 +99,7 @@ export default function Summary() {
       is_win = false
       // Playing the 
     }
-    else{
+    else if (answered_wrongly < 3){
       is_win = true;
     }
 
@@ -108,7 +108,7 @@ export default function Summary() {
       //sfx stop and start
       fight.stop();
 
-      console.log(is_win)
+      console.log(is_win + "i am executed here")
       if (is_win){
         SuccessObject.setVolume(0.5)
         SuccessObject.play();

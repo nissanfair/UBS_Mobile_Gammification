@@ -147,6 +147,7 @@ const Game = () => {
     // End of Animation for Correctly Answered ###########################################################################
     // Start of Animation for Wrongly Answered ###########################################################################
     useEffect(() => {
+        console.log(" wrongly answered qn in game js " + wronglyAnsweredQuestion)
         if (wronglyAnsweredQuestion !== 0) {
             console.log("answered_correctly: " + answered_correctly)
             // fade out Question component from 0th to 1st second
