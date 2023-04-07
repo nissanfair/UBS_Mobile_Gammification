@@ -289,8 +289,8 @@ const Topic = () => {
                 <View style={{flex: 5, flexDirection: "row", alignItems: "center"}}>
 
                     {/*Container for Learning Content Title */}
-                <View style={{position: "absolute", top:"0%",left:"25%", width:"50%",paddingTop:"5%", height: "20%"}}>
-                    <Text style={{color: 'white', fontFamily: 'PressStart2P-Regular', fontSize: normalize(10), textAlign: 'center'}}>Select Your Boss Fight:</Text>
+                <View style={{position: "absolute", top:"0%",left:"25%", width:"50%",paddingTop:"5%",  height: "15%"}}>
+                    <Text style={{color: 'white', fontFamily: 'PressStart2P-Regular', fontSize: normalize(10), textAlign: 'center'}}>Select Your Boss Fight</Text>
                            
                 </View>
 
