@@ -286,12 +286,12 @@ const HomeScreen = () => {
             <ImageBackground resizeMode="cover" source={require("../../media/UI/cloud_homepage.gif")} style={styles.background} />
           </TouchableHighlight>
         </View>
-
+{/* 
         <View style={styles.layer}>
             <View style={styles.container}>
               <ImageLoader/>
             </View>
-        </View>
+        </View> */}
 
         <View style={styles.viewContainer1}>
           <View style={styles.bottomContent}>
