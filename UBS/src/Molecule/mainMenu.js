@@ -220,7 +220,7 @@ const MainScreen = () => {
 
                     <View style={{flex: 2, flexDirection: "column" }}>
                         <Animated.View style={[{ flex: 4, transform: [{ scale: scaleValue }] }]}>
-                        <TouchableOpacity onPress={() => {userPress.setVolume(1.0); userPress.play()}}>
+                        <TouchableOpacity onPress={() => {userPress.setVolume(1.0); userPress.play(); console.log("I am pessed")}}>
                         <ImageBackground
                             source={require('../../media/UI/setting_panelv2.png')}
                             resizeMode="cover"
