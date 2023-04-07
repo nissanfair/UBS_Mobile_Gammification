@@ -71,7 +71,7 @@ const TopicIntroduction = ({navigation}) => {
 
     // Change status to running again
     dispatch(set_game_status("RUNNING"))
-    navigation.navigate("Game")
+    navigation.navigate("Loading")
 
     // stop bg music
     adven.stop();
