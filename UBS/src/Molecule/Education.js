@@ -83,7 +83,7 @@ const Topic = () => {
         // For JP use for his phone
         // var fetchTopics = "http://192.168.29.14:3000/6bit/topics/totalquizzes"
         // For Emulator
-        var fetchTopics = "http://10.0.2.2:3000/6bit/topics/totalquizzes"
+        var fetchTopics = "https://express-6bit.onrender.com/6bit/topics/totalquizzes"
         console.log("i am in use Effect")
         // Dynamically get all the topics from firebase - On the firebase side i tweaked it in a way so i /3 lol
         fetch(fetchTopics)
