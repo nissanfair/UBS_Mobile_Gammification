@@ -10,6 +10,7 @@ import TopicIntroduction from './Topicbundle/TopicIntroduction';
 import { ProgressBar } from '@react-native-community/progress-bar-android';
 
 import { PanResponder } from 'react-native';
+import BackButton from './CrossButton';
 
 // import {Dimensions ,Platform, PixelRatio} from 'react-native';
 
@@ -49,7 +50,7 @@ const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 // Sliding Panel Component 
-const SlidingPanel = ({ visible }) => {
+const SlidingPanel = ({ visible , onClose }) => {
     const [animation] = useState(new Animated.Value(0));
 
     useEffect(() => {
@@ -88,7 +89,14 @@ const SlidingPanel = ({ visible }) => {
                     <Text style={{ fontFamily: 'PressStart2P-Regular', fontSize: normalize(8),lineHeight: normalize(8),color: 'black', fontWeight: 'bold', textAlign: 'center' }}>Sign Out</Text>
                 </View>
             </View>
-            <View style={{flex:3}}></View>
+            <View style={{flex:2, alignItems:"center"}}>
+                <TouchableOpacity onPress={onClose}>
+                    <Image 
+                        source={require('../../media/UI/back_v2.png')}
+                        resizeMode='cover'
+                    />
+                </TouchableOpacity>
+            </View>
 
         </View>
     </View>
@@ -360,7 +368,7 @@ const MainScreen = () => {
 
 
                 </View>
-                <SlidingPanel visible={panelVisible} />
+                <SlidingPanel visible={panelVisible} onClose={closeToggle} />
             </ImageBackground>
 
         </View>
