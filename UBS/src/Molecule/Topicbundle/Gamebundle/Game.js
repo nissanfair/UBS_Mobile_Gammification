@@ -1,6 +1,6 @@
 import { createStackNavigator } from '@react-navigation/stack';
 import React, { useEffect, useState } from 'react';
-import { Image, ImageBackground, StyleSheet, Text, View, Button, Animated, BackHandler} from 'react-native';
+import { Image, ImageBackground, StyleSheet, Text, View, Button, Animated, BackHandler } from 'react-native';
 import { useDispatch, useSelector, useStore } from 'react-redux';
 import { setSelectedTimeState, setShowSummary, setTotal_Questions, set_answered_correctly, set_answered_wrongly, set_game_status } from "../../../Redux/questionSlice"
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
@@ -18,15 +18,15 @@ import Sound from 'react-native-sound';
 Sound.setCategory('Playback');
 var hero = new Sound(heroAttack, (error) => {
     if (error) {
-      console.log('failed to load the sound', error);
-      return;
+        console.log('failed to load the sound', error);
+        return;
     }
 });
 
 var monster = new Sound(monsterAttack, (error) => {
     if (error) {
-      console.log('failed to load the sound', error);
-      return;
+        console.log('failed to load the sound', error);
+        return;
     }
 });
 //end of sfx
@@ -50,6 +50,8 @@ const Game = () => {
     const gamestatus = useSelector((state) => state.question.gamestatus)
 
     const showSummary = useSelector((state) => state.question.showSummary);
+
+    const topic = useSelector(state => state.topic.topic);
 
 
     // Disable back button
@@ -262,24 +264,72 @@ const Game = () => {
 
 
                             {/* Character 2 */}
-                            <View style={{ flex: 1 }}>
-                                <View style={{ flexDirection: "column", height: "100%", width: '100%' }}>
-                                    <View style={{ flex: 1 }}></View>
-                                    <View style={{ flex: 100 }}>
-                                        <Animated.View style={{ opacity: characterFadeAnimation }}>
-                                            {bossState == "idle"
-                                                ?
-                                                <Image style={{ height: '100%', aspectRatio: 1, alignSelf: 'center' }} source={require('../../../sorcereridle.gif')} />
-                                                :
-                                                <Image style={{ height: '100%', aspectRatio: 1, alignSelf: 'center' }} source={require('../../../../media/Characters/sorcerer_villain/SorcererAttack.gif')} />
+                            {/* Check if Topic 1 , Topic 2 , Topic 3 */}
 
-                                            }
+                            {topic == "Topic1" ? (
+                                <View style={{ flex: 1 }}>
+                                    <View style={{ flexDirection: "column", height: "100%", width: '100%' }}>
+                                        <View style={{ flex: 1 }}></View>
+                                        <View style={{ flex: 100 }}>
+                                            <Animated.View style={{ opacity: characterFadeAnimation }}>
+                                                {bossState == "idle"
+                                                    ?
+                                                    <Image style={{ height: '100%', aspectRatio: 1, alignSelf: 'center' }} source={require('../../../sorcereridle.gif')} />
+                                                    :
+                                                    <Image style={{ height: '100%', aspectRatio: 1, alignSelf: 'center' }} source={require('../../../../media/Characters/sorcerer_villain/SorcererAttack.gif')} />
 
-                                        </Animated.View>
+                                                }
+
+                                            </Animated.View>
+                                        </View>
+                                        <View style={{ flex: 1 }}></View>
                                     </View>
-                                    <View style={{ flex: 1 }}></View>
                                 </View>
-                            </View>
+                            ) : null}
+
+                            {topic == "Topic2" ? (
+                                <View style={{ flex: 1 }}>
+                                    <View style={{ flexDirection: "column", height: "100%", width: '100%' }}>
+                                        <View style={{ flex: 1, }}></View>
+                                        <View style={{ flex: 100, }}>
+                                            <Animated.View style={{ opacity: characterFadeAnimation }}>
+                                                {bossState == "idle"
+                                                    ?
+                                                    <Image style={{height: '80%', right:"10%", top:"30%", aspectRatio: 0.9, alignSelf: 'center' }} resizeMode="contain" source={require('../../../../media/Characters/Dark_Knight/dark_knight_idle_flip.gif')} />
+                                                    :
+                                                    <Image style={{ height: '100%', right:"40%", aspectRatio: 0.9, alignSelf: 'center' }} resizeMode="contain" source={require('../../../../media/Characters/Dark_Knight/dark_knight_atk.gif')} />
+
+                                                }
+
+                                            </Animated.View>
+                                        </View>
+                                        <View style={{ flex: 1 }}></View>
+                                    </View>
+                                </View>
+                            ) : null}
+
+
+                            {topic == "Topic3" ? (
+                                <View style={{ flex: 1 }}>
+                                    <View style={{ flexDirection: "column", height: "100%", width: '100%' }}>
+                                        <View style={{ flex: 1 }}></View>
+                                        <View style={{ flex: 100 }}>
+                                            <Animated.View style={{ opacity: characterFadeAnimation }}>
+                                                {bossState == "idle"
+                                                    ?
+                                                    <Image style={{ height: '60%', top: "70%" , aspectRatio: 1, alignSelf: 'center' }} source={require('../../../../media/slime.gif')} />
+                                                    :
+                                                    <Image style={{height: '60%', top: "70%" , aspectRatio: 1, alignSelf: 'center' }} source={require('../../../../media/slime_atk.gif')} />
+
+                                                }
+
+                                            </Animated.View>
+                                        </View>
+                                        <View style={{ flex: 1 }}></View>
+                                    </View>
+                                </View>
+                            ) : null}
+
                         </View>
 
                     </View>
