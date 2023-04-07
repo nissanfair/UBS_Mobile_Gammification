@@ -147,20 +147,14 @@ const HomeScreen = () => {
     );
   }, []);
 
-  // To prevent the music from continue playing 
-  useEffect(() => {
-    AppState.addEventListener('change', handleAppStateChange);
-    return () => {
-      AppState.removeEventListener('change', handleAppStateChange);
-    };
-  }, []);
-
-
-  const handleAppStateChange = (nextAppState) => {
-    // If the user is currently in the app 
-    if (nextAppState === 'active') {
-      // App has come to the foreground
-      // Start playing sound again
+  // The Actual Listener. 
+  useEffect (() => {
+    const handleAppStateChange = () => {
+      console.log("Sound tEst "+appState)
+      console.log(appState)
+      if (appState === 'active') {
+        // App has come to the foreground
+        // Start playing sound again
         adven.getCurrentTime((seconds) => {
           if (seconds != 0) {
             adven.setVolume(0.5);
@@ -168,13 +162,44 @@ const HomeScreen = () => {
             adven.setNumberOfLoops(-1);
           }
         });
-    } else if (appState === 'active' && nextAppState.match(/inactive|background/)) {
-      // App has gone to the background
-      // Stop playing sound
-      adven.pause();
-    }
-    setAppState(nextAppState);
-  };
+      } else if (appState === 'background' && appState==="inactive") {
+        // App has gone to the background
+        // Stop playing sound
+        adven.pause();
+      }
+      setAppState(appState);
+    };
+    handleAppStateChange('change')
+  },[appState])
+
+  // This is the wrong piece of code. 
+  // useEffect(() => {
+  //   AppState.addEventListener('change', handleAppStateChange);
+  //   return () => {
+  //     AppState.removeEventListener('change', handleAppStateChange);
+  //   };
+  // }, []);
+
+
+  // const handleAppStateChange = (nextAppState) => {
+  //   // If the user is currently in the app 
+  //   if (nextAppState === 'active') {
+  //     // App has come to the foreground
+  //     // Start playing sound again
+  //       adven.getCurrentTime((seconds) => {
+  //         if (seconds != 0) {
+  //           adven.setVolume(0.5);
+  //           adven.play();
+  //           adven.setNumberOfLoops(-1);
+  //         }
+  //       });
+  //   } else if (appState === 'active' && nextAppState.match(/inactive|background/)) {
+  //     // App has gone to the background
+  //     // Stop playing sound
+  //     adven.pause();
+  //   }
+  //   setAppState(nextAppState);
+  // };
 
   const navigation = useNavigation(); 
   let dispatch = useDispatch();

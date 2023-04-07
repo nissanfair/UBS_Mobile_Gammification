@@ -18,6 +18,7 @@ import { GoogleSignin } from '@react-native-google-signin/google-signin';
 
 // Redux slices 
 import { selectedTopic } from "../Redux/topicSlice"
+import {adven} from "./homescreen";
 
 //sfx 
 import press from '../../media/Soundtracks/main/press.wav';
@@ -130,20 +131,22 @@ const SlidingPanel = ({ visible , onClose }) => {
 
     const signOutGoogle = async () => {
         try {
-            console.log("button rsdfasd")
+            console.log("1")
           const isSignedIn = await GoogleSignin.isSignedIn();
-      
+            console.log("2")
           if (isSignedIn) {
+            console.log("3")
             await GoogleSignin.revokeAccess();
+            console.log("4")
             await GoogleSignin.signOut();
+            console.log("5")
+            adven.stop()
+            navigation.reset({
+                index: 0,
+                routes: [{name:"HomeScreen"}],
+              });
+            console.log("6")
           }
-      
-          navigation.dispatch(
-            CommonActions.reset({
-              index: 0,
-              routes: [{ name: 'HomeScreen' }],
-            })
-          );
         } catch (error) {
           console.error(error);
         }

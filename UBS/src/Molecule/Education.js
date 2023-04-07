@@ -285,7 +285,7 @@ const Topic = () => {
                 {/*Container for Malware Attacks */}
                 {levels.map((topic, index) => (
 
-                <View style={{flex: 2, flexDirection: "column" }}>
+                <View key={index} style={{flex: 2, flexDirection: "column" }}>
                     {console.log(index)}
                     
                     <TouchableOpacity onPress={() => {handleClickInformationEducation(topic.education); userPress.setVolume(1.0); userPress.play()}}>
