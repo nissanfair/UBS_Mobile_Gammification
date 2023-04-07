@@ -245,7 +245,7 @@ const Topic = () => {
 
                 {/* To Account for the  Character Badge and Currency*/}
                 <View style={{ flex: 1}}>
-                    <ImageBackground resizeMode="cover" style={[{ marginTop: "2%", aspectRatio: 4, alignSelf: "center", justifyContent: "center", alignItems: "center", paddingLeft: "1%", flexDirection: "row", width: "100%", height: "100%", flex: 4 }]} source={require("../../media/TopicJs/menulogo.png")} />
+                    <ImageBackground resizeMode="cover" style={[{ marginTop: "2%", aspectRatio: 4, alignSelf: "center", justifyContent: "center", alignItems: "center", paddingLeft: "1%", flexDirection: "row", width: "100%", height: "100%", flex: 4 }]} source={require("../../media/TopicJs/FYP_Logo_White.png")} />
 
                     {/* For settings button */}
                     <View style={{ position: "absolute", width: "20%", height: "100%", zIndex: 2 }}>
