@@ -41,15 +41,15 @@ const Loading = () => {
     <View style={styles.container}>
       {/* Replace 'video.mp4' with the name of your video file */}
       {topic === "Topic1" ? (
-        <Video source={require('../../../../media/LoadingScreen1.mp4')} resizeMode="cover" style={styles.video} />
+        <Video source={require('../../../../media/LoadingScreen1.mp4')} resizeMode="contain" style={styles.video} />
       ) : null}
 
       {topic === "Topic2" ? (
-        <Video source={require('../../../../media/LoadingScreen2.mp4')} resizeMode="cover" style={styles.video} />
+        <Video source={require('../../../../media/LoadingScreen2.mp4')} resizeMode="contain" style={styles.video} />
       ) : null}
 
       {topic === "Topic3" ? (
-        <Video source={require('../../../../media/LoadingScreen3.mp4')} resizeMode="cover" style={styles.video} />
+        <Video source={require('../../../../media/LoadingScreen3.mp4')} resizeMode="contain" style={styles.video} />
       ) : null}
 
 
