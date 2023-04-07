@@ -126,7 +126,7 @@ const MainScreen = () => {
     const dispatch = useDispatch();
     const [levels, addLevels] = useState([{}]);
     // Swipe Right 
-    const [panResponder, setPanResponder] = useState(null);
+    // const [panResponder, setPanResponder] = useState(null);
 
 
     // Add the MainScreen Page
@@ -146,17 +146,16 @@ const MainScreen = () => {
         console.log("closeToggle")
     }
 
-    useEffect(() => {
-        const responder = PanResponder.create({
+    const panResponder = useRef(
+        PanResponder.create({
           onMoveShouldSetPanResponder: () => true,
-          onPanResponderMove: (evt, gestureState) => {
-            if (gestureState.dx > 100) {
+          onPanResponderRelease: (e, gestureState) => {
+            if (gestureState.dx > 50) {
               closeToggle();
             }
           },
-        });
-        setPanResponder(responder);
-      }, []);
+        })
+      ).current;
 
 
 
@@ -281,7 +280,7 @@ const MainScreen = () => {
                     
                     <View style={{flex: 2, flexDirection: "column" }}>
                     
-                    <TouchableOpacity onPress={() => {navigation.navigate("Topic"); userPress.setVolume(1.0); userPress.play()}}>
+                    <TouchableOpacity onPress={() => {closeToggle();navigation.navigate("Topic"); userPress.setVolume(1.0); userPress.play()}}>
                     <ImageBackground
                         source={require('../../media/UI/play_panelv2.png')}
                         resizeMode="cover"
@@ -308,7 +307,7 @@ const MainScreen = () => {
 
                     <View style={{flex: 2,flexDirection: "column" }}>
                     
-                    <TouchableOpacity onPress={() => {navigation.navigate("Education"); userPress.setVolume(1.0); userPress.play()}}>
+                    <TouchableOpacity onPress={() => {closeToggle();navigation.navigate("Education"); userPress.setVolume(1.0); userPress.play()}}>
                     <ImageBackground
                         source={require('../../media/UI/learn_panelv2.png')}
                         resizeMode="cover"
