@@ -4,14 +4,16 @@ import { StyleSheet, View, Text, Dimensions, Image, ScrollView, Button, ImageBac
 import { DarkTheme, NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { TouchableOpacity, TouchableWithoutFeedback } from 'react-native-gesture-handler';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import TopicLearning from './Topicbundle/TopicLearning';
 import TopicIntroduction from './Topicbundle/TopicIntroduction';
 import { ProgressBar } from '@react-native-community/progress-bar-android';
+import { CommonActions } from '@react-navigation/native';
 
 import { PanResponder } from 'react-native';
 import BackButton from './CrossButton';
-
+import {setloginStatus, setuserData, setuserName} from "../Redux/loginSlice";
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
 // import {Dimensions ,Platform, PixelRatio} from 'react-native';
 
 // Redux slices 
@@ -44,6 +46,79 @@ export function normalize(size) {
     }
 }
 
+const styles = StyleSheet.create({
+  
+  
+        viewContainer1: {
+          flex: 1, 
+          alignSelf: 'center',
+          // borderColor: 'blue',
+          // borderWidth: 2,  
+          // height: '5%', 
+          width: '35%',
+          marginBottom: '2%'
+        }, 
+      
+         bottomContent: {
+          flex: 1,
+          // borderColor: 'red',
+          // borderWidth: 2,  
+          height: '20%', 
+          justifyContent: 'flex-end'
+         },
+      
+         mainText: {
+          fontSize: 54,
+          // color: "white",
+          zIndex: 1
+         },
+      
+         googleButton: {
+          backgroundColor: "white",
+          borderRadius: 8,
+          paddingHorizontal: '5%',
+          paddingVertical: '5%',
+          flexDirection: 'row',
+          // justifyContent: 'flex-end'
+          // zIndex: 1,
+          // justifyContent: 'center',
+          // alignItems: 'center', 
+          // flex: 1
+         },
+      
+         googleButtonText: {
+          marginLeft: "15%",
+          fontSize: 18,
+          fontWeight: '600',
+          zIndex: 1
+         },
+      
+         googleIcon: {
+          height: 24,
+          width: 24,
+          zIndex: 1
+         },
+      
+         layer: {
+           flex: 0.5, 
+           justifyContent: 'center', 
+           alignItems: 'center',
+          //  width: "20%"
+          //  fontSize: 18,
+          // borderColor: 'red',
+          // borderWidth: 5,  
+         }, 
+      
+         container: {
+          flex: 1,
+          alignItems: 'center',
+          justifyContent: 'center',
+        },
+      
+      })
+    
+
+
 const Stack = createStackNavigator();
 const { width, height } = Dimensions.get('window');
 const windowWidth = Dimensions.get('window').width;
@@ -51,6 +126,28 @@ const windowHeight = Dimensions.get('window').height;
 
 // Sliding Panel Component 
 const SlidingPanel = ({ visible , onClose }) => {
+    const navigation = useNavigation();
+
+    const signOutGoogle = async () => {
+        try {
+            console.log("button rsdfasd")
+          const isSignedIn = await GoogleSignin.isSignedIn();
+      
+          if (isSignedIn) {
+            await GoogleSignin.revokeAccess();
+            await GoogleSignin.signOut();
+          }
+      
+          navigation.dispatch(
+            CommonActions.reset({
+              index: 0,
+              routes: [{ name: 'HomeScreen' }],
+            })
+          );
+        } catch (error) {
+          console.error(error);
+        }
+      };
     const [animation] = useState(new Animated.Value(0));
 
     useEffect(() => {
@@ -85,9 +182,12 @@ const SlidingPanel = ({ visible , onClose }) => {
                     <Text style={{fontFamily: 'PressStart2P-Regular', fontSize: normalize(8),lineHeight: normalize(8), color: 'white', fontWeight: 'bold', textAlign: 'center' }}>About Us</Text>
                 </View>
                 {/* Sign Out */}
-                <View style={{ borderRadius: 20, backgroundColor: '#D2D3D4', padding: 10, width:"50%", marginTop:"5%"}}>
-                    <Text style={{ fontFamily: 'PressStart2P-Regular', fontSize: normalize(8),lineHeight: normalize(8),color: 'black', fontWeight: 'bold', textAlign: 'center' }}>Sign Out</Text>
-                </View>
+                <TouchableHighlight onPress={() => signOutGoogle()} style={{ width:"50%"}}>
+                    <View style={{ borderRadius: 20, backgroundColor: '#D2D3D4', padding: 10, marginTop:"5%"}}>
+                        <Text style={{fontFamily: 'PressStart2P-Regular', fontSize: normalize(8),lineHeight: normalize(8), color: 'black', fontWeight: 'bold', textAlign: 'center' }}>Sign Out</Text>
+                    </View>
+                </TouchableHighlight>
+
             </View>
             <View style={{flex:2, alignItems:"center"}}>
                 <TouchableOpacity onPress={onClose}>
@@ -135,8 +235,33 @@ const MainScreen = () => {
     const [levels, addLevels] = useState([{}]);
     // Swipe Right 
     // const [panResponder, setPanResponder] = useState(null);
+    const [userDataMM, setUserDataMM] = useState()
+    let userDataRedux = useSelector((state) => state.login.userData)
+    // setUserDataMM(userDataRedux)
+    let userLoginStatusRedux = useSelector((state) => state.login.loginStatus)
+    console.log("From Redux: " , userDataRedux)
+    console.log("From Redux: " ,userLoginStatusRedux)
 
+    useEffect(() => {
+        if (userDataRedux) {
+          setUserDataMM(userDataRedux);
+        }
+      }, [userDataRedux]);
 
+    // const signOut = async () => {
+    //     try {
+    //       const isSignedIn = await GoogleSignin.isSignedIn();
+    //         console.log("From Google Sign in",  isSignedIn)
+    //       if (isSignedIn) {
+    //         GoogleSignin.revokeAccess();
+    //         GoogleSignin.signOut();
+    //       }
+    //       navigation.navigate('HomeScreen');
+    //     } catch (error) {
+    //       console.error(error);
+    //     }
+    //   };
+ 
     // Add the MainScreen Page
     const [panelVisible, setPanelVisible] = useState(false);
 
@@ -364,7 +489,6 @@ const MainScreen = () => {
                         
 
                     </View>
-
 
 
                 </View>

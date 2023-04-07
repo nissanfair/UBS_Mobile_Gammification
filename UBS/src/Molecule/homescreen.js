@@ -201,53 +201,53 @@ const HomeScreen = () => {
   const signinWithGoogle = async () => {
 
     try{
-      // const { user } = await GoogleSignin.signIn();
+      const { user } = await GoogleSignin.signIn();
 
-      // // setUserDataID(idToken);
-      // setUserData(user);
+      // setUserDataID(idToken);
+      setUserData(user);
 
-      // // console.log("This is the TokenID" , userDataID);
-      // console.log("This is the User Data" , userData);
+      // console.log("This is the TokenID" , userDataID);
+      console.log("This is the User Data" , userData);
       
-      // if (Object.keys(userData).length !== 0) {
-      //   console.log(userData)
-      //   console.log(typeof userData)
-      //   console.log(userData['givenName'])
-      //   console.log(typeof userData['givenName'])
-      //   setLoggedIn(true)
-      //   console.log(loggedIn)
-      //   setUserName(userData['givenName']);
-      //   console.log('This is the UserName:', userName)
-      //   // setUserData(prevState => ({...prevState,
-      //   //   isLoggedin: loggedIn, //loggedIn stores boolean values 
-      //   //   userName: userName
-      //   // }));
-      //   const updatedUserData = {...userData, isLoggedin: 'true', userName: 'yuxiang123UPDATED'};
-      //   console.log(updatedUserData)
+      if (Object.keys(userData).length !== 0) {
+        console.log(userData)
+        console.log(typeof userData)
+        console.log(userData['givenName'])
+        console.log(typeof userData['givenName'])
+        setLoggedIn(true)
+        console.log(loggedIn)
+        setUserName(userData['givenName']);
+        console.log('This is the UserName:', userName)
+        // setUserData(prevState => ({...prevState,
+        //   isLoggedin: loggedIn, //loggedIn stores boolean values 
+        //   userName: userName
+        // }));
+        const updatedUserData = {...userData, isLoggedin: 'true', userName: 'yuxiang123UPDATED'};
+        console.log(updatedUserData)
 
-      //   //dispatching 
-      //   dispatch(setuserData(userData))
-      //   dispatch(setuserName(userName))
-      //   dispatch(setloginStatus(loggedIn))
+        //dispatching 
+        dispatch(setuserData(userData))
+        dispatch(setuserName(userName))
+        dispatch(setloginStatus(loggedIn))
 
       //   // need to edit the json to add the isloggedin 
       //   // put and post 
         
-      // fetch('http://10.0.2.2:3000/login',  {
-      //     method: 'POST',
-      //     headers: {
-      //       'Content-Type': 'application/json'
-      //     },
-      //     body: JSON.stringify(updatedUserData)
-      //   })
-      //   .then(response => response.json())
-      //   // .then(data => {
-      //   //   pushIntro(data.data[`${topic}_Learning`]);
-      //   // })
-      //   .catch(error => {
-      //     console.log(error);
-      //   });
-      // }
+      fetch('http://10.0.2.2:3000/login',  {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(updatedUserData)
+        })
+        .then(response => response.json())
+        // .then(data => {
+        //   pushIntro(data.data[`${topic}_Learning`]);
+        // })
+        .catch(error => {
+          console.log(error);
+        });
+      }
 
         //navigate to the next page when userData is populated 
         console.log("MainScreen")
