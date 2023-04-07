@@ -75,17 +75,17 @@ const SlidingPanel = ({ visible }) => {
             <View style={{flex:4,alignContent:'center',alignItems:'center'}}>
                 {/* origins_trans.gif */}
                 <Image source={require('../../media/UI/origins_trans.gif')} resizeMode="contain" style={{height: "50%", width:"100%"}} />
-                <Text style={{fontFamily: 'PressStart2P-Regular', fontSize: normalize(8),lineHeight: normalize(8), alignItems:"center"}}>6 Bits Games</Text>
+                <Text style={{fontFamily: 'PressStart2P-Regular', fontSize: normalize(8),lineHeight: normalize(8), alignItems:"center"}}>6 Bit Games</Text>
             </View>
 
             <View style={{flex:3, alignItems:'center'}}>
                 {/* About Us */}
                 <View style={{ borderRadius: 20, backgroundColor: '#D6C4FF', padding: 10, width:"50%"}}>
-                    <Text style={{ color: 'white', fontWeight: 'bold', textAlign: 'center' }}>About Us</Text>
+                    <Text style={{fontFamily: 'PressStart2P-Regular', fontSize: normalize(8),lineHeight: normalize(8), color: 'white', fontWeight: 'bold', textAlign: 'center' }}>About Us</Text>
                 </View>
                 {/* Sign Out */}
                 <View style={{ borderRadius: 20, backgroundColor: '#D2D3D4', padding: 10, width:"50%", marginTop:"5%"}}>
-                    <Text style={{ color: 'black', fontWeight: 'bold', textAlign: 'center' }}>Sign Out</Text>
+                    <Text style={{ fontFamily: 'PressStart2P-Regular', fontSize: normalize(8),lineHeight: normalize(8),color: 'black', fontWeight: 'bold', textAlign: 'center' }}>Sign Out</Text>
                 </View>
             </View>
             <View style={{flex:3}}></View>
