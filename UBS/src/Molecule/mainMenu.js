@@ -8,6 +8,9 @@ import { useDispatch } from 'react-redux';
 import TopicLearning from './Topicbundle/TopicLearning';
 import TopicIntroduction from './Topicbundle/TopicIntroduction';
 import { ProgressBar } from '@react-native-community/progress-bar-android';
+
+import { PanResponder } from 'react-native';
+
 // import {Dimensions ,Platform, PixelRatio} from 'react-native';
 
 // Redux slices 
@@ -80,14 +83,12 @@ const SlidingPanel = ({ visible }) => {
                 <View style={{ borderRadius: 20, backgroundColor: '#D6C4FF', padding: 10, width:"50%"}}>
                     <Text style={{ color: 'white', fontWeight: 'bold', textAlign: 'center' }}>About Us</Text>
                 </View>
+                {/* Sign Out */}
                 <View style={{ borderRadius: 20, backgroundColor: '#D2D3D4', padding: 10, width:"50%", marginTop:"5%"}}>
                     <Text style={{ color: 'black', fontWeight: 'bold', textAlign: 'center' }}>Sign Out</Text>
                 </View>
             </View>
-            <View style={{flex:3}}>
-                {/* Sign Out */}
-
-            </View>
+            <View style={{flex:3}}></View>
 
         </View>
     </View>
@@ -111,7 +112,7 @@ const Slidingstyles = StyleSheet.create({
       },
       shadowOpacity: 0.25,
       shadowRadius: 3.84,
-      zIndex: 999, // set a high z-index value
+      zIndex: 100, // set a high z-index value
       elevation: 5,
     },
     visible: {
@@ -124,6 +125,9 @@ const MainScreen = () => {
     const navigation = useNavigation();
     const dispatch = useDispatch();
     const [levels, addLevels] = useState([{}]);
+    // Swipe Right 
+    const [panResponder, setPanResponder] = useState(null);
+
 
     // Add the MainScreen Page
     const [panelVisible, setPanelVisible] = useState(false);
@@ -132,10 +136,27 @@ const MainScreen = () => {
         userPress.setVolume(1.0); 
         userPress.play();
 
-        console.log(panelVisible)
         setPanelVisible(!panelVisible);
+        console.log(panelVisible)
 
     }
+
+    const closeToggle =  () => {
+        setPanelVisible(false);
+        console.log("closeToggle")
+    }
+
+    useEffect(() => {
+        const responder = PanResponder.create({
+          onMoveShouldSetPanResponder: () => true,
+          onPanResponderMove: (evt, gestureState) => {
+            if (gestureState.dx > 100) {
+              closeToggle();
+            }
+          },
+        });
+        setPanResponder(responder);
+      }, []);
 
 
 
@@ -216,7 +237,11 @@ const MainScreen = () => {
 
         <View style={{ width: "100%", height: "100%", flexDirection: "column" }} >
 
-            <ImageBackground source={require("../../media/TopicJs/Topic.gif")} style={{ width: "100%", height: "100%" }}>
+            <ImageBackground source={require("../../media/TopicJs/Topic.gif")} style={{ width: "100%", height: "100%" }}
+                {...panResponder.panHandlers} // <-- add this
+            >
+
+            {/* {panelVisible ?<TouchableOpacity onPress={() => closeToggle()} style={{ position: 'absolute',height:"100%",width:"100%",backgroundColor: 'red',zIndex: 101}}></TouchableOpacity> : <></>} */}
 
                 {/* Logo & Top Container */}
                 <View style={{ flex: 1}}>
@@ -348,21 +373,3 @@ const MainScreen = () => {
 
 
 export default MainScreen;
-
-// Code Dump
-{/* {levels.map((level, index) => (
-    // <View style={styles.levelButton}>
-    // <Text
-    //     key={index}
-    //     style={styles.levelText}
-    //     onPress={() => handleClickInformation(level.topic)}>
-    //     {level.display}
-        
-    // </Text>
-    // <TouchableOpacity onPress={() => handleClickInformationEducation()}>
-    //     <Image source={require("../../media/Environment/mortarboard.png")} style={styles.levelIcon}/>
-    // </TouchableOpacity>
-
-    </View>
-    
-))} */}
