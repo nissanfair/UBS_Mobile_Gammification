@@ -11,6 +11,26 @@ import Question from './Questions';
 import Timer from './Timeline';
 import HealthBar from './Health';
 
+//sfx
+import heroAttack from '../../../../media/Soundtracks/main/hero_attack.wav';
+import monsterAttack from '../../../../media/Soundtracks/main/monster_attack.wav';
+import Sound from 'react-native-sound';
+Sound.setCategory('Playback');
+var hero = new Sound(heroAttack, (error) => {
+    if (error) {
+      console.log('failed to load the sound', error);
+      return;
+    }
+});
+
+var monster = new Sound(monsterAttack, (error) => {
+    if (error) {
+      console.log('failed to load the sound', error);
+      return;
+    }
+});
+//end of sfx
+
 const Stack = createStackNavigator();
 
 
@@ -74,6 +94,9 @@ const Game = () => {
                     setHeroState('idle');
                 }, 1000); // assuming HeroState has a 1 second animation
 
+                hero.setVolume(1.0);
+                hero.play();
+
                 // tint color animation for Character 2 Image Component from 4th to 6th seconds
                 Animated.sequence([
                     Animated.timing(characterFadeAnimation, {
@@ -135,6 +158,9 @@ const Game = () => {
                 setTimeout(() => {
                     setBossState('idle');
                 }, 2000); // assuming HeroState has a 1 second animation
+
+                monster.setVolume(1.0);
+                monster.play();
 
                 // tint color animation for Character 2 Image Component from 4th to 6th seconds
                 Animated.sequence([

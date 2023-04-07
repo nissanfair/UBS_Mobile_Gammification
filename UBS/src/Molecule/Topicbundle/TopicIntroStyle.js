@@ -38,24 +38,29 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
   },
   topbox: {
-    flex: 3,
+    flex: 4,
     flexDirection: 'row',
   },
   lefttopbox: {
     flex: 3,
   },
   monsterbox: {
-    top: '25%',
+    top: '15%',
     bottom: '0%',
     left: '35%',
-    height: '70%',
+    height: '80%',
     width: '68%',
     justifyContent: 'center',
   },
   monster: {
     alignSelf: 'center',
     height:"90%",
-    width: "90%"
+    width: "90%",
+  },
+  monsterr: {
+    alignSelf: 'center',
+    height:"85%",
+    width: "90%",
   },
   righttopbox: {
     flex: 3,
