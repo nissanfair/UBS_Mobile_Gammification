@@ -237,7 +237,7 @@ const MainScreen = () => {
 
         <View style={{ width: "100%", height: "100%", flexDirection: "column" }} >
 
-            <ImageBackground source={require("../../media/TopicJs/Topic.gif")} style={{ width: "100%", height: "100%" }}
+            <ImageBackground source={require("../../media/TopicJs/Topic_static.jpg")} style={{ width: "100%", height: "100%" }}
                 {...panResponder.panHandlers} // <-- add this
             >
 
@@ -245,7 +245,7 @@ const MainScreen = () => {
 
                 {/* Logo & Top Container */}
                 <View style={{ flex: 1}}>
-                    <ImageBackground resizeMode="cover" style={[{ marginTop: "2%", aspectRatio: 4, alignSelf: "center", justifyContent: "center", alignItems: "center", paddingLeft: "1%", flexDirection: "row", width: "100%", height: "100%", flex: 4 }]} source={require("../../media/TopicJs/menulogo.png")} />
+                    <ImageBackground resizeMode="cover" style={[{ marginTop: "2%", aspectRatio: 4, alignSelf: "center", justifyContent: "center", alignItems: "center", paddingLeft: "1%", flexDirection: "row", width: "100%", height: "100%", flex: 4 }]} source={require("../../media/TopicJs/FYP_Logo_White.png")} />
 
                     {/* For settings button */}
                     <View style={{ position: "absolute", width: "20%", height: "100%", zIndex: 2, }}>
@@ -280,7 +280,7 @@ const MainScreen = () => {
 
                     
                     <View style={{flex: 2, flexDirection: "column" }}>
-                    <Animated.View style={[{ flex: 4, transform: [{ scale: scaleValue }] }]}>
+                    
                     <TouchableOpacity onPress={() => {navigation.navigate("Topic"); userPress.setVolume(1.0); userPress.play()}}>
                     <ImageBackground
                         source={require('../../media/UI/play_panelv2.png')}
@@ -301,13 +301,13 @@ const MainScreen = () => {
                         </View> 
                     </ImageBackground>
                     </TouchableOpacity>
-                    </Animated.View>
+                    
                     
                 
                     </View>
 
                     <View style={{flex: 2,flexDirection: "column" }}>
-                    <Animated.View style={[{ flex: 4, transform: [{ scale: scaleValue }] }]}>
+                    
                     <TouchableOpacity onPress={() => {navigation.navigate("Education"); userPress.setVolume(1.0); userPress.play()}}>
                     <ImageBackground
                         source={require('../../media/UI/learn_panelv2.png')}
@@ -328,12 +328,12 @@ const MainScreen = () => {
                         </View> 
                     </ImageBackground>
                     </TouchableOpacity>
-                    </Animated.View>
+                    
 
                     </View>
 
                     <View style={{flex: 2, flexDirection: "column" }}>
-                        <Animated.View style={[{ flex: 4, transform: [{ scale: scaleValue }] }]}>
+                        
                         <TouchableOpacity onPress={() => SettingToggle()}>
                         <ImageBackground
                             source={require('../../media/UI/setting_panelv2.png')}
@@ -354,8 +354,7 @@ const MainScreen = () => {
                         </View> 
                         </ImageBackground>
                         </TouchableOpacity>
-                        </Animated.View>
-
+                        
 
                     </View>
 

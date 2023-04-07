@@ -31,21 +31,28 @@ const Stack = createStackNavigator()
 
 function Routing() {
   return (
-      <NavigationContainer>
-        <Stack.Navigator initialRouteName='HomeScreen'>
-          <Stack.Screen name="HomeScreen" component={HomeScreen} options={{headerShown: false}}/>
-          <Stack.Screen name="MainScreen" component={MainScreen} options={{headerShown: false}}/>
-          <Stack.Screen name="Topic" component={Topic} options={{headerShown: false}}/>
-          <Stack.Screen name="Education" component={Education} options={{headerShown: false}}/>
-          <Stack.Screen name="TopicIntroduction" component={TopicIntroduction} options={{headerShown: false}}/>
-          <Stack.Screen name="TopicLearning" component={TopicLearning} options={{headerShown: false}}/>
-          <Stack.Screen name="Progress" component={Progress} options={{headerShown: false}}/>
-          <Stack.Screen name="Game" component={Game} options={{headerShown: false}}/>
-          <Stack.Screen name="Loading" component={Loading} options={{headerShown: false}}/>
-          <Stack.Screen name="Summary" component={Summary} options={{headerShown: false}}/>
-
-        </Stack.Navigator>
-      </NavigationContainer>
+    <NavigationContainer>
+    <Stack.Navigator
+      initialRouteName='HomeScreen'
+      screenOptions={{
+        animationEnabled: false,
+        removeClippedSubviews: true,
+        shouldRasterizeIOS: true,
+        renderToHardwareTextureAndroid: true,
+      }}
+    >
+      <Stack.Screen name="HomeScreen" component={HomeScreen} options={{ headerShown: false }} />
+      <Stack.Screen name="MainScreen" component={MainScreen} options={{ headerShown: false }} />
+      <Stack.Screen name="Topic" component={Topic} options={{ headerShown: false }} />
+      <Stack.Screen name="Education" component={Education} options={{ headerShown: false }} />
+      <Stack.Screen name="TopicIntroduction" component={TopicIntroduction} options={{ headerShown: false }} />
+      <Stack.Screen name="TopicLearning" component={TopicLearning} options={{ headerShown: false }} />
+      <Stack.Screen name="Progress" component={Progress} options={{ headerShown: false }} />
+      <Stack.Screen name="Game" component={Game} options={{ headerShown: false }} />
+      <Stack.Screen name="Loading" component={Loading} options={{ headerShown: false }} />
+      <Stack.Screen name="Summary" component={Summary} options={{ headerShown: false }} />
+    </Stack.Navigator>
+  </NavigationContainer>
   );
 };
 

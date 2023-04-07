@@ -223,7 +223,7 @@ const Topic = () => {
     return (
 
         <View style={{ width: "100%", height: "100%", flexDirection: "column" }} >
-            <ImageBackground source={require("../../media/TopicJs/Topic.gif")} style={{ width: "100%", height: "100%" }}>
+            <ImageBackground source={require("../../media/TopicJs/Topic_static.jpg")} style={{ width: "100%", height: "100%" }}>
                 {/* Popup */}
 
                 {/* Pop up  */}
@@ -240,7 +240,7 @@ const Topic = () => {
                 {/* To Account for the  Character Badge and Currency*/}
                {/* Logo & Top Container */}
                <View style={{ flex: 1}}>
-                    <ImageBackground resizeMode="cover" style={[{ marginTop: "2%", aspectRatio: 4, alignSelf: "center", justifyContent: "center", alignItems: "center", paddingLeft: "1%", flexDirection: "row", width: "100%", height: "100%", flex: 4 }]} source={require("../../media/TopicJs/menulogo.png")} />
+                    <ImageBackground resizeMode="cover" style={[{ marginTop: "2%", aspectRatio: 4, alignSelf: "center", justifyContent: "center", alignItems: "center", paddingLeft: "1%", flexDirection: "row", width: "100%", height: "100%", flex: 4 }]} source={require("../../media/TopicJs/FYP_Logo_White.png")} />
 
                     {/* For settings button */}
                     <View style={{ position: "absolute", width: "20%", height: "100%", zIndex: 2 }}>
@@ -287,7 +287,7 @@ const Topic = () => {
 
                 <View style={{flex: 2, flexDirection: "column" }}>
                     {console.log(index)}
-                    <Animated.View style={[{ flex: 4, transform: [{ scale: scaleValue }] }]}>
+                    
                     <TouchableOpacity onPress={() => {handleClickInformationEducation(topic.education); userPress.setVolume(1.0); userPress.play()}}>
                     <ImageBackground
                         source={index == 0 ? require('../../media/UI/play_panelv2.png'): index == 1 ? require('../../media/UI/learn_panelv2.png'):require('../../media/UI/setting_panelv2.png')}
@@ -308,7 +308,7 @@ const Topic = () => {
                         </View> 
                     </ImageBackground>
                     </TouchableOpacity>
-                    </Animated.View>    
+              
                 
                 </View>
                 
