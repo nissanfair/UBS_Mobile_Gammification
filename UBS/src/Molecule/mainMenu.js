@@ -44,10 +44,99 @@ const Stack = createStackNavigator();
 const { width, height } = Dimensions.get('window');
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
+
+// Sliding Panel Component 
+const SlidingPanel = ({ visible }) => {
+    const [animation] = useState(new Animated.Value(0));
+
+    useEffect(() => {
+        Animated.timing(animation, {
+          toValue: visible ? 1 : 0,
+          duration: 300,
+          useNativeDriver: true,
+        }).start();
+      }, [animation, visible]);
+
+    const transform = [    {      translateX: animation.interpolate({        inputRange: [0, 1],
+        outputRange: [200, 0],
+        }),
+        },
+    ];
+
+    return (
+    <Animated.View style={[        Slidingstyles.panel,        visible ? Slidingstyles.visible : null,        { transform },      ]} >
+      <View style={[Slidingstyles.panel, visible ? Slidingstyles.visible : null]}>
+        {/* Content of the sliding panel goes here */}
+        <View style={{flexDirection:'column',flex:1}}>
+            <View style={{flex:1}}></View>
+            <View style={{flex:4,alignContent:'center',alignItems:'center'}}>
+                {/* origins_trans.gif */}
+                <Image source={require('../../media/UI/origins_trans.gif')} resizeMode="contain" style={{height: "50%", width:"100%"}} />
+                <Text style={{fontFamily: 'PressStart2P-Regular', fontSize: normalize(8),lineHeight: normalize(8), alignItems:"center"}}>6 Bits Games</Text>
+            </View>
+
+            <View style={{flex:3, alignItems:'center'}}>
+                {/* About Us */}
+                <View style={{ borderRadius: 20, backgroundColor: '#D6C4FF', padding: 10, width:"50%"}}>
+                    <Text style={{ color: 'white', fontWeight: 'bold', textAlign: 'center' }}>About Us</Text>
+                </View>
+                <View style={{ borderRadius: 20, backgroundColor: '#D2D3D4', padding: 10, width:"50%", marginTop:"5%"}}>
+                    <Text style={{ color: 'black', fontWeight: 'bold', textAlign: 'center' }}>Sign Out</Text>
+                </View>
+            </View>
+            <View style={{flex:3}}>
+                {/* Sign Out */}
+
+            </View>
+
+        </View>
+    </View>
+    </Animated.View>
+
+    );
+};
+
+const Slidingstyles = StyleSheet.create({
+    panel: {
+      position: "absolute",
+      top: 0,
+      right: -200, // start off-screen
+      width: 200,
+      height: "100%",
+      backgroundColor: "white",
+      shadowColor: "#000",
+      shadowOffset: {
+        width: 0,
+        height: 2,
+      },
+      shadowOpacity: 0.25,
+      shadowRadius: 3.84,
+      zIndex: 999, // set a high z-index value
+      elevation: 5,
+    },
+    visible: {
+      right: 0, // slide into view
+    },
+  });
+
+
 const MainScreen = () => {
     const navigation = useNavigation();
     const dispatch = useDispatch();
     const [levels, addLevels] = useState([{}]);
+
+    // Add the MainScreen Page
+    const [panelVisible, setPanelVisible] = useState(false);
+
+    const SettingToggle = () => {
+        userPress.setVolume(1.0); 
+        userPress.play();
+
+        console.log(panelVisible)
+        setPanelVisible(!panelVisible);
+
+    }
+
 
 
     // ANIMATIONS STUFF
@@ -220,7 +309,7 @@ const MainScreen = () => {
 
                     <View style={{flex: 2, flexDirection: "column" }}>
                         <Animated.View style={[{ flex: 4, transform: [{ scale: scaleValue }] }]}>
-                        <TouchableOpacity onPress={() => {userPress.setVolume(1.0); userPress.play(); console.log("I am pessed")}}>
+                        <TouchableOpacity onPress={() => SettingToggle()}>
                         <ImageBackground
                             source={require('../../media/UI/setting_panelv2.png')}
                             resizeMode="cover"
@@ -248,67 +337,7 @@ const MainScreen = () => {
 
 
                 </View>
-
-
-                {/* Settings button */}
-
-                {/* <View style={{borderWidth: 2, flex:1}}>
-
-                </View> */}
-
-                {/* <Animated.View style={{
-
-                    shadowOpacity: 0.8,
-                    shadowRadius: 6, padding: 20, width: "60%", borderRadius: 24, alignItems: 'center', alignSelf: "center", justifyContent: "center", flex: 5, flexDirection: "column"
-                }}> */}
-
-                    
-                    {/* <Animated.View style={[{ flex: 4, transform: [{ scale: scaleValue }] }]}>
-                        <TouchableOpacity onPress={() => {navigation.navigate("Topic"); userPress.setVolume(1.0); userPress.play()}} style={{ width: "100%", height: "100%", alignItems: 'center', justifyContent: "center", alignSelf: "center", alignContent: "center" }}>
-                            <ImageBackground resizeMode="cover" style={[{ aspectRatio: 4, alignSelf: "center", justifyContent: "center", alignItems: "center", paddingLeft: "1%", flexDirection: "row", width: "100%", height: "100%", flex: 4 }]} source={require("../../media/TopicJs/block.png")}>
-                                <Text style={{ fontFamily: 'PressStart2P-Regular', fontSize: normalize(10), lineHeight: normalize(10), paddingBottom: "7%", paddingEnd: "3%" }}>Play</Text>
-                            </ImageBackground>
-
-                        </TouchableOpacity>
-                    </Animated.View> */}
-                    
-
-                    {/* <Animated.View style={[{ flex: 4, transform: [{ scale: scaleValue }] }]}>
-                        <TouchableOpacity onPress={() => {navigation.navigate("Education"); userPress.setVolume(1.0); userPress.play()}} style={{ width: "100%", height: "100%", alignItems: 'center', justifyContent: "center", alignSelf: "center", alignContent: "center" }}>
-                            <ImageBackground resizeMode="cover" style={[{ aspectRatio: 4, alignSelf: "center", justifyContent: "center", alignItems: "center", paddingLeft: "1%", flexDirection: "row", width: "100%", height: "100%", flex: 4 }]} source={require("../../media/TopicJs/block.png")}>
-                                <Text style={{ fontFamily: 'PressStart2P-Regular', fontSize: normalize(10), lineHeight: normalize(10), paddingBottom: "7%", paddingEnd: "3%" }}>Get Educated</Text>
-                            </ImageBackground>
-
-                        </TouchableOpacity>
-                    </Animated.View> */}
-
-                    {/* <Animated.View style={[{ flex: 4, transform: [{ scale: scaleValue }] }]}>
-                        <TouchableOpacity onPress={() => {userPress.setVolume(1.0); userPress.play()}} style={{ width: "100%", height: "100%", alignItems: 'center', justifyContent: "center", alignSelf: "center", alignContent: "center" }}>
-                            <ImageBackground resizeMode="cover" style={[{ aspectRatio: 4, alignSelf: "center", justifyContent: "center", alignItems: "center", paddingLeft: "1%", flexDirection: "row", width: "100%", height: "100%", flex: 4 }]} source={require("../../media/TopicJs/block.png")}>
-                                <Text style={{ fontFamily: 'PressStart2P-Regular', fontSize: normalize(10), lineHeight: normalize(10), paddingBottom: "7%", paddingEnd: "3%" }}>About</Text>
-                            </ImageBackground>
-
-                        </TouchableOpacity>
-                    </Animated.View> */}
-                {/* </Animated.View> */}
-                {/* <View style={{ flex: 1 }}></View> */}
-                {/* End of Topic */}
-
-
-                {/* I removed these parts ba, cos very hard to align @jiEPeng */}
-
-                {/* Final Rows */}
-                {/* <View style={{ flexDirection: "row", gap: "10%" }}>
-                    <View style={{ flex: 5 }}>
-                        <Text style={{ alignSelf: "center", color: 'white' }}>MARKETPLACE</Text>
-                    </View>
-                    <View style={{ flex: 5 }}>
-                        <Text style={{ alignSelf: "center", color: 'white' }}>TOPIC  SELECTION</Text>
-                    </View>
-                    <View style={{ flex: 5 }}>
-                        <Text style={{ alignSelf: "center", color: 'white' }}>EQUIPMENT</Text>
-                    </View>
-                </View> */}
+                <SlidingPanel visible={panelVisible} />
             </ImageBackground>
 
         </View>
