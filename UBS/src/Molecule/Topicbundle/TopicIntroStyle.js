@@ -94,8 +94,9 @@ const styles = StyleSheet.create({
     top: '0%',
     left: '20%',
     right: '13%',
-    width: '70%',
+    width: '65%',
     height: "45%",
+   
   },
   wizard: {
     flex: 1,

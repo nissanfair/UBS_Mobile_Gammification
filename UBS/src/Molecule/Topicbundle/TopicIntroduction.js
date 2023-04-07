@@ -56,8 +56,8 @@ const TopicIntroduction = ({navigation}) => {
 
 
   const Backbutton = () => {
-    // userPress.setVolume(1.0);
-    // userPress.play();
+    userPress.setVolume(1.0);
+    userPress.play();
     navigation.navigate('Topic');
   };
   const Startbutton = () => {
