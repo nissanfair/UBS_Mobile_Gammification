@@ -101,8 +101,7 @@ const TopicIntroduction = ({navigation}) => {
     // For JP phone 
     // var fetchSelectedTopic = `http://192.168.29.14:3000/6bit/topics/${topic}`;
     // For emulator
-    var fetchSelectedTopic = `http://10.0.2.2:3000/6bit/topics/${topic}`;
-
+    var fetchSelectedTopic = `https://express-6bit.onrender.com/6bit/topics/${topic}`;
     // state.question.topicQuestionObject
     console.log(topic);
     fetch(fetchSelectedTopic)
@@ -173,7 +172,7 @@ const TopicIntroduction = ({navigation}) => {
     <View style={styles.main}>
       <View style={styles.backgroundContainer}>
         <ImageBackground
-          source={require('../../../media/Environment/LearningGround.png')}
+          source={require('../../../media/UI/windowscreen.png')}
           resizeImage="stretch"
           style={styles.backdrop}
         />
@@ -191,10 +190,7 @@ const TopicIntroduction = ({navigation}) => {
       </View>
 
       <View style={styles.centerbox}>
-        <ImageBackground
-          source={require('../../../media/UI/computer_screen.png')}
-          resizeImage="contain"
-          style={styles.backdrop}>
+       
 
           <View style={styles.topbox}>
 
@@ -207,7 +203,7 @@ const TopicIntroduction = ({navigation}) => {
                   style={ topic == "Topic1" ? styles.monster: styles.monsterr}
                 />
                  <View style={styles.monstername}>
-                <Text style={styles.textstyle}>Target Monster</Text>
+                <Text style={styles.textstyle}>Target</Text>
               </View>
                 
               </View>
@@ -236,7 +232,7 @@ const TopicIntroduction = ({navigation}) => {
               </Text>
             </View>
           </View>
-        </ImageBackground>
+
       </View>
 
       <View style={styles.rightbox}>

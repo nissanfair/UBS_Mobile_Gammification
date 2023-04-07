@@ -43,6 +43,7 @@ const styles = StyleSheet.create({
   },
   lefttopbox: {
     flex: 3,
+    
   },
   monsterbox: {
     top: '15%',
@@ -51,6 +52,7 @@ const styles = StyleSheet.create({
     height: '80%',
     width: '68%',
     justifyContent: 'center',
+
   },
   monster: {
     alignSelf: 'center',
@@ -64,6 +66,7 @@ const styles = StyleSheet.create({
   },
   righttopbox: {
     flex: 3,
+
   },
   reward: {
     top: '30%',
@@ -71,9 +74,11 @@ const styles = StyleSheet.create({
     width: '75%',
     height: '70%',
     justifyContent: 'center',
+  
   },
   bottombox: {
     flex: 3,
+   
   },
   backgroundContainer: {
     position: 'absolute',
@@ -87,9 +92,10 @@ const styles = StyleSheet.create({
   },
   desc: {
     top: '0%',
-    left: '18%',
+    left: '20%',
     right: '13%',
     width: '70%',
+    height: "45%",
   },
   wizard: {
     flex: 1,

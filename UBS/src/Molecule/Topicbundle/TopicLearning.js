@@ -84,7 +84,7 @@ const TopicLearning = () => {
      }
    }
   useEffect(() => {
-    var fetchSelectedTopic = `http://10.0.2.2:3000/6bit/topics/${topic}`;
+    var fetchSelectedTopic = `https://express-6bit.onrender.com/6bit/topics/${topic}`;
     console.log(topic);
     console.log(Index);
 
