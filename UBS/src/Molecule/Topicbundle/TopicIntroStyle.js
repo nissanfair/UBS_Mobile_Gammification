@@ -28,6 +28,7 @@ const styles = StyleSheet.create({
   },
   leftbox: {
     flex: 1,
+    flexDirection: 'column-reverse'
   },
   rightbox: {
     flex: 1,

@@ -302,7 +302,7 @@ const Topic = () => {
                     
                     <TouchableOpacity onPress={() => {handleClickInformation(topic.topic); userPress.setVolume(1.0); userPress.play()}}>
                     <ImageBackground
-                        source={index == 0 ? require('../../media/UI/play_panelv2.png'): index == 1 ? require('../../media/UI/learn_panelv2.png'):require('../../media/UI/setting_panelv2.png')}
+                        source={index == 0 ? require('../../media/UI/play_panelv3.png'): index == 1 ? require('../../media/UI/learn_panelv3.png'):require('../../media/UI/setting_panelv3.png')}
                         resizeMode="cover"
                         style={{height: "100%", width:"100%"}} >
 
