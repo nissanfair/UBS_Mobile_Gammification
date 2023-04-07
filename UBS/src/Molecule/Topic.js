@@ -288,35 +288,6 @@ const Topic = () => {
                 {/*Container for all three buttons */}
                 <View style={{flex: 5, flexDirection: "row", alignItems: "center"}}>
 
-                    {/* Pop up Shield to be inside the flex 4 container */}
-
-                    <Animated.View
-                        style={{
-                            borderRadius: 10,
-                            // backgroundColor: 'rgba(0, 0, 0, 0.1)', // Set alpha to 0.7 for slight transparency
-                            width: "100%",
-                            height: "100%",
-                            zIndex: 1,
-                            padding: 20,
-                            alignItems: "center",
-                            justifyContent: "center",
-                            position: "absolute",
-                            opacity: opacityAnim,
-                            transform: movePopup.getTranslateTransform(),
-                            // transform: [{ scale: scaleAnim }],
-                            fontSize: 32,
-                            fontWeight: 'bold',
-                            color: "black"
-                        }}
-                    >
-                        <Image style={{
-                            borderWidth: 2,
-                            top:0,
-                            
-                            aspectRatio:1,
-                            height: '120%'}}  source={require("../../media/TopicJs/bgattack.png")}/>
-                    </Animated.View>
-
                     {/*Container for Learning Content Title */}
                 <View style={{position: "absolute", top:"0%",left:"25%", width:"50%",paddingTop:"5%", height: "20%"}}>
                     <Text style={{color: 'white', fontFamily: 'PressStart2P-Regular', fontSize: normalize(10), textAlign: 'center'}}>Select Your Boss Fight:</Text>
