@@ -289,8 +289,8 @@ const Topic = () => {
                 <View style={{flex: 5, flexDirection: "row", alignItems: "center"}}>
 
                     {/*Container for Learning Content Title */}
-                <View style={{position: "absolute", top:"0%",left:"25%", width:"50%",paddingTop:"5%", height: "20%"}}>
-                    <Text style={{color: 'white', fontFamily: 'PressStart2P-Regular', fontSize: normalize(10), textAlign: 'center'}}>Select Your Boss Fight:</Text>
+                <View style={{position: "absolute", top:"0%",left:"25%", width:"50%",paddingTop:"5%",  height: "15%"}}>
+                    <Text style={{color: 'white', fontFamily: 'PressStart2P-Regular', fontSize: normalize(10), textAlign: 'center'}}>Select Your Boss Fight</Text>
                            
                 </View>
 
@@ -302,7 +302,7 @@ const Topic = () => {
                     
                     <TouchableOpacity onPress={() => {handleClickInformation(topic.topic); userPress.setVolume(1.0); userPress.play()}}>
                     <ImageBackground
-                        source={index == 0 ? require('../../media/UI/play_panelv2.png'): index == 1 ? require('../../media/UI/learn_panelv2.png'):require('../../media/UI/setting_panelv2.png')}
+                        source={index == 0 ? require('../../media/UI/play_panelv3.png'): index == 1 ? require('../../media/UI/learn_panelv3.png'):require('../../media/UI/setting_panelv3.png')}
                         resizeMode="cover"
                         style={{height: "100%", width:"100%"}} >
 

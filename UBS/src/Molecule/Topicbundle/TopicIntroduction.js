@@ -179,13 +179,14 @@ const TopicIntroduction = ({navigation}) => {
       </View>
 
       <View style={styles.leftbox}>
-        <View style={styles.back}>
-          <TouchableOpacity onPress={Backbutton}>
-            <Image
-              source={require('../../../media/UI/back_v2.png')}
-              resizeMode="cover"
-            />
-          </TouchableOpacity>
+        <View>
+                    <TouchableOpacity onPress={() => {navigation.navigate("Topic"); userPress.setVolume(1.0); userPress.play()}}>
+                    <Image
+                        source={require('../../../media/UI/back_v2.png')}
+                        resizeMode="contain"
+                        style={{height:"90%", width:"100%", top:"55%"}} />
+                    </TouchableOpacity>
+
         </View>
       </View>
 
@@ -236,14 +237,15 @@ const TopicIntroduction = ({navigation}) => {
       </View>
 
       <View style={styles.rightbox}>
-        <View style={styles.start}>
+      
               <TouchableOpacity style={styles.button} onPress={Startbutton}>
                 <Image
                   source={require('../../../media/UI/start_v2.png')}
                   resizeMode="contain"
+                  style={{height:"90%", width:"100%",top:"46%"}}
                 />
               </TouchableOpacity>
-            </View>
+          
       </View>
     </View>
   );

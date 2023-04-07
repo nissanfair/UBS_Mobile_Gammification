@@ -415,7 +415,7 @@ const MainScreen = () => {
                     
                     <TouchableOpacity onPress={() => {closeToggle();navigation.navigate("Topic"); userPress.setVolume(1.0); userPress.play()}}>
                     <ImageBackground
-                        source={require('../../media/UI/play_panelv2.png')}
+                        source={require('../../media/UI/play_panelv3.png')}
                         resizeMode="cover"
                         style={{height: "100%", width:"100%"}} >
 
@@ -442,7 +442,7 @@ const MainScreen = () => {
                     
                     <TouchableOpacity onPress={() => {closeToggle();navigation.navigate("Education"); userPress.setVolume(1.0); userPress.play()}}>
                     <ImageBackground
-                        source={require('../../media/UI/learn_panelv2.png')}
+                        source={require('../../media/UI/learn_panelv3.png')}
                         resizeMode="cover"
                         style={{height: "100%", width:"100%"}} >
 
@@ -468,7 +468,7 @@ const MainScreen = () => {
                         
                         <TouchableOpacity onPress={() => SettingToggle()}>
                         <ImageBackground
-                            source={require('../../media/UI/setting_panelv2.png')}
+                            source={require('../../media/UI/setting_panelv3.png')}
                             resizeMode="cover"
                             style={{height: "100%", width:"100%"}} >
 
