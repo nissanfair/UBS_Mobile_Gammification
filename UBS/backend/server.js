@@ -21,12 +21,8 @@ const cors = require("cors")
 const YAML = require('yamljs')
 const swaggerDocs = YAML.load('swaggerapi.yaml');
 
-
 // Import routes here
 const testingRoute = require('./routes/topicroute')
-const progressRoute = require('./routes/progressRoute')
-const characterRoute = require('./routes/characterRoute')
-
 
 // === Initialisation of Firebase materials ===
 admin.initializeApp({

@@ -101,8 +101,8 @@ const TopicIntroduction = ({navigation}) => {
     // Idea
     // For JP phone 
     // var fetchSelectedTopic = `http://192.168.29.14:3000/6bit/topics/${topic}`;
-    // For emulator
-    var fetchSelectedTopic = `https://express-6bit.onrender.com/6bit/topics/${topic}`;
+    // For emulator 
+    var fetchSelectedTopic = `http://10.0.2.2:3000/6bit/topics/${topic}`;
     // state.question.topicQuestionObject
     console.log(topic + " asdas I AM IN TOPIC INTRO");
     fetch(fetchSelectedTopic)
