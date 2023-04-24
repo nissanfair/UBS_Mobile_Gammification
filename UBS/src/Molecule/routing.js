@@ -15,7 +15,6 @@ import {useSelector} from "react-redux";
 // Import External Molecules
 import TopicIntroduction from "../Molecule/Topicbundle/TopicIntroduction";
 import TopicLearning from "../Molecule/Topicbundle/TopicLearning";
-import Progress from "../Molecule/progress";
 import Game from "../Molecule/Topicbundle/Gamebundle/Game";
 import HomeScreen from "../Molecule/homescreen";
 import Topic from "../Molecule/Topic";
@@ -47,7 +46,6 @@ function Routing() {
       <Stack.Screen name="Education" component={Education} options={{ headerShown: false }} />
       <Stack.Screen name="TopicIntroduction" component={TopicIntroduction} options={{ headerShown: false }} />
       <Stack.Screen name="TopicLearning" component={TopicLearning} options={{ headerShown: false }} />
-      <Stack.Screen name="Progress" component={Progress} options={{ headerShown: false }} />
       <Stack.Screen name="Game" component={Game} options={{ headerShown: false }} />
       <Stack.Screen name="Loading" component={Loading} options={{ headerShown: false }} />
       <Stack.Screen name="Summary" component={Summary} options={{ headerShown: false }} />
